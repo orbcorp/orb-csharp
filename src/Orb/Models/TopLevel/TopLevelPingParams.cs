@@ -15,13 +15,20 @@ namespace Orb.Models.TopLevel;
 /// choice for connectors and integrations.
 ///
 /// <para>This API does not have any side-effects or return any Orb resources.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class TopLevelPingParams : ParamsBase
+public record class TopLevelPingParams : ParamsBase
 {
     public TopLevelPingParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopLevelPingParams(TopLevelPingParams topLevelPingParams)
         : base(topLevelPingParams) { }
+#pragma warning restore CS8618
 
     public TopLevelPingParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -44,7 +51,7 @@ public sealed record class TopLevelPingParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static TopLevelPingParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -54,6 +61,32 @@ public sealed record class TopLevelPingParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(TopLevelPingParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -71,5 +104,10 @@ public sealed record class TopLevelPingParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

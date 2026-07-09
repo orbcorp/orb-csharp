@@ -58,4 +58,14 @@ public class PackageConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PackageConfig { PackageAmount = "package_amount", PackageSize = 1 };
+
+        PackageConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

@@ -13,8 +13,12 @@ namespace Orb.Models.Plans.Migrations;
 /// is ordered starting from the most recently created migration. The response also
 /// includes pagination_metadata, which lets the caller retrieve the next page of
 /// results if they exist.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class MigrationListParams : ParamsBase
+public record class MigrationListParams : ParamsBase
 {
     public string? PlanID { get; init; }
 
@@ -55,11 +59,14 @@ public sealed record class MigrationListParams : ParamsBase
 
     public MigrationListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationListParams(MigrationListParams migrationListParams)
         : base(migrationListParams)
     {
         this.PlanID = migrationListParams.PlanID;
     }
+#pragma warning restore CS8618
 
     public MigrationListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -74,24 +81,56 @@ public sealed record class MigrationListParams : ParamsBase
     [SetsRequiredMembers]
     MigrationListParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string planID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.PlanID = planID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static MigrationListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string planID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            planID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["PlanID"] = JsonSerializer.SerializeToElement(this.PlanID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(MigrationListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.PlanID?.Equals(other.PlanID) ?? other.PlanID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -112,5 +151,10 @@ public sealed record class MigrationListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

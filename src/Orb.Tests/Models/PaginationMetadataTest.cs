@@ -58,4 +58,14 @@ public class PaginationMetadataTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PaginationMetadata { HasMore = true, NextCursor = "next_cursor" };
+
+        PaginationMetadata copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

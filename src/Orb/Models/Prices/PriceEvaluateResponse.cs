@@ -38,8 +38,11 @@ public sealed record class PriceEvaluateResponse : JsonModel
 
     public PriceEvaluateResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluateResponse(PriceEvaluateResponse priceEvaluateResponse)
         : base(priceEvaluateResponse) { }
+#pragma warning restore CS8618
 
     public PriceEvaluateResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

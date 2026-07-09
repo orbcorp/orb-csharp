@@ -184,64 +184,68 @@ public sealed record class Invoice : JsonModel
     /// El Salvador | `sv_nit` | El Salvadorian NIT Number | | Estonia | `eu_vat`
     /// | European VAT Number | | Ethiopia | `et_tin` | Ethiopia Tax Identification
     /// Number | | European Union | `eu_oss_vat` | European One Stop Shop VAT Number
-    /// for non-Union scheme | | Finland | `eu_vat` | European VAT Number | | France
-    /// | `eu_vat` | European VAT Number | | Georgia | `ge_vat` | Georgian VAT | |
-    /// Germany | `de_stn` | German Tax Number (Steuernummer) | | Germany | `eu_vat`
-    /// | European VAT Number | | Greece | `eu_vat` | European VAT Number | | Guinea
-    /// | `gn_nif` | Guinea Tax Identification Number (Número de Identificação Fiscal)
-    /// | | Hong Kong | `hk_br` | Hong Kong BR Number | | Hungary | `eu_vat` | European
-    /// VAT Number | | Hungary | `hu_tin` | Hungary Tax Number (adószám) | | Iceland
-    /// | `is_vat` | Icelandic VAT | | India | `in_gst` | Indian GST Number | | Indonesia
-    /// | `id_npwp` | Indonesian NPWP Number | | Ireland | `eu_vat` | European VAT
-    /// Number | | Israel | `il_vat` | Israel VAT | | Italy | `eu_vat` | European
-    /// VAT Number | | Japan | `jp_cn` | Japanese Corporate Number (*Hōjin Bangō*)
-    /// | | Japan | `jp_rn` | Japanese Registered Foreign Businesses' Registration
-    /// Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan | `jp_trn` |
-    /// Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan | `kz_bin`
-    /// | Kazakhstani Business Identification Number | | Kenya | `ke_pin` | Kenya
-    /// Revenue Authority Personal Identification Number | | Kyrgyzstan | `kg_tin`
-    /// | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos Tax Identification
-    /// Number | | Latvia | `eu_vat` | European VAT Number | | Liechtenstein | `li_uid`
-    /// | Liechtensteinian UID Number | | Liechtenstein | `li_vat` | Liechtenstein
-    /// VAT Number | | Lithuania | `eu_vat` | European VAT Number | | Luxembourg
-    /// | `eu_vat` | European VAT Number | | Malaysia | `my_frp` | Malaysian FRP
-    /// Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia | `my_sst` | Malaysian
-    /// SST Number | | Malta | `eu_vat` | European VAT Number | | Mauritania | `mr_nif`
-    /// | Mauritania Tax Identification Number (Número de Identificação Fiscal) |
-    /// | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova | `md_vat` | Moldova
-    /// VAT Number | | Montenegro | `me_pib` | Montenegro PIB Number | | Morocco |
-    /// `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` | Nepal PAN Number | |
-    /// Netherlands | `eu_vat` | European VAT Number | | New Zealand | `nz_gst` |
-    /// New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian Tax Identification
-    /// Number | | North Macedonia | `mk_vat` | North Macedonia VAT Number | | Northern
-    /// Ireland | `eu_vat` | Northern Ireland VAT Number | | Norway | `no_vat` |
-    /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
-    /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
-    /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
+    /// for non-Union scheme | | Faroe Islands | `fo_vat` | Faroe Islands VAT Number
+    /// | | Finland | `eu_vat` | European VAT Number | | France | `eu_vat` | European
+    /// VAT Number | | Georgia | `ge_vat` | Georgian VAT | | Germany | `de_stn` |
+    /// German Tax Number (Steuernummer) | | Germany | `eu_vat` | European VAT Number
+    /// | | Gibraltar | `gi_tin` | Gibraltar Tax Identification Number | | Greece
+    /// | `eu_vat` | European VAT Number | | Guinea | `gn_nif` | Guinea Tax Identification
+    /// Number (Número de Identificação Fiscal) | | Hong Kong | `hk_br` | Hong Kong
+    /// BR Number | | Hungary | `eu_vat` | European VAT Number | | Hungary | `hu_tin`
+    /// | Hungary Tax Number (adószám) | | Iceland | `is_vat` | Icelandic VAT | |
+    /// India | `in_gst` | Indian GST Number | | Indonesia | `id_npwp` | Indonesian
+    /// NPWP Number | | Ireland | `eu_vat` | European VAT Number | | Israel | `il_vat`
+    /// | Israel VAT | | Italy | `eu_vat` | European VAT Number | | Italy | `it_cf`
+    /// | Italian Codice Fiscale Number | | Japan | `jp_cn` | Japanese Corporate Number
+    /// (*Hōjin Bangō*) | | Japan | `jp_rn` | Japanese Registered Foreign Businesses'
+    /// Registration Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan
+    /// | `jp_trn` | Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan
+    /// | `kz_bin` | Kazakhstani Business Identification Number | | Kenya | `ke_pin`
+    /// | Kenya Revenue Authority Personal Identification Number | | Kyrgyzstan |
+    /// `kg_tin` | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos
+    /// Tax Identification Number | | Latvia | `eu_vat` | European VAT Number | |
+    /// Liechtenstein | `li_uid` | Liechtensteinian UID Number | | Liechtenstein |
+    /// `li_vat` | Liechtenstein VAT Number | | Lithuania | `eu_vat` | European VAT
+    /// Number | | Luxembourg | `eu_vat` | European VAT Number | | Malaysia | `my_frp`
+    /// | Malaysian FRP Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia
+    /// | `my_sst` | Malaysian SST Number | | Malta | `eu_vat` | European VAT Number
+    /// | | Mauritania | `mr_nif` | Mauritania Tax Identification Number (Número de
+    /// Identificação Fiscal) | | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova
+    /// | `md_vat` | Moldova VAT Number | | Montenegro | `me_pib` | Montenegro PIB
+    /// Number | | Morocco | `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` |
+    /// Nepal PAN Number | | Netherlands | `eu_vat` | European VAT Number | | New
+    /// Zealand | `nz_gst` | New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian
+    /// Tax Identification Number | | North Macedonia | `mk_vat` | North Macedonia
+    /// VAT Number | | Northern Ireland | `eu_vat` | Northern Ireland VAT Number |
+    /// | Norway | `no_vat` | Norwegian VAT Number | | Norway | `no_voec` | Norwegian
+    /// VAT on e-commerce Number | | Oman | `om_vat` | Omani VAT Number | | Paraguay
+    /// | `py_ruc` | Paraguayan RUC Number | | Peru | `pe_ruc` | Peruvian RUC Number
+    /// | | Philippines | `ph_tin` | Philippines Tax Identification Number | | Poland
+    /// | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish Tax ID Number
+    /// | | Portugal | `eu_vat` | European VAT Number | | Romania | `eu_vat` | European
+    /// VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number | | Russia | `ru_inn`
+    /// | Russian INN | | Russia | `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat`
+    /// | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia
+    /// | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst` | Singaporean GST
+    /// | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia | `eu_vat` | European
+    /// VAT Number | | Slovenia | `eu_vat` | European VAT Number | | Slovenia | `si_tin`
+    /// | Slovenia Tax Number (davčna številka) | | South Africa | `za_vat` | South
+    /// African VAT Number | | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif`
+    /// | Spanish NIF Number (previously Spanish CIF Number) | | Spain | `eu_vat`
+    /// | European VAT Number | | Sri Lanka | `lk_vat` | Sri Lanka VAT Number | |
+    /// Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat` | European
+    /// VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number | | Switzerland
+    /// | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT
+    /// | | Tajikistan | `tj_tin` | Tajikistan Tax Identification Number | | Tanzania
+    /// | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey
+    /// | `tr_tin` | Turkish Tax Identification Number | | Uganda | `ug_tin` | Uganda
+    /// Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United
+    /// Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United Kingdom | `gb_vat`
+    /// | United Kingdom VAT Number | | United States | `us_ein` | United States
+    /// EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin`
+    /// | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number
+    /// | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam | `vn_tin` |
+    /// Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
     /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public required CustomerTaxID? CustomerTaxID
@@ -318,8 +322,9 @@ public sealed record class Invoice : JsonModel
     }
 
     /// <summary>
-    /// A URL for the customer-facing invoice portal. This URL expires 30 days after
-    /// the invoice's due date, or 60 days after being re-generated through the UI.
+    /// A URL for the customer-facing invoice portal. This URL expires 60 days after
+    /// the link is generated, or 30 days after the invoice's due date — whichever
+    /// is later.
     /// </summary>
     public required string? HostedInvoiceUrl
     {
@@ -747,9 +752,12 @@ public sealed record class Invoice : JsonModel
     [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice(Invoice invoice)
         : base(invoice) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: discount")]
     public Invoice(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -855,8 +863,11 @@ public sealed record class InvoiceAutoCollection : JsonModel
 
     public InvoiceAutoCollection() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceAutoCollection(InvoiceAutoCollection invoiceAutoCollection)
         : base(invoiceAutoCollection) { }
+#pragma warning restore CS8618
 
     public InvoiceAutoCollection(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -982,8 +993,11 @@ public sealed record class InvoiceCreditNote : JsonModel
 
     public InvoiceCreditNote() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceCreditNote(InvoiceCreditNote invoiceCreditNote)
         : base(invoiceCreditNote) { }
+#pragma warning restore CS8618
 
     public InvoiceCreditNote(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1162,10 +1176,13 @@ public sealed record class InvoiceCustomerBalanceTransaction : JsonModel
 
     public InvoiceCustomerBalanceTransaction() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceCustomerBalanceTransaction(
         InvoiceCustomerBalanceTransaction invoiceCustomerBalanceTransaction
     )
         : base(invoiceCustomerBalanceTransaction) { }
+#pragma warning restore CS8618
 
     public InvoiceCustomerBalanceTransaction(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1394,8 +1411,8 @@ public sealed record class InvoiceLineItem : JsonModel
 
     /// <summary>
     /// All adjustments applied to the line item in the order they were applied based
-    /// on invoice calculations (ie. usage discounts -> amount discounts -> percentage
-    /// discounts -> minimums -> maximums).
+    /// on invoice calculations (ie. usage discounts -&gt; amount discounts -&gt;
+    /// percentage discounts -&gt; minimums -&gt; maximums).
     /// </summary>
     public required IReadOnlyList<InvoiceLineItemAdjustment> Adjustments
     {
@@ -1663,8 +1680,11 @@ public sealed record class InvoiceLineItem : JsonModel
 
     public InvoiceLineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceLineItem(InvoiceLineItem invoiceLineItem)
         : base(invoiceLineItem) { }
+#pragma warning restore CS8618
 
     public InvoiceLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1719,6 +1739,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.ID,
                 monetaryAmountDiscount: (x) => x.ID,
                 monetaryPercentageDiscount: (x) => x.ID,
+                tieredPercentageDiscount: (x) => x.ID,
                 monetaryMinimum: (x) => x.ID,
                 monetaryMaximum: (x) => x.ID
             );
@@ -1733,6 +1754,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.Amount,
                 monetaryAmountDiscount: (x) => x.Amount,
                 monetaryPercentageDiscount: (x) => x.Amount,
+                tieredPercentageDiscount: (x) => x.Amount,
                 monetaryMinimum: (x) => x.Amount,
                 monetaryMaximum: (x) => x.Amount
             );
@@ -1747,6 +1769,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.IsInvoiceLevel,
                 monetaryAmountDiscount: (x) => x.IsInvoiceLevel,
                 monetaryPercentageDiscount: (x) => x.IsInvoiceLevel,
+                tieredPercentageDiscount: (x) => x.IsInvoiceLevel,
                 monetaryMinimum: (x) => x.IsInvoiceLevel,
                 monetaryMaximum: (x) => x.IsInvoiceLevel
             );
@@ -1761,6 +1784,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.Reason,
                 monetaryAmountDiscount: (x) => x.Reason,
                 monetaryPercentageDiscount: (x) => x.Reason,
+                tieredPercentageDiscount: (x) => x.Reason,
                 monetaryMinimum: (x) => x.Reason,
                 monetaryMaximum: (x) => x.Reason
             );
@@ -1775,6 +1799,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 monetaryUsageDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryAmountDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryPercentageDiscount: (x) => x.ReplacesAdjustmentID,
+                tieredPercentageDiscount: (x) => x.ReplacesAdjustmentID,
                 monetaryMinimum: (x) => x.ReplacesAdjustmentID,
                 monetaryMaximum: (x) => x.ReplacesAdjustmentID
             );
@@ -1808,6 +1833,15 @@ public record class InvoiceLineItemAdjustment : ModelBase
         this._element = element;
     }
 
+    public InvoiceLineItemAdjustment(
+        InvoiceLineItemAdjustmentTieredPercentageDiscount value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
     public InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value, JsonElement? element = null)
     {
         this.Value = value;
@@ -1829,7 +1863,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryUsageDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1852,7 +1886,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryAmountDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1875,7 +1909,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryPercentageDiscountAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1896,9 +1930,32 @@ public record class InvoiceLineItemAdjustment : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="InvoiceLineItemAdjustmentTieredPercentageDiscount"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTieredPercentageDiscount(out var value)) {
+    ///     // `value` is of type `InvoiceLineItemAdjustmentTieredPercentageDiscount`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTieredPercentageDiscount(
+        [NotNullWhen(true)] out InvoiceLineItemAdjustmentTieredPercentageDiscount? value
+    )
+    {
+        value = this.Value as InvoiceLineItemAdjustmentTieredPercentageDiscount;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryMinimumAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1919,7 +1976,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MonetaryMaximumAdjustment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1939,7 +1996,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1950,11 +2007,12 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (MonetaryUsageDiscountAdjustment value) => {...},
-    ///     (MonetaryAmountDiscountAdjustment value) => {...},
-    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
-    ///     (MonetaryMinimumAdjustment value) => {...},
-    ///     (MonetaryMaximumAdjustment value) => {...}
+    ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (InvoiceLineItemAdjustmentTieredPercentageDiscount value) =&gt; {...},
+    ///     (MonetaryMinimumAdjustment value) =&gt; {...},
+    ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1963,6 +2021,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
         System::Action<MonetaryUsageDiscountAdjustment> monetaryUsageDiscount,
         System::Action<MonetaryAmountDiscountAdjustment> monetaryAmountDiscount,
         System::Action<MonetaryPercentageDiscountAdjustment> monetaryPercentageDiscount,
+        System::Action<InvoiceLineItemAdjustmentTieredPercentageDiscount> tieredPercentageDiscount,
         System::Action<MonetaryMinimumAdjustment> monetaryMinimum,
         System::Action<MonetaryMaximumAdjustment> monetaryMaximum
     )
@@ -1977,6 +2036,9 @@ public record class InvoiceLineItemAdjustment : ModelBase
                 break;
             case MonetaryPercentageDiscountAdjustment value:
                 monetaryPercentageDiscount(value);
+                break;
+            case InvoiceLineItemAdjustmentTieredPercentageDiscount value:
+                tieredPercentageDiscount(value);
                 break;
             case MonetaryMinimumAdjustment value:
                 monetaryMinimum(value);
@@ -1995,7 +2057,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2006,11 +2068,12 @@ public record class InvoiceLineItemAdjustment : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (MonetaryUsageDiscountAdjustment value) => {...},
-    ///     (MonetaryAmountDiscountAdjustment value) => {...},
-    ///     (MonetaryPercentageDiscountAdjustment value) => {...},
-    ///     (MonetaryMinimumAdjustment value) => {...},
-    ///     (MonetaryMaximumAdjustment value) => {...}
+    ///     (MonetaryUsageDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryAmountDiscountAdjustment value) =&gt; {...},
+    ///     (MonetaryPercentageDiscountAdjustment value) =&gt; {...},
+    ///     (InvoiceLineItemAdjustmentTieredPercentageDiscount value) =&gt; {...},
+    ///     (MonetaryMinimumAdjustment value) =&gt; {...},
+    ///     (MonetaryMaximumAdjustment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2019,6 +2082,7 @@ public record class InvoiceLineItemAdjustment : ModelBase
         System::Func<MonetaryUsageDiscountAdjustment, T> monetaryUsageDiscount,
         System::Func<MonetaryAmountDiscountAdjustment, T> monetaryAmountDiscount,
         System::Func<MonetaryPercentageDiscountAdjustment, T> monetaryPercentageDiscount,
+        System::Func<InvoiceLineItemAdjustmentTieredPercentageDiscount, T> tieredPercentageDiscount,
         System::Func<MonetaryMinimumAdjustment, T> monetaryMinimum,
         System::Func<MonetaryMaximumAdjustment, T> monetaryMaximum
     )
@@ -2028,6 +2092,9 @@ public record class InvoiceLineItemAdjustment : ModelBase
             MonetaryUsageDiscountAdjustment value => monetaryUsageDiscount(value),
             MonetaryAmountDiscountAdjustment value => monetaryAmountDiscount(value),
             MonetaryPercentageDiscountAdjustment value => monetaryPercentageDiscount(value),
+            InvoiceLineItemAdjustmentTieredPercentageDiscount value => tieredPercentageDiscount(
+                value
+            ),
             MonetaryMinimumAdjustment value => monetaryMinimum(value),
             MonetaryMaximumAdjustment value => monetaryMaximum(value),
             _ => throw new OrbInvalidDataException(
@@ -2046,6 +2113,10 @@ public record class InvoiceLineItemAdjustment : ModelBase
 
     public static implicit operator InvoiceLineItemAdjustment(
         MonetaryPercentageDiscountAdjustment value
+    ) => new(value);
+
+    public static implicit operator InvoiceLineItemAdjustment(
+        InvoiceLineItemAdjustmentTieredPercentageDiscount value
     ) => new(value);
 
     public static implicit operator InvoiceLineItemAdjustment(MonetaryMinimumAdjustment value) =>
@@ -2076,15 +2147,16 @@ public record class InvoiceLineItemAdjustment : ModelBase
             (monetaryUsageDiscount) => monetaryUsageDiscount.Validate(),
             (monetaryAmountDiscount) => monetaryAmountDiscount.Validate(),
             (monetaryPercentageDiscount) => monetaryPercentageDiscount.Validate(),
+            (tieredPercentageDiscount) => tieredPercentageDiscount.Validate(),
             (monetaryMinimum) => monetaryMinimum.Validate(),
             (monetaryMaximum) => monetaryMaximum.Validate()
         );
     }
 
-    public virtual bool Equals(InvoiceLineItemAdjustment? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(InvoiceLineItemAdjustment? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2092,7 +2164,24 @@ public record class InvoiceLineItemAdjustment : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            MonetaryUsageDiscountAdjustment _ => 0,
+            MonetaryAmountDiscountAdjustment _ => 1,
+            MonetaryPercentageDiscountAdjustment _ => 2,
+            InvoiceLineItemAdjustmentTieredPercentageDiscount _ => 3,
+            MonetaryMinimumAdjustment _ => 4,
+            MonetaryMaximumAdjustment _ => 5,
+            _ => -1,
+        };
+    }
 }
 
 sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemAdjustment>
@@ -2126,12 +2215,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2148,12 +2235,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2171,12 +2256,31 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered_percentage_discount":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<InvoiceLineItemAdjustmentTieredPercentageDiscount>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2193,12 +2297,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2215,12 +2317,10 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2242,6 +2342,563 @@ sealed class InvoiceLineItemAdjustmentConverter : JsonConverter<InvoiceLineItemA
     {
         JsonSerializer.Serialize(writer, value.Json, options);
     }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceLineItemAdjustmentTieredPercentageDiscount,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFromRaw
+    >)
+)]
+public sealed record class InvoiceLineItemAdjustmentTieredPercentageDiscount : JsonModel
+{
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    public JsonElement AdjustmentType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("adjustment_type");
+        }
+        init { this._rawData.Set("adjustment_type", value); }
+    }
+
+    /// <summary>
+    /// The value applied by an adjustment.
+    /// </summary>
+    public required string Amount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("amount");
+        }
+        init { this._rawData.Set("amount", value); }
+    }
+
+    /// <summary>
+    /// The price IDs that this adjustment applies to.
+    /// </summary>
+    [System::Obsolete("deprecated")]
+    public required IReadOnlyList<string> AppliesToPriceIds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("applies_to_price_ids");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "applies_to_price_ids",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The filters that determine which prices to apply this adjustment to.
+    /// </summary>
+    public required IReadOnlyList<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter> Filters
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>
+            >("filters");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>
+            >("filters", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// True for adjustments that apply to an entire invoice, false for adjustments
+    /// that apply to only one price.
+    /// </summary>
+    public required bool IsInvoiceLevel
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("is_invoice_level");
+        }
+        init { this._rawData.Set("is_invoice_level", value); }
+    }
+
+    /// <summary>
+    /// The reason for the adjustment.
+    /// </summary>
+    public required string? Reason
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("reason");
+        }
+        init { this._rawData.Set("reason", value); }
+    }
+
+    /// <summary>
+    /// The adjustment id this adjustment replaces. This adjustment will take the
+    /// place of the replaced adjustment in plan version migrations.
+    /// </summary>
+    public required string? ReplacesAdjustmentID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("replaces_adjustment_id");
+        }
+        init { this._rawData.Set("replaces_adjustment_id", value); }
+    }
+
+    /// <summary>
+    /// The ordered, contiguous bands of cumulative eligible spend, each discounted
+    /// at its own percentage (progressive fill-a-tier), applied to the prices this
+    /// adjustment covers in a given billing period.
+    /// </summary>
+    public required IReadOnlyList<InvoiceLineItemAdjustmentTieredPercentageDiscountTier> Tiers
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>
+            >("tiers");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>
+            >("tiers", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        if (
+            !JsonElement.DeepEquals(
+                this.AdjustmentType,
+                JsonSerializer.SerializeToElement("tiered_percentage_discount")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Amount;
+        _ = this.AppliesToPriceIds;
+        foreach (var item in this.Filters)
+        {
+            item.Validate();
+        }
+        _ = this.IsInvoiceLevel;
+        _ = this.Reason;
+        _ = this.ReplacesAdjustmentID;
+        foreach (var item in this.Tiers)
+        {
+            item.Validate();
+        }
+    }
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount()
+    {
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount(
+        InvoiceLineItemAdjustmentTieredPercentageDiscount invoiceLineItemAdjustmentTieredPercentageDiscount
+    )
+        : base(invoiceLineItemAdjustmentTieredPercentageDiscount) { }
+#pragma warning restore CS8618
+
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+
+        this.AdjustmentType = JsonSerializer.SerializeToElement("tiered_percentage_discount");
+    }
+
+#pragma warning disable CS8618
+    [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
+    [SetsRequiredMembers]
+    InvoiceLineItemAdjustmentTieredPercentageDiscount(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemAdjustmentTieredPercentageDiscountFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItemAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemAdjustmentTieredPercentageDiscountFromRaw
+    : IFromRawJson<InvoiceLineItemAdjustmentTieredPercentageDiscount>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItemAdjustmentTieredPercentageDiscount FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemAdjustmentTieredPercentageDiscount.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilter,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFromRaw
+    >)
+)]
+public sealed record class InvoiceLineItemAdjustmentTieredPercentageDiscountFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+    > Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<
+        string,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+    > Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilter invoiceLineItemAdjustmentTieredPercentageDiscountFilter
+    )
+        : base(invoiceLineItemAdjustmentTieredPercentageDiscountFilter) { }
+#pragma warning restore CS8618
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceLineItemAdjustmentTieredPercentageDiscountFilter(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItemAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFromRaw
+    : IFromRawJson<InvoiceLineItemAdjustmentTieredPercentageDiscountFilter>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemAdjustmentTieredPercentageDiscountFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFieldConverter))]
+public enum InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterFieldConverter
+    : JsonConverter<InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField>
+{
+    public override InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            "item_id" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.ItemID,
+            "price_type" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceType,
+            "currency" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.Currency,
+            "pricing_unit_id" =>
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID,
+            _ => (InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceID => "price_id",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.ItemID => "item_id",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PriceType =>
+                    "price_type",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.Currency => "currency",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID =>
+                    "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperatorConverter))]
+public enum InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperatorConverter
+    : JsonConverter<InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator>
+{
+    public override InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            "excludes" => InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes,
+            _ => (InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes =>
+                    "includes",
+                InvoiceLineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes =>
+                    "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// One band of a tiered percentage discount. Bounds are denominated in the discount's
+/// currency. `lower_bound` is the exclusive start of the band and `upper_bound`
+/// is the inclusive end; `upper_bound` is null only for the open-ended final tier.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTier,
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTierFromRaw
+    >)
+)]
+public sealed record class InvoiceLineItemAdjustmentTieredPercentageDiscountTier : JsonModel
+{
+    /// <summary>
+    /// Exclusive lower bound of cumulative spend for this tier.
+    /// </summary>
+    public required double LowerBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("lower_bound");
+        }
+        init { this._rawData.Set("lower_bound", value); }
+    }
+
+    /// <summary>
+    /// The percentage (between 0 and 1) discounted from spend that falls within
+    /// this tier.
+    /// </summary>
+    public required double Percentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<double>("percentage");
+        }
+        init { this._rawData.Set("percentage", value); }
+    }
+
+    /// <summary>
+    /// Inclusive upper bound of cumulative spend for this tier; null for the final
+    /// open-ended tier.
+    /// </summary>
+    public double? UpperBound
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("upper_bound");
+        }
+        init { this._rawData.Set("upper_bound", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.LowerBound;
+        _ = this.Percentage;
+        _ = this.UpperBound;
+    }
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier(
+        InvoiceLineItemAdjustmentTieredPercentageDiscountTier invoiceLineItemAdjustmentTieredPercentageDiscountTier
+    )
+        : base(invoiceLineItemAdjustmentTieredPercentageDiscountTier) { }
+#pragma warning restore CS8618
+
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    InvoiceLineItemAdjustmentTieredPercentageDiscountTier(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="InvoiceLineItemAdjustmentTieredPercentageDiscountTierFromRaw.FromRawUnchecked"/>
+    public static InvoiceLineItemAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class InvoiceLineItemAdjustmentTieredPercentageDiscountTierFromRaw
+    : IFromRawJson<InvoiceLineItemAdjustmentTieredPercentageDiscountTier>
+{
+    /// <inheritdoc/>
+    public InvoiceLineItemAdjustmentTieredPercentageDiscountTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => InvoiceLineItemAdjustmentTieredPercentageDiscountTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(InvoiceLineItemSubLineItemConverter))]
@@ -2326,7 +2983,7 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="MatrixSubLineItem"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2347,7 +3004,7 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="TierSubLineItem"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2368,7 +3025,7 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="OtherSubLineItem"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -2388,7 +3045,7 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2399,9 +3056,9 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (MatrixSubLineItem value) => {...},
-    ///     (TierSubLineItem value) => {...},
-    ///     (OtherSubLineItem value) => {...}
+    ///     (MatrixSubLineItem value) =&gt; {...},
+    ///     (TierSubLineItem value) =&gt; {...},
+    ///     (OtherSubLineItem value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2434,7 +3091,7 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -2445,9 +3102,9 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (MatrixSubLineItem value) => {...},
-    ///     (TierSubLineItem value) => {...},
-    ///     (OtherSubLineItem value) => {...}
+    ///     (MatrixSubLineItem value) =&gt; {...},
+    ///     (TierSubLineItem value) =&gt; {...},
+    ///     (OtherSubLineItem value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2502,10 +3159,10 @@ public record class InvoiceLineItemSubLineItem : ModelBase
         );
     }
 
-    public virtual bool Equals(InvoiceLineItemSubLineItem? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(InvoiceLineItemSubLineItem? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2513,7 +3170,21 @@ public record class InvoiceLineItemSubLineItem : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            MatrixSubLineItem _ => 0,
+            TierSubLineItem _ => 1,
+            OtherSubLineItem _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItemSubLineItem>
@@ -2547,12 +3218,10 @@ sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItem
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2569,12 +3238,10 @@ sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItem
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2591,12 +3258,10 @@ sealed class InvoiceLineItemSubLineItemConverter : JsonConverter<InvoiceLineItem
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2731,8 +3396,11 @@ public sealed record class InvoicePaymentAttempt : JsonModel
 
     public InvoicePaymentAttempt() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoicePaymentAttempt(InvoicePaymentAttempt invoicePaymentAttempt)
         : base(invoicePaymentAttempt) { }
+#pragma warning restore CS8618
 
     public InvoicePaymentAttempt(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2771,6 +3439,7 @@ class InvoicePaymentAttemptFromRaw : IFromRawJson<InvoicePaymentAttempt>
 public enum InvoicePaymentAttemptPaymentProvider
 {
     Stripe,
+    Adyen,
 }
 
 sealed class InvoicePaymentAttemptPaymentProviderConverter
@@ -2785,6 +3454,7 @@ sealed class InvoicePaymentAttemptPaymentProviderConverter
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
             "stripe" => InvoicePaymentAttemptPaymentProvider.Stripe,
+            "adyen" => InvoicePaymentAttemptPaymentProvider.Adyen,
             _ => (InvoicePaymentAttemptPaymentProvider)(-1),
         };
     }
@@ -2800,6 +3470,7 @@ sealed class InvoicePaymentAttemptPaymentProviderConverter
             value switch
             {
                 InvoicePaymentAttemptPaymentProvider.Stripe => "stripe",
+                InvoicePaymentAttemptPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

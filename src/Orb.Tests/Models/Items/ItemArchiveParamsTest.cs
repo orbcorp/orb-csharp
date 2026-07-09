@@ -22,6 +22,18 @@ public class ItemArchiveParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/items/item_id/archive"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/items/item_id/archive"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ItemArchiveParams { ItemID = "item_id" };
+
+        ItemArchiveParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

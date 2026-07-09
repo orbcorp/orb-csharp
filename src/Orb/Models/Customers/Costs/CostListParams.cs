@@ -106,8 +106,12 @@ namespace Orb.Models.Customers.Costs;
 /// costs grouped by those matrix dimensions. Orb will return `price_groups` with
 /// the `grouping_key` and `secondary_grouping_key` based on the matrix price definition,
 /// for each `grouping_value` and `secondary_grouping_value` available.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CostListParams : ParamsBase
+public record class CostListParams : ParamsBase
 {
     public string? CustomerID { get; init; }
 
@@ -167,11 +171,14 @@ public sealed record class CostListParams : ParamsBase
 
     public CostListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CostListParams(CostListParams costListParams)
         : base(costListParams)
     {
         this.CustomerID = costListParams.CustomerID;
     }
+#pragma warning restore CS8618
 
     public CostListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -186,24 +193,56 @@ public sealed record class CostListParams : ParamsBase
     [SetsRequiredMembers]
     CostListParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string customerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.CustomerID = customerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CostListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string customerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            customerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CustomerID"] = JsonSerializer.SerializeToElement(this.CustomerID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CostListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -224,6 +263,11 @@ public sealed record class CostListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

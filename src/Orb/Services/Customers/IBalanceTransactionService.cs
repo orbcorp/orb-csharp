@@ -7,9 +7,25 @@ using Orb.Models.Customers.BalanceTransactions;
 namespace Orb.Services.Customers;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// A customer is a buyer of your products, and the other party to the billing relationship.
+///
+/// <para>In Orb, customers are assigned system generated identifiers automatically,
+/// but it's often desirable to have these match existing identifiers in your system.
+/// To avoid having to denormalize Orb ID information, you can pass in an `external_customer_id`
+/// with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
+/// for further information about how these aliases work in Orb.</para>
+///
+/// <para>In addition to having an identifier in your system, a customer may exist
+/// in a payment provider solution like Stripe. Use the `payment_provider_id` and
+/// the `payment_provider` enum field to express this mapping.</para>
+///
+/// <para>A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
+/// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
+/// for information on what this timezone parameter influences within Orb.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IBalanceTransactionService
 {
@@ -27,8 +43,8 @@ public interface IBalanceTransactionService
     IBalanceTransactionService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Creates an immutable balance transaction that updates the customer's balance
-    /// and returns back the newly created transaction.
+    /// Creates an immutable balance transaction that updates the customer's balance and
+    /// returns back the newly created transaction.
     /// </summary>
     Task<BalanceTransactionCreateResponse> Create(
         BalanceTransactionCreateParams parameters,
@@ -45,26 +61,26 @@ public interface IBalanceTransactionService
     /// <summary>
     /// ## The customer balance
     ///
-    /// <para>The customer balance is an amount in the customer's currency, which
-    /// Orb automatically applies to subsequent invoices. This balance can be adjusted
+    /// <para>The customer balance is an amount in the customer's currency, which Orb
+    /// automatically applies to subsequent invoices. This balance can be adjusted
     /// manually via Orb's webapp on the customer details page. You can use this balance
-    /// to provide a fixed mid-period credit to the customer. Commonly, this is done
-    /// due to system downtime/SLA violation, or an adhoc adjustment discussed with
-    /// the customer.</para>
+    /// to provide a fixed mid-period credit to the customer. Commonly, this is done due
+    /// to system downtime/SLA violation, or an adhoc adjustment discussed with the
+    /// customer.</para>
     ///
     /// <para>If the balance is a positive value at the time of invoicing, it represents
-    /// that the customer has credit that should be used to offset the amount due
-    /// on the next issued invoice. In this case, Orb will automatically reduce the
-    /// next invoice by the balance amount, and roll over any remaining balance if
-    /// the invoice is fully discounted.</para>
+    /// that the customer has credit that should be used to offset the amount due on the
+    /// next issued invoice. In this case, Orb will automatically reduce the next
+    /// invoice by the balance amount, and roll over any remaining balance if the
+    /// invoice is fully discounted.</para>
     ///
     /// <para>If the balance is a negative value at the time of invoicing, Orb will
     /// increase the invoice's amount due with a positive adjustment, and reset the
     /// balance to 0.</para>
     ///
     /// <para>This endpoint retrieves all customer balance transactions in reverse
-    /// chronological order for a single customer, providing a complete audit trail
-    /// of all adjustments and invoice applications.</para>
+    /// chronological order for a single customer, providing a complete audit trail of
+    /// all adjustments and invoice applications.</para>
     /// </summary>
     Task<BalanceTransactionListPage> List(
         BalanceTransactionListParams parameters,
@@ -95,7 +111,7 @@ public interface IBalanceTransactionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /customers/{customer_id}/balance_transactions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /customers/{customer_id}/balance_transactions</c>, but is otherwise the
     /// same as <see cref="IBalanceTransactionService.Create(BalanceTransactionCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BalanceTransactionCreateResponse>> Create(
@@ -111,7 +127,7 @@ public interface IBalanceTransactionServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/{customer_id}/balance_transactions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/{customer_id}/balance_transactions</c>, but is otherwise the
     /// same as <see cref="IBalanceTransactionService.List(BalanceTransactionListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<BalanceTransactionListPage>> List(

@@ -10,12 +10,16 @@ using Orb.Core;
 namespace Orb.Models.Plans.ExternalPlanID;
 
 /// <summary>
-/// This endpoint can be used to update the `external_plan_id`, and `metadata` of
-/// an existing plan.
+/// This endpoint can be used to update the `external_plan_id`, `description`, and
+/// `metadata` of an existing plan.
 ///
 /// <para>Other fields on a plan are currently immutable.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ExternalPlanIDUpdateParams : ParamsBase
+public record class ExternalPlanIDUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -24,6 +28,19 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     }
 
     public string? OtherExternalPlanID { get; init; }
+
+    /// <summary>
+    /// An optional user-defined description of the plan.
+    /// </summary>
+    public string? Description
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("description");
+        }
+        init { this._rawBodyData.Set("description", value); }
+    }
 
     /// <summary>
     /// An optional user-defined ID for this plan resource, used throughout the system
@@ -65,6 +82,8 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
 
     public ExternalPlanIDUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExternalPlanIDUpdateParams(ExternalPlanIDUpdateParams externalPlanIDUpdateParams)
         : base(externalPlanIDUpdateParams)
     {
@@ -72,6 +91,7 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
 
         this._rawBodyData = new(externalPlanIDUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public ExternalPlanIDUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -89,27 +109,66 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
     ExternalPlanIDUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string otherExternalPlanID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.OtherExternalPlanID = otherExternalPlanID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static ExternalPlanIDUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string otherExternalPlanID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            otherExternalPlanID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["OtherExternalPlanID"] = JsonSerializer.SerializeToElement(
+                        this.OtherExternalPlanID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ExternalPlanIDUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.OtherExternalPlanID?.Equals(other.OtherExternalPlanID)
+                ?? other.OtherExternalPlanID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -139,5 +198,10 @@ public sealed record class ExternalPlanIDUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

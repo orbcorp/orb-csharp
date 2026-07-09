@@ -251,6 +251,12 @@ public sealed record class Customer : JsonModel
         init { this._rawData.Set("payment_provider_id", value); }
     }
 
+    /// <summary>
+    /// Deprecated. Returns the URL of the most recent non-expired portal link, or
+    /// null. When the account has opted into customer portal sessions, this field
+    /// always returns null. Use POST /v1/customers/{id}/portal_sessions to mint
+    /// short-lived portal session URLs.
+    /// </summary>
     public required string? PortalUrl
     {
         get
@@ -316,64 +322,68 @@ public sealed record class Customer : JsonModel
     /// El Salvador | `sv_nit` | El Salvadorian NIT Number | | Estonia | `eu_vat`
     /// | European VAT Number | | Ethiopia | `et_tin` | Ethiopia Tax Identification
     /// Number | | European Union | `eu_oss_vat` | European One Stop Shop VAT Number
-    /// for non-Union scheme | | Finland | `eu_vat` | European VAT Number | | France
-    /// | `eu_vat` | European VAT Number | | Georgia | `ge_vat` | Georgian VAT | |
-    /// Germany | `de_stn` | German Tax Number (Steuernummer) | | Germany | `eu_vat`
-    /// | European VAT Number | | Greece | `eu_vat` | European VAT Number | | Guinea
-    /// | `gn_nif` | Guinea Tax Identification Number (Número de Identificação Fiscal)
-    /// | | Hong Kong | `hk_br` | Hong Kong BR Number | | Hungary | `eu_vat` | European
-    /// VAT Number | | Hungary | `hu_tin` | Hungary Tax Number (adószám) | | Iceland
-    /// | `is_vat` | Icelandic VAT | | India | `in_gst` | Indian GST Number | | Indonesia
-    /// | `id_npwp` | Indonesian NPWP Number | | Ireland | `eu_vat` | European VAT
-    /// Number | | Israel | `il_vat` | Israel VAT | | Italy | `eu_vat` | European
-    /// VAT Number | | Japan | `jp_cn` | Japanese Corporate Number (*Hōjin Bangō*)
-    /// | | Japan | `jp_rn` | Japanese Registered Foreign Businesses' Registration
-    /// Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan | `jp_trn` |
-    /// Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan | `kz_bin`
-    /// | Kazakhstani Business Identification Number | | Kenya | `ke_pin` | Kenya
-    /// Revenue Authority Personal Identification Number | | Kyrgyzstan | `kg_tin`
-    /// | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos Tax Identification
-    /// Number | | Latvia | `eu_vat` | European VAT Number | | Liechtenstein | `li_uid`
-    /// | Liechtensteinian UID Number | | Liechtenstein | `li_vat` | Liechtenstein
-    /// VAT Number | | Lithuania | `eu_vat` | European VAT Number | | Luxembourg
-    /// | `eu_vat` | European VAT Number | | Malaysia | `my_frp` | Malaysian FRP
-    /// Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia | `my_sst` | Malaysian
-    /// SST Number | | Malta | `eu_vat` | European VAT Number | | Mauritania | `mr_nif`
-    /// | Mauritania Tax Identification Number (Número de Identificação Fiscal) |
-    /// | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova | `md_vat` | Moldova
-    /// VAT Number | | Montenegro | `me_pib` | Montenegro PIB Number | | Morocco |
-    /// `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` | Nepal PAN Number | |
-    /// Netherlands | `eu_vat` | European VAT Number | | New Zealand | `nz_gst` |
-    /// New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian Tax Identification
-    /// Number | | North Macedonia | `mk_vat` | North Macedonia VAT Number | | Northern
-    /// Ireland | `eu_vat` | Northern Ireland VAT Number | | Norway | `no_vat` |
-    /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
-    /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
-    /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
+    /// for non-Union scheme | | Faroe Islands | `fo_vat` | Faroe Islands VAT Number
+    /// | | Finland | `eu_vat` | European VAT Number | | France | `eu_vat` | European
+    /// VAT Number | | Georgia | `ge_vat` | Georgian VAT | | Germany | `de_stn` |
+    /// German Tax Number (Steuernummer) | | Germany | `eu_vat` | European VAT Number
+    /// | | Gibraltar | `gi_tin` | Gibraltar Tax Identification Number | | Greece
+    /// | `eu_vat` | European VAT Number | | Guinea | `gn_nif` | Guinea Tax Identification
+    /// Number (Número de Identificação Fiscal) | | Hong Kong | `hk_br` | Hong Kong
+    /// BR Number | | Hungary | `eu_vat` | European VAT Number | | Hungary | `hu_tin`
+    /// | Hungary Tax Number (adószám) | | Iceland | `is_vat` | Icelandic VAT | |
+    /// India | `in_gst` | Indian GST Number | | Indonesia | `id_npwp` | Indonesian
+    /// NPWP Number | | Ireland | `eu_vat` | European VAT Number | | Israel | `il_vat`
+    /// | Israel VAT | | Italy | `eu_vat` | European VAT Number | | Italy | `it_cf`
+    /// | Italian Codice Fiscale Number | | Japan | `jp_cn` | Japanese Corporate Number
+    /// (*Hōjin Bangō*) | | Japan | `jp_rn` | Japanese Registered Foreign Businesses'
+    /// Registration Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan
+    /// | `jp_trn` | Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan
+    /// | `kz_bin` | Kazakhstani Business Identification Number | | Kenya | `ke_pin`
+    /// | Kenya Revenue Authority Personal Identification Number | | Kyrgyzstan |
+    /// `kg_tin` | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos
+    /// Tax Identification Number | | Latvia | `eu_vat` | European VAT Number | |
+    /// Liechtenstein | `li_uid` | Liechtensteinian UID Number | | Liechtenstein |
+    /// `li_vat` | Liechtenstein VAT Number | | Lithuania | `eu_vat` | European VAT
+    /// Number | | Luxembourg | `eu_vat` | European VAT Number | | Malaysia | `my_frp`
+    /// | Malaysian FRP Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia
+    /// | `my_sst` | Malaysian SST Number | | Malta | `eu_vat` | European VAT Number
+    /// | | Mauritania | `mr_nif` | Mauritania Tax Identification Number (Número de
+    /// Identificação Fiscal) | | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova
+    /// | `md_vat` | Moldova VAT Number | | Montenegro | `me_pib` | Montenegro PIB
+    /// Number | | Morocco | `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` |
+    /// Nepal PAN Number | | Netherlands | `eu_vat` | European VAT Number | | New
+    /// Zealand | `nz_gst` | New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian
+    /// Tax Identification Number | | North Macedonia | `mk_vat` | North Macedonia
+    /// VAT Number | | Northern Ireland | `eu_vat` | Northern Ireland VAT Number |
+    /// | Norway | `no_vat` | Norwegian VAT Number | | Norway | `no_voec` | Norwegian
+    /// VAT on e-commerce Number | | Oman | `om_vat` | Omani VAT Number | | Paraguay
+    /// | `py_ruc` | Paraguayan RUC Number | | Peru | `pe_ruc` | Peruvian RUC Number
+    /// | | Philippines | `ph_tin` | Philippines Tax Identification Number | | Poland
+    /// | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish Tax ID Number
+    /// | | Portugal | `eu_vat` | European VAT Number | | Romania | `eu_vat` | European
+    /// VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number | | Russia | `ru_inn`
+    /// | Russian INN | | Russia | `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat`
+    /// | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia
+    /// | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst` | Singaporean GST
+    /// | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia | `eu_vat` | European
+    /// VAT Number | | Slovenia | `eu_vat` | European VAT Number | | Slovenia | `si_tin`
+    /// | Slovenia Tax Number (davčna številka) | | South Africa | `za_vat` | South
+    /// African VAT Number | | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif`
+    /// | Spanish NIF Number (previously Spanish CIF Number) | | Spain | `eu_vat`
+    /// | European VAT Number | | Sri Lanka | `lk_vat` | Sri Lanka VAT Number | |
+    /// Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat` | European
+    /// VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number | | Switzerland
+    /// | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT
+    /// | | Tajikistan | `tj_tin` | Tajikistan Tax Identification Number | | Tanzania
+    /// | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey
+    /// | `tr_tin` | Turkish Tax Identification Number | | Uganda | `ug_tin` | Uganda
+    /// Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United
+    /// Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United Kingdom | `gb_vat`
+    /// | United Kingdom VAT Number | | United States | `us_ein` | United States
+    /// EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin`
+    /// | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number
+    /// | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam | `vn_tin` |
+    /// Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
     /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public required CustomerTaxID? TaxID
@@ -425,6 +435,23 @@ public sealed record class Customer : JsonModel
             return this._rawData.GetNullableStruct<bool>("automatic_tax_enabled");
         }
         init { this._rawData.Set("automatic_tax_enabled", value); }
+    }
+
+    /// <summary>
+    /// A payment method represents a customer's stored payment instrument held with
+    /// an external payment provider (such as Adyen or Stripe).
+    ///
+    /// <para>The serialization is intentionally minimal for now; provider-pulled
+    /// details (e.g. card display metadata) will be added over time.</para>
+    /// </summary>
+    public DefaultPaymentMethod? DefaultPaymentMethod
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<DefaultPaymentMethod>("default_payment_method");
+        }
+        init { this._rawData.Set("default_payment_method", value); }
     }
 
     /// <summary>
@@ -481,14 +508,18 @@ public sealed record class Customer : JsonModel
         _ = this.Timezone;
         this.AccountingSyncConfiguration?.Validate();
         _ = this.AutomaticTaxEnabled;
+        this.DefaultPaymentMethod?.Validate();
         this.PaymentConfiguration?.Validate();
         this.ReportingConfiguration?.Validate();
     }
 
     public Customer() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Customer(Customer customer)
         : base(customer) { }
+#pragma warning restore CS8618
 
     public Customer(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -561,8 +592,11 @@ public sealed record class Hierarchy : JsonModel
 
     public Hierarchy() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Hierarchy(Hierarchy hierarchy)
         : base(hierarchy) { }
+#pragma warning restore CS8618
 
     public Hierarchy(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -603,6 +637,7 @@ public enum CustomerPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    Adyen,
 }
 
 sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentProvider>
@@ -620,6 +655,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
             "stripe_charge" => CustomerPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerPaymentProvider.StripeInvoice,
             "netsuite" => CustomerPaymentProvider.Netsuite,
+            "adyen" => CustomerPaymentProvider.Adyen,
             _ => (CustomerPaymentProvider)(-1),
         };
     }
@@ -639,6 +675,7 @@ sealed class CustomerPaymentProviderConverter : JsonConverter<CustomerPaymentPro
                 CustomerPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerPaymentProvider.Netsuite => "netsuite",
+                CustomerPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -693,8 +730,11 @@ public sealed record class AccountingSyncConfiguration : JsonModel
 
     public AccountingSyncConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingSyncConfiguration(AccountingSyncConfiguration accountingSyncConfiguration)
         : base(accountingSyncConfiguration) { }
+#pragma warning restore CS8618
 
     public AccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -760,8 +800,11 @@ public sealed record class AccountingProvider : JsonModel
 
     public AccountingProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AccountingProvider(AccountingProvider accountingProvider)
         : base(accountingProvider) { }
+#pragma warning restore CS8618
 
     public AccountingProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -837,6 +880,217 @@ sealed class AccountingProviderProviderTypeConverter : JsonConverter<AccountingP
 }
 
 /// <summary>
+/// A payment method represents a customer's stored payment instrument held with an
+/// external payment provider (such as Adyen or Stripe).
+///
+/// <para>The serialization is intentionally minimal for now; provider-pulled details
+/// (e.g. card display metadata) will be added over time.</para>
+/// </summary>
+[JsonConverter(typeof(JsonModelConverter<DefaultPaymentMethod, DefaultPaymentMethodFromRaw>))]
+public sealed record class DefaultPaymentMethod : JsonModel
+{
+    /// <summary>
+    /// The Orb-assigned unique identifier for the payment method.
+    /// </summary>
+    public required string ID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("id");
+        }
+        init { this._rawData.Set("id", value); }
+    }
+
+    /// <summary>
+    /// The time at which the payment method was created.
+    /// </summary>
+    public required System::DateTimeOffset CreatedAt
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<System::DateTimeOffset>("created_at");
+        }
+        init { this._rawData.Set("created_at", value); }
+    }
+
+    /// <summary>
+    /// The ID of the Orb customer this payment method is attached to.
+    /// </summary>
+    public required string CustomerID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("customer_id");
+        }
+        init { this._rawData.Set("customer_id", value); }
+    }
+
+    /// <summary>
+    /// Whether this is the customer's default payment method.
+    /// </summary>
+    public required bool Default
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<bool>("default");
+        }
+        init { this._rawData.Set("default", value); }
+    }
+
+    /// <summary>
+    /// The identifier of this payment method in the external payment provider.
+    /// </summary>
+    public required string ExternalPaymentMethodID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("external_payment_method_id");
+        }
+        init { this._rawData.Set("external_payment_method_id", value); }
+    }
+
+    /// <summary>
+    /// The type of the underlying payment instrument, e.g. `card` or `us_bank_account`.
+    /// </summary>
+    public required ApiEnum<string, PaymentMethodType> PaymentMethodType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, PaymentMethodType>>(
+                "payment_method_type"
+            );
+        }
+        init { this._rawData.Set("payment_method_type", value); }
+    }
+
+    /// <summary>
+    /// The external payment provider this method belongs to, derived from the linked
+    /// payment gateway connection (e.g. `adyen` or `stripe`). Null if the connection
+    /// has been removed.
+    /// </summary>
+    public required string? ProviderType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("provider_type");
+        }
+        init { this._rawData.Set("provider_type", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.ID;
+        _ = this.CreatedAt;
+        _ = this.CustomerID;
+        _ = this.Default;
+        _ = this.ExternalPaymentMethodID;
+        this.PaymentMethodType.Validate();
+        _ = this.ProviderType;
+    }
+
+    public DefaultPaymentMethod() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public DefaultPaymentMethod(DefaultPaymentMethod defaultPaymentMethod)
+        : base(defaultPaymentMethod) { }
+#pragma warning restore CS8618
+
+    public DefaultPaymentMethod(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    DefaultPaymentMethod(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="DefaultPaymentMethodFromRaw.FromRawUnchecked"/>
+    public static DefaultPaymentMethod FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class DefaultPaymentMethodFromRaw : IFromRawJson<DefaultPaymentMethod>
+{
+    /// <inheritdoc/>
+    public DefaultPaymentMethod FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => DefaultPaymentMethod.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The type of the underlying payment instrument, e.g. `card` or `us_bank_account`.
+/// </summary>
+[JsonConverter(typeof(PaymentMethodTypeConverter))]
+public enum PaymentMethodType
+{
+    Card,
+    UsBankAccount,
+    Link,
+    AmazonPay,
+    Crypto,
+}
+
+sealed class PaymentMethodTypeConverter : JsonConverter<PaymentMethodType>
+{
+    public override PaymentMethodType Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "card" => PaymentMethodType.Card,
+            "us_bank_account" => PaymentMethodType.UsBankAccount,
+            "link" => PaymentMethodType.Link,
+            "amazon_pay" => PaymentMethodType.AmazonPay,
+            "crypto" => PaymentMethodType.Crypto,
+            _ => (PaymentMethodType)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PaymentMethodType value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PaymentMethodType.Card => "card",
+                PaymentMethodType.UsBankAccount => "us_bank_account",
+                PaymentMethodType.Link => "link",
+                PaymentMethodType.AmazonPay => "amazon_pay",
+                PaymentMethodType.Crypto => "crypto",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
 /// Payment configuration for the customer, applicable when using Orb Invoicing with
 /// a supported payment provider such as Stripe.
 /// </summary>
@@ -882,8 +1136,11 @@ public sealed record class CustomerPaymentConfiguration : JsonModel
 
     public CustomerPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerPaymentConfiguration(CustomerPaymentConfiguration customerPaymentConfiguration)
         : base(customerPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerPaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -942,6 +1199,21 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
     }
 
     /// <summary>
+    /// The ID of a shared payment token granted by an agent to use as the default
+    /// payment instrument for this customer. When set, auto-collection will use
+    /// this token instead of the customer's default payment method.
+    /// </summary>
+    public string? DefaultSharedPaymentToken
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_shared_payment_token");
+        }
+        init { this._rawData.Set("default_shared_payment_token", value); }
+    }
+
+    /// <summary>
     /// List of Stripe payment method types to exclude for this customer. Excluded
     /// payment methods will not be available for the customer to select during payment,
     /// and will not be used for auto-collection. If a customer's default payment
@@ -975,15 +1247,19 @@ public sealed record class CustomerPaymentConfigurationPaymentProvider : JsonMod
     public override void Validate()
     {
         this.ProviderType.Validate();
+        _ = this.DefaultSharedPaymentToken;
         _ = this.ExcludedPaymentMethodTypes;
     }
 
     public CustomerPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerPaymentConfigurationPaymentProvider(
         CustomerPaymentConfigurationPaymentProvider customerPaymentConfigurationPaymentProvider
     )
         : base(customerPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1093,8 +1369,11 @@ public sealed record class ReportingConfiguration : JsonModel
 
     public ReportingConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ReportingConfiguration(ReportingConfiguration reportingConfiguration)
         : base(reportingConfiguration) { }
+#pragma warning restore CS8618
 
     public ReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

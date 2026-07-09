@@ -48,8 +48,11 @@ public sealed record class ItemSlim : JsonModel
 
     public ItemSlim() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ItemSlim(ItemSlim itemSlim)
         : base(itemSlim) { }
+#pragma warning restore CS8618
 
     public ItemSlim(IReadOnlyDictionary<string, JsonElement> rawData)
     {

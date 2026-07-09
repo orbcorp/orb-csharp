@@ -8,9 +8,13 @@ using Orb.Models.Plans.ExternalPlanID;
 namespace Orb.Services.Plans;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
+/// be subscribed to by a customer. Plans define the billing behavior of the subscription.
+/// You can see more about how to configure prices in the [Price resource](/reference/price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IExternalPlanIDService
 {
@@ -28,8 +32,8 @@ public interface IExternalPlanIDService
     IExternalPlanIDService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// This endpoint can be used to update the `external_plan_id`, and `metadata`
-    /// of an existing plan.
+    /// This endpoint can be used to update the `external_plan_id`, `description`, and
+    /// `metadata` of an existing plan.
     ///
     /// <para>Other fields on a plan are currently immutable.</para>
     /// </summary>
@@ -48,18 +52,18 @@ public interface IExternalPlanIDService
     /// <summary>
     /// This endpoint is used to fetch [plan](/core-concepts##plan-and-price) details
     /// given an external_plan_id identifier. It returns information about the prices
-    /// included in the plan and their configuration, as well as the product that
-    /// the plan is attached to.
+    /// included in the plan and their configuration, as well as the product that the
+    /// plan is attached to.
     ///
-    /// <para>If multiple plans are found to contain the specified external_plan_id,
-    /// the active plans will take priority over archived ones, and among those,
-    /// the endpoint will return the most recently created plan.</para>
+    /// <para>If multiple plans are found to contain the specified external_plan_id, the
+    /// active plans will take priority over archived ones, and among those, the
+    /// endpoint will return the most recently created plan.</para>
     ///
-    /// <para>## Serialized prices Orb supports a few different pricing models out
-    /// of the box. Each of these models is serialized differently in a given [Price](/core-concepts#plan-and-price)
-    /// object. The `model_type` field determines the key for the configuration object
-    /// that is present. A detailed explanation of price types can be found in the
-    /// [Price schema](/core-concepts#plan-and-price). "</para>
+    /// <para>## Serialized prices Orb supports a few different pricing models out of
+    /// the box. Each of these models is serialized differently in a given
+    /// [Price](/core-concepts#plan-and-price) object. The `model_type` field determines
+    /// the key for the configuration object that is present. A detailed explanation of
+    /// price types can be found in the [Price schema](/core-concepts#plan-and-price). "</para>
     /// </summary>
     Task<Plan> Fetch(
         ExternalPlanIDFetchParams parameters,
@@ -88,7 +92,7 @@ public interface IExternalPlanIDServiceWithRawResponse
     IExternalPlanIDServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /plans/external_plan_id/{external_plan_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /plans/external_plan_id/{external_plan_id}</c>, but is otherwise the
     /// same as <see cref="IExternalPlanIDService.Update(ExternalPlanIDUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> Update(
@@ -104,7 +108,7 @@ public interface IExternalPlanIDServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/external_plan_id/{external_plan_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/external_plan_id/{external_plan_id}</c>, but is otherwise the
     /// same as <see cref="IExternalPlanIDService.Fetch(ExternalPlanIDFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> Fetch(

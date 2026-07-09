@@ -10,18 +10,25 @@ namespace Orb.Models.Prices;
 
 /// <summary>
 /// This endpoint returns a price given an identifier.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class PriceFetchParams : ParamsBase
+public record class PriceFetchParams : ParamsBase
 {
     public string? PriceID { get; init; }
 
     public PriceFetchParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceFetchParams(PriceFetchParams priceFetchParams)
         : base(priceFetchParams)
     {
         this.PriceID = priceFetchParams.PriceID;
     }
+#pragma warning restore CS8618
 
     public PriceFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -36,24 +43,56 @@ public sealed record class PriceFetchParams : ParamsBase
     [SetsRequiredMembers]
     PriceFetchParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string priceID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.PriceID = priceID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static PriceFetchParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string priceID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            priceID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["PriceID"] = JsonSerializer.SerializeToElement(this.PriceID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(PriceFetchParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.PriceID?.Equals(other.PriceID) ?? other.PriceID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -73,5 +112,10 @@ public sealed record class PriceFetchParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

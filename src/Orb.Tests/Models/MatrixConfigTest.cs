@@ -105,4 +105,19 @@ public class MatrixConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MatrixConfig
+        {
+            DefaultUnitAmount = "default_unit_amount",
+            Dimensions = ["string"],
+            MatrixValues = [new() { DimensionValues = ["string"], UnitAmount = "unit_amount" }],
+        };
+
+        MatrixConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

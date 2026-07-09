@@ -22,6 +22,16 @@ public class PriceFetchParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/prices/price_id"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/prices/price_id"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceFetchParams { PriceID = "price_id" };
+
+        PriceFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

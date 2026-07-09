@@ -259,11 +259,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -286,6 +287,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -332,6 +334,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -675,11 +683,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -702,6 +711,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -748,6 +758,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -1092,11 +1108,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -1118,6 +1135,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -1164,6 +1182,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -1505,11 +1529,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -1531,6 +1556,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -1577,6 +1603,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -1948,11 +1980,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -1975,6 +2008,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -2021,6 +2055,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -2364,11 +2404,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -2391,6 +2432,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -2437,6 +2479,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -2796,11 +2844,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -2823,6 +2872,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -2869,6 +2919,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -3212,11 +3268,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -3239,6 +3296,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -3285,6 +3343,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -3636,11 +3700,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -3662,6 +3727,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -3708,6 +3774,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -4049,11 +4121,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Models::Field.PriceID,
-                                        Operator = Models::Operator.Includes,
+                                        Field = Models::AllocationFilterField.PriceID,
+                                        Operator = Models::AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new Models::PercentageDiscount()
@@ -4075,6 +4148,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -4121,6 +4195,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                         Quantity = 1,
@@ -4492,11 +4572,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -4519,6 +4600,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -4565,6 +4647,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -4908,11 +4996,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new Models::PercentageDiscount()
@@ -4935,6 +5024,7 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -4981,6 +5071,12 @@ public class ChangedSubscriptionResourcesTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                             Quantity = 1,
@@ -5082,6 +5178,866 @@ public class ChangedSubscriptionResourcesTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::ChangedSubscriptionResources
+        {
+            CreatedCreditNotes =
+            [
+                new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreditNoteNumber = "credit_note_number",
+                    CreditNotePdf = "credit_note_pdf",
+                    Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                    InvoiceID = "invoice_id",
+                    LineItems =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Amount = "amount",
+                            ItemID = "item_id",
+                            Name = "name",
+                            Quantity = 0,
+                            Subtotal = "subtotal",
+                            TaxAmounts =
+                            [
+                                new()
+                                {
+                                    Amount = "amount",
+                                    TaxRateDescription = "tax_rate_description",
+                                    TaxRatePercentage = "tax_rate_percentage",
+                                },
+                            ],
+                            Discounts =
+                            [
+                                new()
+                                {
+                                    ID = "id",
+                                    AmountApplied = "amount_applied",
+                                    AppliesToPriceIds = ["string"],
+                                    DiscountType = Models::DiscountDiscountType.Percentage,
+                                    PercentageDiscount = 0,
+                                    AmountDiscount = "amount_discount",
+                                    Reason = "reason",
+                                },
+                            ],
+                            EndTimeExclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            StartTimeInclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    MaximumAmountAdjustment = new()
+                    {
+                        AmountApplied = "amount_applied",
+                        DiscountType = Models::MaximumAmountAdjustmentDiscountType.Percentage,
+                        PercentageDiscount = 0,
+                        AppliesToPrices = [new() { ID = "id", Name = "name" }],
+                        Reason = "reason",
+                    },
+                    Memo = "memo",
+                    MinimumAmountRefunded = "minimum_amount_refunded",
+                    Reason = Models::Reason.Duplicate,
+                    Subtotal = "subtotal",
+                    Total = "total",
+                    Type = Models::SharedCreditNoteType.Refund,
+                    VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Discounts =
+                    [
+                        new()
+                        {
+                            AmountApplied = "amount_applied",
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
+                            PercentageDiscount = 0,
+                            AppliesToPrices = [new() { ID = "id", Name = "name" }],
+                            Reason = "reason",
+                        },
+                    ],
+                },
+            ],
+            CreatedInvoices =
+            [
+                new()
+                {
+                    ID = "id",
+                    AmountDue = "8.00",
+                    AutoCollection = new()
+                    {
+                        Enabled = true,
+                        NextAttemptAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        NumAttempts = 0,
+                        PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    },
+                    BillingAddress = new()
+                    {
+                        City = "city",
+                        Country = "country",
+                        Line1 = "line1",
+                        Line2 = "line2",
+                        PostalCode = "postal_code",
+                        State = "state",
+                    },
+                    CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                    CreditNotes =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            CreditNoteNumber = "credit_note_number",
+                            Memo = "memo",
+                            Reason = "reason",
+                            Total = "total",
+                            Type = "type",
+                            VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                        },
+                    ],
+                    Currency = "USD",
+                    Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                    CustomerBalanceTransactions =
+                    [
+                        new()
+                        {
+                            ID = "cgZa3SXcsPTVyC4Y",
+                            Action = Models::Action.AppliedToInvoice,
+                            Amount = "11.00",
+                            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                            CreditNote = new("id"),
+                            Description = "An optional description",
+                            EndingBalance = "22.00",
+                            Invoice = new("gXcsPTVyC4YZa3Sc"),
+                            StartingBalance = "33.00",
+                            Type = Models::Type.Increment,
+                        },
+                    ],
+                    CustomerTaxID = new()
+                    {
+                        Country = Models::Country.Ad,
+                        Type = Models::CustomerTaxIDType.AdNrt,
+                        Value = "value",
+                    },
+                    Discount = JsonSerializer.Deserialize<JsonElement>("{}"),
+                    Discounts =
+                    [
+                        new Models::PercentageDiscount()
+                        {
+                            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                            PercentageDiscountValue = 0.15,
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            Reason = "reason",
+                        },
+                    ],
+                    DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
+                    EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    HostedInvoiceUrl = "hosted_invoice_url",
+                    InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
+                    InvoiceNumber = "JYEFHK-00001",
+                    InvoicePdf =
+                        "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+                    InvoiceSource = Models::InvoiceSource.Subscription,
+                    IsPayableNow = true,
+                    IssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    IssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    LineItems =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            AdjustedSubtotal = "5.00",
+                            Adjustments =
+                            [
+                                new Models::MonetaryUsageDiscountAdjustment()
+                                {
+                                    ID = "id",
+                                    AdjustmentType =
+                                        Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                                    Amount = "amount",
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    IsInvoiceLevel = true,
+                                    Reason = "reason",
+                                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                                    UsageDiscount = 0,
+                                },
+                            ],
+                            Amount = "7.00",
+                            CreditsApplied = "6.00",
+                            EndDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                            Filter = "filter",
+                            Grouping = "grouping",
+                            Name = "Fixed Fee",
+                            PartiallyInvoicedAmount = "4.00",
+                            Price = new Models::Unit()
+                            {
+                                ID = "id",
+                                BillableMetric = new("id"),
+                                BillingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = Models::DurationUnit.Day,
+                                },
+                                BillingMode = Models::BillingMode.InAdvance,
+                                Cadence = Models::UnitCadence.OneTime,
+                                CompositePriceFilters =
+                                [
+                                    new()
+                                    {
+                                        Field = Models::CompositePriceFilterField.PriceID,
+                                        Operator = Models::CompositePriceFilterOperator.Includes,
+                                        Values = ["string"],
+                                    },
+                                ],
+                                ConversionRate = 0,
+                                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                                {
+                                    ConversionRateType =
+                                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                                    UnitConfig = new("unit_amount"),
+                                },
+                                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                CreditAllocation = new()
+                                {
+                                    AllowsRollover = true,
+                                    Currency = "currency",
+                                    CustomExpiration = new()
+                                    {
+                                        Duration = 0,
+                                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                                    },
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    LicenseTypeID = "license_type_id",
+                                },
+                                Currency = "currency",
+                                Discount = new Models::PercentageDiscount()
+                                {
+                                    DiscountType =
+                                        Models::PercentageDiscountDiscountType.Percentage,
+                                    PercentageDiscountValue = 0.15,
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    Reason = "reason",
+                                },
+                                ExternalPriceID = "external_price_id",
+                                FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
+                                InvoicingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = Models::DurationUnit.Day,
+                                },
+                                Item = new() { ID = "id", Name = "name" },
+                                Maximum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MaximumAmount = "maximum_amount",
+                                },
+                                MaximumAmount = "maximum_amount",
+                                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                                Minimum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MinimumAmount = "minimum_amount",
+                                },
+                                MinimumAmount = "minimum_amount",
+                                Name = "name",
+                                PlanPhaseOrder = 0,
+                                PriceType = Models::UnitPriceType.UsagePrice,
+                                ReplacesPriceID = "replaces_price_id",
+                                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                                DimensionalPriceConfiguration = new()
+                                {
+                                    DimensionValues = ["string"],
+                                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
+                            },
+                            Quantity = 1,
+                            StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                            SubLineItems =
+                            [
+                                new Models::MatrixSubLineItem()
+                                {
+                                    Amount = "9.00",
+                                    Grouping = new() { Key = "region", Value = "west" },
+                                    MatrixConfig = new(["string"]),
+                                    Name = "Tier One",
+                                    Quantity = 5,
+                                    Type = Models::MatrixSubLineItemType.Matrix,
+                                    ScaledQuantity = 0,
+                                },
+                            ],
+                            Subtotal = "9.00",
+                            TaxAmounts =
+                            [
+                                new()
+                                {
+                                    Amount = "amount",
+                                    TaxRateDescription = "tax_rate_description",
+                                    TaxRatePercentage = "tax_rate_percentage",
+                                },
+                            ],
+                            UsageCustomerIds = ["string"],
+                        },
+                    ],
+                    Maximum = new()
+                    {
+                        AppliesToPriceIds = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MaximumAmount = "maximum_amount",
+                    },
+                    MaximumAmount = "maximum_amount",
+                    Memo = "memo",
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    Minimum = new()
+                    {
+                        AppliesToPriceIds = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MinimumAmount = "minimum_amount",
+                    },
+                    MinimumAmount = "minimum_amount",
+                    PaidAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PaymentAttempts =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Amount = "amount",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            PaymentProvider = Models::PaymentProvider.Stripe,
+                            PaymentProviderID = "payment_provider_id",
+                            ReceiptPdf =
+                                "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+                            Succeeded = true,
+                        },
+                    ],
+                    PaymentFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PaymentStartedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ScheduledIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ShippingAddress = new()
+                    {
+                        City = "city",
+                        Country = "country",
+                        Line1 = "line1",
+                        Line2 = "line2",
+                        PostalCode = "postal_code",
+                        State = "state",
+                    },
+                    Status = Models::Status.Issued,
+                    Subscription = new("VDGsT23osdLb84KD"),
+                    Subtotal = "8.00",
+                    SyncFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Total = "8.00",
+                    VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    WillAutoIssue = true,
+                },
+            ],
+            VoidedCreditNotes =
+            [
+                new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CreditNoteNumber = "credit_note_number",
+                    CreditNotePdf = "credit_note_pdf",
+                    Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                    InvoiceID = "invoice_id",
+                    LineItems =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Amount = "amount",
+                            ItemID = "item_id",
+                            Name = "name",
+                            Quantity = 0,
+                            Subtotal = "subtotal",
+                            TaxAmounts =
+                            [
+                                new()
+                                {
+                                    Amount = "amount",
+                                    TaxRateDescription = "tax_rate_description",
+                                    TaxRatePercentage = "tax_rate_percentage",
+                                },
+                            ],
+                            Discounts =
+                            [
+                                new()
+                                {
+                                    ID = "id",
+                                    AmountApplied = "amount_applied",
+                                    AppliesToPriceIds = ["string"],
+                                    DiscountType = Models::DiscountDiscountType.Percentage,
+                                    PercentageDiscount = 0,
+                                    AmountDiscount = "amount_discount",
+                                    Reason = "reason",
+                                },
+                            ],
+                            EndTimeExclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            StartTimeInclusive = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    MaximumAmountAdjustment = new()
+                    {
+                        AmountApplied = "amount_applied",
+                        DiscountType = Models::MaximumAmountAdjustmentDiscountType.Percentage,
+                        PercentageDiscount = 0,
+                        AppliesToPrices = [new() { ID = "id", Name = "name" }],
+                        Reason = "reason",
+                    },
+                    Memo = "memo",
+                    MinimumAmountRefunded = "minimum_amount_refunded",
+                    Reason = Models::Reason.Duplicate,
+                    Subtotal = "subtotal",
+                    Total = "total",
+                    Type = Models::SharedCreditNoteType.Refund,
+                    VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Discounts =
+                    [
+                        new()
+                        {
+                            AmountApplied = "amount_applied",
+                            DiscountType = Models::SharedCreditNoteDiscountDiscountType.Percentage,
+                            PercentageDiscount = 0,
+                            AppliesToPrices = [new() { ID = "id", Name = "name" }],
+                            Reason = "reason",
+                        },
+                    ],
+                },
+            ],
+            VoidedInvoices =
+            [
+                new()
+                {
+                    ID = "id",
+                    AmountDue = "8.00",
+                    AutoCollection = new()
+                    {
+                        Enabled = true,
+                        NextAttemptAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        NumAttempts = 0,
+                        PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    },
+                    BillingAddress = new()
+                    {
+                        City = "city",
+                        Country = "country",
+                        Line1 = "line1",
+                        Line2 = "line2",
+                        PostalCode = "postal_code",
+                        State = "state",
+                    },
+                    CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                    CreditNotes =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            CreditNoteNumber = "credit_note_number",
+                            Memo = "memo",
+                            Reason = "reason",
+                            Total = "total",
+                            Type = "type",
+                            VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                        },
+                    ],
+                    Currency = "USD",
+                    Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                    CustomerBalanceTransactions =
+                    [
+                        new()
+                        {
+                            ID = "cgZa3SXcsPTVyC4Y",
+                            Action =
+                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
+                            Amount = "11.00",
+                            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                            CreditNote = new("id"),
+                            Description = "An optional description",
+                            EndingBalance = "22.00",
+                            Invoice = new("gXcsPTVyC4YZa3Sc"),
+                            StartingBalance = "33.00",
+                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
+                        },
+                    ],
+                    CustomerTaxID = new()
+                    {
+                        Country = Models::Country.Ad,
+                        Type = Models::CustomerTaxIDType.AdNrt,
+                        Value = "value",
+                    },
+                    Discount = JsonSerializer.Deserialize<JsonElement>("{}"),
+                    Discounts =
+                    [
+                        new Models::PercentageDiscount()
+                        {
+                            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                            PercentageDiscountValue = 0.15,
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            Reason = "reason",
+                        },
+                    ],
+                    DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
+                    EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    HostedInvoiceUrl = "hosted_invoice_url",
+                    InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
+                    InvoiceNumber = "JYEFHK-00001",
+                    InvoicePdf =
+                        "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+                    InvoiceSource = Models::InvoiceInvoiceSource.Subscription,
+                    IssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    IssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    LineItems =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            AdjustedSubtotal = "5.00",
+                            Adjustments =
+                            [
+                                new Models::MonetaryUsageDiscountAdjustment()
+                                {
+                                    ID = "id",
+                                    AdjustmentType =
+                                        Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                                    Amount = "amount",
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                            Operator =
+                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    IsInvoiceLevel = true,
+                                    Reason = "reason",
+                                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                                    UsageDiscount = 0,
+                                },
+                            ],
+                            Amount = "7.00",
+                            CreditsApplied = "6.00",
+                            EndDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                            Filter = "filter",
+                            Grouping = "grouping",
+                            Name = "Fixed Fee",
+                            PartiallyInvoicedAmount = "4.00",
+                            Price = new Models::Unit()
+                            {
+                                ID = "id",
+                                BillableMetric = new("id"),
+                                BillingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = Models::DurationUnit.Day,
+                                },
+                                BillingMode = Models::BillingMode.InAdvance,
+                                Cadence = Models::UnitCadence.OneTime,
+                                CompositePriceFilters =
+                                [
+                                    new()
+                                    {
+                                        Field = Models::CompositePriceFilterField.PriceID,
+                                        Operator = Models::CompositePriceFilterOperator.Includes,
+                                        Values = ["string"],
+                                    },
+                                ],
+                                ConversionRate = 0,
+                                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                                {
+                                    ConversionRateType =
+                                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                                    UnitConfig = new("unit_amount"),
+                                },
+                                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                CreditAllocation = new()
+                                {
+                                    AllowsRollover = true,
+                                    Currency = "currency",
+                                    CustomExpiration = new()
+                                    {
+                                        Duration = 0,
+                                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                                    },
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::AllocationFilterField.PriceID,
+                                            Operator = Models::AllocationFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    LicenseTypeID = "license_type_id",
+                                },
+                                Currency = "currency",
+                                Discount = new Models::PercentageDiscount()
+                                {
+                                    DiscountType =
+                                        Models::PercentageDiscountDiscountType.Percentage,
+                                    PercentageDiscountValue = 0.15,
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::PercentageDiscountFilterField.PriceID,
+                                            Operator =
+                                                Models::PercentageDiscountFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    Reason = "reason",
+                                },
+                                ExternalPriceID = "external_price_id",
+                                FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
+                                InvoicingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = Models::DurationUnit.Day,
+                                },
+                                Item = new() { ID = "id", Name = "name" },
+                                Maximum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::MaximumFilterField.PriceID,
+                                            Operator = Models::MaximumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MaximumAmount = "maximum_amount",
+                                },
+                                MaximumAmount = "maximum_amount",
+                                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                                Minimum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = Models::MinimumFilterField.PriceID,
+                                            Operator = Models::MinimumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MinimumAmount = "minimum_amount",
+                                },
+                                MinimumAmount = "minimum_amount",
+                                Name = "name",
+                                PlanPhaseOrder = 0,
+                                PriceType = Models::UnitPriceType.UsagePrice,
+                                ReplacesPriceID = "replaces_price_id",
+                                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                                DimensionalPriceConfiguration = new()
+                                {
+                                    DimensionValues = ["string"],
+                                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
+                            },
+                            Quantity = 1,
+                            StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                            SubLineItems =
+                            [
+                                new Models::MatrixSubLineItem()
+                                {
+                                    Amount = "9.00",
+                                    Grouping = new() { Key = "region", Value = "west" },
+                                    MatrixConfig = new(["string"]),
+                                    Name = "Tier One",
+                                    Quantity = 5,
+                                    Type = Models::MatrixSubLineItemType.Matrix,
+                                    ScaledQuantity = 0,
+                                },
+                            ],
+                            Subtotal = "9.00",
+                            TaxAmounts =
+                            [
+                                new()
+                                {
+                                    Amount = "amount",
+                                    TaxRateDescription = "tax_rate_description",
+                                    TaxRatePercentage = "tax_rate_percentage",
+                                },
+                            ],
+                            UsageCustomerIds = ["string"],
+                        },
+                    ],
+                    Maximum = new()
+                    {
+                        AppliesToPriceIds = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::MaximumFilterField.PriceID,
+                                Operator = Models::MaximumFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MaximumAmount = "maximum_amount",
+                    },
+                    MaximumAmount = "maximum_amount",
+                    Memo = "memo",
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    Minimum = new()
+                    {
+                        AppliesToPriceIds = ["string"],
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field = Models::MinimumFilterField.PriceID,
+                                Operator = Models::MinimumFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        MinimumAmount = "minimum_amount",
+                    },
+                    MinimumAmount = "minimum_amount",
+                    PaidAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PaymentAttempts =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Amount = "amount",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
+                            PaymentProviderID = "payment_provider_id",
+                            ReceiptPdf =
+                                "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+                            Succeeded = true,
+                        },
+                    ],
+                    PaymentFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PaymentStartedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ScheduledIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ShippingAddress = new()
+                    {
+                        City = "city",
+                        Country = "country",
+                        Line1 = "line1",
+                        Line2 = "line2",
+                        PostalCode = "postal_code",
+                        State = "state",
+                    },
+                    Status = Models::InvoiceStatus.Issued,
+                    Subscription = new("VDGsT23osdLb84KD"),
+                    Subtotal = "8.00",
+                    SyncFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Total = "8.00",
+                    VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    WillAutoIssue = true,
+                },
+            ],
+        };
+
+        Models::ChangedSubscriptionResources copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -5258,11 +6214,12 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -5283,6 +6240,7 @@ public class CreatedInvoiceTest : TestBase
                         },
                         ExternalPriceID = "external_price_id",
                         FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "invoice_grouping_key",
                         InvoicingCycleConfiguration = new()
                         {
                             Duration = 0,
@@ -5329,6 +6287,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -5598,11 +6562,12 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
+                        LicenseTypeID = "license_type_id",
                     },
                     Currency = "currency",
                     Discount = new Models::PercentageDiscount()
@@ -5623,6 +6588,7 @@ public class CreatedInvoiceTest : TestBase
                     },
                     ExternalPriceID = "external_price_id",
                     FixedPriceQuantity = 0,
+                    InvoiceGroupingKey = "invoice_grouping_key",
                     InvoicingCycleConfiguration = new()
                     {
                         Duration = 0,
@@ -5669,6 +6635,12 @@ public class CreatedInvoiceTest : TestBase
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                    LicenseType = new()
+                    {
+                        ID = "id",
+                        GroupingKey = "grouping_key",
+                        Name = "name",
                     },
                 },
                 Quantity = 1,
@@ -6012,11 +6984,12 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -6037,6 +7010,7 @@ public class CreatedInvoiceTest : TestBase
                         },
                         ExternalPriceID = "external_price_id",
                         FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "invoice_grouping_key",
                         InvoicingCycleConfiguration = new()
                         {
                             Duration = 0,
@@ -6083,6 +7057,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -6361,11 +7341,12 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -6386,6 +7367,7 @@ public class CreatedInvoiceTest : TestBase
                         },
                         ExternalPriceID = "external_price_id",
                         FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "invoice_grouping_key",
                         InvoicingCycleConfiguration = new()
                         {
                             Duration = 0,
@@ -6432,6 +7414,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -6708,11 +7696,12 @@ public class CreatedInvoiceTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::Field.PriceID,
-                                Operator = Models::Operator.Includes,
+                                Field = Models::AllocationFilterField.PriceID,
+                                Operator = Models::AllocationFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
+                        LicenseTypeID = "license_type_id",
                     },
                     Currency = "currency",
                     Discount = new Models::PercentageDiscount()
@@ -6733,6 +7722,7 @@ public class CreatedInvoiceTest : TestBase
                     },
                     ExternalPriceID = "external_price_id",
                     FixedPriceQuantity = 0,
+                    InvoiceGroupingKey = "invoice_grouping_key",
                     InvoicingCycleConfiguration = new()
                     {
                         Duration = 0,
@@ -6779,6 +7769,12 @@ public class CreatedInvoiceTest : TestBase
                     {
                         DimensionValues = ["string"],
                         DimensionalPriceGroupID = "dimensional_price_group_id",
+                    },
+                    LicenseType = new()
+                    {
+                        ID = "id",
+                        GroupingKey = "grouping_key",
+                        Name = "name",
                     },
                 },
                 Quantity = 1,
@@ -7122,11 +8118,12 @@ public class CreatedInvoiceTest : TestBase
                             [
                                 new()
                                 {
-                                    Field = Models::Field.PriceID,
-                                    Operator = Models::Operator.Includes,
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
+                            LicenseTypeID = "license_type_id",
                         },
                         Currency = "currency",
                         Discount = new Models::PercentageDiscount()
@@ -7147,6 +8144,7 @@ public class CreatedInvoiceTest : TestBase
                         },
                         ExternalPriceID = "external_price_id",
                         FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "invoice_grouping_key",
                         InvoicingCycleConfiguration = new()
                         {
                             Duration = 0,
@@ -7193,6 +8191,12 @@ public class CreatedInvoiceTest : TestBase
                         {
                             DimensionValues = ["string"],
                             DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
                         },
                     },
                     Quantity = 1,
@@ -7293,6 +8297,359 @@ public class CreatedInvoiceTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::CreatedInvoice
+        {
+            ID = "id",
+            AmountDue = "8.00",
+            AutoCollection = new()
+            {
+                Enabled = true,
+                NextAttemptAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                NumAttempts = 0,
+                PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            },
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+            CreditNotes =
+            [
+                new()
+                {
+                    ID = "id",
+                    CreditNoteNumber = "credit_note_number",
+                    Memo = "memo",
+                    Reason = "reason",
+                    Total = "total",
+                    Type = "type",
+                    VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                },
+            ],
+            Currency = "USD",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            CustomerBalanceTransactions =
+            [
+                new()
+                {
+                    ID = "cgZa3SXcsPTVyC4Y",
+                    Action = Models::Action.AppliedToInvoice,
+                    Amount = "11.00",
+                    CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+                    CreditNote = new("id"),
+                    Description = "An optional description",
+                    EndingBalance = "22.00",
+                    Invoice = new("gXcsPTVyC4YZa3Sc"),
+                    StartingBalance = "33.00",
+                    Type = Models::Type.Increment,
+                },
+            ],
+            CustomerTaxID = new()
+            {
+                Country = Models::Country.Ad,
+                Type = Models::CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+            Discount = JsonSerializer.Deserialize<JsonElement>("{}"),
+            Discounts =
+            [
+                new Models::PercentageDiscount()
+                {
+                    DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                    PercentageDiscountValue = 0.15,
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
+            ],
+            DueDate = DateTimeOffset.Parse("2022-05-30T07:00:00+00:00"),
+            EligibleToIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            HostedInvoiceUrl = "hosted_invoice_url",
+            InvoiceDate = DateTimeOffset.Parse("2022-05-01T07:00:00+00:00"),
+            InvoiceNumber = "JYEFHK-00001",
+            InvoicePdf = "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+            InvoiceSource = Models::InvoiceSource.Subscription,
+            IsPayableNow = true,
+            IssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            IssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            LineItems =
+            [
+                new()
+                {
+                    ID = "id",
+                    AdjustedSubtotal = "5.00",
+                    Adjustments =
+                    [
+                        new Models::MonetaryUsageDiscountAdjustment()
+                        {
+                            ID = "id",
+                            AdjustmentType =
+                                Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                            Amount = "amount",
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                    Operator =
+                                        Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            IsInvoiceLevel = true,
+                            Reason = "reason",
+                            ReplacesAdjustmentID = "replaces_adjustment_id",
+                            UsageDiscount = 0,
+                        },
+                    ],
+                    Amount = "7.00",
+                    CreditsApplied = "6.00",
+                    EndDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                    Filter = "filter",
+                    Grouping = "grouping",
+                    Name = "Fixed Fee",
+                    PartiallyInvoicedAmount = "4.00",
+                    Price = new Models::Unit()
+                    {
+                        ID = "id",
+                        BillableMetric = new("id"),
+                        BillingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::DurationUnit.Day,
+                        },
+                        BillingMode = Models::BillingMode.InAdvance,
+                        Cadence = Models::UnitCadence.OneTime,
+                        CompositePriceFilters =
+                        [
+                            new()
+                            {
+                                Field = Models::CompositePriceFilterField.PriceID,
+                                Operator = Models::CompositePriceFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        ConversionRate = 0,
+                        ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                        {
+                            ConversionRateType =
+                                Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                            UnitConfig = new("unit_amount"),
+                        },
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CreditAllocation = new()
+                        {
+                            AllowsRollover = true,
+                            Currency = "currency",
+                            CustomExpiration = new()
+                            {
+                                Duration = 0,
+                                DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                            },
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Models::AllocationFilterField.PriceID,
+                                    Operator = Models::AllocationFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            LicenseTypeID = "license_type_id",
+                        },
+                        Currency = "currency",
+                        Discount = new Models::PercentageDiscount()
+                        {
+                            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                            PercentageDiscountValue = 0.15,
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Models::PercentageDiscountFilterField.PriceID,
+                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            Reason = "reason",
+                        },
+                        ExternalPriceID = "external_price_id",
+                        FixedPriceQuantity = 0,
+                        InvoiceGroupingKey = "invoice_grouping_key",
+                        InvoicingCycleConfiguration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = Models::DurationUnit.Day,
+                        },
+                        Item = new() { ID = "id", Name = "name" },
+                        Maximum = new()
+                        {
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Models::MaximumFilterField.PriceID,
+                                    Operator = Models::MaximumFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MaximumAmount = "maximum_amount",
+                        },
+                        MaximumAmount = "maximum_amount",
+                        Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                        Minimum = new()
+                        {
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = Models::MinimumFilterField.PriceID,
+                                    Operator = Models::MinimumFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MinimumAmount = "minimum_amount",
+                        },
+                        MinimumAmount = "minimum_amount",
+                        Name = "name",
+                        PlanPhaseOrder = 0,
+                        PriceType = Models::UnitPriceType.UsagePrice,
+                        ReplacesPriceID = "replaces_price_id",
+                        UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                        DimensionalPriceConfiguration = new()
+                        {
+                            DimensionValues = ["string"],
+                            DimensionalPriceGroupID = "dimensional_price_group_id",
+                        },
+                        LicenseType = new()
+                        {
+                            ID = "id",
+                            GroupingKey = "grouping_key",
+                            Name = "name",
+                        },
+                    },
+                    Quantity = 1,
+                    StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+                    SubLineItems =
+                    [
+                        new Models::MatrixSubLineItem()
+                        {
+                            Amount = "9.00",
+                            Grouping = new() { Key = "region", Value = "west" },
+                            MatrixConfig = new(["string"]),
+                            Name = "Tier One",
+                            Quantity = 5,
+                            Type = Models::MatrixSubLineItemType.Matrix,
+                            ScaledQuantity = 0,
+                        },
+                    ],
+                    Subtotal = "9.00",
+                    TaxAmounts =
+                    [
+                        new()
+                        {
+                            Amount = "amount",
+                            TaxRateDescription = "tax_rate_description",
+                            TaxRatePercentage = "tax_rate_percentage",
+                        },
+                    ],
+                    UsageCustomerIds = ["string"],
+                },
+            ],
+            Maximum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::MaximumFilterField.PriceID,
+                        Operator = Models::MaximumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MaximumAmount = "maximum_amount",
+            },
+            MaximumAmount = "maximum_amount",
+            Memo = "memo",
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Minimum = new()
+            {
+                AppliesToPriceIds = ["string"],
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Models::MinimumFilterField.PriceID,
+                        Operator = Models::MinimumFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                MinimumAmount = "minimum_amount",
+            },
+            MinimumAmount = "minimum_amount",
+            PaidAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PaymentAttempts =
+            [
+                new()
+                {
+                    ID = "id",
+                    Amount = "amount",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    PaymentProvider = Models::PaymentProvider.Stripe,
+                    PaymentProviderID = "payment_provider_id",
+                    ReceiptPdf =
+                        "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+                    Succeeded = true,
+                },
+            ],
+            PaymentFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PaymentStartedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ScheduledIssueAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            Status = Models::Status.Issued,
+            Subscription = new("VDGsT23osdLb84KD"),
+            Subtotal = "8.00",
+            SyncFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Total = "8.00",
+            VoidedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            WillAutoIssue = true,
+        };
+
+        Models::CreatedInvoice copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AutoCollectionTest : TestBase
@@ -7384,6 +8741,22 @@ public class AutoCollectionTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::AutoCollection
+        {
+            Enabled = true,
+            NextAttemptAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            NumAttempts = 0,
+            PreviouslyAttemptedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        Models::AutoCollection copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -7496,6 +8869,25 @@ public class CreditNoteTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::CreditNote
+        {
+            ID = "id",
+            CreditNoteNumber = "credit_note_number",
+            Memo = "memo",
+            Reason = "reason",
+            Total = "total",
+            Type = "type",
+            VoidedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+        };
+
+        Models::CreditNote copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -7632,6 +9024,28 @@ public class CustomerBalanceTransactionTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::CustomerBalanceTransaction
+        {
+            ID = "cgZa3SXcsPTVyC4Y",
+            Action = Models::Action.AppliedToInvoice,
+            Amount = "11.00",
+            CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
+            CreditNote = new("id"),
+            Description = "An optional description",
+            EndingBalance = "22.00",
+            Invoice = new("gXcsPTVyC4YZa3Sc"),
+            StartingBalance = "33.00",
+            Type = Models::Type.Increment,
+        };
+
+        Models::CustomerBalanceTransaction copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -7909,11 +9323,12 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Field.PriceID,
-                            Operator = Models::Operator.Includes,
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -7934,6 +9349,7 @@ public class LineItemTest : TestBase
                 },
                 ExternalPriceID = "external_price_id",
                 FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "invoice_grouping_key",
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
@@ -7980,6 +9396,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -8083,11 +9505,12 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Field.PriceID,
-                        Operator = Models::Operator.Includes,
+                        Field = Models::AllocationFilterField.PriceID,
+                        Operator = Models::AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new Models::PercentageDiscount()
@@ -8108,6 +9531,7 @@ public class LineItemTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
@@ -8154,6 +9578,12 @@ public class LineItemTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         double expectedQuantity = 1;
@@ -8299,11 +9729,12 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Field.PriceID,
-                            Operator = Models::Operator.Includes,
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -8324,6 +9755,7 @@ public class LineItemTest : TestBase
                 },
                 ExternalPriceID = "external_price_id",
                 FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "invoice_grouping_key",
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
@@ -8370,6 +9802,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -8489,11 +9927,12 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Field.PriceID,
-                            Operator = Models::Operator.Includes,
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -8514,6 +9953,7 @@ public class LineItemTest : TestBase
                 },
                 ExternalPriceID = "external_price_id",
                 FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "invoice_grouping_key",
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
@@ -8560,6 +10000,12 @@ public class LineItemTest : TestBase
                 {
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
                 },
             },
             Quantity = 1,
@@ -8670,11 +10116,12 @@ public class LineItemTest : TestBase
                 [
                     new()
                     {
-                        Field = Models::Field.PriceID,
-                        Operator = Models::Operator.Includes,
+                        Field = Models::AllocationFilterField.PriceID,
+                        Operator = Models::AllocationFilterOperator.Includes,
                         Values = ["string"],
                     },
                 ],
+                LicenseTypeID = "license_type_id",
             },
             Currency = "currency",
             Discount = new Models::PercentageDiscount()
@@ -8695,6 +10142,7 @@ public class LineItemTest : TestBase
             },
             ExternalPriceID = "external_price_id",
             FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "invoice_grouping_key",
             InvoicingCycleConfiguration = new()
             {
                 Duration = 0,
@@ -8741,6 +10189,12 @@ public class LineItemTest : TestBase
             {
                 DimensionValues = ["string"],
                 DimensionalPriceGroupID = "dimensional_price_group_id",
+            },
+            LicenseType = new()
+            {
+                ID = "id",
+                GroupingKey = "grouping_key",
+                Name = "name",
             },
         };
         double expectedQuantity = 1;
@@ -8886,11 +10340,12 @@ public class LineItemTest : TestBase
                     [
                         new()
                         {
-                            Field = Models::Field.PriceID,
-                            Operator = Models::Operator.Includes,
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
                             Values = ["string"],
                         },
                     ],
+                    LicenseTypeID = "license_type_id",
                 },
                 Currency = "currency",
                 Discount = new Models::PercentageDiscount()
@@ -8911,6 +10366,7 @@ public class LineItemTest : TestBase
                 },
                 ExternalPriceID = "external_price_id",
                 FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "invoice_grouping_key",
                 InvoicingCycleConfiguration = new()
                 {
                     Duration = 0,
@@ -8958,6 +10414,12 @@ public class LineItemTest : TestBase
                     DimensionValues = ["string"],
                     DimensionalPriceGroupID = "dimensional_price_group_id",
                 },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
+                },
             },
             Quantity = 1,
             StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
@@ -8988,6 +10450,200 @@ public class LineItemTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::LineItem
+        {
+            ID = "id",
+            AdjustedSubtotal = "5.00",
+            Adjustments =
+            [
+                new Models::MonetaryUsageDiscountAdjustment()
+                {
+                    ID = "id",
+                    AdjustmentType =
+                        Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                    Amount = "amount",
+                    AppliesToPriceIds = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                            Operator =
+                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    IsInvoiceLevel = true,
+                    Reason = "reason",
+                    ReplacesAdjustmentID = "replaces_adjustment_id",
+                    UsageDiscount = 0,
+                },
+            ],
+            Amount = "7.00",
+            CreditsApplied = "6.00",
+            EndDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+            Filter = "filter",
+            Grouping = "grouping",
+            Name = "Fixed Fee",
+            PartiallyInvoicedAmount = "4.00",
+            Price = new Models::Unit()
+            {
+                ID = "id",
+                BillableMetric = new("id"),
+                BillingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::DurationUnit.Day,
+                },
+                BillingMode = Models::BillingMode.InAdvance,
+                Cadence = Models::UnitCadence.OneTime,
+                CompositePriceFilters =
+                [
+                    new()
+                    {
+                        Field = Models::CompositePriceFilterField.PriceID,
+                        Operator = Models::CompositePriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ConversionRate = 0,
+                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                {
+                    ConversionRateType =
+                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                    UnitConfig = new("unit_amount"),
+                },
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CreditAllocation = new()
+                {
+                    AllowsRollover = true,
+                    Currency = "currency",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                    },
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::AllocationFilterField.PriceID,
+                            Operator = Models::AllocationFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    LicenseTypeID = "license_type_id",
+                },
+                Currency = "currency",
+                Discount = new Models::PercentageDiscount()
+                {
+                    DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                    PercentageDiscountValue = 0.15,
+                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::PercentageDiscountFilterField.PriceID,
+                            Operator = Models::PercentageDiscountFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    Reason = "reason",
+                },
+                ExternalPriceID = "external_price_id",
+                FixedPriceQuantity = 0,
+                InvoiceGroupingKey = "invoice_grouping_key",
+                InvoicingCycleConfiguration = new()
+                {
+                    Duration = 0,
+                    DurationUnit = Models::DurationUnit.Day,
+                },
+                Item = new() { ID = "id", Name = "name" },
+                Maximum = new()
+                {
+                    AppliesToPriceIds = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::MaximumFilterField.PriceID,
+                            Operator = Models::MaximumFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MaximumAmount = "maximum_amount",
+                },
+                MaximumAmount = "maximum_amount",
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                Minimum = new()
+                {
+                    AppliesToPriceIds = ["string"],
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = Models::MinimumFilterField.PriceID,
+                            Operator = Models::MinimumFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MinimumAmount = "minimum_amount",
+                },
+                MinimumAmount = "minimum_amount",
+                Name = "name",
+                PlanPhaseOrder = 0,
+                PriceType = Models::UnitPriceType.UsagePrice,
+                ReplacesPriceID = "replaces_price_id",
+                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                DimensionalPriceConfiguration = new()
+                {
+                    DimensionValues = ["string"],
+                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                },
+                LicenseType = new()
+                {
+                    ID = "id",
+                    GroupingKey = "grouping_key",
+                    Name = "name",
+                },
+            },
+            Quantity = 1,
+            StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
+            SubLineItems =
+            [
+                new Models::MatrixSubLineItem()
+                {
+                    Amount = "9.00",
+                    Grouping = new() { Key = "region", Value = "west" },
+                    MatrixConfig = new(["string"]),
+                    Name = "Tier One",
+                    Quantity = 5,
+                    Type = Models::MatrixSubLineItemType.Matrix,
+                    ScaledQuantity = 0,
+                },
+            ],
+            Subtotal = "9.00",
+            TaxAmounts =
+            [
+                new()
+                {
+                    Amount = "amount",
+                    TaxRateDescription = "tax_rate_description",
+                    TaxRatePercentage = "tax_rate_percentage",
+                },
+            ],
+            UsageCustomerIds = ["string"],
+        };
+
+        Models::LineItem copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -9068,6 +10724,40 @@ public class LineItemAdjustmentTest : TestBase
             PercentageDiscount = 0,
             Reason = "reason",
             ReplacesAdjustmentID = "replaces_adjustment_id",
+        };
+        value.Validate();
+    }
+
+    [Fact]
+    public void TieredPercentageDiscountValidationWorks()
+    {
+        Models::LineItemAdjustment value = new Models::LineItemAdjustmentTieredPercentageDiscount()
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
         };
         value.Validate();
     }
@@ -9223,6 +10913,46 @@ public class LineItemAdjustmentTest : TestBase
     }
 
     [Fact]
+    public void TieredPercentageDiscountSerializationRoundtripWorks()
+    {
+        Models::LineItemAdjustment value = new Models::LineItemAdjustmentTieredPercentageDiscount()
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+        string element = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<Models::LineItemAdjustment>(
+            element,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
     public void MonetaryMinimumSerializationRoundtripWorks()
     {
         Models::LineItemAdjustment value = new Models::MonetaryMinimumAdjustment()
@@ -9285,6 +11015,695 @@ public class LineItemAdjustmentTest : TestBase
         );
 
         Assert.Equal(value, deserialized);
+    }
+}
+
+public class LineItemAdjustmentTieredPercentageDiscountTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<Models::LineItemAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<Models::LineItemAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, model.AdjustmentType));
+        Assert.Equal(expectedAmount, model.Amount);
+        Assert.Equal(expectedAppliesToPriceIds.Count, model.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], model.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, model.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], model.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, model.IsInvoiceLevel);
+        Assert.Equal(expectedReason, model.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, model.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, model.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], model.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Models::LineItemAdjustmentTieredPercentageDiscount>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Models::LineItemAdjustmentTieredPercentageDiscount>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        JsonElement expectedAdjustmentType = JsonSerializer.SerializeToElement(
+            "tiered_percentage_discount"
+        );
+        string expectedAmount = "amount";
+        List<string> expectedAppliesToPriceIds = ["string"];
+        List<Models::LineItemAdjustmentTieredPercentageDiscountFilter> expectedFilters =
+        [
+            new()
+            {
+                Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                Operator =
+                    Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        bool expectedIsInvoiceLevel = true;
+        string expectedReason = "reason";
+        string expectedReplacesAdjustmentID = "replaces_adjustment_id";
+        List<Models::LineItemAdjustmentTieredPercentageDiscountTier> expectedTiers =
+        [
+            new()
+            {
+                LowerBound = 0,
+                Percentage = 0,
+                UpperBound = 0,
+            },
+        ];
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.True(JsonElement.DeepEquals(expectedAdjustmentType, deserialized.AdjustmentType));
+        Assert.Equal(expectedAmount, deserialized.Amount);
+        Assert.Equal(expectedAppliesToPriceIds.Count, deserialized.AppliesToPriceIds.Count);
+        for (int i = 0; i < expectedAppliesToPriceIds.Count; i++)
+        {
+            Assert.Equal(expectedAppliesToPriceIds[i], deserialized.AppliesToPriceIds[i]);
+        }
+        Assert.Equal(expectedFilters.Count, deserialized.Filters.Count);
+        for (int i = 0; i < expectedFilters.Count; i++)
+        {
+            Assert.Equal(expectedFilters[i], deserialized.Filters[i]);
+        }
+        Assert.Equal(expectedIsInvoiceLevel, deserialized.IsInvoiceLevel);
+        Assert.Equal(expectedReason, deserialized.Reason);
+        Assert.Equal(expectedReplacesAdjustmentID, deserialized.ReplacesAdjustmentID);
+        Assert.Equal(expectedTiers.Count, deserialized.Tiers.Count);
+        for (int i = 0; i < expectedTiers.Count; i++)
+        {
+            Assert.Equal(expectedTiers[i], deserialized.Tiers[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscount
+        {
+            ID = "id",
+            Amount = "amount",
+            AppliesToPriceIds = ["string"],
+            Filters =
+            [
+                new()
+                {
+                    Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+                    Operator =
+                        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            Reason = "reason",
+            ReplacesAdjustmentID = "replaces_adjustment_id",
+            Tiers =
+            [
+                new()
+                {
+                    LowerBound = 0,
+                    Percentage = 0,
+                    UpperBound = 0,
+                },
+            ],
+        };
+
+        Models::LineItemAdjustmentTieredPercentageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class LineItemAdjustmentTieredPercentageDiscountFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<
+            string,
+            Models::LineItemAdjustmentTieredPercentageDiscountFilterField
+        > expectedField = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Models::LineItemAdjustmentTieredPercentageDiscountFilter>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Models::LineItemAdjustmentTieredPercentageDiscountFilter>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<
+            string,
+            Models::LineItemAdjustmentTieredPercentageDiscountFilterField
+        > expectedField = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID;
+        ApiEnum<
+            string,
+            Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator
+        > expectedOperator =
+            Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountFilter
+        {
+            Field = Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID,
+            Operator = Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        Models::LineItemAdjustmentTieredPercentageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class LineItemAdjustmentTieredPercentageDiscountFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void Validation_Works(
+        Models::LineItemAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterField> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceID)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.ItemID)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PriceType)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.Currency)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(
+        Models::LineItemAdjustmentTieredPercentageDiscountFilterField rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterField> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterField>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LineItemAdjustmentTieredPercentageDiscountFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void Validation_Works(
+        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Includes)]
+    [InlineData(Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(
+        Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator rawValue
+    )
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator> value =
+            rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(JsonSerializer.SerializeToElement("invalid value"), ModelBase.SerializerOptions);
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<
+            ApiEnum<string, Models::LineItemAdjustmentTieredPercentageDiscountFilterOperator>
+        >(json, ModelBase.SerializerOptions);
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class LineItemAdjustmentTieredPercentageDiscountTierTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, model.LowerBound);
+        Assert.Equal(expectedPercentage, model.Percentage);
+        Assert.Equal(expectedUpperBound, model.UpperBound);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Models::LineItemAdjustmentTieredPercentageDiscountTier>(
+                json,
+                ModelBase.SerializerOptions
+            );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized =
+            JsonSerializer.Deserialize<Models::LineItemAdjustmentTieredPercentageDiscountTier>(
+                element,
+                ModelBase.SerializerOptions
+            );
+        Assert.NotNull(deserialized);
+
+        double expectedLowerBound = 0;
+        double expectedPercentage = 0;
+        double expectedUpperBound = 0;
+
+        Assert.Equal(expectedLowerBound, deserialized.LowerBound);
+        Assert.Equal(expectedPercentage, deserialized.Percentage);
+        Assert.Equal(expectedUpperBound, deserialized.UpperBound);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.False(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        Assert.Null(model.UpperBound);
+        Assert.True(model.RawData.ContainsKey("upper_bound"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+
+            UpperBound = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::LineItemAdjustmentTieredPercentageDiscountTier
+        {
+            LowerBound = 0,
+            Percentage = 0,
+            UpperBound = 0,
+        };
+
+        Models::LineItemAdjustmentTieredPercentageDiscountTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -9523,12 +11942,32 @@ public class PaymentAttemptTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Models::PaymentAttempt
+        {
+            ID = "id",
+            Amount = "amount",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            PaymentProvider = Models::PaymentProvider.Stripe,
+            PaymentProviderID = "payment_provider_id",
+            ReceiptPdf = "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
+            Succeeded = true,
+        };
+
+        Models::PaymentAttempt copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PaymentProviderTest : TestBase
 {
     [Theory]
     [InlineData(Models::PaymentProvider.Stripe)]
+    [InlineData(Models::PaymentProvider.Adyen)]
     public void Validation_Works(Models::PaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -9550,6 +11989,7 @@ public class PaymentProviderTest : TestBase
 
     [Theory]
     [InlineData(Models::PaymentProvider.Stripe)]
+    [InlineData(Models::PaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(Models::PaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us

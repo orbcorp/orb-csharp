@@ -19,8 +19,12 @@ namespace Orb.Models.Alerts;
 /// maximum  of one of each type of alert per [credit balance currency](/product-catalog/prepurchase).
 /// `credit_balance_dropped` alerts require a list of thresholds to be provided while
 /// `credit_balance_depleted`  and `credit_balance_recovered` alerts do not require thresholds.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
+public record class AlertCreateForExternalCustomerParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -79,6 +83,8 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
 
     public AlertCreateForExternalCustomerParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AlertCreateForExternalCustomerParams(
         AlertCreateForExternalCustomerParams alertCreateForExternalCustomerParams
     )
@@ -88,6 +94,7 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
 
         this._rawBodyData = new(alertCreateForExternalCustomerParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public AlertCreateForExternalCustomerParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -105,27 +112,66 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
     AlertCreateForExternalCustomerParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string externalCustomerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.ExternalCustomerID = externalCustomerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static AlertCreateForExternalCustomerParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string externalCustomerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            externalCustomerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ExternalCustomerID"] = JsonSerializer.SerializeToElement(
+                        this.ExternalCustomerID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(AlertCreateForExternalCustomerParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -155,6 +201,11 @@ public sealed record class AlertCreateForExternalCustomerParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

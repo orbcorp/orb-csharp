@@ -14,8 +14,12 @@ namespace Orb.Models.Invoices;
 
 /// <summary>
 /// This endpoint is used to create a one-off invoice for a customer.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceCreateParams : ParamsBase
+public record class InvoiceCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -38,8 +42,9 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 
     /// <summary>
-    /// Optional invoice date to set. Must be in the past, if not set, `invoice_date`
-    /// is set to the current time in the customer's timezone.
+    /// An ISO 8601 date or timestamp, interpreted in the customer's timezone. Must
+    /// be in the past. If a date is set without a time, `invoice_date` is set to
+    /// midnight on the chosen date in the customer's timezone.
     /// </summary>
     public required System::DateTimeOffset InvoiceDate
     {
@@ -51,22 +56,35 @@ public sealed record class InvoiceCreateParams : ParamsBase
         init { this._rawBodyData.Set("invoice_date", value); }
     }
 
-    public required IReadOnlyList<global::Orb.Models.Invoices.LineItem> LineItems
+    public required IReadOnlyList<LineItem> LineItems
     {
         get
         {
             this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Invoices.LineItem>
-            >("line_items");
+            return this._rawBodyData.GetNotNullStruct<ImmutableArray<LineItem>>("line_items");
         }
         init
         {
-            this._rawBodyData.Set<ImmutableArray<global::Orb.Models.Invoices.LineItem>>(
+            this._rawBodyData.Set<ImmutableArray<LineItem>>(
                 "line_items",
                 ImmutableArray.ToImmutableArray(value)
             );
         }
+    }
+
+    /// <summary>
+    /// Determines whether this invoice will automatically attempt to charge a saved
+    /// payment method, if any. If not specified, the invoice inherits the customer's
+    /// auto_collection setting.
+    /// </summary>
+    public bool? AutoCollection
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
+        }
+        init { this._rawBodyData.Set("auto_collection", value); }
     }
 
     /// <summary>
@@ -204,11 +222,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
 
     public InvoiceCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceCreateParams(InvoiceCreateParams invoiceCreateParams)
         : base(invoiceCreateParams)
     {
         this._rawBodyData = new(invoiceCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public InvoiceCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -235,7 +256,7 @@ public sealed record class InvoiceCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static InvoiceCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -247,6 +268,34 @@ public sealed record class InvoiceCreateParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -274,14 +323,14 @@ public sealed record class InvoiceCreateParams : ParamsBase
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Invoices.LineItem,
-        global::Orb.Models.Invoices.LineItemFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<LineItem, LineItemFromRaw>))]
 public sealed record class LineItem : JsonModel
 {
     /// <summary>
@@ -307,14 +356,12 @@ public sealed record class LineItem : JsonModel
         init { this._rawData.Set("item_id", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Invoices.ModelType> ModelType
+    public required ApiEnum<string, ModelType> ModelType
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Invoices.ModelType>
-            >("model_type");
+            return this._rawData.GetNotNullClass<ApiEnum<string, ModelType>>("model_type");
         }
         init { this._rawData.Set("model_type", value); }
     }
@@ -385,8 +432,11 @@ public sealed record class LineItem : JsonModel
 
     public LineItem() { }
 
-    public LineItem(global::Orb.Models.Invoices.LineItem lineItem)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public LineItem(LineItem lineItem)
         : base(lineItem) { }
+#pragma warning restore CS8618
 
     public LineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -401,32 +451,29 @@ public sealed record class LineItem : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Invoices.LineItemFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="LineItemFromRaw.FromRawUnchecked"/>
+    public static LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class LineItemFromRaw : IFromRawJson<global::Orb.Models.Invoices.LineItem>
+class LineItemFromRaw : IFromRawJson<LineItem>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Invoices.LineItem FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Invoices.LineItem.FromRawUnchecked(rawData);
+    public LineItem FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        LineItem.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Invoices.ModelTypeConverter))]
+[JsonConverter(typeof(ModelTypeConverter))]
 public enum ModelType
 {
     Unit,
 }
 
-sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.ModelType>
+sealed class ModelTypeConverter : JsonConverter<ModelType>
 {
-    public override global::Orb.Models.Invoices.ModelType Read(
+    public override ModelType Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -434,14 +481,14 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "unit" => global::Orb.Models.Invoices.ModelType.Unit,
-            _ => (global::Orb.Models.Invoices.ModelType)(-1),
+            "unit" => ModelType.Unit,
+            _ => (ModelType)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Invoices.ModelType value,
+        ModelType value,
         JsonSerializerOptions options
     )
     {
@@ -449,7 +496,7 @@ sealed class ModelTypeConverter : JsonConverter<global::Orb.Models.Invoices.Mode
             writer,
             value switch
             {
-                global::Orb.Models.Invoices.ModelType.Unit => "unit",
+                ModelType.Unit => "unit",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -502,7 +549,7 @@ public record class DueDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -523,7 +570,7 @@ public record class DueDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -543,7 +590,7 @@ public record class DueDate : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -554,8 +601,8 @@ public record class DueDate : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -582,7 +629,7 @@ public record class DueDate : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -593,8 +640,8 @@ public record class DueDate : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -634,10 +681,10 @@ public record class DueDate : ModelBase
         }
     }
 
-    public virtual bool Equals(DueDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(DueDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -645,7 +692,20 @@ public record class DueDate : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class DueDateConverter : JsonConverter<DueDate?>
@@ -672,7 +732,10 @@ sealed class DueDateConverter : JsonConverter<DueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

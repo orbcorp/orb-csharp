@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using Orb.Models.Prices;
 
 namespace Orb.Tests.Models.Prices;
@@ -18,6 +19,10 @@ public class PriceEvaluateParamsTest : TestBase
             ExternalCustomerID = "external_customer_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
             GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
         };
 
         string expectedPriceID = "price_id";
@@ -30,6 +35,10 @@ public class PriceEvaluateParamsTest : TestBase
         [
             "case when my_event_type = 'foo' then true else false end",
         ];
+        Dictionary<string, JsonElement> expectedMetricParameterOverrides = new()
+        {
+            { "foo", JsonSerializer.SerializeToElement("bar") },
+        };
 
         Assert.Equal(expectedPriceID, parameters.PriceID);
         Assert.Equal(expectedTimeframeEnd, parameters.TimeframeEnd);
@@ -42,6 +51,19 @@ public class PriceEvaluateParamsTest : TestBase
         for (int i = 0; i < expectedGroupingKeys.Count; i++)
         {
             Assert.Equal(expectedGroupingKeys[i], parameters.GroupingKeys[i]);
+        }
+        Assert.NotNull(parameters.MetricParameterOverrides);
+        Assert.Equal(
+            expectedMetricParameterOverrides.Count,
+            parameters.MetricParameterOverrides.Count
+        );
+        foreach (var item in expectedMetricParameterOverrides)
+        {
+            Assert.True(parameters.MetricParameterOverrides.TryGetValue(item.Key, out var value));
+
+            Assert.True(
+                JsonElement.DeepEquals(value, parameters.MetricParameterOverrides[item.Key])
+            );
         }
     }
 
@@ -56,6 +78,10 @@ public class PriceEvaluateParamsTest : TestBase
             CustomerID = "customer_id",
             ExternalCustomerID = "external_customer_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
         };
 
         Assert.Null(parameters.GroupingKeys);
@@ -73,6 +99,10 @@ public class PriceEvaluateParamsTest : TestBase
             CustomerID = "customer_id",
             ExternalCustomerID = "external_customer_id",
             Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
 
             // Null should be interpreted as omitted for these properties
             GroupingKeys = null,
@@ -99,6 +129,8 @@ public class PriceEvaluateParamsTest : TestBase
         Assert.False(parameters.RawBodyData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.Filter);
         Assert.False(parameters.RawBodyData.ContainsKey("filter"));
+        Assert.Null(parameters.MetricParameterOverrides);
+        Assert.False(parameters.RawBodyData.ContainsKey("metric_parameter_overrides"));
     }
 
     [Fact]
@@ -114,6 +146,7 @@ public class PriceEvaluateParamsTest : TestBase
             CustomerID = null,
             ExternalCustomerID = null,
             Filter = null,
+            MetricParameterOverrides = null,
         };
 
         Assert.Null(parameters.CustomerID);
@@ -122,6 +155,8 @@ public class PriceEvaluateParamsTest : TestBase
         Assert.True(parameters.RawBodyData.ContainsKey("external_customer_id"));
         Assert.Null(parameters.Filter);
         Assert.True(parameters.RawBodyData.ContainsKey("filter"));
+        Assert.Null(parameters.MetricParameterOverrides);
+        Assert.True(parameters.RawBodyData.ContainsKey("metric_parameter_overrides"));
     }
 
     [Fact]
@@ -136,6 +171,31 @@ public class PriceEvaluateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/prices/price_id/evaluate"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/prices/price_id/evaluate"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceEvaluateParams
+        {
+            PriceID = "price_id",
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+            Filter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+            GroupingKeys = ["case when my_event_type = 'foo' then true else false end"],
+            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+        };
+
+        PriceEvaluateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

@@ -46,8 +46,8 @@ public interface IExternalDimensionalPriceGroupIDService
 
     /// <summary>
     /// This endpoint can be used to update the `external_dimensional_price_group_id`
-    /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
-    /// price group are currently immutable.
+    /// and `metadata` of an existing dimensional price group. Other fields on a
+    /// dimensional price group are currently immutable.
     /// </summary>
     Task<DimensionalPriceGroup> Update(
         ExternalDimensionalPriceGroupIDUpdateParams parameters,
@@ -78,7 +78,7 @@ public interface IExternalDimensionalPriceGroupIDServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}</c>, but is otherwise the
     /// same as <see cref="IExternalDimensionalPriceGroupIDService.Retrieve(ExternalDimensionalPriceGroupIDRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<DimensionalPriceGroup>> Retrieve(
@@ -94,7 +94,7 @@ public interface IExternalDimensionalPriceGroupIDServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}</c>, but is otherwise the
     /// same as <see cref="IExternalDimensionalPriceGroupIDService.Update(ExternalDimensionalPriceGroupIDUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<DimensionalPriceGroup>> Update(

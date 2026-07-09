@@ -13,10 +13,13 @@ namespace Orb.Models.Events.Backfills;
 ///
 /// <para>The list of backfills is ordered starting from the most recently created
 /// backfill. The response also includes [`pagination_metadata`](/api-reference/pagination),
-/// which lets the caller retrieve the next page of results if they exist. More information
-/// about pagination can be found in the [Pagination-metadata schema](pagination).</para>
+/// which lets the caller retrieve the next page of results if they exist.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class BackfillListParams : ParamsBase
+public record class BackfillListParams : ParamsBase
 {
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -55,8 +58,11 @@ public sealed record class BackfillListParams : ParamsBase
 
     public BackfillListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillListParams(BackfillListParams backfillListParams)
         : base(backfillListParams) { }
+#pragma warning restore CS8618
 
     public BackfillListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -79,7 +85,7 @@ public sealed record class BackfillListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static BackfillListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -89,6 +95,32 @@ public sealed record class BackfillListParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(BackfillListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -106,5 +138,10 @@ public sealed record class BackfillListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

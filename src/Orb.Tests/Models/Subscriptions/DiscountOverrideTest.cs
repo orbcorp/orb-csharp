@@ -147,6 +147,22 @@ public class DiscountOverrideTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new DiscountOverride
+        {
+            DiscountType = DiscountType.Percentage,
+            AmountDiscount = "amount_discount",
+            PercentageDiscount = 0.15,
+            UsageDiscount = 0,
+        };
+
+        DiscountOverride copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DiscountTypeTest : TestBase

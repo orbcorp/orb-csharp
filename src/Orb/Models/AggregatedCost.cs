@@ -89,8 +89,11 @@ public sealed record class AggregatedCost : JsonModel
 
     public AggregatedCost() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AggregatedCost(AggregatedCost aggregatedCost)
         : base(aggregatedCost) { }
+#pragma warning restore CS8618
 
     public AggregatedCost(IReadOnlyDictionary<string, JsonElement> rawData)
     {

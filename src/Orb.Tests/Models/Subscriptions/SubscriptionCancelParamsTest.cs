@@ -74,10 +74,28 @@ public class SubscriptionCancelParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/cancel"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/cancel"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionCancelParams
+        {
+            SubscriptionID = "subscription_id",
+            CancelOption = CancelOption.EndOfSubscriptionTerm,
+            AllowInvoiceCreditOrVoid = true,
+            CancellationDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        SubscriptionCancelParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

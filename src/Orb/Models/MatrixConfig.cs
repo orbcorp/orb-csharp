@@ -78,8 +78,11 @@ public sealed record class MatrixConfig : JsonModel
 
     public MatrixConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixConfig(MatrixConfig matrixConfig)
         : base(matrixConfig) { }
+#pragma warning restore CS8618
 
     public MatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

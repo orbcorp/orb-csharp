@@ -51,8 +51,11 @@ public sealed record class BackfillListPageResponse : JsonModel
 
     public BackfillListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillListPageResponse(BackfillListPageResponse backfillListPageResponse)
         : base(backfillListPageResponse) { }
+#pragma warning restore CS8618
 
     public BackfillListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

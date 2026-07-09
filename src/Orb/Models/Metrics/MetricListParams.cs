@@ -9,11 +9,14 @@ using Orb.Core;
 namespace Orb.Models.Metrics;
 
 /// <summary>
-/// This endpoint is used to fetch [metric](/core-concepts##metric) details given
-/// a metric identifier. It returns information about the metrics including its name,
-/// description, and item.
+/// This endpoint is used to list [metrics](/core-concepts#metric). It returns information
+/// about the metrics including its name, description, and item.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class MetricListParams : ParamsBase
+public record class MetricListParams : ParamsBase
 {
     public DateTimeOffset? CreatedAtGt
     {
@@ -92,8 +95,11 @@ public sealed record class MetricListParams : ParamsBase
 
     public MetricListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricListParams(MetricListParams metricListParams)
         : base(metricListParams) { }
+#pragma warning restore CS8618
 
     public MetricListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -116,7 +122,7 @@ public sealed record class MetricListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static MetricListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -126,6 +132,32 @@ public sealed record class MetricListParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(MetricListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -143,5 +175,10 @@ public sealed record class MetricListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

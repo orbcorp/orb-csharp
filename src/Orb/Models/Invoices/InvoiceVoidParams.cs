@@ -20,18 +20,25 @@ namespace Orb.Models.Invoices;
 /// <para>If the invoice was used to purchase a credit block, but the invoice is
 /// not yet paid, the credit block will be voided. If the invoice was created due
 /// to a top-up, the top-up will be disabled.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceVoidParams : ParamsBase
+public record class InvoiceVoidParams : ParamsBase
 {
     public string? InvoiceID { get; init; }
 
     public InvoiceVoidParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceVoidParams(InvoiceVoidParams invoiceVoidParams)
         : base(invoiceVoidParams)
     {
         this.InvoiceID = invoiceVoidParams.InvoiceID;
     }
+#pragma warning restore CS8618
 
     public InvoiceVoidParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -46,24 +53,56 @@ public sealed record class InvoiceVoidParams : ParamsBase
     [SetsRequiredMembers]
     InvoiceVoidParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string invoiceID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.InvoiceID = invoiceID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static InvoiceVoidParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string invoiceID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            invoiceID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["InvoiceID"] = JsonSerializer.SerializeToElement(this.InvoiceID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceVoidParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.InvoiceID?.Equals(other.InvoiceID) ?? other.InvoiceID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -84,5 +123,10 @@ public sealed record class InvoiceVoidParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

@@ -14,6 +14,7 @@ public class InvoiceUpdateParamsTest : TestBase
         var parameters = new InvoiceUpdateParams
         {
             InvoiceID = "invoice_id",
+            AutoCollection = true,
             DueDate = "2023-09-22",
             InvoiceDate = "2023-09-22",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -21,12 +22,14 @@ public class InvoiceUpdateParamsTest : TestBase
         };
 
         string expectedInvoiceID = "invoice_id";
+        bool expectedAutoCollection = true;
         InvoiceUpdateParamsDueDate expectedDueDate = "2023-09-22";
         InvoiceDate expectedInvoiceDate = "2023-09-22";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         long expectedNetTerms = 0;
 
         Assert.Equal(expectedInvoiceID, parameters.InvoiceID);
+        Assert.Equal(expectedAutoCollection, parameters.AutoCollection);
         Assert.Equal(expectedDueDate, parameters.DueDate);
         Assert.Equal(expectedInvoiceDate, parameters.InvoiceDate);
         Assert.NotNull(parameters.Metadata);
@@ -45,6 +48,8 @@ public class InvoiceUpdateParamsTest : TestBase
     {
         var parameters = new InvoiceUpdateParams { InvoiceID = "invoice_id" };
 
+        Assert.Null(parameters.AutoCollection);
+        Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.DueDate);
         Assert.False(parameters.RawBodyData.ContainsKey("due_date"));
         Assert.Null(parameters.InvoiceDate);
@@ -62,12 +67,15 @@ public class InvoiceUpdateParamsTest : TestBase
         {
             InvoiceID = "invoice_id",
 
+            AutoCollection = null,
             DueDate = null,
             InvoiceDate = null,
             Metadata = null,
             NetTerms = null,
         };
 
+        Assert.Null(parameters.AutoCollection);
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
         Assert.Null(parameters.DueDate);
         Assert.True(parameters.RawBodyData.ContainsKey("due_date"));
         Assert.Null(parameters.InvoiceDate);
@@ -85,7 +93,27 @@ public class InvoiceUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/invoices/invoice_id"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceUpdateParams
+        {
+            InvoiceID = "invoice_id",
+            AutoCollection = true,
+            DueDate = "2023-09-22",
+            InvoiceDate = "2023-09-22",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+        };
+
+        InvoiceUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

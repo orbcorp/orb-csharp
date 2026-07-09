@@ -105,8 +105,11 @@ public sealed record class PercentageDiscount : JsonModel
 
     public PercentageDiscount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PercentageDiscount(PercentageDiscount percentageDiscount)
         : base(percentageDiscount) { }
+#pragma warning restore CS8618
 
     public PercentageDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -242,8 +245,11 @@ public sealed record class PercentageDiscountFilter : JsonModel
 
     public PercentageDiscountFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PercentageDiscountFilter(PercentageDiscountFilter percentageDiscountFilter)
         : base(percentageDiscountFilter) { }
+#pragma warning restore CS8618
 
     public PercentageDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

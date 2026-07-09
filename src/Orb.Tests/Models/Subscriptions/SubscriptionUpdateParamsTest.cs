@@ -13,6 +13,7 @@ public class SubscriptionUpdateParamsTest : TestBase
         {
             SubscriptionID = "subscription_id",
             AutoCollection = true,
+            AutoIssuance = true,
             DefaultInvoiceMemo = "default_invoice_memo",
             InvoicingThreshold = "10.00",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -21,6 +22,7 @@ public class SubscriptionUpdateParamsTest : TestBase
 
         string expectedSubscriptionID = "subscription_id";
         bool expectedAutoCollection = true;
+        bool expectedAutoIssuance = true;
         string expectedDefaultInvoiceMemo = "default_invoice_memo";
         string expectedInvoicingThreshold = "10.00";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -28,6 +30,7 @@ public class SubscriptionUpdateParamsTest : TestBase
 
         Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
         Assert.Equal(expectedAutoCollection, parameters.AutoCollection);
+        Assert.Equal(expectedAutoIssuance, parameters.AutoIssuance);
         Assert.Equal(expectedDefaultInvoiceMemo, parameters.DefaultInvoiceMemo);
         Assert.Equal(expectedInvoicingThreshold, parameters.InvoicingThreshold);
         Assert.NotNull(parameters.Metadata);
@@ -48,6 +51,8 @@ public class SubscriptionUpdateParamsTest : TestBase
 
         Assert.Null(parameters.AutoCollection);
         Assert.False(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.Null(parameters.AutoIssuance);
+        Assert.False(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.DefaultInvoiceMemo);
         Assert.False(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
         Assert.Null(parameters.InvoicingThreshold);
@@ -66,6 +71,7 @@ public class SubscriptionUpdateParamsTest : TestBase
             SubscriptionID = "subscription_id",
 
             AutoCollection = null,
+            AutoIssuance = null,
             DefaultInvoiceMemo = null,
             InvoicingThreshold = null,
             Metadata = null,
@@ -74,6 +80,8 @@ public class SubscriptionUpdateParamsTest : TestBase
 
         Assert.Null(parameters.AutoCollection);
         Assert.True(parameters.RawBodyData.ContainsKey("auto_collection"));
+        Assert.Null(parameters.AutoIssuance);
+        Assert.True(parameters.RawBodyData.ContainsKey("auto_issuance"));
         Assert.Null(parameters.DefaultInvoiceMemo);
         Assert.True(parameters.RawBodyData.ContainsKey("default_invoice_memo"));
         Assert.Null(parameters.InvoicingThreshold);
@@ -91,6 +99,30 @@ public class SubscriptionUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/subscriptions/subscription_id"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/subscriptions/subscription_id"),
+                url
+            )
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUpdateParams
+        {
+            SubscriptionID = "subscription_id",
+            AutoCollection = true,
+            AutoIssuance = true,
+            DefaultInvoiceMemo = "default_invoice_memo",
+            InvoicingThreshold = "10.00",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            NetTerms = 0,
+        };
+
+        SubscriptionUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

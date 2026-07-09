@@ -10,8 +10,12 @@ namespace Orb.Models.Prices;
 
 /// <summary>
 /// This endpoint is used to list all add-on prices created using the [price creation endpoint](/api-reference/price/create-price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class PriceListParams : ParamsBase
+public record class PriceListParams : ParamsBase
 {
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -50,8 +54,11 @@ public sealed record class PriceListParams : ParamsBase
 
     public PriceListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceListParams(PriceListParams priceListParams)
         : base(priceListParams) { }
+#pragma warning restore CS8618
 
     public PriceListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -74,7 +81,7 @@ public sealed record class PriceListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static PriceListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -84,6 +91,32 @@ public sealed record class PriceListParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(PriceListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -101,5 +134,10 @@ public sealed record class PriceListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

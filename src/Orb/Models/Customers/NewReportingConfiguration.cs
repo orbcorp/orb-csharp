@@ -30,8 +30,11 @@ public sealed record class NewReportingConfiguration : JsonModel
 
     public NewReportingConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewReportingConfiguration(NewReportingConfiguration newReportingConfiguration)
         : base(newReportingConfiguration) { }
+#pragma warning restore CS8618
 
     public NewReportingConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

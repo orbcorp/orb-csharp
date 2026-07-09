@@ -22,8 +22,12 @@ namespace Orb.Models.Customers;
 /// to automatically   issue invoices * [Customer ID Aliases](/events-and-metrics/customer-aliases)
 /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
 /// can be configured on a per-customer basis by   setting the `timezone` parameter</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CustomerCreateParams : ParamsBase
+public record class CustomerCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -330,64 +334,68 @@ public sealed record class CustomerCreateParams : ParamsBase
     /// El Salvador | `sv_nit` | El Salvadorian NIT Number | | Estonia | `eu_vat`
     /// | European VAT Number | | Ethiopia | `et_tin` | Ethiopia Tax Identification
     /// Number | | European Union | `eu_oss_vat` | European One Stop Shop VAT Number
-    /// for non-Union scheme | | Finland | `eu_vat` | European VAT Number | | France
-    /// | `eu_vat` | European VAT Number | | Georgia | `ge_vat` | Georgian VAT | |
-    /// Germany | `de_stn` | German Tax Number (Steuernummer) | | Germany | `eu_vat`
-    /// | European VAT Number | | Greece | `eu_vat` | European VAT Number | | Guinea
-    /// | `gn_nif` | Guinea Tax Identification Number (Número de Identificação Fiscal)
-    /// | | Hong Kong | `hk_br` | Hong Kong BR Number | | Hungary | `eu_vat` | European
-    /// VAT Number | | Hungary | `hu_tin` | Hungary Tax Number (adószám) | | Iceland
-    /// | `is_vat` | Icelandic VAT | | India | `in_gst` | Indian GST Number | | Indonesia
-    /// | `id_npwp` | Indonesian NPWP Number | | Ireland | `eu_vat` | European VAT
-    /// Number | | Israel | `il_vat` | Israel VAT | | Italy | `eu_vat` | European
-    /// VAT Number | | Japan | `jp_cn` | Japanese Corporate Number (*Hōjin Bangō*)
-    /// | | Japan | `jp_rn` | Japanese Registered Foreign Businesses' Registration
-    /// Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan | `jp_trn` |
-    /// Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan | `kz_bin`
-    /// | Kazakhstani Business Identification Number | | Kenya | `ke_pin` | Kenya
-    /// Revenue Authority Personal Identification Number | | Kyrgyzstan | `kg_tin`
-    /// | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos Tax Identification
-    /// Number | | Latvia | `eu_vat` | European VAT Number | | Liechtenstein | `li_uid`
-    /// | Liechtensteinian UID Number | | Liechtenstein | `li_vat` | Liechtenstein
-    /// VAT Number | | Lithuania | `eu_vat` | European VAT Number | | Luxembourg
-    /// | `eu_vat` | European VAT Number | | Malaysia | `my_frp` | Malaysian FRP
-    /// Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia | `my_sst` | Malaysian
-    /// SST Number | | Malta | `eu_vat` | European VAT Number | | Mauritania | `mr_nif`
-    /// | Mauritania Tax Identification Number (Número de Identificação Fiscal) |
-    /// | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova | `md_vat` | Moldova
-    /// VAT Number | | Montenegro | `me_pib` | Montenegro PIB Number | | Morocco |
-    /// `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` | Nepal PAN Number | |
-    /// Netherlands | `eu_vat` | European VAT Number | | New Zealand | `nz_gst` |
-    /// New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian Tax Identification
-    /// Number | | North Macedonia | `mk_vat` | North Macedonia VAT Number | | Northern
-    /// Ireland | `eu_vat` | Northern Ireland VAT Number | | Norway | `no_vat` |
-    /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
-    /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
-    /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
+    /// for non-Union scheme | | Faroe Islands | `fo_vat` | Faroe Islands VAT Number
+    /// | | Finland | `eu_vat` | European VAT Number | | France | `eu_vat` | European
+    /// VAT Number | | Georgia | `ge_vat` | Georgian VAT | | Germany | `de_stn` |
+    /// German Tax Number (Steuernummer) | | Germany | `eu_vat` | European VAT Number
+    /// | | Gibraltar | `gi_tin` | Gibraltar Tax Identification Number | | Greece
+    /// | `eu_vat` | European VAT Number | | Guinea | `gn_nif` | Guinea Tax Identification
+    /// Number (Número de Identificação Fiscal) | | Hong Kong | `hk_br` | Hong Kong
+    /// BR Number | | Hungary | `eu_vat` | European VAT Number | | Hungary | `hu_tin`
+    /// | Hungary Tax Number (adószám) | | Iceland | `is_vat` | Icelandic VAT | |
+    /// India | `in_gst` | Indian GST Number | | Indonesia | `id_npwp` | Indonesian
+    /// NPWP Number | | Ireland | `eu_vat` | European VAT Number | | Israel | `il_vat`
+    /// | Israel VAT | | Italy | `eu_vat` | European VAT Number | | Italy | `it_cf`
+    /// | Italian Codice Fiscale Number | | Japan | `jp_cn` | Japanese Corporate Number
+    /// (*Hōjin Bangō*) | | Japan | `jp_rn` | Japanese Registered Foreign Businesses'
+    /// Registration Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan
+    /// | `jp_trn` | Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan
+    /// | `kz_bin` | Kazakhstani Business Identification Number | | Kenya | `ke_pin`
+    /// | Kenya Revenue Authority Personal Identification Number | | Kyrgyzstan |
+    /// `kg_tin` | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos
+    /// Tax Identification Number | | Latvia | `eu_vat` | European VAT Number | |
+    /// Liechtenstein | `li_uid` | Liechtensteinian UID Number | | Liechtenstein |
+    /// `li_vat` | Liechtenstein VAT Number | | Lithuania | `eu_vat` | European VAT
+    /// Number | | Luxembourg | `eu_vat` | European VAT Number | | Malaysia | `my_frp`
+    /// | Malaysian FRP Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia
+    /// | `my_sst` | Malaysian SST Number | | Malta | `eu_vat` | European VAT Number
+    /// | | Mauritania | `mr_nif` | Mauritania Tax Identification Number (Número de
+    /// Identificação Fiscal) | | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova
+    /// | `md_vat` | Moldova VAT Number | | Montenegro | `me_pib` | Montenegro PIB
+    /// Number | | Morocco | `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` |
+    /// Nepal PAN Number | | Netherlands | `eu_vat` | European VAT Number | | New
+    /// Zealand | `nz_gst` | New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian
+    /// Tax Identification Number | | North Macedonia | `mk_vat` | North Macedonia
+    /// VAT Number | | Northern Ireland | `eu_vat` | Northern Ireland VAT Number |
+    /// | Norway | `no_vat` | Norwegian VAT Number | | Norway | `no_voec` | Norwegian
+    /// VAT on e-commerce Number | | Oman | `om_vat` | Omani VAT Number | | Paraguay
+    /// | `py_ruc` | Paraguayan RUC Number | | Peru | `pe_ruc` | Peruvian RUC Number
+    /// | | Philippines | `ph_tin` | Philippines Tax Identification Number | | Poland
+    /// | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish Tax ID Number
+    /// | | Portugal | `eu_vat` | European VAT Number | | Romania | `eu_vat` | European
+    /// VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number | | Russia | `ru_inn`
+    /// | Russian INN | | Russia | `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat`
+    /// | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia
+    /// | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst` | Singaporean GST
+    /// | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia | `eu_vat` | European
+    /// VAT Number | | Slovenia | `eu_vat` | European VAT Number | | Slovenia | `si_tin`
+    /// | Slovenia Tax Number (davčna številka) | | South Africa | `za_vat` | South
+    /// African VAT Number | | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif`
+    /// | Spanish NIF Number (previously Spanish CIF Number) | | Spain | `eu_vat`
+    /// | European VAT Number | | Sri Lanka | `lk_vat` | Sri Lanka VAT Number | |
+    /// Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat` | European
+    /// VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number | | Switzerland
+    /// | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT
+    /// | | Tajikistan | `tj_tin` | Tajikistan Tax Identification Number | | Tanzania
+    /// | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey
+    /// | `tr_tin` | Turkish Tax Identification Number | | Uganda | `ug_tin` | Uganda
+    /// Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United
+    /// Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United Kingdom | `gb_vat`
+    /// | United Kingdom VAT Number | | United States | `us_ein` | United States
+    /// EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin`
+    /// | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number
+    /// | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam | `vn_tin` |
+    /// Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
     /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public CustomerTaxID? TaxID
@@ -417,11 +425,14 @@ public sealed record class CustomerCreateParams : ParamsBase
 
     public CustomerCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerCreateParams(CustomerCreateParams customerCreateParams)
         : base(customerCreateParams)
     {
         this._rawBodyData = new(customerCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CustomerCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -448,7 +459,7 @@ public sealed record class CustomerCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CustomerCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -460,6 +471,34 @@ public sealed record class CustomerCreateParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CustomerCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -487,6 +526,11 @@ public sealed record class CustomerCreateParams : ParamsBase
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
     }
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
 }
 
 /// <summary>
@@ -499,14 +543,14 @@ public sealed record class PaymentConfiguration : JsonModel
     /// <summary>
     /// Provider-specific payment configuration.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Customers.PaymentProvider>? PaymentProviders
+    public IReadOnlyList<PaymentProvider>? PaymentProviders
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Customers.PaymentProvider>
-            >("payment_providers");
+            return this._rawData.GetNullableStruct<ImmutableArray<PaymentProvider>>(
+                "payment_providers"
+            );
         }
         init
         {
@@ -515,7 +559,7 @@ public sealed record class PaymentConfiguration : JsonModel
                 return;
             }
 
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Customers.PaymentProvider>?>(
+            this._rawData.Set<ImmutableArray<PaymentProvider>?>(
                 "payment_providers",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -533,8 +577,11 @@ public sealed record class PaymentConfiguration : JsonModel
 
     public PaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PaymentConfiguration(PaymentConfiguration paymentConfiguration)
         : base(paymentConfiguration) { }
+#pragma warning restore CS8618
 
     public PaymentConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -566,9 +613,7 @@ class PaymentConfigurationFromRaw : IFromRawJson<PaymentConfiguration>
     ) => PaymentConfiguration.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(
-    typeof(JsonModelConverter<global::Orb.Models.Customers.PaymentProvider, PaymentProviderFromRaw>)
-)]
+[JsonConverter(typeof(JsonModelConverter<PaymentProvider, PaymentProviderFromRaw>))]
 public sealed record class PaymentProvider : JsonModel
 {
     /// <summary>
@@ -582,6 +627,21 @@ public sealed record class PaymentProvider : JsonModel
             return this._rawData.GetNotNullClass<ApiEnum<string, ProviderType>>("provider_type");
         }
         init { this._rawData.Set("provider_type", value); }
+    }
+
+    /// <summary>
+    /// The ID of a shared payment token granted by an agent to use as the default
+    /// payment instrument for this customer. When set, auto-collection will use
+    /// this token instead of the customer's default payment method.
+    /// </summary>
+    public string? DefaultSharedPaymentToken
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_shared_payment_token");
+        }
+        init { this._rawData.Set("default_shared_payment_token", value); }
     }
 
     /// <summary>
@@ -618,13 +678,17 @@ public sealed record class PaymentProvider : JsonModel
     public override void Validate()
     {
         this.ProviderType.Validate();
+        _ = this.DefaultSharedPaymentToken;
         _ = this.ExcludedPaymentMethodTypes;
     }
 
     public PaymentProvider() { }
 
-    public PaymentProvider(global::Orb.Models.Customers.PaymentProvider paymentProvider)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PaymentProvider(PaymentProvider paymentProvider)
         : base(paymentProvider) { }
+#pragma warning restore CS8618
 
     public PaymentProvider(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -640,9 +704,7 @@ public sealed record class PaymentProvider : JsonModel
 #pragma warning restore CS8618
 
     /// <inheritdoc cref="PaymentProviderFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    public static PaymentProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
@@ -655,12 +717,11 @@ public sealed record class PaymentProvider : JsonModel
     }
 }
 
-class PaymentProviderFromRaw : IFromRawJson<global::Orb.Models.Customers.PaymentProvider>
+class PaymentProviderFromRaw : IFromRawJson<PaymentProvider>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Customers.PaymentProvider FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.PaymentProvider.FromRawUnchecked(rawData);
+    public PaymentProvider FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        PaymentProvider.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -719,6 +780,7 @@ public enum CustomerCreateParamsPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    Adyen,
 }
 
 sealed class CustomerCreateParamsPaymentProviderConverter
@@ -737,6 +799,7 @@ sealed class CustomerCreateParamsPaymentProviderConverter
             "stripe_charge" => CustomerCreateParamsPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerCreateParamsPaymentProvider.StripeInvoice,
             "netsuite" => CustomerCreateParamsPaymentProvider.Netsuite,
+            "adyen" => CustomerCreateParamsPaymentProvider.Adyen,
             _ => (CustomerCreateParamsPaymentProvider)(-1),
         };
     }
@@ -756,6 +819,7 @@ sealed class CustomerCreateParamsPaymentProviderConverter
                 CustomerCreateParamsPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerCreateParamsPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerCreateParamsPaymentProvider.Netsuite => "netsuite",
+                CustomerCreateParamsPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -858,7 +922,7 @@ public record class TaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewAvalaraTaxConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -879,7 +943,7 @@ public record class TaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewTaxJarConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -900,7 +964,7 @@ public record class TaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSphereConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -921,7 +985,7 @@ public record class TaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Numeral"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -942,7 +1006,7 @@ public record class TaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Anrok"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -963,7 +1027,7 @@ public record class TaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Stripe"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -983,7 +1047,7 @@ public record class TaxConfiguration : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -994,12 +1058,12 @@ public record class TaxConfiguration : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (NewAvalaraTaxConfiguration value) => {...},
-    ///     (NewTaxJarConfiguration value) => {...},
-    ///     (NewSphereConfiguration value) => {...},
-    ///     (Numeral value) => {...},
-    ///     (Anrok value) => {...},
-    ///     (Stripe value) => {...}
+    ///     (NewAvalaraTaxConfiguration value) =&gt; {...},
+    ///     (NewTaxJarConfiguration value) =&gt; {...},
+    ///     (NewSphereConfiguration value) =&gt; {...},
+    ///     (Numeral value) =&gt; {...},
+    ///     (Anrok value) =&gt; {...},
+    ///     (Stripe value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1044,7 +1108,7 @@ public record class TaxConfiguration : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1055,12 +1119,12 @@ public record class TaxConfiguration : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (NewAvalaraTaxConfiguration value) => {...},
-    ///     (NewTaxJarConfiguration value) => {...},
-    ///     (NewSphereConfiguration value) => {...},
-    ///     (Numeral value) => {...},
-    ///     (Anrok value) => {...},
-    ///     (Stripe value) => {...}
+    ///     (NewAvalaraTaxConfiguration value) =&gt; {...},
+    ///     (NewTaxJarConfiguration value) =&gt; {...},
+    ///     (NewSphereConfiguration value) =&gt; {...},
+    ///     (Numeral value) =&gt; {...},
+    ///     (Anrok value) =&gt; {...},
+    ///     (Stripe value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1127,10 +1191,10 @@ public record class TaxConfiguration : ModelBase
         );
     }
 
-    public virtual bool Equals(TaxConfiguration? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(TaxConfiguration? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1138,7 +1202,24 @@ public record class TaxConfiguration : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewAvalaraTaxConfiguration _ => 0,
+            NewTaxJarConfiguration _ => 1,
+            NewSphereConfiguration _ => 2,
+            Numeral _ => 3,
+            Anrok _ => 4,
+            Stripe _ => 5,
+            _ => -1,
+        };
+    }
 }
 
 sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
@@ -1172,12 +1253,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1194,12 +1273,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1216,12 +1293,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1235,12 +1310,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Numeral>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1254,12 +1327,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Anrok>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1273,12 +1344,10 @@ sealed class TaxConfigurationConverter : JsonConverter<TaxConfiguration?>
                     var deserialized = JsonSerializer.Deserialize<Stripe>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1355,8 +1424,11 @@ public sealed record class Numeral : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Numeral(Numeral numeral)
         : base(numeral) { }
+#pragma warning restore CS8618
 
     public Numeral(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1447,8 +1519,11 @@ public sealed record class Anrok : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Anrok(Anrok anrok)
         : base(anrok) { }
+#pragma warning restore CS8618
 
     public Anrok(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1539,8 +1614,11 @@ public sealed record class Stripe : JsonModel
         this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Stripe(Stripe stripe)
         : base(stripe) { }
+#pragma warning restore CS8618
 
     public Stripe(IReadOnlyDictionary<string, JsonElement> rawData)
     {

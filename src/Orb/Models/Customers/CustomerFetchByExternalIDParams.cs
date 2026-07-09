@@ -13,13 +13,19 @@ namespace Orb.Models.Customers;
 /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)).
 ///
 /// <para>Note that the resource and semantics of this endpoint exactly mirror [Get Customer](fetch-customer).</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CustomerFetchByExternalIDParams : ParamsBase
+public record class CustomerFetchByExternalIDParams : ParamsBase
 {
     public string? ExternalCustomerID { get; init; }
 
     public CustomerFetchByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerFetchByExternalIDParams(
         CustomerFetchByExternalIDParams customerFetchByExternalIDParams
     )
@@ -27,6 +33,7 @@ public sealed record class CustomerFetchByExternalIDParams : ParamsBase
     {
         this.ExternalCustomerID = customerFetchByExternalIDParams.ExternalCustomerID;
     }
+#pragma warning restore CS8618
 
     public CustomerFetchByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -41,24 +48,61 @@ public sealed record class CustomerFetchByExternalIDParams : ParamsBase
     [SetsRequiredMembers]
     CustomerFetchByExternalIDParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string externalCustomerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.ExternalCustomerID = externalCustomerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CustomerFetchByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string externalCustomerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            externalCustomerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ExternalCustomerID"] = JsonSerializer.SerializeToElement(
+                        this.ExternalCustomerID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CustomerFetchByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -79,5 +123,10 @@ public sealed record class CustomerFetchByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

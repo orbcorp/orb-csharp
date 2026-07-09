@@ -121,12 +121,32 @@ public class SubscriptionUpdateFixedFeeQuantityParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/subscriptions/subscription_id/update_fixed_fee_quantity"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscriptions/subscription_id/update_fixed_fee_quantity"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUpdateFixedFeeQuantityParams
+        {
+            SubscriptionID = "subscription_id",
+            PriceID = "price_id",
+            Quantity = 0,
+            AllowInvoiceCreditOrVoid = true,
+            ChangeOption = SubscriptionUpdateFixedFeeQuantityParamsChangeOption.Immediate,
+            EffectiveDate = "2022-12-21",
+        };
+
+        SubscriptionUpdateFixedFeeQuantityParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

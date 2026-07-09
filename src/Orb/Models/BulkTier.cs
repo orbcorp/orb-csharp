@@ -48,8 +48,11 @@ public sealed record class BulkTier : JsonModel
 
     public BulkTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkTier(BulkTier bulkTier)
         : base(bulkTier) { }
+#pragma warning restore CS8618
 
     public BulkTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

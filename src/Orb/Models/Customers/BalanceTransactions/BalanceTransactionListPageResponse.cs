@@ -56,10 +56,13 @@ public sealed record class BalanceTransactionListPageResponse : JsonModel
 
     public BalanceTransactionListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BalanceTransactionListPageResponse(
         BalanceTransactionListPageResponse balanceTransactionListPageResponse
     )
         : base(balanceTransactionListPageResponse) { }
+#pragma warning restore CS8618
 
     public BalanceTransactionListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

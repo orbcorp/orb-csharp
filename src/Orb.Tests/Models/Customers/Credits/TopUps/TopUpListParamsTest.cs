@@ -85,11 +85,28 @@ public class TopUpListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/customer_id/credits/top_ups?cursor=cursor&limit=1"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/customer_id/credits/top_ups?cursor=cursor&limit=1"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpListParams
+        {
+            CustomerID = "customer_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        TopUpListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

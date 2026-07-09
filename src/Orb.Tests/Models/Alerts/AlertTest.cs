@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
 using Orb.Exceptions;
-using Orb.Models;
 using Orb.Models.Alerts;
+using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Alerts;
 
@@ -32,12 +32,24 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
+            LicenseType = new("id"),
+            PriceFilters =
+            [
+                new()
+                {
+                    Field = AlertPriceFilterField.PriceID,
+                    Operator = AlertPriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
         };
 
         string expectedID = "XuxCbt7x9L82yyeF";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCurrency = "currency";
-        CustomerMinified expectedCustomer = new()
+        Models::CustomerMinified expectedCustomer = new()
         {
             ID = "id",
             ExternalCustomerID = "external_customer_id",
@@ -51,12 +63,27 @@ public class AlertTest : TestBase
             Name = "Example plan",
             PlanVersion = "plan_version",
         };
-        SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
+        Models::SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
         List<Threshold> expectedThresholds = [new(0)];
         ApiEnum<string, AlertType> expectedType = AlertType.CreditBalanceDepleted;
         List<BalanceAlertStatus> expectedBalanceAlertStatus =
         [
             new() { InAlert = true, ThresholdValue = 0 },
+        ];
+        List<string> expectedGroupingKeys = ["string"];
+        LicenseType expectedLicenseType = new("id");
+        List<AlertPriceFilter> expectedPriceFilters =
+        [
+            new()
+            {
+                Field = AlertPriceFilterField.PriceID,
+                Operator = AlertPriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        List<AlertThresholdOverride> expectedThresholdOverrides =
+        [
+            new() { GroupValues = ["string"], Thresholds = [new(0)] },
         ];
 
         Assert.Equal(expectedID, model.ID);
@@ -79,6 +106,25 @@ public class AlertTest : TestBase
         for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
         {
             Assert.Equal(expectedBalanceAlertStatus[i], model.BalanceAlertStatus[i]);
+        }
+        Assert.NotNull(model.GroupingKeys);
+        Assert.Equal(expectedGroupingKeys.Count, model.GroupingKeys.Count);
+        for (int i = 0; i < expectedGroupingKeys.Count; i++)
+        {
+            Assert.Equal(expectedGroupingKeys[i], model.GroupingKeys[i]);
+        }
+        Assert.Equal(expectedLicenseType, model.LicenseType);
+        Assert.NotNull(model.PriceFilters);
+        Assert.Equal(expectedPriceFilters.Count, model.PriceFilters.Count);
+        for (int i = 0; i < expectedPriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedPriceFilters[i], model.PriceFilters[i]);
+        }
+        Assert.NotNull(model.ThresholdOverrides);
+        Assert.Equal(expectedThresholdOverrides.Count, model.ThresholdOverrides.Count);
+        for (int i = 0; i < expectedThresholdOverrides.Count; i++)
+        {
+            Assert.Equal(expectedThresholdOverrides[i], model.ThresholdOverrides[i]);
         }
     }
 
@@ -104,6 +150,18 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
+            LicenseType = new("id"),
+            PriceFilters =
+            [
+                new()
+                {
+                    Field = AlertPriceFilterField.PriceID,
+                    Operator = AlertPriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
         };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -134,6 +192,18 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
+            LicenseType = new("id"),
+            PriceFilters =
+            [
+                new()
+                {
+                    Field = AlertPriceFilterField.PriceID,
+                    Operator = AlertPriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
         };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
@@ -143,7 +213,7 @@ public class AlertTest : TestBase
         string expectedID = "XuxCbt7x9L82yyeF";
         DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
         string expectedCurrency = "currency";
-        CustomerMinified expectedCustomer = new()
+        Models::CustomerMinified expectedCustomer = new()
         {
             ID = "id",
             ExternalCustomerID = "external_customer_id",
@@ -157,12 +227,27 @@ public class AlertTest : TestBase
             Name = "Example plan",
             PlanVersion = "plan_version",
         };
-        SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
+        Models::SubscriptionMinified expectedSubscription = new("VDGsT23osdLb84KD");
         List<Threshold> expectedThresholds = [new(0)];
         ApiEnum<string, AlertType> expectedType = AlertType.CreditBalanceDepleted;
         List<BalanceAlertStatus> expectedBalanceAlertStatus =
         [
             new() { InAlert = true, ThresholdValue = 0 },
+        ];
+        List<string> expectedGroupingKeys = ["string"];
+        LicenseType expectedLicenseType = new("id");
+        List<AlertPriceFilter> expectedPriceFilters =
+        [
+            new()
+            {
+                Field = AlertPriceFilterField.PriceID,
+                Operator = AlertPriceFilterOperator.Includes,
+                Values = ["string"],
+            },
+        ];
+        List<AlertThresholdOverride> expectedThresholdOverrides =
+        [
+            new() { GroupValues = ["string"], Thresholds = [new(0)] },
         ];
 
         Assert.Equal(expectedID, deserialized.ID);
@@ -185,6 +270,25 @@ public class AlertTest : TestBase
         for (int i = 0; i < expectedBalanceAlertStatus.Count; i++)
         {
             Assert.Equal(expectedBalanceAlertStatus[i], deserialized.BalanceAlertStatus[i]);
+        }
+        Assert.NotNull(deserialized.GroupingKeys);
+        Assert.Equal(expectedGroupingKeys.Count, deserialized.GroupingKeys.Count);
+        for (int i = 0; i < expectedGroupingKeys.Count; i++)
+        {
+            Assert.Equal(expectedGroupingKeys[i], deserialized.GroupingKeys[i]);
+        }
+        Assert.Equal(expectedLicenseType, deserialized.LicenseType);
+        Assert.NotNull(deserialized.PriceFilters);
+        Assert.Equal(expectedPriceFilters.Count, deserialized.PriceFilters.Count);
+        for (int i = 0; i < expectedPriceFilters.Count; i++)
+        {
+            Assert.Equal(expectedPriceFilters[i], deserialized.PriceFilters[i]);
+        }
+        Assert.NotNull(deserialized.ThresholdOverrides);
+        Assert.Equal(expectedThresholdOverrides.Count, deserialized.ThresholdOverrides.Count);
+        for (int i = 0; i < expectedThresholdOverrides.Count; i++)
+        {
+            Assert.Equal(expectedThresholdOverrides[i], deserialized.ThresholdOverrides[i]);
         }
     }
 
@@ -210,6 +314,18 @@ public class AlertTest : TestBase
             Thresholds = [new(0)],
             Type = AlertType.CreditBalanceDepleted,
             BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
+            LicenseType = new("id"),
+            PriceFilters =
+            [
+                new()
+                {
+                    Field = AlertPriceFilterField.PriceID,
+                    Operator = AlertPriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
         };
 
         model.Validate();
@@ -240,6 +356,14 @@ public class AlertTest : TestBase
 
         Assert.Null(model.BalanceAlertStatus);
         Assert.False(model.RawData.ContainsKey("balance_alert_status"));
+        Assert.Null(model.GroupingKeys);
+        Assert.False(model.RawData.ContainsKey("grouping_keys"));
+        Assert.Null(model.LicenseType);
+        Assert.False(model.RawData.ContainsKey("license_type"));
+        Assert.Null(model.PriceFilters);
+        Assert.False(model.RawData.ContainsKey("price_filters"));
+        Assert.Null(model.ThresholdOverrides);
+        Assert.False(model.RawData.ContainsKey("threshold_overrides"));
     }
 
     [Fact]
@@ -291,10 +415,22 @@ public class AlertTest : TestBase
             Type = AlertType.CreditBalanceDepleted,
 
             BalanceAlertStatus = null,
+            GroupingKeys = null,
+            LicenseType = null,
+            PriceFilters = null,
+            ThresholdOverrides = null,
         };
 
         Assert.Null(model.BalanceAlertStatus);
         Assert.True(model.RawData.ContainsKey("balance_alert_status"));
+        Assert.Null(model.GroupingKeys);
+        Assert.True(model.RawData.ContainsKey("grouping_keys"));
+        Assert.Null(model.LicenseType);
+        Assert.True(model.RawData.ContainsKey("license_type"));
+        Assert.Null(model.PriceFilters);
+        Assert.True(model.RawData.ContainsKey("price_filters"));
+        Assert.Null(model.ThresholdOverrides);
+        Assert.True(model.RawData.ContainsKey("threshold_overrides"));
     }
 
     [Fact]
@@ -320,9 +456,54 @@ public class AlertTest : TestBase
             Type = AlertType.CreditBalanceDepleted,
 
             BalanceAlertStatus = null,
+            GroupingKeys = null,
+            LicenseType = null,
+            PriceFilters = null,
+            ThresholdOverrides = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Alert
+        {
+            ID = "XuxCbt7x9L82yyeF",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            Enabled = true,
+            Metric = new("id"),
+            Plan = new()
+            {
+                ID = "m2t5akQeh2obwxeU",
+                ExternalPlanID = "m2t5akQeh2obwxeU",
+                Name = "Example plan",
+                PlanVersion = "plan_version",
+            },
+            Subscription = new("VDGsT23osdLb84KD"),
+            Thresholds = [new(0)],
+            Type = AlertType.CreditBalanceDepleted,
+            BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+            GroupingKeys = ["string"],
+            LicenseType = new("id"),
+            PriceFilters =
+            [
+                new()
+                {
+                    Field = AlertPriceFilterField.PriceID,
+                    Operator = AlertPriceFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
+        };
+
+        Alert copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -369,6 +550,16 @@ public class MetricTest : TestBase
         var model = new Metric { ID = "id" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Metric { ID = "id" };
+
+        Metric copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -452,6 +643,22 @@ public class PlanTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Plan
+        {
+            ID = "m2t5akQeh2obwxeU",
+            ExternalPlanID = "m2t5akQeh2obwxeU",
+            Name = "Example plan",
+            PlanVersion = "plan_version",
+        };
+
+        Plan copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AlertTypeTest : TestBase
@@ -462,6 +669,7 @@ public class AlertTypeTest : TestBase
     [InlineData(AlertType.CreditBalanceRecovered)]
     [InlineData(AlertType.UsageExceeded)]
     [InlineData(AlertType.CostExceeded)]
+    [InlineData(AlertType.LicenseBalanceThresholdReached)]
     public void Validation_Works(AlertType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -487,6 +695,7 @@ public class AlertTypeTest : TestBase
     [InlineData(AlertType.CreditBalanceRecovered)]
     [InlineData(AlertType.UsageExceeded)]
     [InlineData(AlertType.CostExceeded)]
+    [InlineData(AlertType.LicenseBalanceThresholdReached)]
     public void SerializationRoundtrip_Works(AlertType rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -571,5 +780,386 @@ public class BalanceAlertStatusTest : TestBase
         var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BalanceAlertStatus { InAlert = true, ThresholdValue = 0 };
+
+        BalanceAlertStatus copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class LicenseTypeTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        string expectedID = "id";
+
+        Assert.Equal(expectedID, model.ID);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LicenseType>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<LicenseType>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+
+        Assert.Equal(expectedID, deserialized.ID);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new LicenseType { ID = "id" };
+
+        LicenseType copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class AlertPriceFilterTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new AlertPriceFilter
+        {
+            Field = AlertPriceFilterField.PriceID,
+            Operator = AlertPriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        ApiEnum<string, AlertPriceFilterField> expectedField = AlertPriceFilterField.PriceID;
+        ApiEnum<string, AlertPriceFilterOperator> expectedOperator =
+            AlertPriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, model.Field);
+        Assert.Equal(expectedOperator, model.Operator);
+        Assert.Equal(expectedValues.Count, model.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], model.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new AlertPriceFilter
+        {
+            Field = AlertPriceFilterField.PriceID,
+            Operator = AlertPriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AlertPriceFilter>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new AlertPriceFilter
+        {
+            Field = AlertPriceFilterField.PriceID,
+            Operator = AlertPriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AlertPriceFilter>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        ApiEnum<string, AlertPriceFilterField> expectedField = AlertPriceFilterField.PriceID;
+        ApiEnum<string, AlertPriceFilterOperator> expectedOperator =
+            AlertPriceFilterOperator.Includes;
+        List<string> expectedValues = ["string"];
+
+        Assert.Equal(expectedField, deserialized.Field);
+        Assert.Equal(expectedOperator, deserialized.Operator);
+        Assert.Equal(expectedValues.Count, deserialized.Values.Count);
+        for (int i = 0; i < expectedValues.Count; i++)
+        {
+            Assert.Equal(expectedValues[i], deserialized.Values[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new AlertPriceFilter
+        {
+            Field = AlertPriceFilterField.PriceID,
+            Operator = AlertPriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AlertPriceFilter
+        {
+            Field = AlertPriceFilterField.PriceID,
+            Operator = AlertPriceFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        AlertPriceFilter copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class AlertPriceFilterFieldTest : TestBase
+{
+    [Theory]
+    [InlineData(AlertPriceFilterField.PriceID)]
+    [InlineData(AlertPriceFilterField.ItemID)]
+    [InlineData(AlertPriceFilterField.PriceType)]
+    [InlineData(AlertPriceFilterField.Currency)]
+    [InlineData(AlertPriceFilterField.PricingUnitID)]
+    public void Validation_Works(AlertPriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AlertPriceFilterField> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterField>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(AlertPriceFilterField.PriceID)]
+    [InlineData(AlertPriceFilterField.ItemID)]
+    [InlineData(AlertPriceFilterField.PriceType)]
+    [InlineData(AlertPriceFilterField.Currency)]
+    [InlineData(AlertPriceFilterField.PricingUnitID)]
+    public void SerializationRoundtrip_Works(AlertPriceFilterField rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AlertPriceFilterField> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterField>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterField>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterField>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AlertPriceFilterOperatorTest : TestBase
+{
+    [Theory]
+    [InlineData(AlertPriceFilterOperator.Includes)]
+    [InlineData(AlertPriceFilterOperator.Excludes)]
+    public void Validation_Works(AlertPriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AlertPriceFilterOperator> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterOperator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(AlertPriceFilterOperator.Includes)]
+    [InlineData(AlertPriceFilterOperator.Excludes)]
+    public void SerializationRoundtrip_Works(AlertPriceFilterOperator rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, AlertPriceFilterOperator> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterOperator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterOperator>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, AlertPriceFilterOperator>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
+public class AlertThresholdOverrideTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new AlertThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+
+        List<string> expectedGroupValues = ["string"];
+        List<Threshold> expectedThresholds = [new(0)];
+
+        Assert.Equal(expectedGroupValues.Count, model.GroupValues.Count);
+        for (int i = 0; i < expectedGroupValues.Count; i++)
+        {
+            Assert.Equal(expectedGroupValues[i], model.GroupValues[i]);
+        }
+        Assert.Equal(expectedThresholds.Count, model.Thresholds.Count);
+        for (int i = 0; i < expectedThresholds.Count; i++)
+        {
+            Assert.Equal(expectedThresholds[i], model.Thresholds[i]);
+        }
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new AlertThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AlertThresholdOverride>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new AlertThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<AlertThresholdOverride>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        List<string> expectedGroupValues = ["string"];
+        List<Threshold> expectedThresholds = [new(0)];
+
+        Assert.Equal(expectedGroupValues.Count, deserialized.GroupValues.Count);
+        for (int i = 0; i < expectedGroupValues.Count; i++)
+        {
+            Assert.Equal(expectedGroupValues[i], deserialized.GroupValues[i]);
+        }
+        Assert.Equal(expectedThresholds.Count, deserialized.Thresholds.Count);
+        for (int i = 0; i < expectedThresholds.Count; i++)
+        {
+            Assert.Equal(expectedThresholds[i], deserialized.Thresholds[i]);
+        }
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new AlertThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AlertThresholdOverride { GroupValues = ["string"], Thresholds = [new(0)] };
+
+        AlertThresholdOverride copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

@@ -176,4 +176,22 @@ public class AddressInputTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AddressInput
+        {
+            City = "city",
+            Country = "country",
+            Line1 = "line1",
+            Line2 = "line2",
+            PostalCode = "postal_code",
+            State = "state",
+        };
+
+        AddressInput copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

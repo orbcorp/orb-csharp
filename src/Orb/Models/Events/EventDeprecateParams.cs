@@ -42,18 +42,25 @@ namespace Orb.Models.Events;
 /// events for customers not in the Orb system. * By default, no more than 100 events
 /// can be deprecated for a single customer in a 100 day period. For higher volume
 ///   updates, consider using the [event backfill](create-backfill) endpoint.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class EventDeprecateParams : ParamsBase
+public record class EventDeprecateParams : ParamsBase
 {
     public string? EventID { get; init; }
 
     public EventDeprecateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventDeprecateParams(EventDeprecateParams eventDeprecateParams)
         : base(eventDeprecateParams)
     {
         this.EventID = eventDeprecateParams.EventID;
     }
+#pragma warning restore CS8618
 
     public EventDeprecateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -68,24 +75,56 @@ public sealed record class EventDeprecateParams : ParamsBase
     [SetsRequiredMembers]
     EventDeprecateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string eventID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.EventID = eventID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static EventDeprecateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string eventID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            eventID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["EventID"] = JsonSerializer.SerializeToElement(this.EventID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(EventDeprecateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.EventID?.Equals(other.EventID) ?? other.EventID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -106,5 +145,10 @@ public sealed record class EventDeprecateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

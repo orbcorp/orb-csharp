@@ -44,8 +44,11 @@ public sealed record class BulkConfig : JsonModel
 
     public BulkConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkConfig(BulkConfig bulkConfig)
         : base(bulkConfig) { }
+#pragma warning restore CS8618
 
     public BulkConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

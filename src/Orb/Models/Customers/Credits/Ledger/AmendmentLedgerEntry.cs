@@ -178,8 +178,11 @@ public sealed record class AmendmentLedgerEntry : JsonModel
 
     public AmendmentLedgerEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AmendmentLedgerEntry(AmendmentLedgerEntry amendmentLedgerEntry)
         : base(amendmentLedgerEntry) { }
+#pragma warning restore CS8618
 
     public AmendmentLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

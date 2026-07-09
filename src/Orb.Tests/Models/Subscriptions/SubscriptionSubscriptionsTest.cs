@@ -55,6 +55,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -135,6 +136,16 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Excluded = true,
                         },
                         AutomaticTaxEnabled = true,
+                        DefaultPaymentMethod = new()
+                        {
+                            ID = "id",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            CustomerID = "customer_id",
+                            Default = true,
+                            ExternalPaymentMethodID = "external_payment_method_id",
+                            PaymentMethodType = PaymentMethodType.Card,
+                            ProviderType = "provider_type",
+                        },
                         PaymentConfiguration = new()
                         {
                             PaymentProviders =
@@ -143,6 +154,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     ProviderType =
                                         CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                    DefaultSharedPaymentToken = "default_shared_payment_token",
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -415,11 +427,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -440,6 +453,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -486,6 +500,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                         ],
@@ -570,11 +590,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -595,6 +616,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -642,9 +664,19 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
                                 },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
                             },
                             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                             UsageCustomerIds = ["string"],
+                            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                            {
+                                { "foo", JsonSerializer.SerializeToElement("bar") },
+                            },
                         },
                     ],
                     RedeemedCoupon = new()
@@ -700,6 +732,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -774,6 +807,16 @@ public class SubscriptionSubscriptionsTest : TestBase
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
                     PaymentConfiguration = new()
                     {
                         PaymentProviders =
@@ -782,6 +825,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                             {
                                 ProviderType =
                                     CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -1054,11 +1098,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Field.PriceID,
-                                        Operator = Operator.Includes,
+                                        Field = AllocationFilterField.PriceID,
+                                        Operator = AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new PercentageDiscount()
@@ -1079,6 +1124,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -1125,6 +1171,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                     ],
@@ -1207,11 +1259,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Field.PriceID,
-                                        Operator = Operator.Includes,
+                                        Field = AllocationFilterField.PriceID,
+                                        Operator = AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new PercentageDiscount()
@@ -1232,6 +1285,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -1279,9 +1333,19 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
                             },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
+                            },
                         },
                         StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         UsageCustomerIds = ["string"],
+                        MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
                     },
                 ],
                 RedeemedCoupon = new()
@@ -1353,6 +1417,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -1433,6 +1498,16 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Excluded = true,
                         },
                         AutomaticTaxEnabled = true,
+                        DefaultPaymentMethod = new()
+                        {
+                            ID = "id",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            CustomerID = "customer_id",
+                            Default = true,
+                            ExternalPaymentMethodID = "external_payment_method_id",
+                            PaymentMethodType = PaymentMethodType.Card,
+                            ProviderType = "provider_type",
+                        },
                         PaymentConfiguration = new()
                         {
                             PaymentProviders =
@@ -1441,6 +1516,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     ProviderType =
                                         CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                    DefaultSharedPaymentToken = "default_shared_payment_token",
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -1713,11 +1789,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -1738,6 +1815,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -1784,6 +1862,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                         ],
@@ -1868,11 +1952,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -1893,6 +1978,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -1940,9 +2026,19 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
                                 },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
                             },
                             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                             UsageCustomerIds = ["string"],
+                            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                            {
+                                { "foo", JsonSerializer.SerializeToElement("bar") },
+                            },
                         },
                     ],
                     RedeemedCoupon = new()
@@ -2012,6 +2108,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -2092,6 +2189,16 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Excluded = true,
                         },
                         AutomaticTaxEnabled = true,
+                        DefaultPaymentMethod = new()
+                        {
+                            ID = "id",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            CustomerID = "customer_id",
+                            Default = true,
+                            ExternalPaymentMethodID = "external_payment_method_id",
+                            PaymentMethodType = PaymentMethodType.Card,
+                            ProviderType = "provider_type",
+                        },
                         PaymentConfiguration = new()
                         {
                             PaymentProviders =
@@ -2100,6 +2207,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     ProviderType =
                                         CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                    DefaultSharedPaymentToken = "default_shared_payment_token",
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -2372,11 +2480,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -2397,6 +2506,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -2443,6 +2553,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                         ],
@@ -2527,11 +2643,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -2552,6 +2669,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -2599,9 +2717,19 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
                                 },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
                             },
                             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                             UsageCustomerIds = ["string"],
+                            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                            {
+                                { "foo", JsonSerializer.SerializeToElement("bar") },
+                            },
                         },
                     ],
                     RedeemedCoupon = new()
@@ -2664,6 +2792,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                     },
                 ],
                 AutoCollection = true,
+                AutoIssuance = true,
                 BillingCycleAnchorConfiguration = new()
                 {
                     Day = 1,
@@ -2738,6 +2867,16 @@ public class SubscriptionSubscriptionsTest : TestBase
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
                     PaymentConfiguration = new()
                     {
                         PaymentProviders =
@@ -2746,6 +2885,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                             {
                                 ProviderType =
                                     CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -3018,11 +3158,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Field.PriceID,
-                                        Operator = Operator.Includes,
+                                        Field = AllocationFilterField.PriceID,
+                                        Operator = AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new PercentageDiscount()
@@ -3043,6 +3184,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -3089,6 +3231,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                             {
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
+                            },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
                             },
                         },
                     ],
@@ -3171,11 +3319,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 [
                                     new()
                                     {
-                                        Field = Field.PriceID,
-                                        Operator = Operator.Includes,
+                                        Field = AllocationFilterField.PriceID,
+                                        Operator = AllocationFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
+                                LicenseTypeID = "license_type_id",
                             },
                             Currency = "currency",
                             Discount = new PercentageDiscount()
@@ -3196,6 +3345,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                             },
                             ExternalPriceID = "external_price_id",
                             FixedPriceQuantity = 0,
+                            InvoiceGroupingKey = "invoice_grouping_key",
                             InvoicingCycleConfiguration = new()
                             {
                                 Duration = 0,
@@ -3243,9 +3393,19 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 DimensionValues = ["string"],
                                 DimensionalPriceGroupID = "dimensional_price_group_id",
                             },
+                            LicenseType = new()
+                            {
+                                ID = "id",
+                                GroupingKey = "grouping_key",
+                                Name = "name",
+                            },
                         },
                         StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                         UsageCustomerIds = ["string"],
+                        MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                        {
+                            { "foo", JsonSerializer.SerializeToElement("bar") },
+                        },
                     },
                 ],
                 RedeemedCoupon = new()
@@ -3317,6 +3477,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                         },
                     ],
                     AutoCollection = true,
+                    AutoIssuance = true,
                     BillingCycleAnchorConfiguration = new()
                     {
                         Day = 1,
@@ -3397,6 +3558,16 @@ public class SubscriptionSubscriptionsTest : TestBase
                             Excluded = true,
                         },
                         AutomaticTaxEnabled = true,
+                        DefaultPaymentMethod = new()
+                        {
+                            ID = "id",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            CustomerID = "customer_id",
+                            Default = true,
+                            ExternalPaymentMethodID = "external_payment_method_id",
+                            PaymentMethodType = PaymentMethodType.Card,
+                            ProviderType = "provider_type",
+                        },
                         PaymentConfiguration = new()
                         {
                             PaymentProviders =
@@ -3405,6 +3576,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     ProviderType =
                                         CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                    DefaultSharedPaymentToken = "default_shared_payment_token",
                                     ExcludedPaymentMethodTypes = ["string"],
                                 },
                             ],
@@ -3677,11 +3849,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -3702,6 +3875,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -3748,6 +3922,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 {
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
                                 },
                             },
                         ],
@@ -3832,11 +4012,12 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Field.PriceID,
-                                            Operator = Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
                                 Discount = new PercentageDiscount()
@@ -3857,6 +4038,7 @@ public class SubscriptionSubscriptionsTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
@@ -3904,9 +4086,19 @@ public class SubscriptionSubscriptionsTest : TestBase
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
                                 },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
                             },
                             StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                             UsageCustomerIds = ["string"],
+                            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                            {
+                                { "foo", JsonSerializer.SerializeToElement("bar") },
+                            },
                         },
                     ],
                     RedeemedCoupon = new()
@@ -3924,5 +4116,692 @@ public class SubscriptionSubscriptionsTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubscriptionSubscriptions
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    ActivePlanPhaseOrder = 0,
+                    AdjustmentIntervals =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            Adjustment = new PlanPhaseUsageDiscountAdjustment()
+                            {
+                                ID = "id",
+                                AdjustmentType =
+                                    PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                                AppliesToPriceIds = ["string"],
+                                Filters =
+                                [
+                                    new()
+                                    {
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
+                                        Values = ["string"],
+                                    },
+                                ],
+                                IsInvoiceLevel = true,
+                                PlanPhaseOrder = 0,
+                                Reason = "reason",
+                                ReplacesAdjustmentID = "replaces_adjustment_id",
+                                UsageDiscount = 0,
+                            },
+                            AppliesToPriceIntervalIds = ["string"],
+                            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    AutoCollection = true,
+                    AutoIssuance = true,
+                    BillingCycleAnchorConfiguration = new()
+                    {
+                        Day = 1,
+                        Month = 1,
+                        Year = 0,
+                    },
+                    BillingCycleDay = 1,
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CurrentBillingPeriodEndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CurrentBillingPeriodStartDate = DateTimeOffset.Parse(
+                        "2019-12-27T18:11:19.117Z"
+                    ),
+                    Customer = new()
+                    {
+                        ID = "id",
+                        AdditionalEmails = ["string"],
+                        AutoCollection = true,
+                        AutoIssuance = true,
+                        Balance = "balance",
+                        BillingAddress = new()
+                        {
+                            City = "city",
+                            Country = "country",
+                            Line1 = "line1",
+                            Line2 = "line2",
+                            PostalCode = "postal_code",
+                            State = "state",
+                        },
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        Currency = "currency",
+                        Email = "email",
+                        EmailDelivery = true,
+                        ExemptFromAutomatedTax = true,
+                        ExternalCustomerID = "external_customer_id",
+                        Hierarchy = new()
+                        {
+                            Children =
+                            [
+                                new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                            ],
+                            Parent = new()
+                            {
+                                ID = "id",
+                                ExternalCustomerID = "external_customer_id",
+                            },
+                        },
+                        Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                        Name = "name",
+                        PaymentProvider = CustomerPaymentProvider.Quickbooks,
+                        PaymentProviderID = "payment_provider_id",
+                        PortalUrl = "portal_url",
+                        ShippingAddress = new()
+                        {
+                            City = "city",
+                            Country = "country",
+                            Line1 = "line1",
+                            Line2 = "line2",
+                            PostalCode = "postal_code",
+                            State = "state",
+                        },
+                        TaxID = new()
+                        {
+                            Country = Country.Ad,
+                            Type = CustomerTaxIDType.AdNrt,
+                            Value = "value",
+                        },
+                        Timezone = "timezone",
+                        AccountingSyncConfiguration = new()
+                        {
+                            AccountingProviders =
+                            [
+                                new()
+                                {
+                                    ExternalProviderID = "external_provider_id",
+                                    ProviderType = AccountingProviderProviderType.Quickbooks,
+                                },
+                            ],
+                            Excluded = true,
+                        },
+                        AutomaticTaxEnabled = true,
+                        DefaultPaymentMethod = new()
+                        {
+                            ID = "id",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            CustomerID = "customer_id",
+                            Default = true,
+                            ExternalPaymentMethodID = "external_payment_method_id",
+                            PaymentMethodType = PaymentMethodType.Card,
+                            ProviderType = "provider_type",
+                        },
+                        PaymentConfiguration = new()
+                        {
+                            PaymentProviders =
+                            [
+                                new()
+                                {
+                                    ProviderType =
+                                        CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                    DefaultSharedPaymentToken = "default_shared_payment_token",
+                                    ExcludedPaymentMethodTypes = ["string"],
+                                },
+                            ],
+                        },
+                        ReportingConfiguration = new(true),
+                    },
+                    DefaultInvoiceMemo = "default_invoice_memo",
+                    DiscountIntervals =
+                    [
+                        new AmountDiscountInterval()
+                        {
+                            AmountDiscount = "amount_discount",
+                            AppliesToPriceIntervalIds = ["string"],
+                            DiscountType = AmountDiscountIntervalDiscountType.Amount,
+                            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = AmountDiscountIntervalFilterField.PriceID,
+                                    Operator = AmountDiscountIntervalFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    FixedFeeQuantitySchedule =
+                    [
+                        new()
+                        {
+                            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            PriceID = "price_id",
+                            Quantity = 0,
+                            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    InvoicingThreshold = "invoicing_threshold",
+                    MaximumIntervals =
+                    [
+                        new()
+                        {
+                            AppliesToPriceIntervalIds = ["string"],
+                            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MaximumIntervalFilterField.PriceID,
+                                    Operator = MaximumIntervalFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MaximumAmount = "maximum_amount",
+                            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    MinimumIntervals =
+                    [
+                        new()
+                        {
+                            AppliesToPriceIntervalIds = ["string"],
+                            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MinimumIntervalFilterField.PriceID,
+                                    Operator = MinimumIntervalFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MinimumAmount = "minimum_amount",
+                            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        },
+                    ],
+                    Name = "name",
+                    NetTerms = 0,
+                    PendingSubscriptionChange = new("id"),
+                    Plan = new()
+                    {
+                        ID = "id",
+                        Adjustments =
+                        [
+                            new PlanPhaseUsageDiscountAdjustment()
+                            {
+                                ID = "id",
+                                AdjustmentType =
+                                    PlanPhaseUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                                AppliesToPriceIds = ["string"],
+                                Filters =
+                                [
+                                    new()
+                                    {
+                                        Field = PlanPhaseUsageDiscountAdjustmentFilterField.PriceID,
+                                        Operator =
+                                            PlanPhaseUsageDiscountAdjustmentFilterOperator.Includes,
+                                        Values = ["string"],
+                                    },
+                                ],
+                                IsInvoiceLevel = true,
+                                PlanPhaseOrder = 0,
+                                Reason = "reason",
+                                ReplacesAdjustmentID = "replaces_adjustment_id",
+                                UsageDiscount = 0,
+                            },
+                        ],
+                        BasePlan = new()
+                        {
+                            ID = "m2t5akQeh2obwxeU",
+                            ExternalPlanID = "m2t5akQeh2obwxeU",
+                            Name = "Example plan",
+                        },
+                        BasePlanID = "base_plan_id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        Currency = "currency",
+                        DefaultInvoiceMemo = "default_invoice_memo",
+                        Description = "description",
+                        Discount = new PercentageDiscount()
+                        {
+                            DiscountType = PercentageDiscountDiscountType.Percentage,
+                            PercentageDiscountValue = 0.15,
+                            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            Reason = "reason",
+                        },
+                        ExternalPlanID = "external_plan_id",
+                        InvoicingCurrency = "invoicing_currency",
+                        Maximum = new()
+                        {
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MaximumFilterField.PriceID,
+                                    Operator = MaximumFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MaximumAmount = "maximum_amount",
+                        },
+                        MaximumAmount = "maximum_amount",
+                        Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                        Minimum = new()
+                        {
+                            AppliesToPriceIds = ["string"],
+                            Filters =
+                            [
+                                new()
+                                {
+                                    Field = MinimumFilterField.PriceID,
+                                    Operator = MinimumFilterOperator.Includes,
+                                    Values = ["string"],
+                                },
+                            ],
+                            MinimumAmount = "minimum_amount",
+                        },
+                        MinimumAmount = "minimum_amount",
+                        Name = "name",
+                        NetTerms = 0,
+                        PlanPhases =
+                        [
+                            new()
+                            {
+                                ID = "id",
+                                Description = "description",
+                                Discount = new PercentageDiscount()
+                                {
+                                    DiscountType = PercentageDiscountDiscountType.Percentage,
+                                    PercentageDiscountValue = 0.15,
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    Reason = "reason",
+                                },
+                                Duration = 0,
+                                DurationUnit = Plans::PlanPlanPhaseDurationUnit.Daily,
+                                Maximum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MaximumAmount = "maximum_amount",
+                                },
+                                MaximumAmount = "maximum_amount",
+                                Minimum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MinimumAmount = "minimum_amount",
+                                },
+                                MinimumAmount = "minimum_amount",
+                                Name = "name",
+                                Order = 0,
+                            },
+                        ],
+                        Prices =
+                        [
+                            new Unit()
+                            {
+                                ID = "id",
+                                BillableMetric = new("id"),
+                                BillingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = DurationUnit.Day,
+                                },
+                                BillingMode = BillingMode.InAdvance,
+                                Cadence = UnitCadence.OneTime,
+                                CompositePriceFilters =
+                                [
+                                    new()
+                                    {
+                                        Field = CompositePriceFilterField.PriceID,
+                                        Operator = CompositePriceFilterOperator.Includes,
+                                        Values = ["string"],
+                                    },
+                                ],
+                                ConversionRate = 0,
+                                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                                {
+                                    ConversionRateType =
+                                        SharedUnitConversionRateConfigConversionRateType.Unit,
+                                    UnitConfig = new("unit_amount"),
+                                },
+                                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                CreditAllocation = new()
+                                {
+                                    AllowsRollover = true,
+                                    Currency = "currency",
+                                    CustomExpiration = new()
+                                    {
+                                        Duration = 0,
+                                        DurationUnit = CustomExpirationDurationUnit.Day,
+                                    },
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    LicenseTypeID = "license_type_id",
+                                },
+                                Currency = "currency",
+                                Discount = new PercentageDiscount()
+                                {
+                                    DiscountType = PercentageDiscountDiscountType.Percentage,
+                                    PercentageDiscountValue = 0.15,
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    Reason = "reason",
+                                },
+                                ExternalPriceID = "external_price_id",
+                                FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
+                                InvoicingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = DurationUnit.Day,
+                                },
+                                Item = new() { ID = "id", Name = "name" },
+                                Maximum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MaximumAmount = "maximum_amount",
+                                },
+                                MaximumAmount = "maximum_amount",
+                                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                                Minimum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MinimumAmount = "minimum_amount",
+                                },
+                                MinimumAmount = "minimum_amount",
+                                Name = "name",
+                                PlanPhaseOrder = 0,
+                                PriceType = UnitPriceType.UsagePrice,
+                                ReplacesPriceID = "replaces_price_id",
+                                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                                DimensionalPriceConfiguration = new()
+                                {
+                                    DimensionValues = ["string"],
+                                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
+                            },
+                        ],
+                        Product = new()
+                        {
+                            ID = "id",
+                            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Name = "name",
+                        },
+                        Status = Plans::PlanStatus.Active,
+                        TrialConfig = new()
+                        {
+                            TrialPeriod = 0,
+                            TrialPeriodUnit = Plans::TrialPeriodUnit.Days,
+                        },
+                        Version = 0,
+                    },
+                    PriceIntervals =
+                    [
+                        new()
+                        {
+                            ID = "id",
+                            BillingCycleDay = 0,
+                            CanDeferBilling = true,
+                            CurrentBillingPeriodEndDate = DateTimeOffset.Parse(
+                                "2019-12-27T18:11:19.117Z"
+                            ),
+                            CurrentBillingPeriodStartDate = DateTimeOffset.Parse(
+                                "2019-12-27T18:11:19.117Z"
+                            ),
+                            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            Filter = "filter",
+                            FixedFeeQuantityTransitions =
+                            [
+                                new()
+                                {
+                                    EffectiveDate = DateTimeOffset.Parse(
+                                        "2019-12-27T18:11:19.117Z"
+                                    ),
+                                    PriceID = "price_id",
+                                    Quantity = 0,
+                                },
+                            ],
+                            Price = new Unit()
+                            {
+                                ID = "id",
+                                BillableMetric = new("id"),
+                                BillingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = DurationUnit.Day,
+                                },
+                                BillingMode = BillingMode.InAdvance,
+                                Cadence = UnitCadence.OneTime,
+                                CompositePriceFilters =
+                                [
+                                    new()
+                                    {
+                                        Field = CompositePriceFilterField.PriceID,
+                                        Operator = CompositePriceFilterOperator.Includes,
+                                        Values = ["string"],
+                                    },
+                                ],
+                                ConversionRate = 0,
+                                ConversionRateConfig = new SharedUnitConversionRateConfig()
+                                {
+                                    ConversionRateType =
+                                        SharedUnitConversionRateConfigConversionRateType.Unit,
+                                    UnitConfig = new("unit_amount"),
+                                },
+                                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                                CreditAllocation = new()
+                                {
+                                    AllowsRollover = true,
+                                    Currency = "currency",
+                                    CustomExpiration = new()
+                                    {
+                                        Duration = 0,
+                                        DurationUnit = CustomExpirationDurationUnit.Day,
+                                    },
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    LicenseTypeID = "license_type_id",
+                                },
+                                Currency = "currency",
+                                Discount = new PercentageDiscount()
+                                {
+                                    DiscountType = PercentageDiscountDiscountType.Percentage,
+                                    PercentageDiscountValue = 0.15,
+                                    AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    Reason = "reason",
+                                },
+                                ExternalPriceID = "external_price_id",
+                                FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
+                                InvoicingCycleConfiguration = new()
+                                {
+                                    Duration = 0,
+                                    DurationUnit = DurationUnit.Day,
+                                },
+                                Item = new() { ID = "id", Name = "name" },
+                                Maximum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MaximumAmount = "maximum_amount",
+                                },
+                                MaximumAmount = "maximum_amount",
+                                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                                Minimum = new()
+                                {
+                                    AppliesToPriceIds = ["string"],
+                                    Filters =
+                                    [
+                                        new()
+                                        {
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
+                                            Values = ["string"],
+                                        },
+                                    ],
+                                    MinimumAmount = "minimum_amount",
+                                },
+                                MinimumAmount = "minimum_amount",
+                                Name = "name",
+                                PlanPhaseOrder = 0,
+                                PriceType = UnitPriceType.UsagePrice,
+                                ReplacesPriceID = "replaces_price_id",
+                                UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
+                                DimensionalPriceConfiguration = new()
+                                {
+                                    DimensionValues = ["string"],
+                                    DimensionalPriceGroupID = "dimensional_price_group_id",
+                                },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
+                            },
+                            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                            UsageCustomerIds = ["string"],
+                            MetricParameterOverrides = new Dictionary<string, JsonElement>()
+                            {
+                                { "foo", JsonSerializer.SerializeToElement("bar") },
+                            },
+                        },
+                    ],
+                    RedeemedCoupon = new()
+                    {
+                        CouponID = "coupon_id",
+                        EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    },
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Status = SubscriptionStatus.Active,
+                    TrialInfo = new(DateTimeOffset.Parse("2019-12-27T18:11:19.117Z")),
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        SubscriptionSubscriptions copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

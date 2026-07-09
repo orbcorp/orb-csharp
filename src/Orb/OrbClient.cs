@@ -181,6 +181,18 @@ public sealed class OrbClient : IOrbClient
         get { return _creditBlocks.Value; }
     }
 
+    readonly Lazy<ILicenseTypeService> _licenseTypes;
+    public ILicenseTypeService LicenseTypes
+    {
+        get { return _licenseTypes.Value; }
+    }
+
+    readonly Lazy<ILicenseService> _licenses;
+    public ILicenseService Licenses
+    {
+        get { return _licenses.Value; }
+    }
+
     public void Dispose() => this.HttpClient.Dispose();
 
     public OrbClient()
@@ -205,6 +217,8 @@ public sealed class OrbClient : IOrbClient
         _dimensionalPriceGroups = new(() => new DimensionalPriceGroupService(this));
         _subscriptionChanges = new(() => new SubscriptionChangeService(this));
         _creditBlocks = new(() => new CreditBlockService(this));
+        _licenseTypes = new(() => new LicenseTypeService(this));
+        _licenses = new(() => new LicenseService(this));
     }
 
     public OrbClient(ClientOptions options)
@@ -387,6 +401,18 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
         get { return _creditBlocks.Value; }
     }
 
+    readonly Lazy<ILicenseTypeServiceWithRawResponse> _licenseTypes;
+    public ILicenseTypeServiceWithRawResponse LicenseTypes
+    {
+        get { return _licenseTypes.Value; }
+    }
+
+    readonly Lazy<ILicenseServiceWithRawResponse> _licenses;
+    public ILicenseServiceWithRawResponse Licenses
+    {
+        get { return _licenses.Value; }
+    }
+
     /// <inheritdoc/>
     public async Task<HttpResponse> Execute<T>(
         HttpRequest<T> request,
@@ -500,7 +526,11 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
     static TimeSpan ComputeRetryBackoff(int retries, HttpResponse? response)
     {
         TimeSpan? apiBackoff = ParseRetryAfterMsHeader(response) ?? ParseRetryAfterHeader(response);
-        if (apiBackoff != null && apiBackoff < TimeSpan.FromMinutes(1))
+        if (
+            apiBackoff != null
+            && apiBackoff > TimeSpan.Zero
+            && apiBackoff < TimeSpan.FromMinutes(1)
+        )
         {
             // If the API asks us to wait a certain amount of time (and it's a reasonable amount), then just
             // do what it says.
@@ -609,6 +639,8 @@ public sealed class OrbClientWithRawResponse : IOrbClientWithRawResponse
         _dimensionalPriceGroups = new(() => new DimensionalPriceGroupServiceWithRawResponse(this));
         _subscriptionChanges = new(() => new SubscriptionChangeServiceWithRawResponse(this));
         _creditBlocks = new(() => new CreditBlockServiceWithRawResponse(this));
+        _licenseTypes = new(() => new LicenseTypeServiceWithRawResponse(this));
+        _licenses = new(() => new LicenseServiceWithRawResponse(this));
     }
 
     public OrbClientWithRawResponse(ClientOptions options)

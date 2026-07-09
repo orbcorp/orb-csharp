@@ -246,6 +246,32 @@ public class TrialDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TrialDiscount
+        {
+            DiscountType = TrialDiscountDiscountType.Trial,
+            AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
+            Filters =
+            [
+                new()
+                {
+                    Field = TrialDiscountFilterField.PriceID,
+                    Operator = TrialDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            Reason = "reason",
+            TrialAmountDiscount = "trial_amount_discount",
+            TrialPercentageDiscount = 0,
+        };
+
+        TrialDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class TrialDiscountDiscountTypeTest : TestBase
@@ -391,6 +417,21 @@ public class TrialDiscountFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TrialDiscountFilter
+        {
+            Field = TrialDiscountFilterField.PriceID,
+            Operator = TrialDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        TrialDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

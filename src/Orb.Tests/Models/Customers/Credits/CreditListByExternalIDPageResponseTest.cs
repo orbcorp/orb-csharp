@@ -20,6 +20,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                 {
                     ID = "id",
                     Balance = 0,
+                    CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
                     EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -32,8 +33,32 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                         },
                     ],
                     MaximumInitialBalance = 0,
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Status = CreditListByExternalIDResponseStatus.Active,
+                    CreditAllocation = new()
+                    {
+                        AllowsRollover = true,
+                        Currency = "currency",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ItemID = "item_id",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field =
+                                    CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                                Operator =
+                                    CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        LicenseTypeID = "license_type_id",
+                    },
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -45,6 +70,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
             {
                 ID = "id",
                 Balance = 0,
+                CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
                 EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -57,8 +83,32 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                     },
                 ],
                 MaximumInitialBalance = 0,
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Status = CreditListByExternalIDResponseStatus.Active,
+                CreditAllocation = new()
+                {
+                    AllowsRollover = true,
+                    Currency = "currency",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = CustomExpirationDurationUnit.Day,
+                    },
+                    ItemID = "item_id",
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field =
+                                CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                            Operator =
+                                CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    LicenseTypeID = "license_type_id",
+                },
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -86,6 +136,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                 {
                     ID = "id",
                     Balance = 0,
+                    CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
                     EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -98,8 +149,32 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                         },
                     ],
                     MaximumInitialBalance = 0,
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Status = CreditListByExternalIDResponseStatus.Active,
+                    CreditAllocation = new()
+                    {
+                        AllowsRollover = true,
+                        Currency = "currency",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ItemID = "item_id",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field =
+                                    CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                                Operator =
+                                    CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        LicenseTypeID = "license_type_id",
+                    },
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -125,6 +200,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                 {
                     ID = "id",
                     Balance = 0,
+                    CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
                     EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -137,8 +213,32 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                         },
                     ],
                     MaximumInitialBalance = 0,
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Status = CreditListByExternalIDResponseStatus.Active,
+                    CreditAllocation = new()
+                    {
+                        AllowsRollover = true,
+                        Currency = "currency",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ItemID = "item_id",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field =
+                                    CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                                Operator =
+                                    CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        LicenseTypeID = "license_type_id",
+                    },
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -157,6 +257,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
             {
                 ID = "id",
                 Balance = 0,
+                CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
                 EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                 Filters =
@@ -169,8 +270,32 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                     },
                 ],
                 MaximumInitialBalance = 0,
+                Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                 PerUnitCostBasis = "per_unit_cost_basis",
                 Status = CreditListByExternalIDResponseStatus.Active,
+                CreditAllocation = new()
+                {
+                    AllowsRollover = true,
+                    Currency = "currency",
+                    CustomExpiration = new()
+                    {
+                        Duration = 0,
+                        DurationUnit = CustomExpirationDurationUnit.Day,
+                    },
+                    ItemID = "item_id",
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field =
+                                CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                            Operator =
+                                CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    LicenseTypeID = "license_type_id",
+                },
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -198,6 +323,7 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                 {
                     ID = "id",
                     Balance = 0,
+                    CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
                     EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     Filters =
@@ -210,13 +336,97 @@ public class CreditListByExternalIDPageResponseTest : TestBase
                         },
                     ],
                     MaximumInitialBalance = 0,
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
                     PerUnitCostBasis = "per_unit_cost_basis",
                     Status = CreditListByExternalIDResponseStatus.Active,
+                    CreditAllocation = new()
+                    {
+                        AllowsRollover = true,
+                        Currency = "currency",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ItemID = "item_id",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field =
+                                    CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                                Operator =
+                                    CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        LicenseTypeID = "license_type_id",
+                    },
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CreditListByExternalIDPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    Balance = 0,
+                    CreditBlockSource = CreditListByExternalIDResponseCreditBlockSource.Allocation,
+                    EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Filters =
+                    [
+                        new()
+                        {
+                            Field = CreditListByExternalIDResponseFilterField.ItemID,
+                            Operator = CreditListByExternalIDResponseFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    MaximumInitialBalance = 0,
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    PerUnitCostBasis = "per_unit_cost_basis",
+                    Status = CreditListByExternalIDResponseStatus.Active,
+                    CreditAllocation = new()
+                    {
+                        AllowsRollover = true,
+                        Currency = "currency",
+                        CustomExpiration = new()
+                        {
+                            Duration = 0,
+                            DurationUnit = CustomExpirationDurationUnit.Day,
+                        },
+                        ItemID = "item_id",
+                        Filters =
+                        [
+                            new()
+                            {
+                                Field =
+                                    CreditListByExternalIDResponseCreditAllocationFilterField.PriceID,
+                                Operator =
+                                    CreditListByExternalIDResponseCreditAllocationFilterOperator.Includes,
+                                Values = ["string"],
+                            },
+                        ],
+                        LicenseTypeID = "license_type_id",
+                    },
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        CreditListByExternalIDPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

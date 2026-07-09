@@ -412,6 +412,35 @@ public class NewMaximumTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewMaximum
+        {
+            AdjustmentType = NewMaximumAdjustmentType.Maximum,
+            MaximumAmount = "maximum_amount",
+            AppliesToAll = NewMaximumAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewMaximumFilterField.PriceID,
+                    Operator = NewMaximumFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewMaximumPriceType.Usage,
+        };
+
+        NewMaximum copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewMaximumAdjustmentTypeTest : TestBase
@@ -613,6 +642,21 @@ public class NewMaximumFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewMaximumFilter
+        {
+            Field = NewMaximumFilterField.PriceID,
+            Operator = NewMaximumFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        NewMaximumFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

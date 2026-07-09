@@ -180,9 +180,12 @@ public sealed record class MonetaryMinimumAdjustment : JsonModel
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMinimumAdjustment() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMinimumAdjustment(MonetaryMinimumAdjustment monetaryMinimumAdjustment)
         : base(monetaryMinimumAdjustment) { }
+#pragma warning restore CS8618
 
     [System::Obsolete("Required properties are deprecated: applies_to_price_ids")]
     public MonetaryMinimumAdjustment(IReadOnlyDictionary<string, JsonElement> rawData)
@@ -325,10 +328,13 @@ public sealed record class MonetaryMinimumAdjustmentFilter : JsonModel
 
     public MonetaryMinimumAdjustmentFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MonetaryMinimumAdjustmentFilter(
         MonetaryMinimumAdjustmentFilter monetaryMinimumAdjustmentFilter
     )
         : base(monetaryMinimumAdjustmentFilter) { }
+#pragma warning restore CS8618
 
     public MonetaryMinimumAdjustmentFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -54,4 +54,14 @@ public class SubscriptionMinifiedTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubscriptionMinified { ID = "VDGsT23osdLb84KD" };
+
+        SubscriptionMinified copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

@@ -15,8 +15,12 @@ namespace Orb.Models.Invoices;
 /// is a time in the past. Issuing an invoice could possibly trigger side effects,
 /// some of which could be customer-visible (e.g. sending emails, auto-collecting
 /// payment, syncing the invoice to external providers, etc).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceIssueParams : ParamsBase
+public record class InvoiceIssueParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -53,6 +57,8 @@ public sealed record class InvoiceIssueParams : ParamsBase
 
     public InvoiceIssueParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceIssueParams(InvoiceIssueParams invoiceIssueParams)
         : base(invoiceIssueParams)
     {
@@ -60,6 +66,7 @@ public sealed record class InvoiceIssueParams : ParamsBase
 
         this._rawBodyData = new(invoiceIssueParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public InvoiceIssueParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -77,27 +84,61 @@ public sealed record class InvoiceIssueParams : ParamsBase
     InvoiceIssueParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string invoiceID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.InvoiceID = invoiceID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static InvoiceIssueParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string invoiceID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            invoiceID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["InvoiceID"] = JsonSerializer.SerializeToElement(this.InvoiceID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceIssueParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.InvoiceID?.Equals(other.InvoiceID) ?? other.InvoiceID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -127,5 +168,10 @@ public sealed record class InvoiceIssueParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

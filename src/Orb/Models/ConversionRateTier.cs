@@ -59,8 +59,11 @@ public sealed record class ConversionRateTier : JsonModel
 
     public ConversionRateTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ConversionRateTier(ConversionRateTier conversionRateTier)
         : base(conversionRateTier) { }
+#pragma warning restore CS8618
 
     public ConversionRateTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {

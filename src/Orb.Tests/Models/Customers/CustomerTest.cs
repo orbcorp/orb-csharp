@@ -74,6 +74,16 @@ public class CustomerTest : TestBase
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
             PaymentConfiguration = new()
             {
                 PaymentProviders =
@@ -82,6 +92,7 @@ public class CustomerTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -149,6 +160,16 @@ public class CustomerTest : TestBase
             Excluded = true,
         };
         bool expectedAutomaticTaxEnabled = true;
+        DefaultPaymentMethod expectedDefaultPaymentMethod = new()
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
         CustomerPaymentConfiguration expectedPaymentConfiguration = new()
         {
             PaymentProviders =
@@ -156,6 +177,7 @@ public class CustomerTest : TestBase
                 new()
                 {
                     ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -195,6 +217,7 @@ public class CustomerTest : TestBase
         Assert.Equal(expectedTimezone, model.Timezone);
         Assert.Equal(expectedAccountingSyncConfiguration, model.AccountingSyncConfiguration);
         Assert.Equal(expectedAutomaticTaxEnabled, model.AutomaticTaxEnabled);
+        Assert.Equal(expectedDefaultPaymentMethod, model.DefaultPaymentMethod);
         Assert.Equal(expectedPaymentConfiguration, model.PaymentConfiguration);
         Assert.Equal(expectedReportingConfiguration, model.ReportingConfiguration);
     }
@@ -263,6 +286,16 @@ public class CustomerTest : TestBase
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
             PaymentConfiguration = new()
             {
                 PaymentProviders =
@@ -271,6 +304,7 @@ public class CustomerTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -348,6 +382,16 @@ public class CustomerTest : TestBase
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
             PaymentConfiguration = new()
             {
                 PaymentProviders =
@@ -356,6 +400,7 @@ public class CustomerTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -430,6 +475,16 @@ public class CustomerTest : TestBase
             Excluded = true,
         };
         bool expectedAutomaticTaxEnabled = true;
+        DefaultPaymentMethod expectedDefaultPaymentMethod = new()
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
         CustomerPaymentConfiguration expectedPaymentConfiguration = new()
         {
             PaymentProviders =
@@ -437,6 +492,7 @@ public class CustomerTest : TestBase
                 new()
                 {
                     ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -476,6 +532,7 @@ public class CustomerTest : TestBase
         Assert.Equal(expectedTimezone, deserialized.Timezone);
         Assert.Equal(expectedAccountingSyncConfiguration, deserialized.AccountingSyncConfiguration);
         Assert.Equal(expectedAutomaticTaxEnabled, deserialized.AutomaticTaxEnabled);
+        Assert.Equal(expectedDefaultPaymentMethod, deserialized.DefaultPaymentMethod);
         Assert.Equal(expectedPaymentConfiguration, deserialized.PaymentConfiguration);
         Assert.Equal(expectedReportingConfiguration, deserialized.ReportingConfiguration);
     }
@@ -544,6 +601,16 @@ public class CustomerTest : TestBase
                 Excluded = true,
             },
             AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
             PaymentConfiguration = new()
             {
                 PaymentProviders =
@@ -552,6 +619,7 @@ public class CustomerTest : TestBase
                     {
                         ProviderType =
                             CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -619,6 +687,8 @@ public class CustomerTest : TestBase
         Assert.False(model.RawData.ContainsKey("accounting_sync_configuration"));
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.False(model.RawData.ContainsKey("automatic_tax_enabled"));
+        Assert.Null(model.DefaultPaymentMethod);
+        Assert.False(model.RawData.ContainsKey("default_payment_method"));
         Assert.Null(model.PaymentConfiguration);
         Assert.False(model.RawData.ContainsKey("payment_configuration"));
         Assert.Null(model.ReportingConfiguration);
@@ -735,6 +805,7 @@ public class CustomerTest : TestBase
 
             AccountingSyncConfiguration = null,
             AutomaticTaxEnabled = null,
+            DefaultPaymentMethod = null,
             PaymentConfiguration = null,
             ReportingConfiguration = null,
         };
@@ -743,6 +814,8 @@ public class CustomerTest : TestBase
         Assert.True(model.RawData.ContainsKey("accounting_sync_configuration"));
         Assert.Null(model.AutomaticTaxEnabled);
         Assert.True(model.RawData.ContainsKey("automatic_tax_enabled"));
+        Assert.Null(model.DefaultPaymentMethod);
+        Assert.True(model.RawData.ContainsKey("default_payment_method"));
         Assert.Null(model.PaymentConfiguration);
         Assert.True(model.RawData.ContainsKey("payment_configuration"));
         Assert.Null(model.ReportingConfiguration);
@@ -803,11 +876,107 @@ public class CustomerTest : TestBase
 
             AccountingSyncConfiguration = null,
             AutomaticTaxEnabled = null,
+            DefaultPaymentMethod = null,
             PaymentConfiguration = null,
             ReportingConfiguration = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Customer
+        {
+            ID = "id",
+            AdditionalEmails = ["string"],
+            AutoCollection = true,
+            AutoIssuance = true,
+            Balance = "balance",
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Currency = "currency",
+            Email = "email",
+            EmailDelivery = true,
+            ExemptFromAutomatedTax = true,
+            ExternalCustomerID = "external_customer_id",
+            Hierarchy = new()
+            {
+                Children = [new() { ID = "id", ExternalCustomerID = "external_customer_id" }],
+                Parent = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+            },
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            PaymentProvider = CustomerPaymentProvider.Quickbooks,
+            PaymentProviderID = "payment_provider_id",
+            PortalUrl = "portal_url",
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            TaxID = new()
+            {
+                Country = Country.Ad,
+                Type = CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+            Timezone = "timezone",
+            AccountingSyncConfiguration = new()
+            {
+                AccountingProviders =
+                [
+                    new()
+                    {
+                        ExternalProviderID = "external_provider_id",
+                        ProviderType = AccountingProviderProviderType.Quickbooks,
+                    },
+                ],
+                Excluded = true,
+            },
+            AutomaticTaxEnabled = true,
+            DefaultPaymentMethod = new()
+            {
+                ID = "id",
+                CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                CustomerID = "customer_id",
+                Default = true,
+                ExternalPaymentMethodID = "external_payment_method_id",
+                PaymentMethodType = PaymentMethodType.Card,
+                ProviderType = "provider_type",
+            },
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType =
+                            CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
+            ReportingConfiguration = new(true),
+        };
+
+        Customer copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -900,6 +1069,20 @@ public class HierarchyTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Hierarchy
+        {
+            Children = [new() { ID = "id", ExternalCustomerID = "external_customer_id" }],
+            Parent = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+        };
+
+        Hierarchy copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerPaymentProviderTest : TestBase
@@ -910,6 +1093,7 @@ public class CustomerPaymentProviderTest : TestBase
     [InlineData(CustomerPaymentProvider.StripeCharge)]
     [InlineData(CustomerPaymentProvider.StripeInvoice)]
     [InlineData(CustomerPaymentProvider.Netsuite)]
+    [InlineData(CustomerPaymentProvider.Adyen)]
     public void Validation_Works(CustomerPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -935,6 +1119,7 @@ public class CustomerPaymentProviderTest : TestBase
     [InlineData(CustomerPaymentProvider.StripeCharge)]
     [InlineData(CustomerPaymentProvider.StripeInvoice)]
     [InlineData(CustomerPaymentProvider.Netsuite)]
+    [InlineData(CustomerPaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(CustomerPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -1086,6 +1271,27 @@ public class AccountingSyncConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AccountingSyncConfiguration
+        {
+            AccountingProviders =
+            [
+                new()
+                {
+                    ExternalProviderID = "external_provider_id",
+                    ProviderType = AccountingProviderProviderType.Quickbooks,
+                },
+            ],
+            Excluded = true,
+        };
+
+        AccountingSyncConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AccountingProviderTest : TestBase
@@ -1160,6 +1366,20 @@ public class AccountingProviderTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AccountingProvider
+        {
+            ExternalProviderID = "external_provider_id",
+            ProviderType = AccountingProviderProviderType.Quickbooks,
+        };
+
+        AccountingProvider copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AccountingProviderProviderTypeTest : TestBase
@@ -1218,6 +1438,201 @@ public class AccountingProviderProviderTypeTest : TestBase
     }
 }
 
+public class DefaultPaymentMethodTest : TestBase
+{
+    [Fact]
+    public void FieldRoundtrip_Works()
+    {
+        var model = new DefaultPaymentMethod
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
+
+        string expectedID = "id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedCustomerID = "customer_id";
+        bool expectedDefault = true;
+        string expectedExternalPaymentMethodID = "external_payment_method_id";
+        ApiEnum<string, PaymentMethodType> expectedPaymentMethodType = PaymentMethodType.Card;
+        string expectedProviderType = "provider_type";
+
+        Assert.Equal(expectedID, model.ID);
+        Assert.Equal(expectedCreatedAt, model.CreatedAt);
+        Assert.Equal(expectedCustomerID, model.CustomerID);
+        Assert.Equal(expectedDefault, model.Default);
+        Assert.Equal(expectedExternalPaymentMethodID, model.ExternalPaymentMethodID);
+        Assert.Equal(expectedPaymentMethodType, model.PaymentMethodType);
+        Assert.Equal(expectedProviderType, model.ProviderType);
+    }
+
+    [Fact]
+    public void SerializationRoundtrip_Works()
+    {
+        var model = new DefaultPaymentMethod
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
+
+        string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DefaultPaymentMethod>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(model, deserialized);
+    }
+
+    [Fact]
+    public void FieldRoundtripThroughSerialization_Works()
+    {
+        var model = new DefaultPaymentMethod
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
+
+        string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<DefaultPaymentMethod>(
+            element,
+            ModelBase.SerializerOptions
+        );
+        Assert.NotNull(deserialized);
+
+        string expectedID = "id";
+        DateTimeOffset expectedCreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z");
+        string expectedCustomerID = "customer_id";
+        bool expectedDefault = true;
+        string expectedExternalPaymentMethodID = "external_payment_method_id";
+        ApiEnum<string, PaymentMethodType> expectedPaymentMethodType = PaymentMethodType.Card;
+        string expectedProviderType = "provider_type";
+
+        Assert.Equal(expectedID, deserialized.ID);
+        Assert.Equal(expectedCreatedAt, deserialized.CreatedAt);
+        Assert.Equal(expectedCustomerID, deserialized.CustomerID);
+        Assert.Equal(expectedDefault, deserialized.Default);
+        Assert.Equal(expectedExternalPaymentMethodID, deserialized.ExternalPaymentMethodID);
+        Assert.Equal(expectedPaymentMethodType, deserialized.PaymentMethodType);
+        Assert.Equal(expectedProviderType, deserialized.ProviderType);
+    }
+
+    [Fact]
+    public void Validation_Works()
+    {
+        var model = new DefaultPaymentMethod
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new DefaultPaymentMethod
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            Default = true,
+            ExternalPaymentMethodID = "external_payment_method_id",
+            PaymentMethodType = PaymentMethodType.Card,
+            ProviderType = "provider_type",
+        };
+
+        DefaultPaymentMethod copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
+}
+
+public class PaymentMethodTypeTest : TestBase
+{
+    [Theory]
+    [InlineData(PaymentMethodType.Card)]
+    [InlineData(PaymentMethodType.UsBankAccount)]
+    [InlineData(PaymentMethodType.Link)]
+    [InlineData(PaymentMethodType.AmazonPay)]
+    [InlineData(PaymentMethodType.Crypto)]
+    public void Validation_Works(PaymentMethodType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PaymentMethodType> value = rawValue;
+        value.Validate();
+    }
+
+    [Fact]
+    public void InvalidEnumValidationThrows_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PaymentMethodType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+
+        Assert.NotNull(value);
+        Assert.Throws<OrbInvalidDataException>(() => value.Validate());
+    }
+
+    [Theory]
+    [InlineData(PaymentMethodType.Card)]
+    [InlineData(PaymentMethodType.UsBankAccount)]
+    [InlineData(PaymentMethodType.Link)]
+    [InlineData(PaymentMethodType.AmazonPay)]
+    [InlineData(PaymentMethodType.Crypto)]
+    public void SerializationRoundtrip_Works(PaymentMethodType rawValue)
+    {
+        // force implicit conversion because Theory can't do that for us
+        ApiEnum<string, PaymentMethodType> value = rawValue;
+
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PaymentMethodType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+
+    [Fact]
+    public void InvalidEnumSerializationRoundtrip_Works()
+    {
+        var value = JsonSerializer.Deserialize<ApiEnum<string, PaymentMethodType>>(
+            JsonSerializer.SerializeToElement("invalid value"),
+            ModelBase.SerializerOptions
+        );
+        string json = JsonSerializer.Serialize(value, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<ApiEnum<string, PaymentMethodType>>(
+            json,
+            ModelBase.SerializerOptions
+        );
+
+        Assert.Equal(value, deserialized);
+    }
+}
+
 public class CustomerPaymentConfigurationTest : TestBase
 {
     [Fact]
@@ -1230,6 +1645,7 @@ public class CustomerPaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1240,6 +1656,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             new()
             {
                 ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                DefaultSharedPaymentToken = "default_shared_payment_token",
                 ExcludedPaymentMethodTypes = ["string"],
             },
         ];
@@ -1262,6 +1679,7 @@ public class CustomerPaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1286,6 +1704,7 @@ public class CustomerPaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1303,6 +1722,7 @@ public class CustomerPaymentConfigurationTest : TestBase
             new()
             {
                 ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                DefaultSharedPaymentToken = "default_shared_payment_token",
                 ExcludedPaymentMethodTypes = ["string"],
             },
         ];
@@ -1325,6 +1745,7 @@ public class CustomerPaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -1374,6 +1795,27 @@ public class CustomerPaymentConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerPaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        CustomerPaymentConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
@@ -1384,6 +1826,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -1391,9 +1834,11 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
             string,
             CustomerPaymentConfigurationPaymentProviderProviderType
         > expectedProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe;
+        string expectedDefaultSharedPaymentToken = "default_shared_payment_token";
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, model.ProviderType);
+        Assert.Equal(expectedDefaultSharedPaymentToken, model.DefaultSharedPaymentToken);
         Assert.NotNull(model.ExcludedPaymentMethodTypes);
         Assert.Equal(
             expectedExcludedPaymentMethodTypes.Count,
@@ -1414,6 +1859,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -1432,6 +1878,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -1446,9 +1893,11 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
             string,
             CustomerPaymentConfigurationPaymentProviderProviderType
         > expectedProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe;
+        string expectedDefaultSharedPaymentToken = "default_shared_payment_token";
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
+        Assert.Equal(expectedDefaultSharedPaymentToken, deserialized.DefaultSharedPaymentToken);
         Assert.NotNull(deserialized.ExcludedPaymentMethodTypes);
         Assert.Equal(
             expectedExcludedPaymentMethodTypes.Count,
@@ -1469,6 +1918,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -1481,6 +1931,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
         };
 
         Assert.Null(model.ExcludedPaymentMethodTypes);
@@ -1493,6 +1944,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
         };
 
         model.Validate();
@@ -1504,6 +1956,7 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
@@ -1519,12 +1972,82 @@ public class CustomerPaymentConfigurationPaymentProviderTest : TestBase
         var model = new CustomerPaymentConfigurationPaymentProvider
         {
             ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        Assert.Null(model.DefaultSharedPaymentToken);
+        Assert.False(model.RawData.ContainsKey("default_shared_payment_token"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+
+            DefaultSharedPaymentToken = null,
+        };
+
+        Assert.Null(model.DefaultSharedPaymentToken);
+        Assert.True(model.RawData.ContainsKey("default_shared_payment_token"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+
+            DefaultSharedPaymentToken = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerPaymentConfigurationPaymentProvider
+        {
+            ProviderType = CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        CustomerPaymentConfigurationPaymentProvider copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1631,5 +2154,15 @@ public class ReportingConfigurationTest : TestBase
         var model = new ReportingConfiguration { Exempt = true };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ReportingConfiguration { Exempt = true };
+
+        ReportingConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

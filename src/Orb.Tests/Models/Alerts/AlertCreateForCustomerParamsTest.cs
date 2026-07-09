@@ -78,7 +78,28 @@ public class AlertCreateForCustomerParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/alerts/customer_id/customer_id"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/alerts/customer_id/customer_id"),
+                url
+            )
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Alerts::AlertCreateForCustomerParams
+        {
+            CustomerID = "customer_id",
+            Currency = "currency",
+            Type = Alerts::Type.CreditBalanceDepleted,
+            Thresholds = [new(0)],
+        };
+
+        Alerts::AlertCreateForCustomerParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

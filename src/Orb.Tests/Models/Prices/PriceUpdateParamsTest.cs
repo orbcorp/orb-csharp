@@ -59,6 +59,20 @@ public class PriceUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/prices/price_id"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/prices/price_id"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceUpdateParams
+        {
+            PriceID = "price_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        PriceUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

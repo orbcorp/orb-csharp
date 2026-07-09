@@ -184,6 +184,32 @@ public class AmountDiscountIntervalTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AmountDiscountInterval
+        {
+            AmountDiscount = "amount_discount",
+            AppliesToPriceIntervalIds = ["string"],
+            DiscountType = AmountDiscountIntervalDiscountType.Amount,
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = AmountDiscountIntervalFilterField.PriceID,
+                    Operator = AmountDiscountIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        AmountDiscountInterval copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AmountDiscountIntervalDiscountTypeTest : TestBase
@@ -329,6 +355,21 @@ public class AmountDiscountIntervalFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AmountDiscountIntervalFilter
+        {
+            Field = AmountDiscountIntervalFilterField.PriceID,
+            Operator = AmountDiscountIntervalFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        AmountDiscountIntervalFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

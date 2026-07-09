@@ -10,13 +10,19 @@ namespace Orb.Models.DimensionalPriceGroups;
 
 /// <summary>
 /// Fetch dimensional price group
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class DimensionalPriceGroupRetrieveParams : ParamsBase
+public record class DimensionalPriceGroupRetrieveParams : ParamsBase
 {
     public string? DimensionalPriceGroupID { get; init; }
 
     public DimensionalPriceGroupRetrieveParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceGroupRetrieveParams(
         DimensionalPriceGroupRetrieveParams dimensionalPriceGroupRetrieveParams
     )
@@ -24,6 +30,7 @@ public sealed record class DimensionalPriceGroupRetrieveParams : ParamsBase
     {
         this.DimensionalPriceGroupID = dimensionalPriceGroupRetrieveParams.DimensionalPriceGroupID;
     }
+#pragma warning restore CS8618
 
     public DimensionalPriceGroupRetrieveParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -38,24 +45,61 @@ public sealed record class DimensionalPriceGroupRetrieveParams : ParamsBase
     [SetsRequiredMembers]
     DimensionalPriceGroupRetrieveParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string dimensionalPriceGroupID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.DimensionalPriceGroupID = dimensionalPriceGroupID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static DimensionalPriceGroupRetrieveParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string dimensionalPriceGroupID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            dimensionalPriceGroupID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["DimensionalPriceGroupID"] = JsonSerializer.SerializeToElement(
+                        this.DimensionalPriceGroupID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(DimensionalPriceGroupRetrieveParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.DimensionalPriceGroupID?.Equals(other.DimensionalPriceGroupID)
+                ?? other.DimensionalPriceGroupID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -76,5 +120,10 @@ public sealed record class DimensionalPriceGroupRetrieveParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

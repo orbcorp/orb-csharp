@@ -137,12 +137,41 @@ public class TopUpCreateByExternalIDParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/top_ups"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/top_ups"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpCreateByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Amount = "amount",
+            Currency = "currency",
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                NetTerms = 0,
+                Memo = "memo",
+                RequireSuccessfulPayment = true,
+            },
+            PerUnitCostBasis = "per_unit_cost_basis",
+            Threshold = "threshold",
+            ActiveFrom = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiresAfter = 0,
+            ExpiresAfterUnit = TopUpCreateByExternalIDParamsExpiresAfterUnit.Day,
+        };
+
+        TopUpCreateByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -349,6 +378,22 @@ public class TopUpCreateByExternalIDParamsInvoiceSettingsTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TopUpCreateByExternalIDParamsInvoiceSettings
+        {
+            AutoCollection = true,
+            NetTerms = 0,
+            Memo = "memo",
+            RequireSuccessfulPayment = true,
+        };
+
+        TopUpCreateByExternalIDParamsInvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

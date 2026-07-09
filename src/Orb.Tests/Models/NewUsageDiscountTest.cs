@@ -416,6 +416,35 @@ public class NewUsageDiscountTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewUsageDiscount
+        {
+            AdjustmentType = NewUsageDiscountAdjustmentType.UsageDiscount,
+            UsageDiscount = 0,
+            AppliesToAll = NewUsageDiscountAppliesToAll.True,
+            AppliesToItemIds = ["item_1", "item_2"],
+            AppliesToPriceIds = ["price_1", "price_2"],
+            Currency = "currency",
+            Filters =
+            [
+                new()
+                {
+                    Field = NewUsageDiscountFilterField.PriceID,
+                    Operator = NewUsageDiscountFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            IsInvoiceLevel = true,
+            PriceType = NewUsageDiscountPriceType.Usage,
+        };
+
+        NewUsageDiscount copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewUsageDiscountAdjustmentTypeTest : TestBase
@@ -617,6 +646,21 @@ public class NewUsageDiscountFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewUsageDiscountFilter
+        {
+            Field = NewUsageDiscountFilterField.PriceID,
+            Operator = NewUsageDiscountFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        NewUsageDiscountFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

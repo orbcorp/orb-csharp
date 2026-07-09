@@ -14,13 +14,14 @@ public class MigrationCancelResponseTest : TestBase
         var model = new MigrationCancelResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationCancelResponseStatus.NotStarted,
         };
 
         string expectedID = "id";
-        MigrationCancelResponseEffectiveTime expectedEffectiveTime = "2019-12-27";
+        MigrationCancelResponseEffectiveTime expectedEffectiveTime =
+            MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm;
         string expectedPlanID = "plan_id";
         ApiEnum<string, MigrationCancelResponseStatus> expectedStatus =
             MigrationCancelResponseStatus.NotStarted;
@@ -37,7 +38,7 @@ public class MigrationCancelResponseTest : TestBase
         var model = new MigrationCancelResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationCancelResponseStatus.NotStarted,
         };
@@ -57,7 +58,7 @@ public class MigrationCancelResponseTest : TestBase
         var model = new MigrationCancelResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationCancelResponseStatus.NotStarted,
         };
@@ -70,7 +71,8 @@ public class MigrationCancelResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
-        MigrationCancelResponseEffectiveTime expectedEffectiveTime = "2019-12-27";
+        MigrationCancelResponseEffectiveTime expectedEffectiveTime =
+            MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm;
         string expectedPlanID = "plan_id";
         ApiEnum<string, MigrationCancelResponseStatus> expectedStatus =
             MigrationCancelResponseStatus.NotStarted;
@@ -87,12 +89,28 @@ public class MigrationCancelResponseTest : TestBase
         var model = new MigrationCancelResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = MigrationCancelResponseStatus.NotStarted,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MigrationCancelResponse
+        {
+            ID = "id",
+            EffectiveTime = MigrationCancelResponseEffectiveTimeUnionMember2.EndOfTerm,
+            PlanID = "plan_id",
+            Status = MigrationCancelResponseStatus.NotStarted,
+        };
+
+        MigrationCancelResponse copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

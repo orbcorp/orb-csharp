@@ -17,7 +17,7 @@ public class NewAccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = "provider_type",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -25,7 +25,11 @@ public class NewAccountingSyncConfigurationTest : TestBase
 
         List<AccountingProviderConfig> expectedAccountingProviders =
         [
-            new() { ExternalProviderID = "external_provider_id", ProviderType = "provider_type" },
+            new()
+            {
+                ExternalProviderID = "external_provider_id",
+                ProviderType = AccountingProviderConfigProviderType.Quickbooks,
+            },
         ];
         bool expectedExcluded = true;
 
@@ -48,7 +52,7 @@ public class NewAccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = "provider_type",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -73,7 +77,7 @@ public class NewAccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = "provider_type",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -88,7 +92,11 @@ public class NewAccountingSyncConfigurationTest : TestBase
 
         List<AccountingProviderConfig> expectedAccountingProviders =
         [
-            new() { ExternalProviderID = "external_provider_id", ProviderType = "provider_type" },
+            new()
+            {
+                ExternalProviderID = "external_provider_id",
+                ProviderType = AccountingProviderConfigProviderType.Quickbooks,
+            },
         ];
         bool expectedExcluded = true;
 
@@ -111,7 +119,7 @@ public class NewAccountingSyncConfigurationTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = "provider_type",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -164,5 +172,26 @@ public class NewAccountingSyncConfigurationTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewAccountingSyncConfiguration
+        {
+            AccountingProviders =
+            [
+                new()
+                {
+                    ExternalProviderID = "external_provider_id",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
+                },
+            ],
+            Excluded = true,
+        };
+
+        NewAccountingSyncConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

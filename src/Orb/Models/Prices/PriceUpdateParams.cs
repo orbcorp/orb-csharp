@@ -12,8 +12,12 @@ namespace Orb.Models.Prices;
 /// <summary>
 /// This endpoint allows you to update the `metadata` property on a price. If you
 /// pass null for the metadata value, it will clear any existing metadata for that price.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class PriceUpdateParams : ParamsBase
+public record class PriceUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -48,6 +52,8 @@ public sealed record class PriceUpdateParams : ParamsBase
 
     public PriceUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceUpdateParams(PriceUpdateParams priceUpdateParams)
         : base(priceUpdateParams)
     {
@@ -55,6 +61,7 @@ public sealed record class PriceUpdateParams : ParamsBase
 
         this._rawBodyData = new(priceUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public PriceUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -72,27 +79,61 @@ public sealed record class PriceUpdateParams : ParamsBase
     PriceUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string priceID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.PriceID = priceID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static PriceUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string priceID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            priceID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["PriceID"] = JsonSerializer.SerializeToElement(this.PriceID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(PriceUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.PriceID?.Equals(other.PriceID) ?? other.PriceID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -121,5 +162,10 @@ public sealed record class PriceUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

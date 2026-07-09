@@ -30,8 +30,12 @@ namespace Orb.Models.Subscriptions;
 /// trial end date shift (so, e.g., if a plan change is scheduled or an add-on price
 /// was added, that change will be pushed back by the same amount of time the trial
 /// is extended).</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionUpdateTrialParams : ParamsBase
+public record class SubscriptionUpdateTrialParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -79,6 +83,8 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 
     public SubscriptionUpdateTrialParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionUpdateTrialParams(
         SubscriptionUpdateTrialParams subscriptionUpdateTrialParams
     )
@@ -88,6 +94,7 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
 
         this._rawBodyData = new(subscriptionUpdateTrialParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionUpdateTrialParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -105,27 +112,61 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
     SubscriptionUpdateTrialParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string subscriptionID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.SubscriptionID = subscriptionID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static SubscriptionUpdateTrialParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string subscriptionID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            subscriptionID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["SubscriptionID"] = JsonSerializer.SerializeToElement(this.SubscriptionID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionUpdateTrialParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -155,6 +196,11 @@ public sealed record class SubscriptionUpdateTrialParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -201,7 +247,7 @@ public record class TrialEndDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -220,14 +266,14 @@ public record class TrialEndDate : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="ApiEnum<string, UnionMember1>"/>.
+    /// type <see cref="ApiEnum{TRaw, TEnum}"/> with a <c>TRaw</c> of <c>string</c> and a <c>TEnum</c> of UnionMember1>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickUnionMember1(out var value)) {
-    ///     // `value` is of type `ApiEnum<string, UnionMember1>`
+    ///     // `value` is of type `ApiEnum&lt;string, UnionMember1&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -242,7 +288,7 @@ public record class TrialEndDate : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -253,8 +299,8 @@ public record class TrialEndDate : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, UnionMember1> value) => {...}
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, UnionMember1&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -281,7 +327,7 @@ public record class TrialEndDate : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -292,8 +338,8 @@ public record class TrialEndDate : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, UnionMember1> value) => {...}
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, UnionMember1&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -338,10 +384,10 @@ public record class TrialEndDate : ModelBase
         this.Switch((_) => { }, (unionMember1) => unionMember1.Validate());
     }
 
-    public virtual bool Equals(TrialEndDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(TrialEndDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -349,7 +395,20 @@ public record class TrialEndDate : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            System::DateTimeOffset _ => 0,
+            ApiEnum<string, UnionMember1> _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
@@ -380,7 +439,10 @@ sealed class TrialEndDateConverter : JsonConverter<TrialEndDate>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

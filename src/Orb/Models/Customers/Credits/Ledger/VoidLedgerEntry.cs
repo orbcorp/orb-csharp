@@ -200,8 +200,11 @@ public sealed record class VoidLedgerEntry : JsonModel
 
     public VoidLedgerEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public VoidLedgerEntry(VoidLedgerEntry voidLedgerEntry)
         : base(voidLedgerEntry) { }
+#pragma warning restore CS8618
 
     public VoidLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

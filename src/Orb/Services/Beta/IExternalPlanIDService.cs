@@ -9,9 +9,13 @@ using Orb.Models.Plans;
 namespace Orb.Services.Beta;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
+/// be subscribed to by a customer. Plans define the billing behavior of the subscription.
+/// You can see more about how to configure prices in the [Price resource](/reference/price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IExternalPlanIDService
 {
@@ -89,7 +93,7 @@ public interface IExternalPlanIDServiceWithRawResponse
     IExternalPlanIDServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/external_plan_id/{external_plan_id}/versions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/external_plan_id/{external_plan_id}/versions</c>, but is otherwise the
     /// same as <see cref="IExternalPlanIDService.CreatePlanVersion(ExternalPlanIDCreatePlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanVersion>> CreatePlanVersion(
@@ -105,7 +109,7 @@ public interface IExternalPlanIDServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/external_plan_id/{external_plan_id}/versions/{version}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/external_plan_id/{external_plan_id}/versions/{version}</c>, but is otherwise the
     /// same as <see cref="IExternalPlanIDService.FetchPlanVersion(ExternalPlanIDFetchPlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanVersion>> FetchPlanVersion(
@@ -121,7 +125,7 @@ public interface IExternalPlanIDServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/external_plan_id/{external_plan_id}/set_default_version`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/external_plan_id/{external_plan_id}/set_default_version</c>, but is otherwise the
     /// same as <see cref="IExternalPlanIDService.SetDefaultPlanVersion(ExternalPlanIDSetDefaultPlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> SetDefaultPlanVersion(

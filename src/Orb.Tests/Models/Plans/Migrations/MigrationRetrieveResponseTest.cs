@@ -14,13 +14,13 @@ public class MigrationRetrieveResponseTest : TestBase
         var model = new MigrationRetrieveResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = UnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = Status.NotStarted,
         };
 
         string expectedID = "id";
-        EffectiveTime expectedEffectiveTime = "2019-12-27";
+        EffectiveTime expectedEffectiveTime = UnionMember2.EndOfTerm;
         string expectedPlanID = "plan_id";
         ApiEnum<string, Status> expectedStatus = Status.NotStarted;
 
@@ -36,7 +36,7 @@ public class MigrationRetrieveResponseTest : TestBase
         var model = new MigrationRetrieveResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = UnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = Status.NotStarted,
         };
@@ -56,7 +56,7 @@ public class MigrationRetrieveResponseTest : TestBase
         var model = new MigrationRetrieveResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = UnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = Status.NotStarted,
         };
@@ -69,7 +69,7 @@ public class MigrationRetrieveResponseTest : TestBase
         Assert.NotNull(deserialized);
 
         string expectedID = "id";
-        EffectiveTime expectedEffectiveTime = "2019-12-27";
+        EffectiveTime expectedEffectiveTime = UnionMember2.EndOfTerm;
         string expectedPlanID = "plan_id";
         ApiEnum<string, Status> expectedStatus = Status.NotStarted;
 
@@ -85,12 +85,28 @@ public class MigrationRetrieveResponseTest : TestBase
         var model = new MigrationRetrieveResponse
         {
             ID = "id",
-            EffectiveTime = "2019-12-27",
+            EffectiveTime = UnionMember2.EndOfTerm,
             PlanID = "plan_id",
             Status = Status.NotStarted,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MigrationRetrieveResponse
+        {
+            ID = "id",
+            EffectiveTime = UnionMember2.EndOfTerm,
+            PlanID = "plan_id",
+            Status = Status.NotStarted,
+        };
+
+        MigrationRetrieveResponse copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

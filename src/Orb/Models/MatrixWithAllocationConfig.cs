@@ -96,8 +96,11 @@ public sealed record class MatrixWithAllocationConfig : JsonModel
 
     public MatrixWithAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithAllocationConfig(MatrixWithAllocationConfig matrixWithAllocationConfig)
         : base(matrixWithAllocationConfig) { }
+#pragma warning restore CS8618
 
     public MatrixWithAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -183,10 +186,13 @@ public sealed record class MatrixWithAllocationConfigMatrixValue : JsonModel
 
     public MatrixWithAllocationConfigMatrixValue() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixWithAllocationConfigMatrixValue(
         MatrixWithAllocationConfigMatrixValue matrixWithAllocationConfigMatrixValue
     )
         : base(matrixWithAllocationConfigMatrixValue) { }
+#pragma warning restore CS8618
 
     public MatrixWithAllocationConfigMatrixValue(IReadOnlyDictionary<string, JsonElement> rawData)
     {

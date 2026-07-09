@@ -215,4 +215,26 @@ public class TieredConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new TieredConfig
+        {
+            Tiers =
+            [
+                new()
+                {
+                    FirstUnit = 0,
+                    UnitAmount = "unit_amount",
+                    LastUnit = 0,
+                },
+            ],
+            Prorated = true,
+        };
+
+        TieredConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

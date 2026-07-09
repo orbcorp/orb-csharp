@@ -8,9 +8,14 @@ using Coupons = Orb.Services.Coupons;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// A coupon represents a reusable discount configuration that can be applied either
+/// as a fixed or percentage amount to an invoice or subscription. Coupons are activated
+/// using a redemption code, which applies the discount to a subscription or invoice.
+/// The duration of a coupon determines how long it remains available for use by end users.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface ICouponService
 {
@@ -30,8 +35,8 @@ public interface ICouponService
     Coupons::ISubscriptionService Subscriptions { get; }
 
     /// <summary>
-    /// This endpoint allows the creation of coupons, which can then be redeemed
-    /// at subscription creation or plan change.
+    /// This endpoint allows the creation of coupons, which can then be redeemed at
+    /// subscription creation or plan change.
     /// </summary>
     Task<Coupon> Create(
         CouponCreateParams parameters,
@@ -43,8 +48,7 @@ public interface ICouponService
     ///
     /// <para>The list of coupons is ordered starting from the most recently created
     /// coupon. The response also includes `pagination_metadata`, which lets the caller
-    /// retrieve the next page of results if they exist. More information about pagination
-    /// can be found in the Pagination-metadata schema.</para>
+    /// retrieve the next page of results if they exist.</para>
     /// </summary>
     Task<CouponListPage> List(
         CouponListParams? parameters = null,
@@ -52,9 +56,9 @@ public interface ICouponService
     );
 
     /// <summary>
-    /// This endpoint allows a coupon to be archived. Archived coupons can no longer
-    /// be redeemed, and will be hidden from lists of active coupons. Additionally,
-    /// once a coupon is archived, its redemption code can be reused for a different coupon.
+    /// This endpoint allows a coupon to be archived. Archived coupons can no longer be
+    /// redeemed, and will be hidden from lists of active coupons. Additionally, once a
+    /// coupon is archived, its redemption code can be reused for a different coupon.
     /// </summary>
     Task<Coupon> Archive(
         CouponArchiveParams parameters,
@@ -70,7 +74,8 @@ public interface ICouponService
 
     /// <summary>
     /// This endpoint retrieves a coupon by its ID. To fetch coupons by their redemption
-    /// code, use the [List coupons](list-coupons) endpoint with the redemption_code parameter.
+    /// code, use the [List coupons](list-coupons) endpoint with the redemption_code
+    /// parameter.
     /// </summary>
     Task<Coupon> Fetch(CouponFetchParams parameters, CancellationToken cancellationToken = default);
 
@@ -98,7 +103,7 @@ public interface ICouponServiceWithRawResponse
     Coupons::ISubscriptionServiceWithRawResponse Subscriptions { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /coupons`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /coupons</c>, but is otherwise the
     /// same as <see cref="ICouponService.Create(CouponCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Coupon>> Create(
@@ -107,7 +112,7 @@ public interface ICouponServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /coupons`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /coupons</c>, but is otherwise the
     /// same as <see cref="ICouponService.List(CouponListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CouponListPage>> List(
@@ -116,7 +121,7 @@ public interface ICouponServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /coupons/{coupon_id}/archive`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /coupons/{coupon_id}/archive</c>, but is otherwise the
     /// same as <see cref="ICouponService.Archive(CouponArchiveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Coupon>> Archive(
@@ -132,7 +137,7 @@ public interface ICouponServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /coupons/{coupon_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /coupons/{coupon_id}</c>, but is otherwise the
     /// same as <see cref="ICouponService.Fetch(CouponFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Coupon>> Fetch(

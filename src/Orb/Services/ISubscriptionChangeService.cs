@@ -29,11 +29,12 @@ public interface ISubscriptionChangeService
     /// <summary>
     /// This endpoint returns a subscription change given an identifier.
     ///
-    /// <para>A subscription change is created by including `Create-Pending-Subscription-Change:
-    /// True` in the header of a subscription mutation API call (e.g. [create subscription
+    /// <para>A subscription change is created by including
+    /// `Create-Pending-Subscription-Change: True` in the header of a subscription
+    /// mutation API call (e.g. [create subscription
     /// endpoint](/api-reference/subscription/create-subscription), [schedule plan
-    /// change endpoint](/api-reference/subscription/schedule-plan-change), ...).
-    /// The subscription change will be referenced by the `pending_subscription_change`
+    /// change endpoint](/api-reference/subscription/schedule-plan-change), ...). The
+    /// subscription change will be referenced by the `pending_subscription_change`
     /// field in the response.</para>
     /// </summary>
     Task<SubscriptionChangeRetrieveResponse> Retrieve(
@@ -49,9 +50,9 @@ public interface ISubscriptionChangeService
     );
 
     /// <summary>
-    /// This endpoint returns a list of pending subscription changes for a customer.
-    /// Use the [Fetch Subscription Change](fetch-subscription-change) endpoint to
-    /// retrieve the expected subscription state after the pending change is applied.
+    /// This endpoint returns a list of pending subscription changes for a customer. Use
+    /// the [Fetch Subscription Change](fetch-subscription-change) endpoint to retrieve
+    /// the expected subscription state after the pending change is applied.
     /// </summary>
     Task<SubscriptionChangeListPage> List(
         SubscriptionChangeListParams? parameters = null,
@@ -59,9 +60,9 @@ public interface ISubscriptionChangeService
     );
 
     /// <summary>
-    /// Apply a subscription change to perform the intended action. If a positive
-    /// amount is passed with a request to this endpoint, any eligible invoices that
-    /// were created will be issued immediately if they only contain in-advance fees.
+    /// Apply a subscription change to perform the intended action. If a positive amount
+    /// is passed with a request to this endpoint, any eligible invoices that were
+    /// created will be issued immediately if they only contain in-advance fees.
     /// </summary>
     Task<SubscriptionChangeApplyResponse> Apply(
         SubscriptionChangeApplyParams parameters,
@@ -76,9 +77,9 @@ public interface ISubscriptionChangeService
     );
 
     /// <summary>
-    /// Cancel a subscription change. The change can no longer be applied. A subscription
-    /// can only have one "pending" change at a time - use this endpoint to cancel
-    /// an existing change before creating a new one.
+    /// Cancel a subscription change. The change can no longer be applied. A
+    /// subscription can only have one "pending" change at a time - use this endpoint to
+    /// cancel an existing change before creating a new one.
     /// </summary>
     Task<SubscriptionChangeCancelResponse> Cancel(
         SubscriptionChangeCancelParams parameters,
@@ -109,7 +110,7 @@ public interface ISubscriptionChangeServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /subscription_changes/{subscription_change_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /subscription_changes/{subscription_change_id}</c>, but is otherwise the
     /// same as <see cref="ISubscriptionChangeService.Retrieve(SubscriptionChangeRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SubscriptionChangeRetrieveResponse>> Retrieve(
@@ -125,7 +126,7 @@ public interface ISubscriptionChangeServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /subscription_changes`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /subscription_changes</c>, but is otherwise the
     /// same as <see cref="ISubscriptionChangeService.List(SubscriptionChangeListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SubscriptionChangeListPage>> List(
@@ -134,7 +135,7 @@ public interface ISubscriptionChangeServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /subscription_changes/{subscription_change_id}/apply`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /subscription_changes/{subscription_change_id}/apply</c>, but is otherwise the
     /// same as <see cref="ISubscriptionChangeService.Apply(SubscriptionChangeApplyParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SubscriptionChangeApplyResponse>> Apply(
@@ -150,7 +151,7 @@ public interface ISubscriptionChangeServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /subscription_changes/{subscription_change_id}/cancel`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /subscription_changes/{subscription_change_id}/cancel</c>, but is otherwise the
     /// same as <see cref="ISubscriptionChangeService.Cancel(SubscriptionChangeCancelParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<SubscriptionChangeCancelResponse>> Cancel(

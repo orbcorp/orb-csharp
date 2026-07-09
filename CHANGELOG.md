@@ -1,5 +1,120 @@
 # Changelog
 
+## 0.2.0 (2026-07-09)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/orbcorp/orb-csharp/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([cc3be3e](https://github.com/orbcorp/orb-csharp/commit/cc3be3e151bee22bb8efae8309c2144b453e662c))
+* **api:** api update ([01457a0](https://github.com/orbcorp/orb-csharp/commit/01457a0f222e50cf8f3dd8281e538f33b033748e))
+* **api:** api update ([392dc5d](https://github.com/orbcorp/orb-csharp/commit/392dc5d8f6767b25adbd41b1286b33bdc5a8376c))
+* **api:** api update ([b106d54](https://github.com/orbcorp/orb-csharp/commit/b106d54c7c7d30ba8c1065a5c603f5c3135f742a))
+* **api:** api update ([a301027](https://github.com/orbcorp/orb-csharp/commit/a301027cfa5177ea617a0411c190862b9f27d03b))
+* **api:** api update ([6c34f3b](https://github.com/orbcorp/orb-csharp/commit/6c34f3bbb775d87316046ae4683617064f31f47d))
+* **api:** api update ([e91e2c5](https://github.com/orbcorp/orb-csharp/commit/e91e2c513318637dc3a22821b48b8a216eebc1ee))
+* **api:** api update ([7804d1c](https://github.com/orbcorp/orb-csharp/commit/7804d1c21c8f24cf59fc7440abba982fbcf0346f))
+* **api:** api update ([2add056](https://github.com/orbcorp/orb-csharp/commit/2add056c73490090db48f99fa7ecc14271e579ed))
+* **api:** api update ([03dcb31](https://github.com/orbcorp/orb-csharp/commit/03dcb313bca364301e2bccf0e4bd76763db9a526))
+* **api:** api update ([66cb7ba](https://github.com/orbcorp/orb-csharp/commit/66cb7bad50ec8d244994c9e64ea02ca0eb332834))
+* **api:** api update ([ee9c6b0](https://github.com/orbcorp/orb-csharp/commit/ee9c6b0aa241b33eb910e2d4b47ae8fd7a9af9c9))
+* **api:** api update ([ca37501](https://github.com/orbcorp/orb-csharp/commit/ca375018541ed4cd6f1c01ac834183377a4464ad))
+* **api:** api update ([23fbec1](https://github.com/orbcorp/orb-csharp/commit/23fbec19751d9beaf5934e66f244e28452673fc1))
+* **api:** api update ([c9d1281](https://github.com/orbcorp/orb-csharp/commit/c9d1281358900c18416728626e217e7b6452aa41))
+* **api:** api update ([dd1439d](https://github.com/orbcorp/orb-csharp/commit/dd1439d4595f5fc1baf9b1f2bf65fa98909914b7))
+* **api:** api update ([de37008](https://github.com/orbcorp/orb-csharp/commit/de37008463794bb64f753b8e03050c1c56c8938e))
+* **api:** api update ([64c36c4](https://github.com/orbcorp/orb-csharp/commit/64c36c4de252a6232514eb9640369dcf4596b88e))
+* **api:** api update ([081b59f](https://github.com/orbcorp/orb-csharp/commit/081b59f7971324146548400f0549e31dacf06eab))
+* **api:** api update ([402a658](https://github.com/orbcorp/orb-csharp/commit/402a65877bddeb96bcda28bb70ef0fad26bbd31a))
+* **api:** api update ([fb758b1](https://github.com/orbcorp/orb-csharp/commit/fb758b14367f8eb59cab5b0247b185231d1c4d09))
+* **api:** api update ([a8a9be2](https://github.com/orbcorp/orb-csharp/commit/a8a9be25c0b06fb86e07ad7925dc76bb1160938a))
+* **api:** api update ([7d9a383](https://github.com/orbcorp/orb-csharp/commit/7d9a3839c624f7a6a72d32f5a6a1cf58047cd32d))
+* **api:** api update ([3222676](https://github.com/orbcorp/orb-csharp/commit/3222676a64c7a27dddaa16d17e596825174385f6))
+* **api:** api update ([8c1c3e3](https://github.com/orbcorp/orb-csharp/commit/8c1c3e335c4d40da46c13ad0b5a14166f92be827))
+* **api:** api update ([0d2249f](https://github.com/orbcorp/orb-csharp/commit/0d2249fdcc642b1defe4f284e2c31f968419e8df))
+* **api:** api update ([03e400a](https://github.com/orbcorp/orb-csharp/commit/03e400abe6865aa773e7252635fc6701dee560ee))
+* **api:** api update ([73bd0a2](https://github.com/orbcorp/orb-csharp/commit/73bd0a2146bf5c6aa2bf0df77a692ba97d1a2639))
+* **api:** api update ([6290055](https://github.com/orbcorp/orb-csharp/commit/6290055364753e84ecfc3f64df0b2ffd8a6cc92b))
+* **api:** api update ([7db3aea](https://github.com/orbcorp/orb-csharp/commit/7db3aeaaf44de0279863a5fb2f8d5db4b4568a78))
+* **api:** api update ([f8d96a9](https://github.com/orbcorp/orb-csharp/commit/f8d96a964bd732ba6c1bba0c9285cb0905f72a98))
+* **api:** api update ([cf2dd82](https://github.com/orbcorp/orb-csharp/commit/cf2dd828ae62d185b5f9464d40e420fc3d9b33e3))
+* **api:** api update ([2ee5350](https://github.com/orbcorp/orb-csharp/commit/2ee5350e955b6ce5bb90932e250390c1bbd5983c))
+* **api:** api update ([5820227](https://github.com/orbcorp/orb-csharp/commit/582022798674964e95d81598f8a039df8aa57c99))
+* **api:** api update ([f26879d](https://github.com/orbcorp/orb-csharp/commit/f26879d5478ff24192dd4e4700016da4da6d879c))
+* **api:** api update ([716231c](https://github.com/orbcorp/orb-csharp/commit/716231cde616767e62affe993d4251d2897daaf2))
+* **api:** api update ([ebe83bc](https://github.com/orbcorp/orb-csharp/commit/ebe83bc63b23dd2c2f4b86005d8c50d579c5fd86))
+* **api:** api update ([5c9d8d7](https://github.com/orbcorp/orb-csharp/commit/5c9d8d785b6c75e97c0d5f08227e42e10b5da3c8))
+* **api:** api update ([50b2cb1](https://github.com/orbcorp/orb-csharp/commit/50b2cb1b1e7ca97069802de357b08a09fc60f95c))
+* **api:** api update ([830cc0c](https://github.com/orbcorp/orb-csharp/commit/830cc0c641572bcc8fdac8b7b754eb7ab10c0f5e))
+* **api:** api update ([89b717c](https://github.com/orbcorp/orb-csharp/commit/89b717cfbece7a4cf336964f84eebe2f9f9a2742))
+* **api:** api update ([2cd2dd8](https://github.com/orbcorp/orb-csharp/commit/2cd2dd8f519176f3618044ca6d4641e678af001b))
+* **api:** api update ([d8f27e8](https://github.com/orbcorp/orb-csharp/commit/d8f27e8e10dc99f7d6e51186171181a05a59547d))
+* **api:** api update ([3bd6cd6](https://github.com/orbcorp/orb-csharp/commit/3bd6cd6413b421ff644eee7f195e6fe0af47c56c))
+* **api:** manual updates ([dba544b](https://github.com/orbcorp/orb-csharp/commit/dba544be21d0115fd6ee8b3399fde64b16bcc3f8))
+* **client:** add `ToString` and `Equals` methods ([fed62bb](https://github.com/orbcorp/orb-csharp/commit/fed62bbc34caf8266c8c6b7a6646754677d45637))
+* **client:** add `ToString` to `ApiEnum` ([551d3d9](https://github.com/orbcorp/orb-csharp/commit/551d3d983edbc2dd99c0143b2779146fa00ae80f))
+* **client:** add equality and tostring for multipart data ([4116c95](https://github.com/orbcorp/orb-csharp/commit/4116c95ff4635a27f7e5132a3a17c413f4853efc))
+* **client:** add Equals and ToString to params ([8a87021](https://github.com/orbcorp/orb-csharp/commit/8a870218bc1eebf9e4430ed69fedc206e7b9f25c))
+* **client:** enable gzip decompression ([d88242b](https://github.com/orbcorp/orb-csharp/commit/d88242b8c3fc4586e85ec4be7839c160201c28cf))
+* support setting headers via env ([0b3d1dd](https://github.com/orbcorp/orb-csharp/commit/0b3d1dd62ee4cc544f390f965eaabec95f0cffa8))
+
+
+### Bug Fixes
+
+* **client:** allow cancelling when enumerating over an http response ([72b74d6](https://github.com/orbcorp/orb-csharp/commit/72b74d666cb990ed94d4d0a4266eb6faf2de3b2f))
+* **client:** don't overzealously validate union variants when deserializing ([bfe7b02](https://github.com/orbcorp/orb-csharp/commit/bfe7b02cbdba27e809c9847acc4962d66832e0f6))
+* **client:** handle path params correctly in `FromRawUnchecked` ([2901381](https://github.com/orbcorp/orb-csharp/commit/2901381e46b99135ae080c285773ce47be34a26e))
+* **client:** handle root bodies in requests properly ([7f07dde](https://github.com/orbcorp/orb-csharp/commit/7f07dde4ffbe96d2d4b06e07abeb8240c5d84656))
+* **client:** handle unions containing unknown types properly ([bb13041](https://github.com/orbcorp/orb-csharp/commit/bb13041f80e071a51a8aa845c2a5b2e720e4cd75))
+* **client:** improve behaviour for comma-delimited binary content in multipart requests ([ab0951f](https://github.com/orbcorp/orb-csharp/commit/ab0951f3e4a8d9334991eb1c4cb5ca6d43039f10))
+* **client:** improve union equality method ([5635581](https://github.com/orbcorp/orb-csharp/commit/563558107f3fa7d5e947ecf758875794c3e04dff))
+* **csharp:** resolve ambiguity in parsing query strings ([3e1be2f](https://github.com/orbcorp/orb-csharp/commit/3e1be2ff45f61900610633448010e4866c224009))
+* **docs:** make xml syntactically correct ([2764b34](https://github.com/orbcorp/orb-csharp/commit/2764b3482e43edb81853777cf0b5b8bef919c9f3))
+* **internal:** disable default HttpClient timeout as we have our own ([606402c](https://github.com/orbcorp/orb-csharp/commit/606402c733be4a36c58d770b69b0ef2b2110f232))
+* **tests:** round-trip urls correctly ([082b4b4](https://github.com/orbcorp/orb-csharp/commit/082b4b4d09b442c53767c0a7af2f0166e3140021))
+
+
+### Chores
+
+* change visibility of QueryString() and AddDefaultHeaders ([3f5afb6](https://github.com/orbcorp/orb-csharp/commit/3f5afb6e4e6d0c32a52e82c68c219391a09a0313))
+* **ci:** skip lint on metadata-only changes ([d17d16f](https://github.com/orbcorp/orb-csharp/commit/d17d16f09dd4259642b0f38110953c9b57d31c9f))
+* **client:** update formatting ([21e8052](https://github.com/orbcorp/orb-csharp/commit/21e805216eb0f83fc780c8a1413b376d5edf6edd))
+* **docs:** add missing descriptions ([e99472a](https://github.com/orbcorp/orb-csharp/commit/e99472a25dbbc10db210c0f54234fc5c2a26b25e))
+* **docs:** add proxy documentation to readme ([e4ce03d](https://github.com/orbcorp/orb-csharp/commit/e4ce03dc208398d10aa351959e9b9cf8d679672d))
+* **docs:** add undocumented parameters to readme ([c984acb](https://github.com/orbcorp/orb-csharp/commit/c984acb5f59fb3935e80abe786a1634465e862fe))
+* **internal:** add copy constructor tests ([9c7927a](https://github.com/orbcorp/orb-csharp/commit/9c7927a2079895ffcd40cc12611748f7b61bad02))
+* **internal:** codegen related update ([0273d50](https://github.com/orbcorp/orb-csharp/commit/0273d508b173a0b758832ff31ea2ce0cd0b6f5e5))
+* **internal:** codegen related update ([2bc3e43](https://github.com/orbcorp/orb-csharp/commit/2bc3e436b724ff58d3191ea1c4632be595a9e5f5))
+* **internal:** ignore stainless-internal artifacts ([f9055f0](https://github.com/orbcorp/orb-csharp/commit/f9055f0118384c77b1ef687b756e5a49f3f417dc))
+* **internal:** improve HttpResponse qualification ([2a92abb](https://github.com/orbcorp/orb-csharp/commit/2a92abb2b86492e4018b9c8fa5d75ad9486d55fc))
+* **internal:** simplify imports ([79d3471](https://github.com/orbcorp/orb-csharp/commit/79d34710f779ca309e84faddc3e28bfa5b9c73bc))
+* **internal:** tweak CI branches ([535c3d2](https://github.com/orbcorp/orb-csharp/commit/535c3d24ef7f564fd01f6d2d9c0ce2f9492b1b99))
+* **internal:** update `actions/checkout` version ([5849a89](https://github.com/orbcorp/orb-csharp/commit/5849a89be72919068177e2830142c600a0bb7aeb))
+* **internal:** update gitignore ([23ee651](https://github.com/orbcorp/orb-csharp/commit/23ee651a3460654b98b621c4b95d8e5ebfc28011))
+* **internal:** update multipart form array serialization ([4bf1d55](https://github.com/orbcorp/orb-csharp/commit/4bf1d55444620fe59fcd00c4bc99f374bcb44c6b))
+* **test:** do not count install time for mock server timeout ([3ca920e](https://github.com/orbcorp/orb-csharp/commit/3ca920e9721e19351676f45a5318770c5442efca))
+* **tests:** add tests for retry logic ([e90a3c6](https://github.com/orbcorp/orb-csharp/commit/e90a3c65eb8c36a7016a1673f3afd3bfb04487bf))
+* **tests:** bump steady to v0.19.4 ([bfb615b](https://github.com/orbcorp/orb-csharp/commit/bfb615bb14d78728d392c184f097c987cd74b475))
+* **tests:** bump steady to v0.19.5 ([ce30819](https://github.com/orbcorp/orb-csharp/commit/ce308199fdab1617a4c666398c3280c57ac5ec5c))
+* **tests:** bump steady to v0.19.6 ([832809c](https://github.com/orbcorp/orb-csharp/commit/832809ce100870bcf6141ad72446e8ae623e501e))
+* **tests:** bump steady to v0.19.7 ([233ce7b](https://github.com/orbcorp/orb-csharp/commit/233ce7b103f45a5177c7a7bd35e9fbaafc1634cb))
+* **tests:** bump steady to v0.20.1 ([887b042](https://github.com/orbcorp/orb-csharp/commit/887b0427175840bcf6c506cb8a698534bf0d7e0c))
+* **tests:** bump steady to v0.20.2 ([387434f](https://github.com/orbcorp/orb-csharp/commit/387434f3cd5bc09b7d843aecbca0af7b54fad15a))
+* **tests:** bump steady to v0.22.1 ([12b342c](https://github.com/orbcorp/orb-csharp/commit/12b342c3911f47b251a0ebaea26b7ef93e6ca0db))
+* **tests:** update mock server to steady ([65880ef](https://github.com/orbcorp/orb-csharp/commit/65880ef235e4df72dfe220e0e6356a1dbccbe01a))
+* update mock server docs ([72cfd07](https://github.com/orbcorp/orb-csharp/commit/72cfd078f36c6087b0ce6c30037dd2fe2d9d1d7d))
+
+
+### Documentation
+
+* improve examples ([c2bedff](https://github.com/orbcorp/orb-csharp/commit/c2bedffefb0e4928864730b1bed1a293a2fd491e))
+* remove typo in README.md ([5c40cf7](https://github.com/orbcorp/orb-csharp/commit/5c40cf77147cf374d8df1cf69f593ede2966ba9d))
+
+
+### Refactors
+
+* **internal:** default headers ([a198566](https://github.com/orbcorp/orb-csharp/commit/a198566976ed1faab7db589e8755162e567ee70f))
+
 ## 0.1.0 (2026-01-14)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/orbcorp/orb-csharp/compare/v0.0.1...v0.1.0)

@@ -14,8 +14,8 @@ namespace Orb.Models.Events.Backfills;
 /// are older than the ingestion grace period. Performing a backfill in Orb involves
 /// 3 steps:
 ///
-/// <para>1. Create the backfill, specifying its parameters. 2. [Ingest](ingest) usage
-/// events, referencing the backfill (query parameter `backfill_id`). 3. [Close](close-backfill)
+/// <para>1. Create the backfill, specifying its parameters. 2. [Ingest](/api-reference/event/ingest-events)
+/// usage events, referencing the backfill (query parameter `backfill_id`). 3. [Close](close-backfill)
 /// the backfill, propagating the update in past usage throughout Orb.</para>
 ///
 /// <para>Changes from a backfill are not reflected until the backfill is closed,
@@ -45,8 +45,12 @@ namespace Orb.Models.Events.Backfills;
 ///
 /// <para>You may not have multiple backfills in a pending or pending_revert state
 /// with overlapping timeframes.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class BackfillCreateParams : ParamsBase
+public record class BackfillCreateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -165,11 +169,14 @@ public sealed record class BackfillCreateParams : ParamsBase
 
     public BackfillCreateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillCreateParams(BackfillCreateParams backfillCreateParams)
         : base(backfillCreateParams)
     {
         this._rawBodyData = new(backfillCreateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public BackfillCreateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -196,7 +203,7 @@ public sealed record class BackfillCreateParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static BackfillCreateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -208,6 +215,34 @@ public sealed record class BackfillCreateParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(BackfillCreateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -234,5 +269,10 @@ public sealed record class BackfillCreateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

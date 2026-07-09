@@ -38,8 +38,11 @@ public sealed record class SubLineItemMatrixConfig : JsonModel
 
     public SubLineItemMatrixConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubLineItemMatrixConfig(SubLineItemMatrixConfig subLineItemMatrixConfig)
         : base(subLineItemMatrixConfig) { }
+#pragma warning restore CS8618
 
     public SubLineItemMatrixConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {

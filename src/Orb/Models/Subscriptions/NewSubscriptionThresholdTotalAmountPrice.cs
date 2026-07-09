@@ -77,12 +77,12 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : JsonModel
     /// <summary>
     /// Configuration for threshold_total_amount pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig ThresholdTotalAmountConfig
+    public required ThresholdTotalAmountConfig ThresholdTotalAmountConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>(
+            return this._rawData.GetNotNullClass<ThresholdTotalAmountConfig>(
                 "threshold_total_amount_config"
             );
         }
@@ -245,6 +245,19 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -298,16 +311,20 @@ public sealed record class NewSubscriptionThresholdTotalAmountPrice : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewSubscriptionThresholdTotalAmountPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionThresholdTotalAmountPrice(
         NewSubscriptionThresholdTotalAmountPrice newSubscriptionThresholdTotalAmountPrice
     )
         : base(newSubscriptionThresholdTotalAmountPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionThresholdTotalAmountPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -453,10 +470,7 @@ sealed class NewSubscriptionThresholdTotalAmountPriceModelTypeConverter
 /// Configuration for threshold_total_amount pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig,
-        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfigFromRaw
-    >)
+    typeof(JsonModelConverter<ThresholdTotalAmountConfig, ThresholdTotalAmountConfigFromRaw>)
 )]
 public sealed record class ThresholdTotalAmountConfig : JsonModel
 {
@@ -464,18 +478,18 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     /// When the quantity consumed passes a provided threshold, the configured total
     /// will be charged
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.ConsumptionTable> ConsumptionTable
+    public required IReadOnlyList<ConsumptionTable> ConsumptionTable
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.ConsumptionTable>
-            >("consumption_table");
+            return this._rawData.GetNotNullStruct<ImmutableArray<ConsumptionTable>>(
+                "consumption_table"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Subscriptions.ConsumptionTable>>(
+            this._rawData.Set<ImmutableArray<ConsumptionTable>>(
                 "consumption_table",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -507,10 +521,11 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
 
     public ThresholdTotalAmountConfig() { }
 
-    public ThresholdTotalAmountConfig(
-        global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig thresholdTotalAmountConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ThresholdTotalAmountConfig(ThresholdTotalAmountConfig thresholdTotalAmountConfig)
         : base(thresholdTotalAmountConfig) { }
+#pragma warning restore CS8618
 
     public ThresholdTotalAmountConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -525,8 +540,8 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ThresholdTotalAmountConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
+    /// <inheritdoc cref="ThresholdTotalAmountConfigFromRaw.FromRawUnchecked"/>
+    public static ThresholdTotalAmountConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -534,33 +549,25 @@ public sealed record class ThresholdTotalAmountConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public ThresholdTotalAmountConfig(
-        IReadOnlyList<global::Orb.Models.Subscriptions.ConsumptionTable> consumptionTable
-    )
+    public ThresholdTotalAmountConfig(IReadOnlyList<ConsumptionTable> consumptionTable)
         : this()
     {
         this.ConsumptionTable = consumptionTable;
     }
 }
 
-class ThresholdTotalAmountConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig>
+class ThresholdTotalAmountConfigFromRaw : IFromRawJson<ThresholdTotalAmountConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig FromRawUnchecked(
+    public ThresholdTotalAmountConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.ThresholdTotalAmountConfig.FromRawUnchecked(rawData);
+    ) => ThresholdTotalAmountConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// Configuration for a single threshold
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ConsumptionTable,
-        global::Orb.Models.Subscriptions.ConsumptionTableFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<ConsumptionTable, ConsumptionTableFromRaw>))]
 public sealed record class ConsumptionTable : JsonModel
 {
     public required string Threshold
@@ -595,8 +602,11 @@ public sealed record class ConsumptionTable : JsonModel
 
     public ConsumptionTable() { }
 
-    public ConsumptionTable(global::Orb.Models.Subscriptions.ConsumptionTable consumptionTable)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public ConsumptionTable(ConsumptionTable consumptionTable)
         : base(consumptionTable) { }
+#pragma warning restore CS8618
 
     public ConsumptionTable(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -611,8 +621,8 @@ public sealed record class ConsumptionTable : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ConsumptionTableFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
+    /// <inheritdoc cref="ConsumptionTableFromRaw.FromRawUnchecked"/>
+    public static ConsumptionTable FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -620,12 +630,11 @@ public sealed record class ConsumptionTable : JsonModel
     }
 }
 
-class ConsumptionTableFromRaw : IFromRawJson<global::Orb.Models.Subscriptions.ConsumptionTable>
+class ConsumptionTableFromRaw : IFromRawJson<ConsumptionTable>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ConsumptionTable FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.ConsumptionTable.FromRawUnchecked(rawData);
+    public ConsumptionTable FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        ConsumptionTable.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConverter))]
@@ -673,7 +682,7 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -694,7 +703,7 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -714,7 +723,7 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -725,8 +734,8 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -755,7 +764,7 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -766,8 +775,8 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -816,10 +825,12 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionThresholdTotalAmountPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewSubscriptionThresholdTotalAmountPriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -827,7 +838,20 @@ public record class NewSubscriptionThresholdTotalAmountPriceConversionRateConfig
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConverter
@@ -862,12 +886,10 @@ sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConvert
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -884,12 +906,10 @@ sealed class NewSubscriptionThresholdTotalAmountPriceConversionRateConfigConvert
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

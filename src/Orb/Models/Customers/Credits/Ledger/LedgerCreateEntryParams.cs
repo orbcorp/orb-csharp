@@ -41,22 +41,33 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// "2022-12-28",   "per_unit_cost_basis": "0.20",   "description": "Purchased 100
 /// credits" } ```</para>
 ///
-/// <para>Note that by default, Orb will always first increment any _negative_ balance
-/// in existing blocks before adding the remaining amount to the desired credit block.</para>
+/// <para>Note that an `increment` entry always creates a new credit block (defined
+/// by the optional `effective_date` and `expiry_date`); it never modifies an existing block.</para>
 ///
 /// <para>### Invoicing for credits By default, Orb manipulates the credit ledger
 /// but does not charge for credits. However, if you pass `invoice_settings` in the
 /// body of this request, Orb will also generate a one-off invoice for the customer
 /// for the credits pre-purchase. Note that you _must_ provide the `per_unit_cost_basis`,
 /// since the total charges on the invoice are calculated by multiplying the cost
-/// basis with the number of credit units added.</para>
+/// basis with the number of credit units added. If you invoice or handle payment
+/// of credits outside of Orb (i.e. marketplace customers), set `mark_as_paid` in
+/// the `invoice_settings` to `true` to prevent duplicate invoicing effects. * if
+/// `per_unit_cost_basis` is greater than zero, an invoice will be generated and `invoice_settings`
+/// must be included * if `invoice_settings` is passed, one of either `custom_due_date`
+/// or `net_terms` is required to determine the due date</para>
 ///
 /// <para>## Deducting Credits Orb allows you to deduct credits from a customer by
-/// creating an entry of type `decrement`. Orb matches the algorithm for automatic
-/// deductions for determining which credit blocks to decrement from. In the case
-/// that the deduction leads to multiple ledger entries, the response from this endpoint
-/// will be the final deduction. Orb also optionally allows specifying a description
-/// to assist with auditing.</para>
+/// creating an entry of type `decrement`. A `decrement` entry records credits as
+/// usage and immediately recognizes revenue at the block's `per_unit_cost_basis`.</para>
+///
+/// <para>For most credit removals, use `void` (no revenue impact) or `expiration_change`
+/// (revenue recognized on expiration) instead. Only use `decrement` when credits
+/// were genuinely consumed outside of normal event ingestion.</para>
+///
+/// <para>Orb matches the algorithm for automatic deductions for determining which
+/// credit blocks to decrement from. In the case that the deduction leads to multiple
+/// ledger entries, the response from this endpoint will be the final deduction.
+/// Orb also optionally allows specifying a description to assist with auditing.</para>
 ///
 /// <para>The following snippet illustrates a sample request body to decrement credits.</para>
 ///
@@ -94,46 +105,45 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// of type `amendment`. For this entry, `block_id` is required to identify the block
 /// that was originally decremented from, and `amount` indicates how many credits
 /// to return to the customer, up to the block's initial balance.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class LedgerCreateEntryParams : ParamsBase
+public record class LedgerCreateEntryParams : ParamsBase
 {
-    readonly JsonDictionary _rawBodyData = new();
-    public IReadOnlyDictionary<string, JsonElement> RawBodyData
-    {
-        get { return this._rawBodyData.Freeze(); }
-    }
+    public JsonElement RawBodyData { get; private init; }
 
     public string? CustomerID { get; init; }
 
     public required Body Body
     {
-        get
-        {
-            this._rawBodyData.Freeze();
-            return this._rawBodyData.GetNotNullClass<Body>("body");
-        }
-        init { this._rawBodyData.Set("body", value); }
+        get { return WrappedJsonSerializer.GetNotNullClass<Body>(this.RawBodyData, "RawBodyData"); }
+        init { this.RawBodyData = JsonSerializer.SerializeToElement(value); }
     }
 
     public LedgerCreateEntryParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerCreateEntryParams(LedgerCreateEntryParams ledgerCreateEntryParams)
         : base(ledgerCreateEntryParams)
     {
         this.CustomerID = ledgerCreateEntryParams.CustomerID;
 
-        this._rawBodyData = new(ledgerCreateEntryParams._rawBodyData);
+        this.RawBodyData = ledgerCreateEntryParams.RawBodyData;
     }
+#pragma warning restore CS8618
 
     public LedgerCreateEntryParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
     }
 
 #pragma warning disable CS8618
@@ -141,27 +151,61 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
     LedgerCreateEntryParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData,
+        string customerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
-        this._rawBodyData = new(rawBodyData);
+        this.RawBodyData = rawBodyData;
+        this.CustomerID = customerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static LedgerCreateEntryParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        JsonElement rawBodyData,
+        string customerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            rawBodyData,
+            customerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CustomerID"] = JsonSerializer.SerializeToElement(this.CustomerID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this.RawBodyData),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(LedgerCreateEntryParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this.RawBodyData.Equals(other.RawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -191,6 +235,11 @@ public sealed record class LedgerCreateEntryParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -335,7 +384,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Increment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -356,7 +405,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Decrement"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -377,7 +426,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="ExpirationChange"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -398,7 +447,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Void"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -419,7 +468,7 @@ public record class Body : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="Amendment"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -439,7 +488,7 @@ public record class Body : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -450,11 +499,11 @@ public record class Body : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (Increment value) => {...},
-    ///     (Decrement value) => {...},
-    ///     (ExpirationChange value) => {...},
-    ///     (Void value) => {...},
-    ///     (Amendment value) => {...}
+    ///     (Increment value) =&gt; {...},
+    ///     (Decrement value) =&gt; {...},
+    ///     (ExpirationChange value) =&gt; {...},
+    ///     (Void value) =&gt; {...},
+    ///     (Amendment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -493,7 +542,7 @@ public record class Body : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -504,11 +553,11 @@ public record class Body : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (Increment value) => {...},
-    ///     (Decrement value) => {...},
-    ///     (ExpirationChange value) => {...},
-    ///     (Void value) => {...},
-    ///     (Amendment value) => {...}
+    ///     (Increment value) =&gt; {...},
+    ///     (Decrement value) =&gt; {...},
+    ///     (ExpirationChange value) =&gt; {...},
+    ///     (Void value) =&gt; {...},
+    ///     (Amendment value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -567,10 +616,10 @@ public record class Body : ModelBase
         );
     }
 
-    public virtual bool Equals(Body? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Body? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -578,7 +627,23 @@ public record class Body : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            Increment _ => 0,
+            Decrement _ => 1,
+            ExpirationChange _ => 2,
+            Void _ => 3,
+            Amendment _ => 4,
+            _ => -1,
+        };
+    }
 }
 
 sealed class BodyConverter : JsonConverter<Body>
@@ -609,12 +674,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Increment>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -628,12 +691,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Decrement>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -650,12 +711,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -669,12 +728,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Void>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -688,12 +745,10 @@ sealed class BodyConverter : JsonConverter<Body>
                     var deserialized = JsonSerializer.Deserialize<Amendment>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -800,18 +855,16 @@ public sealed record class Increment : JsonModel
     /// Optional filter to specify which items this credit block applies to. If not
     /// specified, the block will apply to all items for the pricing unit.
     /// </summary>
-    public IReadOnlyList<global::Orb.Models.Customers.Credits.Ledger.Filter>? Filters
+    public IReadOnlyList<Filter>? Filters
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<
-                ImmutableArray<global::Orb.Models.Customers.Credits.Ledger.Filter>
-            >("filters");
+            return this._rawData.GetNullableStruct<ImmutableArray<Filter>>("filters");
         }
         init
         {
-            this._rawData.Set<ImmutableArray<global::Orb.Models.Customers.Credits.Ledger.Filter>?>(
+            this._rawData.Set<ImmutableArray<Filter>?>(
                 "filters",
                 value == null ? null : ImmutableArray.ToImmutableArray(value)
             );
@@ -894,8 +947,11 @@ public sealed record class Increment : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("increment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Increment(Increment increment)
         : base(increment) { }
+#pragma warning restore CS8618
 
     public Increment(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -936,25 +992,18 @@ class IncrementFromRaw : IFromRawJson<Increment>
 /// <summary>
 /// A PriceFilter that only allows item_id field for block filters.
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Customers.Credits.Ledger.Filter,
-        global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<Filter, FilterFromRaw>))]
 public sealed record class Filter : JsonModel
 {
     /// <summary>
     /// The property of the price the block applies to. Only item_id is supported.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field> Field
+    public required ApiEnum<string, Field> Field
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Field>
-            >("field");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Field>>("field");
         }
         init { this._rawData.Set("field", value); }
     }
@@ -962,14 +1011,12 @@ public sealed record class Filter : JsonModel
     /// <summary>
     /// Should prices that match the filter be included or excluded.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator> Operator
+    public required ApiEnum<string, Operator> Operator
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Customers.Credits.Ledger.Operator>
-            >("operator");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Operator>>("operator");
         }
         init { this._rawData.Set("operator", value); }
     }
@@ -1003,8 +1050,11 @@ public sealed record class Filter : JsonModel
 
     public Filter() { }
 
-    public Filter(global::Orb.Models.Customers.Credits.Ledger.Filter filter)
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public Filter(Filter filter)
         : base(filter) { }
+#pragma warning restore CS8618
 
     public Filter(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1019,35 +1069,32 @@ public sealed record class Filter : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Customers.Credits.Ledger.FilterFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    )
+    /// <inheritdoc cref="FilterFromRaw.FromRawUnchecked"/>
+    public static Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class FilterFromRaw : IFromRawJson<global::Orb.Models.Customers.Credits.Ledger.Filter>
+class FilterFromRaw : IFromRawJson<Filter>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Customers.Credits.Ledger.Filter FromRawUnchecked(
-        IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Customers.Credits.Ledger.Filter.FromRawUnchecked(rawData);
+    public Filter FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
+        Filter.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The property of the price the block applies to. Only item_id is supported.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.FieldConverter))]
+[JsonConverter(typeof(FieldConverter))]
 public enum Field
 {
     ItemID,
 }
 
-sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Field>
+sealed class FieldConverter : JsonConverter<Field>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Field Read(
+    public override Field Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1055,22 +1102,18 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "item_id" => global::Orb.Models.Customers.Credits.Ledger.Field.ItemID,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Field)(-1),
+            "item_id" => Field.ItemID,
+            _ => (Field)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Field value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Field value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Field.ItemID => "item_id",
+                Field.ItemID => "item_id",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1083,16 +1126,16 @@ sealed class FieldConverter : JsonConverter<global::Orb.Models.Customers.Credits
 /// <summary>
 /// Should prices that match the filter be included or excluded.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Customers.Credits.Ledger.OperatorConverter))]
+[JsonConverter(typeof(OperatorConverter))]
 public enum Operator
 {
     Includes,
     Excludes,
 }
 
-sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Credits.Ledger.Operator>
+sealed class OperatorConverter : JsonConverter<Operator>
 {
-    public override global::Orb.Models.Customers.Credits.Ledger.Operator Read(
+    public override Operator Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -1100,24 +1143,20 @@ sealed class OperatorConverter : JsonConverter<global::Orb.Models.Customers.Cred
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "includes" => global::Orb.Models.Customers.Credits.Ledger.Operator.Includes,
-            "excludes" => global::Orb.Models.Customers.Credits.Ledger.Operator.Excludes,
-            _ => (global::Orb.Models.Customers.Credits.Ledger.Operator)(-1),
+            "includes" => Operator.Includes,
+            "excludes" => Operator.Excludes,
+            _ => (Operator)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Customers.Credits.Ledger.Operator value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Operator value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Customers.Credits.Ledger.Operator.Includes => "includes",
-                global::Orb.Models.Customers.Credits.Ledger.Operator.Excludes => "excludes",
+                Operator.Includes => "includes",
+                Operator.Excludes => "excludes",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -1193,6 +1232,27 @@ public sealed record class InvoiceSettings : JsonModel
     }
 
     /// <summary>
+    /// If true, the new credits purchase invoice will be marked as paid.
+    /// </summary>
+    public bool? MarkAsPaid
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("mark_as_paid");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("mark_as_paid", value);
+        }
+    }
+
+    /// <summary>
     /// An optional memo to display on the invoice.
     /// </summary>
     public string? Memo
@@ -1210,8 +1270,8 @@ public sealed record class InvoiceSettings : JsonModel
     /// based on the invoice or issuance date, depending on the account's configured
     /// due date calculation method. A value of '0' here represents that the invoice
     /// is due on issue, whereas a value of '30' represents that the customer has
-    /// 30 days to pay the invoice. Do not set this field if you want to set a custom
-    /// due date.
+    /// 30 days to pay the invoice. You must set either `net_terms` or `custom_due_date`,
+    /// but not both.
     /// </summary>
     public long? NetTerms
     {
@@ -1252,6 +1312,7 @@ public sealed record class InvoiceSettings : JsonModel
         this.CustomDueDate?.Validate();
         this.InvoiceDate?.Validate();
         _ = this.ItemID;
+        _ = this.MarkAsPaid;
         _ = this.Memo;
         _ = this.NetTerms;
         _ = this.RequireSuccessfulPayment;
@@ -1259,8 +1320,11 @@ public sealed record class InvoiceSettings : JsonModel
 
     public InvoiceSettings() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceSettings(InvoiceSettings invoiceSettings)
         : base(invoiceSettings) { }
+#pragma warning restore CS8618
 
     public InvoiceSettings(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1339,7 +1403,7 @@ public record class CustomDueDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1360,7 +1424,7 @@ public record class CustomDueDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1380,7 +1444,7 @@ public record class CustomDueDate : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1391,8 +1455,8 @@ public record class CustomDueDate : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1421,7 +1485,7 @@ public record class CustomDueDate : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1432,8 +1496,8 @@ public record class CustomDueDate : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1475,10 +1539,10 @@ public record class CustomDueDate : ModelBase
         }
     }
 
-    public virtual bool Equals(CustomDueDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomDueDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1486,7 +1550,20 @@ public record class CustomDueDate : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
@@ -1513,7 +1590,10 @@ sealed class CustomDueDateConverter : JsonConverter<CustomDueDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1577,7 +1657,7 @@ public record class InvoiceDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1598,7 +1678,7 @@ public record class InvoiceDate : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1618,7 +1698,7 @@ public record class InvoiceDate : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1629,8 +1709,8 @@ public record class InvoiceDate : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1657,7 +1737,7 @@ public record class InvoiceDate : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1668,8 +1748,8 @@ public record class InvoiceDate : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1709,10 +1789,10 @@ public record class InvoiceDate : ModelBase
         }
     }
 
-    public virtual bool Equals(InvoiceDate? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(InvoiceDate? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1720,7 +1800,20 @@ public record class InvoiceDate : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
@@ -1747,7 +1840,10 @@ sealed class InvoiceDateConverter : JsonConverter<InvoiceDate?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -1862,8 +1958,11 @@ public sealed record class Decrement : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("decrement");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Decrement(Decrement decrement)
         : base(decrement) { }
+#pragma warning restore CS8618
 
     public Decrement(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -1915,9 +2014,9 @@ public sealed record class ExpirationChange : JsonModel
     }
 
     /// <summary>
-    /// A future date (specified in YYYY-MM-DD format) used for expiration change,
-    /// denoting when credits transferred (as part of a partial block expiration)
-    /// should expire.
+    /// A date (specified in YYYY-MM-DD format) used for expiration change, denoting
+    /// when credits transferred (as part of a partial block expiration) should expire.
+    /// This date must be on or after the effective date of the credit block.
     /// </summary>
     public required string TargetExpiryDate
     {
@@ -2046,8 +2145,11 @@ public sealed record class ExpirationChange : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("expiration_change");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExpirationChange(ExpirationChange expirationChange)
         : base(expirationChange) { }
+#pragma warning restore CS8618
 
     public ExpirationChange(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2210,8 +2312,11 @@ public sealed record class Void : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("void");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Void(Void void_)
         : base(void_) { }
+#pragma warning restore CS8618
 
     public Void(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -2395,8 +2500,11 @@ public sealed record class Amendment : JsonModel
         this.EntryType = JsonSerializer.SerializeToElement("amendment");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Amendment(Amendment amendment)
         : base(amendment) { }
+#pragma warning restore CS8618
 
     public Amendment(IReadOnlyDictionary<string, JsonElement> rawData)
     {

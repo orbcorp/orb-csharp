@@ -177,4 +177,32 @@ public class SubscriptionFetchSchedulePageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubscriptionFetchSchedulePageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Plan = new()
+                    {
+                        ID = "m2t5akQeh2obwxeU",
+                        ExternalPlanID = "m2t5akQeh2obwxeU",
+                        Name = "Example plan",
+                    },
+                    StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        SubscriptionFetchSchedulePageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

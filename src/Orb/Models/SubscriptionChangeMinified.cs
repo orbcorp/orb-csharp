@@ -30,8 +30,11 @@ public sealed record class SubscriptionChangeMinified : JsonModel
 
     public SubscriptionChangeMinified() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionChangeMinified(SubscriptionChangeMinified subscriptionChangeMinified)
         : base(subscriptionChangeMinified) { }
+#pragma warning restore CS8618
 
     public SubscriptionChangeMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {

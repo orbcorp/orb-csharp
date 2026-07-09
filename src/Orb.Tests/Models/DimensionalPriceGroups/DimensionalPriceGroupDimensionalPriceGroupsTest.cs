@@ -158,4 +158,29 @@ public class DimensionalPriceGroupDimensionalPriceGroupsTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new DimensionalPriceGroupDimensionalPriceGroups
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    BillableMetricID = "billable_metric_id",
+                    Dimensions = ["region", "instance_type"],
+                    ExternalDimensionalPriceGroupID = "my_dimensional_price_group_id",
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    Name = "name",
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        DimensionalPriceGroupDimensionalPriceGroups copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

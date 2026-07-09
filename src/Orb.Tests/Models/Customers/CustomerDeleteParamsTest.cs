@@ -22,6 +22,18 @@ public class CustomerDeleteParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/customers/customer_id"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/customers/customer_id"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerDeleteParams { CustomerID = "customer_id" };
+
+        CustomerDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

@@ -16,8 +16,12 @@ namespace Orb.Models.Customers;
 /// This endpoint is used to update customer details given an `external_customer_id`
 /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that the
 /// resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
+public record class CustomerUpdateByExternalIDParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -103,7 +107,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
     /// <summary>
     /// An ISO 4217 currency string used for the customer's invoices and balance.
-    /// If not set at creation time, will be set at subscription creation time.
+    /// This can only be set if the customer does not already have a currency configured.
+    /// If not set at creation or update time, it will be set at subscription creation time.
     /// </summary>
     public string? Currency
     {
@@ -113,6 +118,20 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
             return this._rawBodyData.GetNullableClass<string>("currency");
         }
         init { this._rawBodyData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// The Orb ID of the payment method to set as this customer's default. Pass
+    /// `null` to clear the customer's default payment method.
+    /// </summary>
+    public string? DefaultPaymentMethodID
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("default_payment_method_id");
+        }
+        init { this._rawBodyData.Set("default_payment_method_id", value); }
     }
 
     /// <summary>
@@ -331,64 +350,68 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     /// El Salvador | `sv_nit` | El Salvadorian NIT Number | | Estonia | `eu_vat`
     /// | European VAT Number | | Ethiopia | `et_tin` | Ethiopia Tax Identification
     /// Number | | European Union | `eu_oss_vat` | European One Stop Shop VAT Number
-    /// for non-Union scheme | | Finland | `eu_vat` | European VAT Number | | France
-    /// | `eu_vat` | European VAT Number | | Georgia | `ge_vat` | Georgian VAT | |
-    /// Germany | `de_stn` | German Tax Number (Steuernummer) | | Germany | `eu_vat`
-    /// | European VAT Number | | Greece | `eu_vat` | European VAT Number | | Guinea
-    /// | `gn_nif` | Guinea Tax Identification Number (Número de Identificação Fiscal)
-    /// | | Hong Kong | `hk_br` | Hong Kong BR Number | | Hungary | `eu_vat` | European
-    /// VAT Number | | Hungary | `hu_tin` | Hungary Tax Number (adószám) | | Iceland
-    /// | `is_vat` | Icelandic VAT | | India | `in_gst` | Indian GST Number | | Indonesia
-    /// | `id_npwp` | Indonesian NPWP Number | | Ireland | `eu_vat` | European VAT
-    /// Number | | Israel | `il_vat` | Israel VAT | | Italy | `eu_vat` | European
-    /// VAT Number | | Japan | `jp_cn` | Japanese Corporate Number (*Hōjin Bangō*)
-    /// | | Japan | `jp_rn` | Japanese Registered Foreign Businesses' Registration
-    /// Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan | `jp_trn` |
-    /// Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan | `kz_bin`
-    /// | Kazakhstani Business Identification Number | | Kenya | `ke_pin` | Kenya
-    /// Revenue Authority Personal Identification Number | | Kyrgyzstan | `kg_tin`
-    /// | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos Tax Identification
-    /// Number | | Latvia | `eu_vat` | European VAT Number | | Liechtenstein | `li_uid`
-    /// | Liechtensteinian UID Number | | Liechtenstein | `li_vat` | Liechtenstein
-    /// VAT Number | | Lithuania | `eu_vat` | European VAT Number | | Luxembourg
-    /// | `eu_vat` | European VAT Number | | Malaysia | `my_frp` | Malaysian FRP
-    /// Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia | `my_sst` | Malaysian
-    /// SST Number | | Malta | `eu_vat` | European VAT Number | | Mauritania | `mr_nif`
-    /// | Mauritania Tax Identification Number (Número de Identificação Fiscal) |
-    /// | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova | `md_vat` | Moldova
-    /// VAT Number | | Montenegro | `me_pib` | Montenegro PIB Number | | Morocco |
-    /// `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` | Nepal PAN Number | |
-    /// Netherlands | `eu_vat` | European VAT Number | | New Zealand | `nz_gst` |
-    /// New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian Tax Identification
-    /// Number | | North Macedonia | `mk_vat` | North Macedonia VAT Number | | Northern
-    /// Ireland | `eu_vat` | Northern Ireland VAT Number | | Norway | `no_vat` |
-    /// Norwegian VAT Number | | Norway | `no_voec` | Norwegian VAT on e-commerce
-    /// Number | | Oman | `om_vat` | Omani VAT Number | | Peru | `pe_ruc` | Peruvian
-    /// RUC Number | | Philippines | `ph_tin` | Philippines Tax Identification Number
-    /// | | Poland | `eu_vat` | European VAT Number | | Portugal | `eu_vat` | European
-    /// VAT Number | | Romania | `eu_vat` | European VAT Number | | Romania | `ro_tin`
-    /// | Romanian Tax ID Number | | Russia | `ru_inn` | Russian INN | | Russia |
-    /// `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat` | Saudi Arabia VAT | |
-    /// Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia | `rs_pib` | Serbian
-    /// PIB Number | | Singapore | `sg_gst` | Singaporean GST | | Singapore | `sg_uen`
-    /// | Singaporean UEN | | Slovakia | `eu_vat` | European VAT Number | | Slovenia
-    /// | `eu_vat` | European VAT Number | | Slovenia | `si_tin` | Slovenia Tax Number
-    /// (davčna številka) | | South Africa | `za_vat` | South African VAT Number |
-    /// | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif` | Spanish NIF
-    /// Number (previously Spanish CIF Number) | | Spain | `eu_vat` | European VAT
-    /// Number | | Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat`
-    /// | European VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number
-    /// | | Switzerland | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat`
-    /// | Taiwanese VAT | | Tajikistan | `tj_tin` | Tajikistan Tax Identification
-    /// Number | | Tanzania | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat`
-    /// | Thai VAT | | Turkey | `tr_tin` | Turkish Tax Identification Number | | Uganda
-    /// | `ug_tin` | Uganda Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian
-    /// VAT | | United Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United
-    /// Kingdom | `gb_vat` | United Kingdom VAT Number | | United States | `us_ein`
-    /// | United States EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan
-    /// | `uz_tin` | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan
-    /// VAT Number | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam |
-    /// `vn_tin` | Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
+    /// for non-Union scheme | | Faroe Islands | `fo_vat` | Faroe Islands VAT Number
+    /// | | Finland | `eu_vat` | European VAT Number | | France | `eu_vat` | European
+    /// VAT Number | | Georgia | `ge_vat` | Georgian VAT | | Germany | `de_stn` |
+    /// German Tax Number (Steuernummer) | | Germany | `eu_vat` | European VAT Number
+    /// | | Gibraltar | `gi_tin` | Gibraltar Tax Identification Number | | Greece
+    /// | `eu_vat` | European VAT Number | | Guinea | `gn_nif` | Guinea Tax Identification
+    /// Number (Número de Identificação Fiscal) | | Hong Kong | `hk_br` | Hong Kong
+    /// BR Number | | Hungary | `eu_vat` | European VAT Number | | Hungary | `hu_tin`
+    /// | Hungary Tax Number (adószám) | | Iceland | `is_vat` | Icelandic VAT | |
+    /// India | `in_gst` | Indian GST Number | | Indonesia | `id_npwp` | Indonesian
+    /// NPWP Number | | Ireland | `eu_vat` | European VAT Number | | Israel | `il_vat`
+    /// | Israel VAT | | Italy | `eu_vat` | European VAT Number | | Italy | `it_cf`
+    /// | Italian Codice Fiscale Number | | Japan | `jp_cn` | Japanese Corporate Number
+    /// (*Hōjin Bangō*) | | Japan | `jp_rn` | Japanese Registered Foreign Businesses'
+    /// Registration Number (*Tōroku Kokugai Jigyōsha no Tōroku Bangō*) | | Japan
+    /// | `jp_trn` | Japanese Tax Registration Number (*Tōroku Bangō*) | | Kazakhstan
+    /// | `kz_bin` | Kazakhstani Business Identification Number | | Kenya | `ke_pin`
+    /// | Kenya Revenue Authority Personal Identification Number | | Kyrgyzstan |
+    /// `kg_tin` | Kyrgyzstan Tax Identification Number | | Laos | `la_tin` | Laos
+    /// Tax Identification Number | | Latvia | `eu_vat` | European VAT Number | |
+    /// Liechtenstein | `li_uid` | Liechtensteinian UID Number | | Liechtenstein |
+    /// `li_vat` | Liechtenstein VAT Number | | Lithuania | `eu_vat` | European VAT
+    /// Number | | Luxembourg | `eu_vat` | European VAT Number | | Malaysia | `my_frp`
+    /// | Malaysian FRP Number | | Malaysia | `my_itn` | Malaysian ITN | | Malaysia
+    /// | `my_sst` | Malaysian SST Number | | Malta | `eu_vat` | European VAT Number
+    /// | | Mauritania | `mr_nif` | Mauritania Tax Identification Number (Número de
+    /// Identificação Fiscal) | | Mexico | `mx_rfc` | Mexican RFC Number | | Moldova
+    /// | `md_vat` | Moldova VAT Number | | Montenegro | `me_pib` | Montenegro PIB
+    /// Number | | Morocco | `ma_vat` | Morocco VAT Number | | Nepal | `np_pan` |
+    /// Nepal PAN Number | | Netherlands | `eu_vat` | European VAT Number | | New
+    /// Zealand | `nz_gst` | New Zealand GST Number | | Nigeria | `ng_tin` | Nigerian
+    /// Tax Identification Number | | North Macedonia | `mk_vat` | North Macedonia
+    /// VAT Number | | Northern Ireland | `eu_vat` | Northern Ireland VAT Number |
+    /// | Norway | `no_vat` | Norwegian VAT Number | | Norway | `no_voec` | Norwegian
+    /// VAT on e-commerce Number | | Oman | `om_vat` | Omani VAT Number | | Paraguay
+    /// | `py_ruc` | Paraguayan RUC Number | | Peru | `pe_ruc` | Peruvian RUC Number
+    /// | | Philippines | `ph_tin` | Philippines Tax Identification Number | | Poland
+    /// | `eu_vat` | European VAT Number | | Poland | `pl_nip` | Polish Tax ID Number
+    /// | | Portugal | `eu_vat` | European VAT Number | | Romania | `eu_vat` | European
+    /// VAT Number | | Romania | `ro_tin` | Romanian Tax ID Number | | Russia | `ru_inn`
+    /// | Russian INN | | Russia | `ru_kpp` | Russian KPP | | Saudi Arabia | `sa_vat`
+    /// | Saudi Arabia VAT | | Senegal | `sn_ninea` | Senegal NINEA Number | | Serbia
+    /// | `rs_pib` | Serbian PIB Number | | Singapore | `sg_gst` | Singaporean GST
+    /// | | Singapore | `sg_uen` | Singaporean UEN | | Slovakia | `eu_vat` | European
+    /// VAT Number | | Slovenia | `eu_vat` | European VAT Number | | Slovenia | `si_tin`
+    /// | Slovenia Tax Number (davčna številka) | | South Africa | `za_vat` | South
+    /// African VAT Number | | South Korea | `kr_brn` | Korean BRN | | Spain | `es_cif`
+    /// | Spanish NIF Number (previously Spanish CIF Number) | | Spain | `eu_vat`
+    /// | European VAT Number | | Sri Lanka | `lk_vat` | Sri Lanka VAT Number | |
+    /// Suriname | `sr_fin` | Suriname FIN Number | | Sweden | `eu_vat` | European
+    /// VAT Number | | Switzerland | `ch_uid` | Switzerland UID Number | | Switzerland
+    /// | `ch_vat` | Switzerland VAT Number | | Taiwan | `tw_vat` | Taiwanese VAT
+    /// | | Tajikistan | `tj_tin` | Tajikistan Tax Identification Number | | Tanzania
+    /// | `tz_vat` | Tanzania VAT Number | | Thailand | `th_vat` | Thai VAT | | Turkey
+    /// | `tr_tin` | Turkish Tax Identification Number | | Uganda | `ug_tin` | Uganda
+    /// Tax Identification Number | | Ukraine | `ua_vat` | Ukrainian VAT | | United
+    /// Arab Emirates | `ae_trn` | United Arab Emirates TRN | | United Kingdom | `gb_vat`
+    /// | United Kingdom VAT Number | | United States | `us_ein` | United States
+    /// EIN | | Uruguay | `uy_ruc` | Uruguayan RUC Number | | Uzbekistan | `uz_tin`
+    /// | Uzbekistan TIN Number | | Uzbekistan | `uz_vat` | Uzbekistan VAT Number
+    /// | | Venezuela | `ve_rif` | Venezuelan RIF Number | | Vietnam | `vn_tin` |
+    /// Vietnamese Tax ID Number | | Zambia | `zm_tin` | Zambia Tax Identification
     /// Number | | Zimbabwe | `zw_tin` | Zimbabwe Tax Identification Number |</para>
     /// </summary>
     public CustomerTaxID? TaxID
@@ -403,6 +426,8 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
     public CustomerUpdateByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParams(
         CustomerUpdateByExternalIDParams customerUpdateByExternalIDParams
     )
@@ -412,6 +437,7 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
 
         this._rawBodyData = new(customerUpdateByExternalIDParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -429,27 +455,61 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
     CustomerUpdateByExternalIDParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string id
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.ID = id;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CustomerUpdateByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string id
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            id
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ID"] = JsonSerializer.SerializeToElement(this.ID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CustomerUpdateByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.ID?.Equals(other.ID) ?? other.ID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -479,6 +539,11 @@ public sealed record class CustomerUpdateByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -531,10 +596,13 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfiguration 
 
     public CustomerUpdateByExternalIDParamsPaymentConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsPaymentConfiguration(
         CustomerUpdateByExternalIDParamsPaymentConfiguration customerUpdateByExternalIDParamsPaymentConfiguration
     )
         : base(customerUpdateByExternalIDParamsPaymentConfiguration) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsPaymentConfiguration(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -602,6 +670,21 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     }
 
     /// <summary>
+    /// The ID of a shared payment token granted by an agent to use as the default
+    /// payment instrument for this customer. When set, auto-collection will use
+    /// this token instead of the customer's default payment method.
+    /// </summary>
+    public string? DefaultSharedPaymentToken
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("default_shared_payment_token");
+        }
+        init { this._rawData.Set("default_shared_payment_token", value); }
+    }
+
+    /// <summary>
     /// List of Stripe payment method types to exclude for this customer. Excluded
     /// payment methods will not be available for the customer to select during payment,
     /// and will not be used for auto-collection. If a customer's default payment
@@ -635,15 +718,19 @@ public sealed record class CustomerUpdateByExternalIDParamsPaymentConfigurationP
     public override void Validate()
     {
         this.ProviderType.Validate();
+        _ = this.DefaultSharedPaymentToken;
         _ = this.ExcludedPaymentMethodTypes;
     }
 
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider(
         CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider customerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider
     )
         : base(customerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsPaymentConfigurationPaymentProvider(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -761,6 +848,7 @@ public enum CustomerUpdateByExternalIDParamsPaymentProvider
     StripeCharge,
     StripeInvoice,
     Netsuite,
+    Adyen,
 }
 
 sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
@@ -779,6 +867,7 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
             "stripe_charge" => CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge,
             "stripe_invoice" => CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice,
             "netsuite" => CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite,
+            "adyen" => CustomerUpdateByExternalIDParamsPaymentProvider.Adyen,
             _ => (CustomerUpdateByExternalIDParamsPaymentProvider)(-1),
         };
     }
@@ -798,6 +887,7 @@ sealed class CustomerUpdateByExternalIDParamsPaymentProviderConverter
                 CustomerUpdateByExternalIDParamsPaymentProvider.StripeCharge => "stripe_charge",
                 CustomerUpdateByExternalIDParamsPaymentProvider.StripeInvoice => "stripe_invoice",
                 CustomerUpdateByExternalIDParamsPaymentProvider.Netsuite => "netsuite",
+                CustomerUpdateByExternalIDParamsPaymentProvider.Adyen => "adyen",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -918,7 +1008,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewAvalaraTaxConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -939,7 +1029,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewTaxJarConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -960,7 +1050,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewSphereConfiguration"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -981,7 +1071,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CustomerUpdateByExternalIDParamsTaxConfigurationNumeral"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1004,7 +1094,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CustomerUpdateByExternalIDParamsTaxConfigurationAnrok"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1027,7 +1117,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CustomerUpdateByExternalIDParamsTaxConfigurationStripe"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1049,7 +1139,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1060,12 +1150,12 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (NewAvalaraTaxConfiguration value) => {...},
-    ///     (NewTaxJarConfiguration value) => {...},
-    ///     (NewSphereConfiguration value) => {...},
-    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationNumeral value) => {...},
-    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationAnrok value) => {...},
-    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationStripe value) => {...}
+    ///     (NewAvalaraTaxConfiguration value) =&gt; {...},
+    ///     (NewTaxJarConfiguration value) =&gt; {...},
+    ///     (NewSphereConfiguration value) =&gt; {...},
+    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationNumeral value) =&gt; {...},
+    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationAnrok value) =&gt; {...},
+    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationStripe value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1110,7 +1200,7 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1121,12 +1211,12 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (NewAvalaraTaxConfiguration value) => {...},
-    ///     (NewTaxJarConfiguration value) => {...},
-    ///     (NewSphereConfiguration value) => {...},
-    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationNumeral value) => {...},
-    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationAnrok value) => {...},
-    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationStripe value) => {...}
+    ///     (NewAvalaraTaxConfiguration value) =&gt; {...},
+    ///     (NewTaxJarConfiguration value) =&gt; {...},
+    ///     (NewSphereConfiguration value) =&gt; {...},
+    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationNumeral value) =&gt; {...},
+    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationAnrok value) =&gt; {...},
+    ///     (CustomerUpdateByExternalIDParamsTaxConfigurationStripe value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1206,10 +1296,10 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
         );
     }
 
-    public virtual bool Equals(CustomerUpdateByExternalIDParamsTaxConfiguration? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CustomerUpdateByExternalIDParamsTaxConfiguration? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -1217,7 +1307,24 @@ public record class CustomerUpdateByExternalIDParamsTaxConfiguration : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewAvalaraTaxConfiguration _ => 0,
+            NewTaxJarConfiguration _ => 1,
+            NewSphereConfiguration _ => 2,
+            CustomerUpdateByExternalIDParamsTaxConfigurationNumeral _ => 3,
+            CustomerUpdateByExternalIDParamsTaxConfigurationAnrok _ => 4,
+            CustomerUpdateByExternalIDParamsTaxConfigurationStripe _ => 5,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
@@ -1252,12 +1359,10 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1274,12 +1379,10 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1296,12 +1399,10 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1319,12 +1420,10 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1342,12 +1441,10 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1365,12 +1462,10 @@ sealed class CustomerUpdateByExternalIDParamsTaxConfigurationConverter
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -1452,10 +1547,13 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationNumer
         this.TaxProvider = JsonSerializer.SerializeToElement("numeral");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral(
         CustomerUpdateByExternalIDParamsTaxConfigurationNumeral customerUpdateByExternalIDParamsTaxConfigurationNumeral
     )
         : base(customerUpdateByExternalIDParamsTaxConfigurationNumeral) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationNumeral(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1559,10 +1657,13 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationAnrok
         this.TaxProvider = JsonSerializer.SerializeToElement("anrok");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok(
         CustomerUpdateByExternalIDParamsTaxConfigurationAnrok customerUpdateByExternalIDParamsTaxConfigurationAnrok
     )
         : base(customerUpdateByExternalIDParamsTaxConfigurationAnrok) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationAnrok(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -1666,10 +1767,13 @@ public sealed record class CustomerUpdateByExternalIDParamsTaxConfigurationStrip
         this.TaxProvider = JsonSerializer.SerializeToElement("stripe");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerUpdateByExternalIDParamsTaxConfigurationStripe(
         CustomerUpdateByExternalIDParamsTaxConfigurationStripe customerUpdateByExternalIDParamsTaxConfigurationStripe
     )
         : base(customerUpdateByExternalIDParamsTaxConfigurationStripe) { }
+#pragma warning restore CS8618
 
     public CustomerUpdateByExternalIDParamsTaxConfigurationStripe(
         IReadOnlyDictionary<string, JsonElement> rawData

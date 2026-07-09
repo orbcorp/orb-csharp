@@ -163,6 +163,23 @@ public class EventIngestResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventIngestResponse
+        {
+            ValidationFailed =
+            [
+                new() { IdempotencyKey = "idempotency_key", ValidationErrors = ["string"] },
+            ],
+            Debug = new() { Duplicate = ["string"], Ingested = ["string"] },
+        };
+
+        EventIngestResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ValidationFailedTest : TestBase
@@ -243,6 +260,20 @@ public class ValidationFailedTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ValidationFailed
+        {
+            IdempotencyKey = "idempotency_key",
+            ValidationErrors = ["string"],
+        };
+
+        ValidationFailed copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DebugTest : TestBase
@@ -308,5 +339,15 @@ public class DebugTest : TestBase
         var model = new Debug { Duplicate = ["string"], Ingested = ["string"] };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Debug { Duplicate = ["string"], Ingested = ["string"] };
+
+        Debug copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

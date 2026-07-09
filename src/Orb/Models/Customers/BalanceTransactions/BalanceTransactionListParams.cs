@@ -28,8 +28,12 @@ namespace Orb.Models.Customers.BalanceTransactions;
 /// <para>This endpoint retrieves all customer balance transactions in reverse chronological
 /// order for a single customer, providing a complete audit trail of all adjustments
 /// and invoice applications.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class BalanceTransactionListParams : ParamsBase
+public record class BalanceTransactionListParams : ParamsBase
 {
     public string? CustomerID { get; init; }
 
@@ -110,11 +114,14 @@ public sealed record class BalanceTransactionListParams : ParamsBase
 
     public BalanceTransactionListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BalanceTransactionListParams(BalanceTransactionListParams balanceTransactionListParams)
         : base(balanceTransactionListParams)
     {
         this.CustomerID = balanceTransactionListParams.CustomerID;
     }
+#pragma warning restore CS8618
 
     public BalanceTransactionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -129,24 +136,56 @@ public sealed record class BalanceTransactionListParams : ParamsBase
     [SetsRequiredMembers]
     BalanceTransactionListParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string customerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.CustomerID = customerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static BalanceTransactionListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string customerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            customerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CustomerID"] = JsonSerializer.SerializeToElement(this.CustomerID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(BalanceTransactionListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -167,5 +206,10 @@ public sealed record class BalanceTransactionListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

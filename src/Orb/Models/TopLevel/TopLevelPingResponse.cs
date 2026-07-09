@@ -28,8 +28,11 @@ public sealed record class TopLevelPingResponse : JsonModel
 
     public TopLevelPingResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopLevelPingResponse(TopLevelPingResponse topLevelPingResponse)
         : base(topLevelPingResponse) { }
+#pragma warning restore CS8618
 
     public TopLevelPingResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

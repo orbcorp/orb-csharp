@@ -198,10 +198,41 @@ public class EventIngestParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/ingest?backfill_id=backfill_id&debug=true"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/ingest?backfill_id=backfill_id&debug=true"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new EventIngestParams
+        {
+            Events =
+            [
+                new()
+                {
+                    EventName = "event_name",
+                    IdempotencyKey = "idempotency_key",
+                    Properties = new Dictionary<string, JsonElement>()
+                    {
+                        { "foo", JsonSerializer.SerializeToElement("bar") },
+                    },
+                    Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+                    CustomerID = "customer_id",
+                    ExternalCustomerID = "external_customer_id",
+                },
+            ],
+            BackfillID = "backfill_id",
+            Debug = true,
+        };
+
+        EventIngestParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -410,5 +441,26 @@ public class EventTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Event
+        {
+            EventName = "event_name",
+            IdempotencyKey = "idempotency_key",
+            Properties = new Dictionary<string, JsonElement>()
+            {
+                { "foo", JsonSerializer.SerializeToElement("bar") },
+            },
+            Timestamp = DateTimeOffset.Parse("2020-12-09T16:09:53Z"),
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+        };
+
+        Event copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

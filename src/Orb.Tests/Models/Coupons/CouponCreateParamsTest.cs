@@ -73,7 +73,23 @@ public class CouponCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/coupons"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/coupons"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CouponCreateParams
+        {
+            Discount = new Percentage(0),
+            RedemptionCode = "HALFOFF",
+            DurationInMonths = 12,
+            MaxRedemptions = 1,
+        };
+
+        CouponCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -174,6 +190,16 @@ public class PercentageTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Percentage { PercentageDiscount = 0 };
+
+        Percentage copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AmountTest : TestBase
@@ -223,5 +249,15 @@ public class AmountTest : TestBase
         var model = new Amount { AmountDiscount = "amount_discount" };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Amount { AmountDiscount = "amount_discount" };
+
+        Amount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

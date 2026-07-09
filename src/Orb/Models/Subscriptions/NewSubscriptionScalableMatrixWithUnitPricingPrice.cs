@@ -83,12 +83,12 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice : J
     /// <summary>
     /// Configuration for scalable_matrix_with_unit_pricing pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig ScalableMatrixWithUnitPricingConfig
+    public required ScalableMatrixWithUnitPricingConfig ScalableMatrixWithUnitPricingConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig>(
+            return this._rawData.GetNotNullClass<ScalableMatrixWithUnitPricingConfig>(
                 "scalable_matrix_with_unit_pricing_config"
             );
         }
@@ -251,6 +251,19 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice : J
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -304,16 +317,20 @@ public sealed record class NewSubscriptionScalableMatrixWithUnitPricingPrice : J
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewSubscriptionScalableMatrixWithUnitPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionScalableMatrixWithUnitPricingPrice(
         NewSubscriptionScalableMatrixWithUnitPricingPrice newSubscriptionScalableMatrixWithUnitPricingPrice
     )
         : base(newSubscriptionScalableMatrixWithUnitPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionScalableMatrixWithUnitPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -461,8 +478,8 @@ sealed class NewSubscriptionScalableMatrixWithUnitPricingPriceModelTypeConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig,
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigFromRaw
+        ScalableMatrixWithUnitPricingConfig,
+        ScalableMatrixWithUnitPricingConfigFromRaw
     >)
 )]
 public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
@@ -483,19 +500,19 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
     /// <summary>
     /// Apply a scaling factor to each dimension
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> MatrixScalingFactors
+    public required IReadOnlyList<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor> MatrixScalingFactors
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+                ImmutableArray<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
             >("matrix_scaling_factors");
         }
         init
         {
             this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+                ImmutableArray<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
             >("matrix_scaling_factors", ImmutableArray.ToImmutableArray(value));
         }
     }
@@ -511,6 +528,19 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
             return this._rawData.GetNotNullClass<string>("unit_price");
         }
         init { this._rawData.Set("unit_price", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price
+    /// </summary>
+    public string? GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
     }
 
     /// <summary>
@@ -548,16 +578,20 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
             item.Validate();
         }
         _ = this.UnitPrice;
+        _ = this.GroupingKey;
         _ = this.Prorate;
         _ = this.SecondDimension;
     }
 
     public ScalableMatrixWithUnitPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingConfig(
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingConfig
+        ScalableMatrixWithUnitPricingConfig scalableMatrixWithUnitPricingConfig
     )
         : base(scalableMatrixWithUnitPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -572,8 +606,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig FromRawUnchecked(
+    /// <inheritdoc cref="ScalableMatrixWithUnitPricingConfigFromRaw.FromRawUnchecked"/>
+    public static ScalableMatrixWithUnitPricingConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -581,16 +615,12 @@ public sealed record class ScalableMatrixWithUnitPricingConfig : JsonModel
     }
 }
 
-class ScalableMatrixWithUnitPricingConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig>
+class ScalableMatrixWithUnitPricingConfigFromRaw : IFromRawJson<ScalableMatrixWithUnitPricingConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig FromRawUnchecked(
+    public ScalableMatrixWithUnitPricingConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfig.FromRawUnchecked(
-            rawData
-        );
+    ) => ScalableMatrixWithUnitPricingConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -598,8 +628,8 @@ class ScalableMatrixWithUnitPricingConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
+        ScalableMatrixWithUnitPricingConfigMatrixScalingFactor,
+        ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
     >)
 )]
 public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFactor : JsonModel
@@ -644,10 +674,13 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingConfigMatrixScalingFactor
+        ScalableMatrixWithUnitPricingConfigMatrixScalingFactor scalableMatrixWithUnitPricingConfigMatrixScalingFactor
     )
         : base(scalableMatrixWithUnitPricingConfigMatrixScalingFactor) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -666,8 +699,8 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
+    /// <inheritdoc cref="ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw.FromRawUnchecked"/>
+    public static ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -676,15 +709,12 @@ public sealed record class ScalableMatrixWithUnitPricingConfigMatrixScalingFacto
 }
 
 class ScalableMatrixWithUnitPricingConfigMatrixScalingFactorFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
+    : IFromRawJson<ScalableMatrixWithUnitPricingConfigMatrixScalingFactor>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
+    public ScalableMatrixWithUnitPricingConfigMatrixScalingFactor FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.ScalableMatrixWithUnitPricingConfigMatrixScalingFactor.FromRawUnchecked(
-            rawData
-        );
+    ) => ScalableMatrixWithUnitPricingConfigMatrixScalingFactor.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(
@@ -737,7 +767,7 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -758,7 +788,7 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -778,7 +808,7 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -789,8 +819,8 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -819,7 +849,7 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -830,8 +860,8 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -882,10 +912,10 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
 
     public virtual bool Equals(
         NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -893,7 +923,20 @@ public record class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionR
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConfigConverter
@@ -928,12 +971,10 @@ sealed class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -950,12 +991,10 @@ sealed class NewSubscriptionScalableMatrixWithUnitPricingPriceConversionRateConf
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

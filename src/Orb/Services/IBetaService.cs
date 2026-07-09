@@ -9,9 +9,13 @@ using Orb.Services.Beta;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
+/// be subscribed to by a customer. Plans define the billing behavior of the subscription.
+/// You can see more about how to configure prices in the [Price resource](/reference/price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IBetaService
 {
@@ -93,7 +97,7 @@ public interface IBetaServiceWithRawResponse
     IExternalPlanIDServiceWithRawResponse ExternalPlanID { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/{plan_id}/versions`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/{plan_id}/versions</c>, but is otherwise the
     /// same as <see cref="IBetaService.CreatePlanVersion(BetaCreatePlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanVersion>> CreatePlanVersion(
@@ -109,7 +113,7 @@ public interface IBetaServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/{plan_id}/versions/{version}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/{plan_id}/versions/{version}</c>, but is otherwise the
     /// same as <see cref="IBetaService.FetchPlanVersion(BetaFetchPlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanVersion>> FetchPlanVersion(
@@ -125,7 +129,7 @@ public interface IBetaServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/{plan_id}/set_default_version`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/{plan_id}/set_default_version</c>, but is otherwise the
     /// same as <see cref="IBetaService.SetDefaultPlanVersion(BetaSetDefaultPlanVersionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> SetDefaultPlanVersion(

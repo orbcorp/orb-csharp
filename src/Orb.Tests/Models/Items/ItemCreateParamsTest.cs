@@ -59,6 +59,20 @@ public class ItemCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/items"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/items"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ItemCreateParams
+        {
+            Name = "API requests",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        ItemCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

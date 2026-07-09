@@ -64,6 +64,21 @@ public class EventSearchParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/events/search"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/events/search"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new EventSearchParams
+        {
+            EventIds = ["string"],
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        EventSearchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

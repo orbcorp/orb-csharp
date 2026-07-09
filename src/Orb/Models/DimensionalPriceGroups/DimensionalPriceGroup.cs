@@ -10,7 +10,7 @@ namespace Orb.Models.DimensionalPriceGroups;
 
 /// <summary>
 /// A dimensional price group is used to partition the result of a billable metric
-/// by a set of dimensions. Prices in a price group must specify the parition used
+/// by a set of dimensions. Prices in a price group must specify the partition used
 /// to derive their usage.
 /// </summary>
 [JsonConverter(typeof(JsonModelConverter<DimensionalPriceGroup, DimensionalPriceGroupFromRaw>))]
@@ -121,8 +121,11 @@ public sealed record class DimensionalPriceGroup : JsonModel
 
     public DimensionalPriceGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceGroup(DimensionalPriceGroup dimensionalPriceGroup)
         : base(dimensionalPriceGroup) { }
+#pragma warning restore CS8618
 
     public DimensionalPriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {

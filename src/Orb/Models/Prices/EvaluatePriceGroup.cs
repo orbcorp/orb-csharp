@@ -71,8 +71,11 @@ public sealed record class EvaluatePriceGroup : JsonModel
 
     public EvaluatePriceGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EvaluatePriceGroup(EvaluatePriceGroup evaluatePriceGroup)
         : base(evaluatePriceGroup) { }
+#pragma warning restore CS8618
 
     public EvaluatePriceGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -148,7 +151,7 @@ public record class GroupingValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -169,7 +172,7 @@ public record class GroupingValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="double"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -190,7 +193,7 @@ public record class GroupingValue : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="bool"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -210,7 +213,7 @@ public record class GroupingValue : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -221,9 +224,9 @@ public record class GroupingValue : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -256,7 +259,7 @@ public record class GroupingValue : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -267,9 +270,9 @@ public record class GroupingValue : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (double value) => {...},
-    ///     (bool value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (double value) =&gt; {...},
+    ///     (bool value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -315,10 +318,10 @@ public record class GroupingValue : ModelBase
         }
     }
 
-    public virtual bool Equals(GroupingValue? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(GroupingValue? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -326,7 +329,21 @@ public record class GroupingValue : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            double _ => 1,
+            bool _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class GroupingValueConverter : JsonConverter<GroupingValue>
@@ -353,7 +370,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<double>(element, options));
+            return new(JsonSerializer.Deserialize<double>(element, options), element);
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -362,7 +379,7 @@ sealed class GroupingValueConverter : JsonConverter<GroupingValue>
 
         try
         {
-            return new(JsonSerializer.Deserialize<bool>(element, options));
+            return new(JsonSerializer.Deserialize<bool>(element, options), element);
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {

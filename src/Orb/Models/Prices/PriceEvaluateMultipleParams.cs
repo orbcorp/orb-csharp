@@ -39,8 +39,12 @@ namespace Orb.Models.Prices;
 ///
 /// <para>Note that this is a POST endpoint rather than a GET endpoint because it
 /// employs a JSON body rather than query parameters.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class PriceEvaluateMultipleParams : ParamsBase
+public record class PriceEvaluateMultipleParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -128,11 +132,14 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
 
     public PriceEvaluateMultipleParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluateMultipleParams(PriceEvaluateMultipleParams priceEvaluateMultipleParams)
         : base(priceEvaluateMultipleParams)
     {
         this._rawBodyData = new(priceEvaluateMultipleParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public PriceEvaluateMultipleParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -159,7 +166,7 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static PriceEvaluateMultipleParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -171,6 +178,34 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(PriceEvaluateMultipleParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -197,6 +232,11 @@ public sealed record class PriceEvaluateMultipleParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -256,14 +296,36 @@ public sealed record class PriceEvaluation : JsonModel
     }
 
     /// <summary>
-    /// New floating price request body params.
+    /// Optional overrides for parameterized billable metric parameters. If the metric
+    /// has parameter definitions and no overrides are provided, defaults will be used.
     /// </summary>
-    public global::Orb.Models.Prices.Price? Price
+    public IReadOnlyDictionary<string, JsonElement>? MetricParameterOverrides
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Prices.Price>("price");
+            return this._rawData.GetNullableClass<FrozenDictionary<string, JsonElement>>(
+                "metric_parameter_overrides"
+            );
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, JsonElement>?>(
+                "metric_parameter_overrides",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// New floating price request body params.
+    /// </summary>
+    public Price? Price
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<Price>("price");
         }
         init { this._rawData.Set("price", value); }
     }
@@ -287,14 +349,18 @@ public sealed record class PriceEvaluation : JsonModel
         _ = this.ExternalPriceID;
         _ = this.Filter;
         _ = this.GroupingKeys;
+        _ = this.MetricParameterOverrides;
         this.Price?.Validate();
         _ = this.PriceID;
     }
 
     public PriceEvaluation() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluation(PriceEvaluation priceEvaluation)
         : base(priceEvaluation) { }
+#pragma warning restore CS8618
 
     public PriceEvaluation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -326,7 +392,7 @@ class PriceEvaluationFromRaw : IFromRawJson<PriceEvaluation>
 /// <summary>
 /// New floating price request body params.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.PriceConverter))]
+[JsonConverter(typeof(PriceConverter))]
 public record class Price : ModelBase
 {
     public object? Value { get; } = null;
@@ -363,6 +429,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.Currency,
                 newFloatingUnitWithPercent: (x) => x.Currency,
                 newFloatingMatrixWithAllocation: (x) => x.Currency,
+                matrixWithThresholdDiscounts: (x) => x.Currency,
                 newFloatingTieredWithProration: (x) => x.Currency,
                 newFloatingUnitWithProration: (x) => x.Currency,
                 newFloatingGroupedAllocation: (x) => x.Currency,
@@ -377,7 +444,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.Currency,
                 newFloatingCumulativeGroupedBulk: (x) => x.Currency,
                 cumulativeGroupedAllocation: (x) => x.Currency,
-                minimum: (x) => x.Currency,
+                dailyCreditAllowance: (x) => x.Currency,
+                meteredAllowance: (x) => x.Currency,
                 newFloatingMinimumComposite: (x) => x.Currency,
                 percent: (x) => x.Currency,
                 eventOutput: (x) => x.Currency
@@ -404,6 +472,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.ItemID,
                 newFloatingUnitWithPercent: (x) => x.ItemID,
                 newFloatingMatrixWithAllocation: (x) => x.ItemID,
+                matrixWithThresholdDiscounts: (x) => x.ItemID,
                 newFloatingTieredWithProration: (x) => x.ItemID,
                 newFloatingUnitWithProration: (x) => x.ItemID,
                 newFloatingGroupedAllocation: (x) => x.ItemID,
@@ -418,7 +487,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.ItemID,
                 newFloatingCumulativeGroupedBulk: (x) => x.ItemID,
                 cumulativeGroupedAllocation: (x) => x.ItemID,
-                minimum: (x) => x.ItemID,
+                dailyCreditAllowance: (x) => x.ItemID,
+                meteredAllowance: (x) => x.ItemID,
                 newFloatingMinimumComposite: (x) => x.ItemID,
                 percent: (x) => x.ItemID,
                 eventOutput: (x) => x.ItemID
@@ -445,6 +515,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.Name,
                 newFloatingUnitWithPercent: (x) => x.Name,
                 newFloatingMatrixWithAllocation: (x) => x.Name,
+                matrixWithThresholdDiscounts: (x) => x.Name,
                 newFloatingTieredWithProration: (x) => x.Name,
                 newFloatingUnitWithProration: (x) => x.Name,
                 newFloatingGroupedAllocation: (x) => x.Name,
@@ -459,7 +530,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.Name,
                 newFloatingCumulativeGroupedBulk: (x) => x.Name,
                 cumulativeGroupedAllocation: (x) => x.Name,
-                minimum: (x) => x.Name,
+                dailyCreditAllowance: (x) => x.Name,
+                meteredAllowance: (x) => x.Name,
                 newFloatingMinimumComposite: (x) => x.Name,
                 percent: (x) => x.Name,
                 eventOutput: (x) => x.Name
@@ -486,6 +558,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.BillableMetricID,
                 newFloatingUnitWithPercent: (x) => x.BillableMetricID,
                 newFloatingMatrixWithAllocation: (x) => x.BillableMetricID,
+                matrixWithThresholdDiscounts: (x) => x.BillableMetricID,
                 newFloatingTieredWithProration: (x) => x.BillableMetricID,
                 newFloatingUnitWithProration: (x) => x.BillableMetricID,
                 newFloatingGroupedAllocation: (x) => x.BillableMetricID,
@@ -500,7 +573,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.BillableMetricID,
                 newFloatingCumulativeGroupedBulk: (x) => x.BillableMetricID,
                 cumulativeGroupedAllocation: (x) => x.BillableMetricID,
-                minimum: (x) => x.BillableMetricID,
+                dailyCreditAllowance: (x) => x.BillableMetricID,
+                meteredAllowance: (x) => x.BillableMetricID,
                 newFloatingMinimumComposite: (x) => x.BillableMetricID,
                 percent: (x) => x.BillableMetricID,
                 eventOutput: (x) => x.BillableMetricID
@@ -527,6 +601,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.BilledInAdvance,
                 newFloatingUnitWithPercent: (x) => x.BilledInAdvance,
                 newFloatingMatrixWithAllocation: (x) => x.BilledInAdvance,
+                matrixWithThresholdDiscounts: (x) => x.BilledInAdvance,
                 newFloatingTieredWithProration: (x) => x.BilledInAdvance,
                 newFloatingUnitWithProration: (x) => x.BilledInAdvance,
                 newFloatingGroupedAllocation: (x) => x.BilledInAdvance,
@@ -541,7 +616,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.BilledInAdvance,
                 newFloatingCumulativeGroupedBulk: (x) => x.BilledInAdvance,
                 cumulativeGroupedAllocation: (x) => x.BilledInAdvance,
-                minimum: (x) => x.BilledInAdvance,
+                dailyCreditAllowance: (x) => x.BilledInAdvance,
+                meteredAllowance: (x) => x.BilledInAdvance,
                 newFloatingMinimumComposite: (x) => x.BilledInAdvance,
                 percent: (x) => x.BilledInAdvance,
                 eventOutput: (x) => x.BilledInAdvance
@@ -568,6 +644,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.BillingCycleConfiguration,
                 newFloatingUnitWithPercent: (x) => x.BillingCycleConfiguration,
                 newFloatingMatrixWithAllocation: (x) => x.BillingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.BillingCycleConfiguration,
                 newFloatingTieredWithProration: (x) => x.BillingCycleConfiguration,
                 newFloatingUnitWithProration: (x) => x.BillingCycleConfiguration,
                 newFloatingGroupedAllocation: (x) => x.BillingCycleConfiguration,
@@ -582,7 +659,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.BillingCycleConfiguration,
                 newFloatingCumulativeGroupedBulk: (x) => x.BillingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.BillingCycleConfiguration,
-                minimum: (x) => x.BillingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.BillingCycleConfiguration,
+                meteredAllowance: (x) => x.BillingCycleConfiguration,
                 newFloatingMinimumComposite: (x) => x.BillingCycleConfiguration,
                 percent: (x) => x.BillingCycleConfiguration,
                 eventOutput: (x) => x.BillingCycleConfiguration
@@ -609,6 +687,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.ConversionRate,
                 newFloatingUnitWithPercent: (x) => x.ConversionRate,
                 newFloatingMatrixWithAllocation: (x) => x.ConversionRate,
+                matrixWithThresholdDiscounts: (x) => x.ConversionRate,
                 newFloatingTieredWithProration: (x) => x.ConversionRate,
                 newFloatingUnitWithProration: (x) => x.ConversionRate,
                 newFloatingGroupedAllocation: (x) => x.ConversionRate,
@@ -623,7 +702,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.ConversionRate,
                 newFloatingCumulativeGroupedBulk: (x) => x.ConversionRate,
                 cumulativeGroupedAllocation: (x) => x.ConversionRate,
-                minimum: (x) => x.ConversionRate,
+                dailyCreditAllowance: (x) => x.ConversionRate,
+                meteredAllowance: (x) => x.ConversionRate,
                 newFloatingMinimumComposite: (x) => x.ConversionRate,
                 percent: (x) => x.ConversionRate,
                 eventOutput: (x) => x.ConversionRate
@@ -650,6 +730,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.DimensionalPriceConfiguration,
                 newFloatingUnitWithPercent: (x) => x.DimensionalPriceConfiguration,
                 newFloatingMatrixWithAllocation: (x) => x.DimensionalPriceConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.DimensionalPriceConfiguration,
                 newFloatingTieredWithProration: (x) => x.DimensionalPriceConfiguration,
                 newFloatingUnitWithProration: (x) => x.DimensionalPriceConfiguration,
                 newFloatingGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
@@ -664,7 +745,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.DimensionalPriceConfiguration,
                 newFloatingCumulativeGroupedBulk: (x) => x.DimensionalPriceConfiguration,
                 cumulativeGroupedAllocation: (x) => x.DimensionalPriceConfiguration,
-                minimum: (x) => x.DimensionalPriceConfiguration,
+                dailyCreditAllowance: (x) => x.DimensionalPriceConfiguration,
+                meteredAllowance: (x) => x.DimensionalPriceConfiguration,
                 newFloatingMinimumComposite: (x) => x.DimensionalPriceConfiguration,
                 percent: (x) => x.DimensionalPriceConfiguration,
                 eventOutput: (x) => x.DimensionalPriceConfiguration
@@ -691,6 +773,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.ExternalPriceID,
                 newFloatingUnitWithPercent: (x) => x.ExternalPriceID,
                 newFloatingMatrixWithAllocation: (x) => x.ExternalPriceID,
+                matrixWithThresholdDiscounts: (x) => x.ExternalPriceID,
                 newFloatingTieredWithProration: (x) => x.ExternalPriceID,
                 newFloatingUnitWithProration: (x) => x.ExternalPriceID,
                 newFloatingGroupedAllocation: (x) => x.ExternalPriceID,
@@ -705,7 +788,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.ExternalPriceID,
                 newFloatingCumulativeGroupedBulk: (x) => x.ExternalPriceID,
                 cumulativeGroupedAllocation: (x) => x.ExternalPriceID,
-                minimum: (x) => x.ExternalPriceID,
+                dailyCreditAllowance: (x) => x.ExternalPriceID,
+                meteredAllowance: (x) => x.ExternalPriceID,
                 newFloatingMinimumComposite: (x) => x.ExternalPriceID,
                 percent: (x) => x.ExternalPriceID,
                 eventOutput: (x) => x.ExternalPriceID
@@ -732,6 +816,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.FixedPriceQuantity,
                 newFloatingUnitWithPercent: (x) => x.FixedPriceQuantity,
                 newFloatingMatrixWithAllocation: (x) => x.FixedPriceQuantity,
+                matrixWithThresholdDiscounts: (x) => x.FixedPriceQuantity,
                 newFloatingTieredWithProration: (x) => x.FixedPriceQuantity,
                 newFloatingUnitWithProration: (x) => x.FixedPriceQuantity,
                 newFloatingGroupedAllocation: (x) => x.FixedPriceQuantity,
@@ -746,7 +831,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.FixedPriceQuantity,
                 newFloatingCumulativeGroupedBulk: (x) => x.FixedPriceQuantity,
                 cumulativeGroupedAllocation: (x) => x.FixedPriceQuantity,
-                minimum: (x) => x.FixedPriceQuantity,
+                dailyCreditAllowance: (x) => x.FixedPriceQuantity,
+                meteredAllowance: (x) => x.FixedPriceQuantity,
                 newFloatingMinimumComposite: (x) => x.FixedPriceQuantity,
                 percent: (x) => x.FixedPriceQuantity,
                 eventOutput: (x) => x.FixedPriceQuantity
@@ -773,6 +859,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.InvoiceGroupingKey,
                 newFloatingUnitWithPercent: (x) => x.InvoiceGroupingKey,
                 newFloatingMatrixWithAllocation: (x) => x.InvoiceGroupingKey,
+                matrixWithThresholdDiscounts: (x) => x.InvoiceGroupingKey,
                 newFloatingTieredWithProration: (x) => x.InvoiceGroupingKey,
                 newFloatingUnitWithProration: (x) => x.InvoiceGroupingKey,
                 newFloatingGroupedAllocation: (x) => x.InvoiceGroupingKey,
@@ -787,7 +874,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.InvoiceGroupingKey,
                 newFloatingCumulativeGroupedBulk: (x) => x.InvoiceGroupingKey,
                 cumulativeGroupedAllocation: (x) => x.InvoiceGroupingKey,
-                minimum: (x) => x.InvoiceGroupingKey,
+                dailyCreditAllowance: (x) => x.InvoiceGroupingKey,
+                meteredAllowance: (x) => x.InvoiceGroupingKey,
                 newFloatingMinimumComposite: (x) => x.InvoiceGroupingKey,
                 percent: (x) => x.InvoiceGroupingKey,
                 eventOutput: (x) => x.InvoiceGroupingKey
@@ -814,6 +902,7 @@ public record class Price : ModelBase
                 newFloatingPackageWithAllocation: (x) => x.InvoicingCycleConfiguration,
                 newFloatingUnitWithPercent: (x) => x.InvoicingCycleConfiguration,
                 newFloatingMatrixWithAllocation: (x) => x.InvoicingCycleConfiguration,
+                matrixWithThresholdDiscounts: (x) => x.InvoicingCycleConfiguration,
                 newFloatingTieredWithProration: (x) => x.InvoicingCycleConfiguration,
                 newFloatingUnitWithProration: (x) => x.InvoicingCycleConfiguration,
                 newFloatingGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
@@ -828,10 +917,54 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing: (x) => x.InvoicingCycleConfiguration,
                 newFloatingCumulativeGroupedBulk: (x) => x.InvoicingCycleConfiguration,
                 cumulativeGroupedAllocation: (x) => x.InvoicingCycleConfiguration,
-                minimum: (x) => x.InvoicingCycleConfiguration,
+                dailyCreditAllowance: (x) => x.InvoicingCycleConfiguration,
+                meteredAllowance: (x) => x.InvoicingCycleConfiguration,
                 newFloatingMinimumComposite: (x) => x.InvoicingCycleConfiguration,
                 percent: (x) => x.InvoicingCycleConfiguration,
                 eventOutput: (x) => x.InvoicingCycleConfiguration
+            );
+        }
+    }
+
+    public string? LicenseTypeID
+    {
+        get
+        {
+            return Match<string?>(
+                newFloatingUnit: (x) => x.LicenseTypeID,
+                newFloatingTiered: (x) => x.LicenseTypeID,
+                newFloatingBulk: (x) => x.LicenseTypeID,
+                bulkWithFilters: (x) => x.LicenseTypeID,
+                newFloatingPackage: (x) => x.LicenseTypeID,
+                newFloatingMatrix: (x) => x.LicenseTypeID,
+                newFloatingThresholdTotalAmount: (x) => x.LicenseTypeID,
+                newFloatingTieredPackage: (x) => x.LicenseTypeID,
+                newFloatingTieredWithMinimum: (x) => x.LicenseTypeID,
+                newFloatingGroupedTiered: (x) => x.LicenseTypeID,
+                newFloatingTieredPackageWithMinimum: (x) => x.LicenseTypeID,
+                newFloatingPackageWithAllocation: (x) => x.LicenseTypeID,
+                newFloatingUnitWithPercent: (x) => x.LicenseTypeID,
+                newFloatingMatrixWithAllocation: (x) => x.LicenseTypeID,
+                matrixWithThresholdDiscounts: (x) => x.LicenseTypeID,
+                newFloatingTieredWithProration: (x) => x.LicenseTypeID,
+                newFloatingUnitWithProration: (x) => x.LicenseTypeID,
+                newFloatingGroupedAllocation: (x) => x.LicenseTypeID,
+                newFloatingBulkWithProration: (x) => x.LicenseTypeID,
+                newFloatingGroupedWithProratedMinimum: (x) => x.LicenseTypeID,
+                newFloatingGroupedWithMeteredMinimum: (x) => x.LicenseTypeID,
+                groupedWithMinMaxThresholds: (x) => x.LicenseTypeID,
+                newFloatingMatrixWithDisplayName: (x) => x.LicenseTypeID,
+                newFloatingGroupedTieredPackage: (x) => x.LicenseTypeID,
+                newFloatingMaxGroupTieredPackage: (x) => x.LicenseTypeID,
+                newFloatingScalableMatrixWithUnitPricing: (x) => x.LicenseTypeID,
+                newFloatingScalableMatrixWithTieredPricing: (x) => x.LicenseTypeID,
+                newFloatingCumulativeGroupedBulk: (x) => x.LicenseTypeID,
+                cumulativeGroupedAllocation: (x) => x.LicenseTypeID,
+                dailyCreditAllowance: (x) => x.LicenseTypeID,
+                meteredAllowance: (x) => x.LicenseTypeID,
+                newFloatingMinimumComposite: (x) => x.LicenseTypeID,
+                percent: (x) => x.LicenseTypeID,
+                eventOutput: (x) => x.LicenseTypeID
             );
         }
     }
@@ -915,6 +1048,12 @@ public record class Price : ModelBase
     }
 
     public Price(NewFloatingMatrixWithAllocationPrice value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(PriceMatrixWithThresholdDiscounts value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1004,7 +1143,13 @@ public record class Price : ModelBase
         this._element = element;
     }
 
-    public Price(global::Orb.Models.Prices.PriceMinimum value, JsonElement? element = null)
+    public Price(PriceDailyCreditAllowance value, JsonElement? element = null)
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public Price(PriceMeteredAllowance value, JsonElement? element = null)
     {
         this.Value = value;
         this._element = element;
@@ -1037,7 +1182,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1058,7 +1203,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1079,7 +1224,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingBulkPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1100,7 +1245,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceBulkWithFilters"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1121,7 +1266,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1142,7 +1287,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1163,7 +1308,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingThresholdTotalAmountPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1186,7 +1331,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1209,7 +1354,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredWithMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1232,7 +1377,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedTieredPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1255,7 +1400,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredPackageWithMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1278,7 +1423,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingPackageWithAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1301,7 +1446,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitWithPercentPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1324,7 +1469,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixWithAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1345,9 +1490,32 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PriceMatrixWithThresholdDiscounts"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMatrixWithThresholdDiscounts(out var value)) {
+    ///     // `value` is of type `PriceMatrixWithThresholdDiscounts`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMatrixWithThresholdDiscounts(
+        [NotNullWhen(true)] out PriceMatrixWithThresholdDiscounts? value
+    )
+    {
+        value = this.Value as PriceMatrixWithThresholdDiscounts;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingTieredWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1370,7 +1538,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingUnitWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1393,7 +1561,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedAllocationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1416,7 +1584,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingBulkWithProrationPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1439,7 +1607,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedWithProratedMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1462,7 +1630,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedWithMeteredMinimumPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1485,7 +1653,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceGroupedWithMinMaxThresholds"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1508,7 +1676,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMatrixWithDisplayNamePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1531,7 +1699,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingGroupedTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1554,7 +1722,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMaxGroupTieredPackagePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1577,7 +1745,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingScalableMatrixWithUnitPricingPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1600,7 +1768,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingScalableMatrixWithTieredPricingPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1623,7 +1791,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingCumulativeGroupedBulkPrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1646,7 +1814,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceCumulativeGroupedAllocation"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1667,24 +1835,45 @@ public record class Price : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="global::Orb.Models.Prices.PriceMinimum"/>.
+    /// type <see cref="PriceDailyCreditAllowance"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
-    /// if (instance.TryPickMinimum(out var value)) {
-    ///     // `value` is of type `global::Orb.Models.Prices.PriceMinimum`
+    /// if (instance.TryPickDailyCreditAllowance(out var value)) {
+    ///     // `value` is of type `PriceDailyCreditAllowance`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
     /// </example>
     /// </summary>
-    public bool TryPickMinimum(
-        [NotNullWhen(true)] out global::Orb.Models.Prices.PriceMinimum? value
+    public bool TryPickDailyCreditAllowance(
+        [NotNullWhen(true)] out PriceDailyCreditAllowance? value
     )
     {
-        value = this.Value as global::Orb.Models.Prices.PriceMinimum;
+        value = this.Value as PriceDailyCreditAllowance;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="PriceMeteredAllowance"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickMeteredAllowance(out var value)) {
+    ///     // `value` is of type `PriceMeteredAllowance`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickMeteredAllowance([NotNullWhen(true)] out PriceMeteredAllowance? value)
+    {
+        value = this.Value as PriceMeteredAllowance;
         return value != null;
     }
 
@@ -1692,7 +1881,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="NewFloatingMinimumCompositePrice"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1715,7 +1904,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PricePercent"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1736,7 +1925,7 @@ public record class Price : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PriceEventOutput"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -1756,7 +1945,7 @@ public record class Price : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1767,38 +1956,40 @@ public record class Price : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (NewFloatingUnitPrice value) => {...},
-    ///     (NewFloatingTieredPrice value) => {...},
-    ///     (NewFloatingBulkPrice value) => {...},
-    ///     (PriceBulkWithFilters value) => {...},
-    ///     (NewFloatingPackagePrice value) => {...},
-    ///     (NewFloatingMatrixPrice value) => {...},
-    ///     (NewFloatingThresholdTotalAmountPrice value) => {...},
-    ///     (NewFloatingTieredPackagePrice value) => {...},
-    ///     (NewFloatingTieredWithMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedTieredPrice value) => {...},
-    ///     (NewFloatingTieredPackageWithMinimumPrice value) => {...},
-    ///     (NewFloatingPackageWithAllocationPrice value) => {...},
-    ///     (NewFloatingUnitWithPercentPrice value) => {...},
-    ///     (NewFloatingMatrixWithAllocationPrice value) => {...},
-    ///     (NewFloatingTieredWithProrationPrice value) => {...},
-    ///     (NewFloatingUnitWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedAllocationPrice value) => {...},
-    ///     (NewFloatingBulkWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedWithProratedMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (PriceGroupedWithMinMaxThresholds value) => {...},
-    ///     (NewFloatingMatrixWithDisplayNamePrice value) => {...},
-    ///     (NewFloatingGroupedTieredPackagePrice value) => {...},
-    ///     (NewFloatingMaxGroupTieredPackagePrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
-    ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
-    ///     (PriceCumulativeGroupedAllocation value) => {...},
-    ///     (global::Orb.Models.Prices.PriceMinimum value) => {...},
-    ///     (NewFloatingMinimumCompositePrice value) => {...},
-    ///     (PricePercent value) => {...},
-    ///     (PriceEventOutput value) => {...}
+    ///     (NewFloatingUnitPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPrice value) =&gt; {...},
+    ///     (NewFloatingBulkPrice value) =&gt; {...},
+    ///     (PriceBulkWithFilters value) =&gt; {...},
+    ///     (NewFloatingPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMatrixPrice value) =&gt; {...},
+    ///     (NewFloatingThresholdTotalAmountPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackageWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
+    ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (PriceMatrixWithThresholdDiscounts value) =&gt; {...},
+    ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingBulkWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithProratedMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) =&gt; {...},
+    ///     (PriceGroupedWithMinMaxThresholds value) =&gt; {...},
+    ///     (NewFloatingMatrixWithDisplayNamePrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMaxGroupTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) =&gt; {...},
+    ///     (NewFloatingCumulativeGroupedBulkPrice value) =&gt; {...},
+    ///     (PriceCumulativeGroupedAllocation value) =&gt; {...},
+    ///     (PriceDailyCreditAllowance value) =&gt; {...},
+    ///     (PriceMeteredAllowance value) =&gt; {...},
+    ///     (NewFloatingMinimumCompositePrice value) =&gt; {...},
+    ///     (PricePercent value) =&gt; {...},
+    ///     (PriceEventOutput value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -1818,6 +2009,7 @@ public record class Price : ModelBase
         System::Action<NewFloatingPackageWithAllocationPrice> newFloatingPackageWithAllocation,
         System::Action<NewFloatingUnitWithPercentPrice> newFloatingUnitWithPercent,
         System::Action<NewFloatingMatrixWithAllocationPrice> newFloatingMatrixWithAllocation,
+        System::Action<PriceMatrixWithThresholdDiscounts> matrixWithThresholdDiscounts,
         System::Action<NewFloatingTieredWithProrationPrice> newFloatingTieredWithProration,
         System::Action<NewFloatingUnitWithProrationPrice> newFloatingUnitWithProration,
         System::Action<NewFloatingGroupedAllocationPrice> newFloatingGroupedAllocation,
@@ -1832,7 +2024,8 @@ public record class Price : ModelBase
         System::Action<NewFloatingScalableMatrixWithTieredPricingPrice> newFloatingScalableMatrixWithTieredPricing,
         System::Action<NewFloatingCumulativeGroupedBulkPrice> newFloatingCumulativeGroupedBulk,
         System::Action<PriceCumulativeGroupedAllocation> cumulativeGroupedAllocation,
-        System::Action<global::Orb.Models.Prices.PriceMinimum> minimum,
+        System::Action<PriceDailyCreditAllowance> dailyCreditAllowance,
+        System::Action<PriceMeteredAllowance> meteredAllowance,
         System::Action<NewFloatingMinimumCompositePrice> newFloatingMinimumComposite,
         System::Action<PricePercent> percent,
         System::Action<PriceEventOutput> eventOutput
@@ -1882,6 +2075,9 @@ public record class Price : ModelBase
             case NewFloatingMatrixWithAllocationPrice value:
                 newFloatingMatrixWithAllocation(value);
                 break;
+            case PriceMatrixWithThresholdDiscounts value:
+                matrixWithThresholdDiscounts(value);
+                break;
             case NewFloatingTieredWithProrationPrice value:
                 newFloatingTieredWithProration(value);
                 break;
@@ -1924,8 +2120,11 @@ public record class Price : ModelBase
             case PriceCumulativeGroupedAllocation value:
                 cumulativeGroupedAllocation(value);
                 break;
-            case global::Orb.Models.Prices.PriceMinimum value:
-                minimum(value);
+            case PriceDailyCreditAllowance value:
+                dailyCreditAllowance(value);
+                break;
+            case PriceMeteredAllowance value:
+                meteredAllowance(value);
                 break;
             case NewFloatingMinimumCompositePrice value:
                 newFloatingMinimumComposite(value);
@@ -1945,7 +2144,7 @@ public record class Price : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -1956,38 +2155,40 @@ public record class Price : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (NewFloatingUnitPrice value) => {...},
-    ///     (NewFloatingTieredPrice value) => {...},
-    ///     (NewFloatingBulkPrice value) => {...},
-    ///     (PriceBulkWithFilters value) => {...},
-    ///     (NewFloatingPackagePrice value) => {...},
-    ///     (NewFloatingMatrixPrice value) => {...},
-    ///     (NewFloatingThresholdTotalAmountPrice value) => {...},
-    ///     (NewFloatingTieredPackagePrice value) => {...},
-    ///     (NewFloatingTieredWithMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedTieredPrice value) => {...},
-    ///     (NewFloatingTieredPackageWithMinimumPrice value) => {...},
-    ///     (NewFloatingPackageWithAllocationPrice value) => {...},
-    ///     (NewFloatingUnitWithPercentPrice value) => {...},
-    ///     (NewFloatingMatrixWithAllocationPrice value) => {...},
-    ///     (NewFloatingTieredWithProrationPrice value) => {...},
-    ///     (NewFloatingUnitWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedAllocationPrice value) => {...},
-    ///     (NewFloatingBulkWithProrationPrice value) => {...},
-    ///     (NewFloatingGroupedWithProratedMinimumPrice value) => {...},
-    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) => {...},
-    ///     (PriceGroupedWithMinMaxThresholds value) => {...},
-    ///     (NewFloatingMatrixWithDisplayNamePrice value) => {...},
-    ///     (NewFloatingGroupedTieredPackagePrice value) => {...},
-    ///     (NewFloatingMaxGroupTieredPackagePrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) => {...},
-    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) => {...},
-    ///     (NewFloatingCumulativeGroupedBulkPrice value) => {...},
-    ///     (PriceCumulativeGroupedAllocation value) => {...},
-    ///     (global::Orb.Models.Prices.PriceMinimum value) => {...},
-    ///     (NewFloatingMinimumCompositePrice value) => {...},
-    ///     (PricePercent value) => {...},
-    ///     (PriceEventOutput value) => {...}
+    ///     (NewFloatingUnitPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPrice value) =&gt; {...},
+    ///     (NewFloatingBulkPrice value) =&gt; {...},
+    ///     (PriceBulkWithFilters value) =&gt; {...},
+    ///     (NewFloatingPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMatrixPrice value) =&gt; {...},
+    ///     (NewFloatingThresholdTotalAmountPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingTieredWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPrice value) =&gt; {...},
+    ///     (NewFloatingTieredPackageWithMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingPackageWithAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithPercentPrice value) =&gt; {...},
+    ///     (NewFloatingMatrixWithAllocationPrice value) =&gt; {...},
+    ///     (PriceMatrixWithThresholdDiscounts value) =&gt; {...},
+    ///     (NewFloatingTieredWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingUnitWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedAllocationPrice value) =&gt; {...},
+    ///     (NewFloatingBulkWithProrationPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithProratedMinimumPrice value) =&gt; {...},
+    ///     (NewFloatingGroupedWithMeteredMinimumPrice value) =&gt; {...},
+    ///     (PriceGroupedWithMinMaxThresholds value) =&gt; {...},
+    ///     (NewFloatingMatrixWithDisplayNamePrice value) =&gt; {...},
+    ///     (NewFloatingGroupedTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingMaxGroupTieredPackagePrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithUnitPricingPrice value) =&gt; {...},
+    ///     (NewFloatingScalableMatrixWithTieredPricingPrice value) =&gt; {...},
+    ///     (NewFloatingCumulativeGroupedBulkPrice value) =&gt; {...},
+    ///     (PriceCumulativeGroupedAllocation value) =&gt; {...},
+    ///     (PriceDailyCreditAllowance value) =&gt; {...},
+    ///     (PriceMeteredAllowance value) =&gt; {...},
+    ///     (NewFloatingMinimumCompositePrice value) =&gt; {...},
+    ///     (PricePercent value) =&gt; {...},
+    ///     (PriceEventOutput value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -2010,6 +2211,7 @@ public record class Price : ModelBase
         System::Func<NewFloatingPackageWithAllocationPrice, T> newFloatingPackageWithAllocation,
         System::Func<NewFloatingUnitWithPercentPrice, T> newFloatingUnitWithPercent,
         System::Func<NewFloatingMatrixWithAllocationPrice, T> newFloatingMatrixWithAllocation,
+        System::Func<PriceMatrixWithThresholdDiscounts, T> matrixWithThresholdDiscounts,
         System::Func<NewFloatingTieredWithProrationPrice, T> newFloatingTieredWithProration,
         System::Func<NewFloatingUnitWithProrationPrice, T> newFloatingUnitWithProration,
         System::Func<NewFloatingGroupedAllocationPrice, T> newFloatingGroupedAllocation,
@@ -2036,7 +2238,8 @@ public record class Price : ModelBase
         > newFloatingScalableMatrixWithTieredPricing,
         System::Func<NewFloatingCumulativeGroupedBulkPrice, T> newFloatingCumulativeGroupedBulk,
         System::Func<PriceCumulativeGroupedAllocation, T> cumulativeGroupedAllocation,
-        System::Func<global::Orb.Models.Prices.PriceMinimum, T> minimum,
+        System::Func<PriceDailyCreditAllowance, T> dailyCreditAllowance,
+        System::Func<PriceMeteredAllowance, T> meteredAllowance,
         System::Func<NewFloatingMinimumCompositePrice, T> newFloatingMinimumComposite,
         System::Func<PricePercent, T> percent,
         System::Func<PriceEventOutput, T> eventOutput
@@ -2060,6 +2263,7 @@ public record class Price : ModelBase
             NewFloatingPackageWithAllocationPrice value => newFloatingPackageWithAllocation(value),
             NewFloatingUnitWithPercentPrice value => newFloatingUnitWithPercent(value),
             NewFloatingMatrixWithAllocationPrice value => newFloatingMatrixWithAllocation(value),
+            PriceMatrixWithThresholdDiscounts value => matrixWithThresholdDiscounts(value),
             NewFloatingTieredWithProrationPrice value => newFloatingTieredWithProration(value),
             NewFloatingUnitWithProrationPrice value => newFloatingUnitWithProration(value),
             NewFloatingGroupedAllocationPrice value => newFloatingGroupedAllocation(value),
@@ -2079,7 +2283,8 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing(value),
             NewFloatingCumulativeGroupedBulkPrice value => newFloatingCumulativeGroupedBulk(value),
             PriceCumulativeGroupedAllocation value => cumulativeGroupedAllocation(value),
-            global::Orb.Models.Prices.PriceMinimum value => minimum(value),
+            PriceDailyCreditAllowance value => dailyCreditAllowance(value),
+            PriceMeteredAllowance value => meteredAllowance(value),
             NewFloatingMinimumCompositePrice value => newFloatingMinimumComposite(value),
             PricePercent value => percent(value),
             PriceEventOutput value => eventOutput(value),
@@ -2087,126 +2292,82 @@ public record class Price : ModelBase
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingUnitPrice value) =>
+    public static implicit operator Price(NewFloatingUnitPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingBulkPrice value) => new(value);
+
+    public static implicit operator Price(PriceBulkWithFilters value) => new(value);
+
+    public static implicit operator Price(NewFloatingPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingMatrixPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingThresholdTotalAmountPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredPackagePrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredWithMinimumPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingGroupedTieredPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredPackageWithMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingTieredPrice value) =>
+    public static implicit operator Price(NewFloatingPackageWithAllocationPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingBulkPrice value) =>
+    public static implicit operator Price(NewFloatingUnitWithPercentPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingMatrixWithAllocationPrice value) => new(value);
+
+    public static implicit operator Price(PriceMatrixWithThresholdDiscounts value) => new(value);
+
+    public static implicit operator Price(NewFloatingTieredWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingUnitWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingGroupedAllocationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingBulkWithProrationPrice value) => new(value);
+
+    public static implicit operator Price(NewFloatingGroupedWithProratedMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(PriceBulkWithFilters value) =>
+    public static implicit operator Price(NewFloatingGroupedWithMeteredMinimumPrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingPackagePrice value
-    ) => new(value);
+    public static implicit operator Price(PriceGroupedWithMinMaxThresholds value) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(NewFloatingMatrixPrice value) =>
+    public static implicit operator Price(NewFloatingMatrixWithDisplayNamePrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingThresholdTotalAmountPrice value
-    ) => new(value);
+    public static implicit operator Price(NewFloatingGroupedTieredPackagePrice value) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredWithMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedTieredPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredPackageWithMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingPackageWithAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingUnitWithPercentPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMatrixWithAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingTieredWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingUnitWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedAllocationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingBulkWithProrationPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedWithProratedMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedWithMeteredMinimumPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        PriceGroupedWithMinMaxThresholds value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMatrixWithDisplayNamePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingGroupedTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMaxGroupTieredPackagePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingScalableMatrixWithUnitPricingPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingScalableMatrixWithTieredPricingPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingCumulativeGroupedBulkPrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        PriceCumulativeGroupedAllocation value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        global::Orb.Models.Prices.PriceMinimum value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(
-        NewFloatingMinimumCompositePrice value
-    ) => new(value);
-
-    public static implicit operator global::Orb.Models.Prices.Price(PricePercent value) =>
+    public static implicit operator Price(NewFloatingMaxGroupTieredPackagePrice value) =>
         new(value);
 
-    public static implicit operator global::Orb.Models.Prices.Price(PriceEventOutput value) =>
+    public static implicit operator Price(NewFloatingScalableMatrixWithUnitPricingPrice value) =>
         new(value);
+
+    public static implicit operator Price(NewFloatingScalableMatrixWithTieredPricingPrice value) =>
+        new(value);
+
+    public static implicit operator Price(NewFloatingCumulativeGroupedBulkPrice value) =>
+        new(value);
+
+    public static implicit operator Price(PriceCumulativeGroupedAllocation value) => new(value);
+
+    public static implicit operator Price(PriceDailyCreditAllowance value) => new(value);
+
+    public static implicit operator Price(PriceMeteredAllowance value) => new(value);
+
+    public static implicit operator Price(NewFloatingMinimumCompositePrice value) => new(value);
+
+    public static implicit operator Price(PricePercent value) => new(value);
+
+    public static implicit operator Price(PriceEventOutput value) => new(value);
 
     /// <summary>
     /// Validates that the instance was constructed with a known variant and that this variant is valid
@@ -2239,6 +2400,7 @@ public record class Price : ModelBase
             (newFloatingPackageWithAllocation) => newFloatingPackageWithAllocation.Validate(),
             (newFloatingUnitWithPercent) => newFloatingUnitWithPercent.Validate(),
             (newFloatingMatrixWithAllocation) => newFloatingMatrixWithAllocation.Validate(),
+            (matrixWithThresholdDiscounts) => matrixWithThresholdDiscounts.Validate(),
             (newFloatingTieredWithProration) => newFloatingTieredWithProration.Validate(),
             (newFloatingUnitWithProration) => newFloatingUnitWithProration.Validate(),
             (newFloatingGroupedAllocation) => newFloatingGroupedAllocation.Validate(),
@@ -2257,17 +2419,18 @@ public record class Price : ModelBase
                 newFloatingScalableMatrixWithTieredPricing.Validate(),
             (newFloatingCumulativeGroupedBulk) => newFloatingCumulativeGroupedBulk.Validate(),
             (cumulativeGroupedAllocation) => cumulativeGroupedAllocation.Validate(),
-            (minimum) => minimum.Validate(),
+            (dailyCreditAllowance) => dailyCreditAllowance.Validate(),
+            (meteredAllowance) => meteredAllowance.Validate(),
             (newFloatingMinimumComposite) => newFloatingMinimumComposite.Validate(),
             (percent) => percent.Validate(),
             (eventOutput) => eventOutput.Validate()
         );
     }
 
-    public virtual bool Equals(global::Orb.Models.Prices.Price? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(Price? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -2275,12 +2438,57 @@ public record class Price : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            NewFloatingUnitPrice _ => 0,
+            NewFloatingTieredPrice _ => 1,
+            NewFloatingBulkPrice _ => 2,
+            PriceBulkWithFilters _ => 3,
+            NewFloatingPackagePrice _ => 4,
+            NewFloatingMatrixPrice _ => 5,
+            NewFloatingThresholdTotalAmountPrice _ => 6,
+            NewFloatingTieredPackagePrice _ => 7,
+            NewFloatingTieredWithMinimumPrice _ => 8,
+            NewFloatingGroupedTieredPrice _ => 9,
+            NewFloatingTieredPackageWithMinimumPrice _ => 10,
+            NewFloatingPackageWithAllocationPrice _ => 11,
+            NewFloatingUnitWithPercentPrice _ => 12,
+            NewFloatingMatrixWithAllocationPrice _ => 13,
+            PriceMatrixWithThresholdDiscounts _ => 14,
+            NewFloatingTieredWithProrationPrice _ => 15,
+            NewFloatingUnitWithProrationPrice _ => 16,
+            NewFloatingGroupedAllocationPrice _ => 17,
+            NewFloatingBulkWithProrationPrice _ => 18,
+            NewFloatingGroupedWithProratedMinimumPrice _ => 19,
+            NewFloatingGroupedWithMeteredMinimumPrice _ => 20,
+            PriceGroupedWithMinMaxThresholds _ => 21,
+            NewFloatingMatrixWithDisplayNamePrice _ => 22,
+            NewFloatingGroupedTieredPackagePrice _ => 23,
+            NewFloatingMaxGroupTieredPackagePrice _ => 24,
+            NewFloatingScalableMatrixWithUnitPricingPrice _ => 25,
+            NewFloatingScalableMatrixWithTieredPricingPrice _ => 26,
+            NewFloatingCumulativeGroupedBulkPrice _ => 27,
+            PriceCumulativeGroupedAllocation _ => 28,
+            PriceDailyCreditAllowance _ => 29,
+            PriceMeteredAllowance _ => 30,
+            NewFloatingMinimumCompositePrice _ => 31,
+            PricePercent _ => 32,
+            PriceEventOutput _ => 33,
+            _ => -1,
+        };
+    }
 }
 
-sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
+sealed class PriceConverter : JsonConverter<Price?>
 {
-    public override global::Orb.Models.Prices.Price? Read(
+    public override Price? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -2309,12 +2517,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2331,12 +2537,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2353,12 +2557,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2375,12 +2577,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2397,12 +2597,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2419,12 +2617,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2442,12 +2638,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2464,12 +2658,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2487,12 +2679,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2509,12 +2699,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2532,12 +2720,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2555,12 +2741,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2577,12 +2761,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2600,12 +2782,31 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "matrix_with_threshold_discounts":
+            {
+                try
+                {
+                    var deserialized =
+                        JsonSerializer.Deserialize<PriceMatrixWithThresholdDiscounts>(
+                            element,
+                            options
+                        );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2623,12 +2824,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2646,12 +2845,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2669,12 +2866,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2692,12 +2887,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2715,12 +2908,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2738,12 +2929,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2760,12 +2949,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2783,12 +2970,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2806,12 +2991,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2829,12 +3012,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2852,12 +3033,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2875,12 +3054,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2898,12 +3075,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                         );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2920,35 +3095,50 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
 
                 return new(element);
             }
-            case "minimum":
+            case "daily_credit_allowance":
             {
                 try
                 {
-                    var deserialized =
-                        JsonSerializer.Deserialize<global::Orb.Models.Prices.PriceMinimum>(
-                            element,
-                            options
-                        );
+                    var deserialized = JsonSerializer.Deserialize<PriceDailyCreditAllowance>(
+                        element,
+                        options
+                    );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "metered_allowance":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<PriceMeteredAllowance>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2965,12 +3155,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -2984,12 +3172,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     var deserialized = JsonSerializer.Deserialize<PricePercent>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3006,12 +3192,10 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3020,16 +3204,12 @@ sealed class PriceConverter : JsonConverter<global::Orb.Models.Prices.Price?>
             }
             default:
             {
-                return new global::Orb.Models.Prices.Price(element);
+                return new Price(element);
             }
         }
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Prices.Price? value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Price? value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(writer, value?.Json, options);
     }
@@ -3262,6 +3442,19 @@ public sealed record class PriceBulkWithFilters : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -3309,6 +3502,7 @@ public sealed record class PriceBulkWithFilters : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
@@ -3317,8 +3511,11 @@ public sealed record class PriceBulkWithFilters : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("bulk_with_filters");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceBulkWithFilters(PriceBulkWithFilters priceBulkWithFilters)
         : base(priceBulkWithFilters) { }
+#pragma warning restore CS8618
 
     public PriceBulkWithFilters(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -3420,10 +3617,13 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfig : JsonModel
 
     public PriceBulkWithFiltersBulkWithFiltersConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceBulkWithFiltersBulkWithFiltersConfig(
         PriceBulkWithFiltersBulkWithFiltersConfig priceBulkWithFiltersBulkWithFiltersConfig
     )
         : base(priceBulkWithFiltersBulkWithFiltersConfig) { }
+#pragma warning restore CS8618
 
     public PriceBulkWithFiltersBulkWithFiltersConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3504,10 +3704,13 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfigFilter : Jso
 
     public PriceBulkWithFiltersBulkWithFiltersConfigFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceBulkWithFiltersBulkWithFiltersConfigFilter(
         PriceBulkWithFiltersBulkWithFiltersConfigFilter priceBulkWithFiltersBulkWithFiltersConfigFilter
     )
         : base(priceBulkWithFiltersBulkWithFiltersConfigFilter) { }
+#pragma warning restore CS8618
 
     public PriceBulkWithFiltersBulkWithFiltersConfigFilter(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3588,10 +3791,13 @@ public sealed record class PriceBulkWithFiltersBulkWithFiltersConfigTier : JsonM
 
     public PriceBulkWithFiltersBulkWithFiltersConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceBulkWithFiltersBulkWithFiltersConfigTier(
         PriceBulkWithFiltersBulkWithFiltersConfigTier priceBulkWithFiltersBulkWithFiltersConfigTier
     )
         : base(priceBulkWithFiltersBulkWithFiltersConfigTier) { }
+#pragma warning restore CS8618
 
     public PriceBulkWithFiltersBulkWithFiltersConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -3737,7 +3943,7 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3758,7 +3964,7 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -3778,7 +3984,7 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -3789,8 +3995,8 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3819,7 +4025,7 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -3830,8 +4036,8 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -3880,10 +4086,10 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceBulkWithFiltersConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceBulkWithFiltersConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -3891,7 +4097,20 @@ public record class PriceBulkWithFiltersConversionRateConfig : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceBulkWithFiltersConversionRateConfigConverter
@@ -3926,12 +4145,10 @@ sealed class PriceBulkWithFiltersConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3948,12 +4165,10 @@ sealed class PriceBulkWithFiltersConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -3970,6 +4185,1086 @@ sealed class PriceBulkWithFiltersConversionRateConfigConverter
     public override void Write(
         Utf8JsonWriter writer,
         PriceBulkWithFiltersConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscounts,
+        PriceMatrixWithThresholdDiscountsFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscounts : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<string, PriceMatrixWithThresholdDiscountsCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, PriceMatrixWithThresholdDiscountsCadence>
+            >("cadence");
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string for which this price is billed in.
+    /// </summary>
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for matrix_with_threshold_discounts pricing
+    /// </summary>
+    public required PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig MatrixWithThresholdDiscountsConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>(
+                "matrix_with_threshold_discounts_config"
+            );
+        }
+        init { this._rawData.Set("matrix_with_threshold_discounts_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PriceMatrixWithThresholdDiscountsConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.Currency;
+        _ = this.ItemID;
+        this.MatrixWithThresholdDiscountsConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("matrix_with_threshold_discounts")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+    }
+
+    public PriceMatrixWithThresholdDiscounts()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscounts(
+        PriceMatrixWithThresholdDiscounts priceMatrixWithThresholdDiscounts
+    )
+        : base(priceMatrixWithThresholdDiscounts) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscounts(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("matrix_with_threshold_discounts");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscounts(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsFromRaw : IFromRawJson<PriceMatrixWithThresholdDiscounts>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscounts FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceMatrixWithThresholdDiscounts.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(PriceMatrixWithThresholdDiscountsCadenceConverter))]
+public enum PriceMatrixWithThresholdDiscountsCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class PriceMatrixWithThresholdDiscountsCadenceConverter
+    : JsonConverter<PriceMatrixWithThresholdDiscountsCadence>
+{
+    public override PriceMatrixWithThresholdDiscountsCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => PriceMatrixWithThresholdDiscountsCadence.Annual,
+            "semi_annual" => PriceMatrixWithThresholdDiscountsCadence.SemiAnnual,
+            "monthly" => PriceMatrixWithThresholdDiscountsCadence.Monthly,
+            "quarterly" => PriceMatrixWithThresholdDiscountsCadence.Quarterly,
+            "one_time" => PriceMatrixWithThresholdDiscountsCadence.OneTime,
+            "custom" => PriceMatrixWithThresholdDiscountsCadence.Custom,
+            _ => (PriceMatrixWithThresholdDiscountsCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceMatrixWithThresholdDiscountsCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PriceMatrixWithThresholdDiscountsCadence.Annual => "annual",
+                PriceMatrixWithThresholdDiscountsCadence.SemiAnnual => "semi_annual",
+                PriceMatrixWithThresholdDiscountsCadence.Monthly => "monthly",
+                PriceMatrixWithThresholdDiscountsCadence.Quarterly => "quarterly",
+                PriceMatrixWithThresholdDiscountsCadence.OneTime => "one_time",
+                PriceMatrixWithThresholdDiscountsCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for matrix_with_threshold_discounts pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig,
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    : JsonModel
+{
+    /// <summary>
+    /// Unit price used for usage that does not match any defined matrix cell.
+    /// </summary>
+    public required string DefaultUnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// First matrix dimension key.
+    /// </summary>
+    public required string FirstDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension");
+        }
+        init { this._rawData.Set("first_dimension", value); }
+    }
+
+    /// <summary>
+    /// Per-cell unit prices.
+    /// </summary>
+    public required IReadOnlyList<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+            >("matrix_values", ImmutableArray.ToImmutableArray(value));
+        }
+    }
+
+    /// <summary>
+    /// Optional second matrix dimension key.
+    /// </summary>
+    public string? SecondDimension
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension");
+        }
+        init { this._rawData.Set("second_dimension", value); }
+    }
+
+    public IReadOnlyList<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>? ThresholdDiscountGroups
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<
+                ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+            >("threshold_discount_groups");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set<ImmutableArray<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>?>(
+                "threshold_discount_groups",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DefaultUnitAmount;
+        _ = this.FirstDimension;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
+        _ = this.SecondDimension;
+        foreach (var item in this.ThresholdDiscountGroups ?? [])
+        {
+            item.Validate();
+        }
+    }
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig
+    )
+        : base(priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigFromRaw
+    : IFromRawJson<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfig.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue,
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    : JsonModel
+{
+    public required string FirstDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("first_dimension_value");
+        }
+        init { this._rawData.Set("first_dimension_value", value); }
+    }
+
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    public string? SecondDimensionValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("second_dimension_value");
+        }
+        init { this._rawData.Set("second_dimension_value", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.FirstDimensionValue;
+        _ = this.UnitAmount;
+        _ = this.SecondDimensionValue;
+    }
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue
+    )
+        : base(priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValueFromRaw
+    : IFromRawJson<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigMatrixValue.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup,
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    >)
+)]
+public sealed record class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    : JsonModel
+{
+    /// <summary>
+    /// Discount rate applied to spend above the threshold.
+    /// </summary>
+    public required string AboveThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("above_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("above_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Discount rate applied to spend at or below the threshold. Set to 0 for no
+    /// baseline discount.
+    /// </summary>
+    public required string BelowThresholdDiscountPercentage
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("below_threshold_discount_percentage");
+        }
+        init { this._rawData.Set("below_threshold_discount_percentage", value); }
+    }
+
+    /// <summary>
+    /// Semicolon-separated list of matrix cell coordinates targeted by this group.
+    /// Each coordinate is `first,second` when the matrix has two dimensions, or just
+    /// `first` for a single-dimension matrix. Example: `blue,circle;green,triangle`.
+    /// </summary>
+    public required string CellCoordinates
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("cell_coordinates");
+        }
+        init { this._rawData.Set("cell_coordinates", value); }
+    }
+
+    public required string ThresholdAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("threshold_amount");
+        }
+        init { this._rawData.Set("threshold_amount", value); }
+    }
+
+    public string? Description
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("description");
+        }
+        init { this._rawData.Set("description", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AboveThresholdDiscountPercentage;
+        _ = this.BelowThresholdDiscountPercentage;
+        _ = this.CellCoordinates;
+        _ = this.ThresholdAmount;
+        _ = this.Description;
+    }
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup()
+    { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+    )
+        : base(
+            priceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup
+        ) { }
+#pragma warning restore CS8618
+
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw.FromRawUnchecked"/>
+    public static PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroupFromRaw
+    : IFromRawJson<PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup>
+{
+    /// <inheritdoc/>
+    public PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) =>
+        PriceMatrixWithThresholdDiscountsMatrixWithThresholdDiscountsConfigThresholdDiscountGroup.FromRawUnchecked(
+            rawData
+        );
+}
+
+[JsonConverter(typeof(PriceMatrixWithThresholdDiscountsConversionRateConfigConverter))]
+public record class PriceMatrixWithThresholdDiscountsConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public PriceMatrixWithThresholdDiscountsConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of PriceMatrixWithThresholdDiscountsConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of PriceMatrixWithThresholdDiscountsConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator PriceMatrixWithThresholdDiscountsConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of PriceMatrixWithThresholdDiscountsConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(PriceMatrixWithThresholdDiscountsConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class PriceMatrixWithThresholdDiscountsConversionRateConfigConverter
+    : JsonConverter<PriceMatrixWithThresholdDiscountsConversionRateConfig>
+{
+    public override PriceMatrixWithThresholdDiscountsConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new PriceMatrixWithThresholdDiscountsConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceMatrixWithThresholdDiscountsConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -4209,6 +5504,19 @@ public sealed record class PriceGroupedWithMinMaxThresholds : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -4256,6 +5564,7 @@ public sealed record class PriceGroupedWithMinMaxThresholds : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
@@ -4264,10 +5573,13 @@ public sealed record class PriceGroupedWithMinMaxThresholds : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("grouped_with_min_max_thresholds");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceGroupedWithMinMaxThresholds(
         PriceGroupedWithMinMaxThresholds priceGroupedWithMinMaxThresholds
     )
         : base(priceGroupedWithMinMaxThresholds) { }
+#pragma warning restore CS8618
 
     public PriceGroupedWithMinMaxThresholds(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -4436,10 +5748,13 @@ public sealed record class PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThre
 
     public PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig priceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig
     )
         : base(priceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig) { }
+#pragma warning restore CS8618
 
     public PriceGroupedWithMinMaxThresholdsGroupedWithMinMaxThresholdsConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -4522,7 +5837,7 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4543,7 +5858,7 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -4563,7 +5878,7 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -4574,8 +5889,8 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4604,7 +5919,7 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -4615,8 +5930,8 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -4665,10 +5980,10 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceGroupedWithMinMaxThresholdsConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceGroupedWithMinMaxThresholdsConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -4676,7 +5991,20 @@ public record class PriceGroupedWithMinMaxThresholdsConversionRateConfig : Model
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
@@ -4711,12 +6039,10 @@ sealed class PriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4733,12 +6059,10 @@ sealed class PriceGroupedWithMinMaxThresholdsConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -4994,6 +6318,19 @@ public sealed record class PriceCumulativeGroupedAllocation : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -5041,6 +6378,7 @@ public sealed record class PriceCumulativeGroupedAllocation : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
@@ -5049,10 +6387,13 @@ public sealed record class PriceCumulativeGroupedAllocation : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("cumulative_grouped_allocation");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceCumulativeGroupedAllocation(
         PriceCumulativeGroupedAllocation priceCumulativeGroupedAllocation
     )
         : base(priceCumulativeGroupedAllocation) { }
+#pragma warning restore CS8618
 
     public PriceCumulativeGroupedAllocation(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -5221,10 +6562,13 @@ public sealed record class PriceCumulativeGroupedAllocationCumulativeGroupedAllo
 
     public PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig priceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig
     )
         : base(priceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public PriceCumulativeGroupedAllocationCumulativeGroupedAllocationConfig(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -5307,7 +6651,7 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5328,7 +6672,7 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -5348,7 +6692,7 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5359,8 +6703,8 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5389,7 +6733,7 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -5400,8 +6744,8 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -5450,10 +6794,10 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceCumulativeGroupedAllocationConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceCumulativeGroupedAllocationConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -5461,7 +6805,20 @@ public record class PriceCumulativeGroupedAllocationConversionRateConfig : Model
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
@@ -5496,12 +6853,10 @@ sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -5518,12 +6873,10 @@ sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -5548,24 +6901,21 @@ sealed class PriceCumulativeGroupedAllocationConversionRateConfigConverter
 }
 
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Prices.PriceMinimum,
-        global::Orb.Models.Prices.PriceMinimumFromRaw
-    >)
+    typeof(JsonModelConverter<PriceDailyCreditAllowance, PriceDailyCreditAllowanceFromRaw>)
 )]
-public sealed record class PriceMinimum : JsonModel
+public sealed record class PriceDailyCreditAllowance : JsonModel
 {
     /// <summary>
     /// The cadence to bill for this price on.
     /// </summary>
-    public required ApiEnum<string, global::Orb.Models.Prices.PriceMinimumCadence> Cadence
+    public required ApiEnum<string, PriceDailyCreditAllowanceCadence> Cadence
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Prices.PriceMinimumCadence>
-            >("cadence");
+            return this._rawData.GetNotNullClass<ApiEnum<string, PriceDailyCreditAllowanceCadence>>(
+                "cadence"
+            );
         }
         init { this._rawData.Set("cadence", value); }
     }
@@ -5584,6 +6934,21 @@ public sealed record class PriceMinimum : JsonModel
     }
 
     /// <summary>
+    /// Configuration for daily_credit_allowance pricing
+    /// </summary>
+    public required PriceDailyCreditAllowanceDailyCreditAllowanceConfig DailyCreditAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PriceDailyCreditAllowanceDailyCreditAllowanceConfig>(
+                "daily_credit_allowance_config"
+            );
+        }
+        init { this._rawData.Set("daily_credit_allowance_config", value); }
+    }
+
+    /// <summary>
     /// The id of the item the price will be associated with.
     /// </summary>
     public required string ItemID
@@ -5594,19 +6959,6 @@ public sealed record class PriceMinimum : JsonModel
             return this._rawData.GetNotNullClass<string>("item_id");
         }
         init { this._rawData.Set("item_id", value); }
-    }
-
-    /// <summary>
-    /// Configuration for minimum pricing
-    /// </summary>
-    public required PriceMinimumMinimumConfig MinimumConfig
-    {
-        get
-        {
-            this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<PriceMinimumMinimumConfig>("minimum_config");
-        }
-        init { this._rawData.Set("minimum_config", value); }
     }
 
     /// <summary>
@@ -5694,12 +7046,12 @@ public sealed record class PriceMinimum : JsonModel
     /// <summary>
     /// The configuration for the rate of the price currency to the invoicing currency.
     /// </summary>
-    public global::Orb.Models.Prices.PriceMinimumConversionRateConfig? ConversionRateConfig
+    public PriceDailyCreditAllowanceConversionRateConfig? ConversionRateConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableClass<global::Orb.Models.Prices.PriceMinimumConversionRateConfig>(
+            return this._rawData.GetNullableClass<PriceDailyCreditAllowanceConversionRateConfig>(
                 "conversion_rate_config"
             );
         }
@@ -5777,6 +7129,19 @@ public sealed record class PriceMinimum : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -5802,9 +7167,14 @@ public sealed record class PriceMinimum : JsonModel
     {
         this.Cadence.Validate();
         _ = this.Currency;
+        this.DailyCreditAllowanceConfig.Validate();
         _ = this.ItemID;
-        this.MinimumConfig.Validate();
-        if (!JsonElement.DeepEquals(this.ModelType, JsonSerializer.SerializeToElement("minimum")))
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("daily_credit_allowance")
+            )
+        )
         {
             throw new OrbInvalidDataException("Invalid value given for constant");
         }
@@ -5819,34 +7189,38 @@ public sealed record class PriceMinimum : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
-    public PriceMinimum()
+    public PriceDailyCreditAllowance()
     {
-        this.ModelType = JsonSerializer.SerializeToElement("minimum");
-    }
-
-    public PriceMinimum(global::Orb.Models.Prices.PriceMinimum priceMinimum)
-        : base(priceMinimum) { }
-
-    public PriceMinimum(IReadOnlyDictionary<string, JsonElement> rawData)
-    {
-        this._rawData = new(rawData);
-
-        this.ModelType = JsonSerializer.SerializeToElement("minimum");
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceMinimum(FrozenDictionary<string, JsonElement> rawData)
+    public PriceDailyCreditAllowance(PriceDailyCreditAllowance priceDailyCreditAllowance)
+        : base(priceDailyCreditAllowance) { }
+#pragma warning restore CS8618
+
+    public PriceDailyCreditAllowance(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("daily_credit_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceDailyCreditAllowance(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Prices.PriceMinimumFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Prices.PriceMinimum FromRawUnchecked(
+    /// <inheritdoc cref="PriceDailyCreditAllowanceFromRaw.FromRawUnchecked"/>
+    public static PriceDailyCreditAllowance FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -5854,19 +7228,19 @@ public sealed record class PriceMinimum : JsonModel
     }
 }
 
-class PriceMinimumFromRaw : IFromRawJson<global::Orb.Models.Prices.PriceMinimum>
+class PriceDailyCreditAllowanceFromRaw : IFromRawJson<PriceDailyCreditAllowance>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Prices.PriceMinimum FromRawUnchecked(
+    public PriceDailyCreditAllowance FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Prices.PriceMinimum.FromRawUnchecked(rawData);
+    ) => PriceDailyCreditAllowance.FromRawUnchecked(rawData);
 }
 
 /// <summary>
 /// The cadence to bill for this price on.
 /// </summary>
-[JsonConverter(typeof(global::Orb.Models.Prices.PriceMinimumCadenceConverter))]
-public enum PriceMinimumCadence
+[JsonConverter(typeof(PriceDailyCreditAllowanceCadenceConverter))]
+public enum PriceDailyCreditAllowanceCadence
 {
     Annual,
     SemiAnnual,
@@ -5876,10 +7250,10 @@ public enum PriceMinimumCadence
     Custom,
 }
 
-sealed class PriceMinimumCadenceConverter
-    : JsonConverter<global::Orb.Models.Prices.PriceMinimumCadence>
+sealed class PriceDailyCreditAllowanceCadenceConverter
+    : JsonConverter<PriceDailyCreditAllowanceCadence>
 {
-    public override global::Orb.Models.Prices.PriceMinimumCadence Read(
+    public override PriceDailyCreditAllowanceCadence Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -5887,19 +7261,19 @@ sealed class PriceMinimumCadenceConverter
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "annual" => global::Orb.Models.Prices.PriceMinimumCadence.Annual,
-            "semi_annual" => global::Orb.Models.Prices.PriceMinimumCadence.SemiAnnual,
-            "monthly" => global::Orb.Models.Prices.PriceMinimumCadence.Monthly,
-            "quarterly" => global::Orb.Models.Prices.PriceMinimumCadence.Quarterly,
-            "one_time" => global::Orb.Models.Prices.PriceMinimumCadence.OneTime,
-            "custom" => global::Orb.Models.Prices.PriceMinimumCadence.Custom,
-            _ => (global::Orb.Models.Prices.PriceMinimumCadence)(-1),
+            "annual" => PriceDailyCreditAllowanceCadence.Annual,
+            "semi_annual" => PriceDailyCreditAllowanceCadence.SemiAnnual,
+            "monthly" => PriceDailyCreditAllowanceCadence.Monthly,
+            "quarterly" => PriceDailyCreditAllowanceCadence.Quarterly,
+            "one_time" => PriceDailyCreditAllowanceCadence.OneTime,
+            "custom" => PriceDailyCreditAllowanceCadence.Custom,
+            _ => (PriceDailyCreditAllowanceCadence)(-1),
         };
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.PriceMinimumCadence value,
+        PriceDailyCreditAllowanceCadence value,
         JsonSerializerOptions options
     )
     {
@@ -5907,12 +7281,12 @@ sealed class PriceMinimumCadenceConverter
             writer,
             value switch
             {
-                global::Orb.Models.Prices.PriceMinimumCadence.Annual => "annual",
-                global::Orb.Models.Prices.PriceMinimumCadence.SemiAnnual => "semi_annual",
-                global::Orb.Models.Prices.PriceMinimumCadence.Monthly => "monthly",
-                global::Orb.Models.Prices.PriceMinimumCadence.Quarterly => "quarterly",
-                global::Orb.Models.Prices.PriceMinimumCadence.OneTime => "one_time",
-                global::Orb.Models.Prices.PriceMinimumCadence.Custom => "custom",
+                PriceDailyCreditAllowanceCadence.Annual => "annual",
+                PriceDailyCreditAllowanceCadence.SemiAnnual => "semi_annual",
+                PriceDailyCreditAllowanceCadence.Monthly => "monthly",
+                PriceDailyCreditAllowanceCadence.Quarterly => "quarterly",
+                PriceDailyCreditAllowanceCadence.OneTime => "one_time",
+                PriceDailyCreditAllowanceCadence.Custom => "custom",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),
@@ -5923,98 +7297,253 @@ sealed class PriceMinimumCadenceConverter
 }
 
 /// <summary>
-/// Configuration for minimum pricing
+/// Configuration for daily_credit_allowance pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<PriceMinimumMinimumConfig, PriceMinimumMinimumConfigFromRaw>)
+    typeof(JsonModelConverter<
+        PriceDailyCreditAllowanceDailyCreditAllowanceConfig,
+        PriceDailyCreditAllowanceDailyCreditAllowanceConfigFromRaw
+    >)
 )]
-public sealed record class PriceMinimumMinimumConfig : JsonModel
+public sealed record class PriceDailyCreditAllowanceDailyCreditAllowanceConfig : JsonModel
 {
     /// <summary>
-    /// The minimum amount to apply
+    /// Credits granted per day. Lose-it-or-use-it; does not roll over.
     /// </summary>
-    public required string MinimumAmount
+    public required string DailyAllowance
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<string>("minimum_amount");
+            return this._rawData.GetNotNullClass<string>("daily_allowance");
         }
-        init { this._rawData.Set("minimum_amount", value); }
+        init { this._rawData.Set("daily_allowance", value); }
     }
 
     /// <summary>
-    /// If true, subtotals from this price are prorated based on the service period
+    /// Default per-unit credit rate for any usage not bucketed into a specified matrix_value
     /// </summary>
-    public bool? Prorated
+    public required string DefaultUnitAmount
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNullableStruct<bool>("prorated");
+            return this._rawData.GetNotNullClass<string>("default_unit_amount");
+        }
+        init { this._rawData.Set("default_unit_amount", value); }
+    }
+
+    /// <summary>
+    /// One or two event property values to evaluate matrix groups by
+    /// </summary>
+    public required IReadOnlyList<string?> Dimensions
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimensions");
         }
         init
         {
-            if (value == null)
-            {
-                return;
-            }
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimensions",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
 
-            this._rawData.Set("prorated", value);
+    /// <summary>
+    /// Event property whose value identifies the day bucket the event belongs to
+    /// (e.g. 'event_day' set to an ISO date string in the customer's timezone).
+    /// The allowance resets per distinct value of this property.
+    /// </summary>
+    public required string EventDayProperty
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("event_day_property");
+        }
+        init { this._rawData.Set("event_day_property", value); }
+    }
+
+    /// <summary>
+    /// Per-dimension credit rates
+    /// </summary>
+    public required IReadOnlyList<PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue> MatrixValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<
+                ImmutableArray<PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue>
+            >("matrix_values");
+        }
+        init
+        {
+            this._rawData.Set<
+                ImmutableArray<PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue>
+            >("matrix_values", ImmutableArray.ToImmutableArray(value));
         }
     }
 
     /// <inheritdoc/>
     public override void Validate()
     {
-        _ = this.MinimumAmount;
-        _ = this.Prorated;
+        _ = this.DailyAllowance;
+        _ = this.DefaultUnitAmount;
+        _ = this.Dimensions;
+        _ = this.EventDayProperty;
+        foreach (var item in this.MatrixValues)
+        {
+            item.Validate();
+        }
     }
 
-    public PriceMinimumMinimumConfig() { }
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfig() { }
 
-    public PriceMinimumMinimumConfig(PriceMinimumMinimumConfig priceMinimumMinimumConfig)
-        : base(priceMinimumMinimumConfig) { }
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfig(
+        PriceDailyCreditAllowanceDailyCreditAllowanceConfig priceDailyCreditAllowanceDailyCreditAllowanceConfig
+    )
+        : base(priceDailyCreditAllowanceDailyCreditAllowanceConfig) { }
+#pragma warning restore CS8618
 
-    public PriceMinimumMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    PriceMinimumMinimumConfig(FrozenDictionary<string, JsonElement> rawData)
+    PriceDailyCreditAllowanceDailyCreditAllowanceConfig(
+        FrozenDictionary<string, JsonElement> rawData
+    )
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="PriceMinimumMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static PriceMinimumMinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="PriceDailyCreditAllowanceDailyCreditAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static PriceDailyCreditAllowanceDailyCreditAllowanceConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
+}
 
-    [SetsRequiredMembers]
-    public PriceMinimumMinimumConfig(string minimumAmount)
-        : this()
+class PriceDailyCreditAllowanceDailyCreditAllowanceConfigFromRaw
+    : IFromRawJson<PriceDailyCreditAllowanceDailyCreditAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceDailyCreditAllowanceDailyCreditAllowanceConfig.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// Per-dimension credit price for the daily credit allowance model.
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue,
+        PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValueFromRaw
+    >)
+)]
+public sealed record class PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue
+    : JsonModel
+{
+    /// <summary>
+    /// One or two matrix keys to filter usage to this value by. For example, ["model"]
+    /// could be used to apply a different credit rate to each AI model.
+    /// </summary>
+    public required IReadOnlyList<string?> DimensionValues
     {
-        this.MinimumAmount = minimumAmount;
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string?>>("dimension_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string?>>(
+                "dimension_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Credits charged per unit of usage matching the specified dimension_values
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.DimensionValues;
+        _ = this.UnitAmount;
+    }
+
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue(
+        PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue priceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue
+    )
+        : base(priceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue) { }
+#pragma warning restore CS8618
+
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue(
+        FrozenDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValueFromRaw.FromRawUnchecked"/>
+    public static PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 }
 
-class PriceMinimumMinimumConfigFromRaw : IFromRawJson<PriceMinimumMinimumConfig>
+class PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValueFromRaw
+    : IFromRawJson<PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue>
 {
     /// <inheritdoc/>
-    public PriceMinimumMinimumConfig FromRawUnchecked(
+    public PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => PriceMinimumMinimumConfig.FromRawUnchecked(rawData);
+    ) => PriceDailyCreditAllowanceDailyCreditAllowanceConfigMatrixValue.FromRawUnchecked(rawData);
 }
 
-[JsonConverter(typeof(global::Orb.Models.Prices.PriceMinimumConversionRateConfigConverter))]
-public record class PriceMinimumConversionRateConfig : ModelBase
+[JsonConverter(typeof(PriceDailyCreditAllowanceConversionRateConfigConverter))]
+public record class PriceDailyCreditAllowanceConversionRateConfig : ModelBase
 {
     public object? Value { get; } = null;
 
@@ -6031,7 +7560,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
         }
     }
 
-    public PriceMinimumConversionRateConfig(
+    public PriceDailyCreditAllowanceConversionRateConfig(
         SharedUnitConversionRateConfig value,
         JsonElement? element = null
     )
@@ -6040,7 +7569,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
         this._element = element;
     }
 
-    public PriceMinimumConversionRateConfig(
+    public PriceDailyCreditAllowanceConversionRateConfig(
         SharedTieredConversionRateConfig value,
         JsonElement? element = null
     )
@@ -6049,7 +7578,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
         this._element = element;
     }
 
-    public PriceMinimumConversionRateConfig(JsonElement element)
+    public PriceDailyCreditAllowanceConversionRateConfig(JsonElement element)
     {
         this._element = element;
     }
@@ -6058,7 +7587,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6079,7 +7608,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6099,7 +7628,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6110,8 +7639,8 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6131,7 +7660,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
                 break;
             default:
                 throw new OrbInvalidDataException(
-                    "Data did not match any variant of PriceMinimumConversionRateConfig"
+                    "Data did not match any variant of PriceDailyCreditAllowanceConversionRateConfig"
                 );
         }
     }
@@ -6140,7 +7669,7 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6151,8 +7680,8 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6167,16 +7696,16 @@ public record class PriceMinimumConversionRateConfig : ModelBase
             SharedUnitConversionRateConfig value => unit(value),
             SharedTieredConversionRateConfig value => tiered(value),
             _ => throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceMinimumConversionRateConfig"
+                "Data did not match any variant of PriceDailyCreditAllowanceConversionRateConfig"
             ),
         };
     }
 
-    public static implicit operator global::Orb.Models.Prices.PriceMinimumConversionRateConfig(
+    public static implicit operator PriceDailyCreditAllowanceConversionRateConfig(
         SharedUnitConversionRateConfig value
     ) => new(value);
 
-    public static implicit operator global::Orb.Models.Prices.PriceMinimumConversionRateConfig(
+    public static implicit operator PriceDailyCreditAllowanceConversionRateConfig(
         SharedTieredConversionRateConfig value
     ) => new(value);
 
@@ -6195,16 +7724,16 @@ public record class PriceMinimumConversionRateConfig : ModelBase
         if (this.Value == null)
         {
             throw new OrbInvalidDataException(
-                "Data did not match any variant of PriceMinimumConversionRateConfig"
+                "Data did not match any variant of PriceDailyCreditAllowanceConversionRateConfig"
             );
         }
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(global::Orb.Models.Prices.PriceMinimumConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceDailyCreditAllowanceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6212,13 +7741,26 @@ public record class PriceMinimumConversionRateConfig : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
-sealed class PriceMinimumConversionRateConfigConverter
-    : JsonConverter<global::Orb.Models.Prices.PriceMinimumConversionRateConfig>
+sealed class PriceDailyCreditAllowanceConversionRateConfigConverter
+    : JsonConverter<PriceDailyCreditAllowanceConversionRateConfig>
 {
-    public override global::Orb.Models.Prices.PriceMinimumConversionRateConfig? Read(
+    public override PriceDailyCreditAllowanceConversionRateConfig? Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -6247,12 +7789,10 @@ sealed class PriceMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6269,12 +7809,10 @@ sealed class PriceMinimumConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6283,14 +7821,865 @@ sealed class PriceMinimumConversionRateConfigConverter
             }
             default:
             {
-                return new global::Orb.Models.Prices.PriceMinimumConversionRateConfig(element);
+                return new PriceDailyCreditAllowanceConversionRateConfig(element);
             }
         }
     }
 
     public override void Write(
         Utf8JsonWriter writer,
-        global::Orb.Models.Prices.PriceMinimumConversionRateConfig value,
+        PriceDailyCreditAllowanceConversionRateConfig value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(writer, value.Json, options);
+    }
+}
+
+[JsonConverter(typeof(JsonModelConverter<PriceMeteredAllowance, PriceMeteredAllowanceFromRaw>))]
+public sealed record class PriceMeteredAllowance : JsonModel
+{
+    /// <summary>
+    /// The cadence to bill for this price on.
+    /// </summary>
+    public required ApiEnum<string, PriceMeteredAllowanceCadence> Cadence
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<ApiEnum<string, PriceMeteredAllowanceCadence>>(
+                "cadence"
+            );
+        }
+        init { this._rawData.Set("cadence", value); }
+    }
+
+    /// <summary>
+    /// An ISO 4217 currency string for which this price is billed in.
+    /// </summary>
+    public required string Currency
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("currency");
+        }
+        init { this._rawData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// The id of the item the price will be associated with.
+    /// </summary>
+    public required string ItemID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("item_id");
+        }
+        init { this._rawData.Set("item_id", value); }
+    }
+
+    /// <summary>
+    /// Configuration for metered_allowance pricing
+    /// </summary>
+    public required PriceMeteredAllowanceMeteredAllowanceConfig MeteredAllowanceConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<PriceMeteredAllowanceMeteredAllowanceConfig>(
+                "metered_allowance_config"
+            );
+        }
+        init { this._rawData.Set("metered_allowance_config", value); }
+    }
+
+    /// <summary>
+    /// The pricing model type
+    /// </summary>
+    public JsonElement ModelType
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<JsonElement>("model_type");
+        }
+        init { this._rawData.Set("model_type", value); }
+    }
+
+    /// <summary>
+    /// The name of the price.
+    /// </summary>
+    public required string Name
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("name");
+        }
+        init { this._rawData.Set("name", value); }
+    }
+
+    /// <summary>
+    /// The id of the billable metric for the price. Only needed if the price is usage-based.
+    /// </summary>
+    public string? BillableMetricID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("billable_metric_id");
+        }
+        init { this._rawData.Set("billable_metric_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, the price will be billed in-advance
+    /// if this is true, and in-arrears if this is false.
+    /// </summary>
+    public bool? BilledInAdvance
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("billed_in_advance");
+        }
+        init { this._rawData.Set("billed_in_advance", value); }
+    }
+
+    /// <summary>
+    /// For custom cadence: specifies the duration of the billing period in days
+    /// or months.
+    /// </summary>
+    public NewBillingCycleConfiguration? BillingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "billing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("billing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The per unit conversion rate of the price currency to the invoicing currency.
+    /// </summary>
+    public double? ConversionRate
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("conversion_rate");
+        }
+        init { this._rawData.Set("conversion_rate", value); }
+    }
+
+    /// <summary>
+    /// The configuration for the rate of the price currency to the invoicing currency.
+    /// </summary>
+    public PriceMeteredAllowanceConversionRateConfig? ConversionRateConfig
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<PriceMeteredAllowanceConversionRateConfig>(
+                "conversion_rate_config"
+            );
+        }
+        init { this._rawData.Set("conversion_rate_config", value); }
+    }
+
+    /// <summary>
+    /// For dimensional price: specifies a price group and dimension values
+    /// </summary>
+    public NewDimensionalPriceConfiguration? DimensionalPriceConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewDimensionalPriceConfiguration>(
+                "dimensional_price_configuration"
+            );
+        }
+        init { this._rawData.Set("dimensional_price_configuration", value); }
+    }
+
+    /// <summary>
+    /// An alias for the price.
+    /// </summary>
+    public string? ExternalPriceID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("external_price_id");
+        }
+        init { this._rawData.Set("external_price_id", value); }
+    }
+
+    /// <summary>
+    /// If the Price represents a fixed cost, this represents the quantity of units applied.
+    /// </summary>
+    public double? FixedPriceQuantity
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<double>("fixed_price_quantity");
+        }
+        init { this._rawData.Set("fixed_price_quantity", value); }
+    }
+
+    /// <summary>
+    /// The property used to group this price on an invoice
+    /// </summary>
+    public string? InvoiceGroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("invoice_grouping_key");
+        }
+        init { this._rawData.Set("invoice_grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Within each billing cycle, specifies the cadence at which invoices are produced.
+    /// If unspecified, a single invoice is produced per billing cycle.
+    /// </summary>
+    public NewBillingCycleConfiguration? InvoicingCycleConfiguration
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<NewBillingCycleConfiguration>(
+                "invoicing_cycle_configuration"
+            );
+        }
+        init { this._rawData.Set("invoicing_cycle_configuration", value); }
+    }
+
+    /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
+    /// User-specified key/value pairs for the resource. Individual keys can be removed
+    /// by setting the value to `null`, and the entire metadata mapping can be cleared
+    /// by setting `metadata` to `null`.
+    /// </summary>
+    public IReadOnlyDictionary<string, string?>? Metadata
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<FrozenDictionary<string, string?>>("metadata");
+        }
+        init
+        {
+            this._rawData.Set<FrozenDictionary<string, string?>?>(
+                "metadata",
+                value == null ? null : FrozenDictionary.ToFrozenDictionary(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Cadence.Validate();
+        _ = this.Currency;
+        _ = this.ItemID;
+        this.MeteredAllowanceConfig.Validate();
+        if (
+            !JsonElement.DeepEquals(
+                this.ModelType,
+                JsonSerializer.SerializeToElement("metered_allowance")
+            )
+        )
+        {
+            throw new OrbInvalidDataException("Invalid value given for constant");
+        }
+        _ = this.Name;
+        _ = this.BillableMetricID;
+        _ = this.BilledInAdvance;
+        this.BillingCycleConfiguration?.Validate();
+        _ = this.ConversionRate;
+        this.ConversionRateConfig?.Validate();
+        this.DimensionalPriceConfiguration?.Validate();
+        _ = this.ExternalPriceID;
+        _ = this.FixedPriceQuantity;
+        _ = this.InvoiceGroupingKey;
+        this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
+        _ = this.Metadata;
+    }
+
+    public PriceMeteredAllowance()
+    {
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMeteredAllowance(PriceMeteredAllowance priceMeteredAllowance)
+        : base(priceMeteredAllowance) { }
+#pragma warning restore CS8618
+
+    public PriceMeteredAllowance(IReadOnlyDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+
+        this.ModelType = JsonSerializer.SerializeToElement("metered_allowance");
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMeteredAllowance(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMeteredAllowanceFromRaw.FromRawUnchecked"/>
+    public static PriceMeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMeteredAllowanceFromRaw : IFromRawJson<PriceMeteredAllowance>
+{
+    /// <inheritdoc/>
+    public PriceMeteredAllowance FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceMeteredAllowance.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The cadence to bill for this price on.
+/// </summary>
+[JsonConverter(typeof(PriceMeteredAllowanceCadenceConverter))]
+public enum PriceMeteredAllowanceCadence
+{
+    Annual,
+    SemiAnnual,
+    Monthly,
+    Quarterly,
+    OneTime,
+    Custom,
+}
+
+sealed class PriceMeteredAllowanceCadenceConverter : JsonConverter<PriceMeteredAllowanceCadence>
+{
+    public override PriceMeteredAllowanceCadence Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "annual" => PriceMeteredAllowanceCadence.Annual,
+            "semi_annual" => PriceMeteredAllowanceCadence.SemiAnnual,
+            "monthly" => PriceMeteredAllowanceCadence.Monthly,
+            "quarterly" => PriceMeteredAllowanceCadence.Quarterly,
+            "one_time" => PriceMeteredAllowanceCadence.OneTime,
+            "custom" => PriceMeteredAllowanceCadence.Custom,
+            _ => (PriceMeteredAllowanceCadence)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceMeteredAllowanceCadence value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                PriceMeteredAllowanceCadence.Annual => "annual",
+                PriceMeteredAllowanceCadence.SemiAnnual => "semi_annual",
+                PriceMeteredAllowanceCadence.Monthly => "monthly",
+                PriceMeteredAllowanceCadence.Quarterly => "quarterly",
+                PriceMeteredAllowanceCadence.OneTime => "one_time",
+                PriceMeteredAllowanceCadence.Custom => "custom",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Configuration for metered_allowance pricing
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        PriceMeteredAllowanceMeteredAllowanceConfig,
+        PriceMeteredAllowanceMeteredAllowanceConfigFromRaw
+    >)
+)]
+public sealed record class PriceMeteredAllowanceMeteredAllowanceConfig : JsonModel
+{
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents the allowance for
+    /// this period (e.g. 'storage_snapshot' emitting 3 × avg storage). Capped at
+    /// consumption — credit can never exceed actual usage.
+    /// </summary>
+    public required string AllowanceGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("allowance_grouping_value");
+        }
+        init { this._rawData.Set("allowance_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// The grouping_key value whose summed quantity represents consumption (e.g.
+    /// 'download'). Charged at unit_amount.
+    /// </summary>
+    public required string ConsumptionGroupingValue
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("consumption_grouping_value");
+        }
+        init { this._rawData.Set("consumption_grouping_value", value); }
+    }
+
+    /// <summary>
+    /// Event property used to partition the metric into consumption and allowance
+    /// quantities (e.g. 'event_name'). The metric is queried with this key and the
+    /// two values below select which partition is which.
+    /// </summary>
+    public required string GroupingKey
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("grouping_key");
+        }
+        init { this._rawData.Set("grouping_key", value); }
+    }
+
+    /// <summary>
+    /// Per-unit price applied to gross consumption and to the allowance credit.
+    /// </summary>
+    public required string UnitAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<string>("unit_amount");
+        }
+        init { this._rawData.Set("unit_amount", value); }
+    }
+
+    /// <summary>
+    /// Sub-line label for the credit row (e.g. 'Up to 3x free egress').
+    /// </summary>
+    public string? AllowanceDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("allowance_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("allowance_display_name", value);
+        }
+    }
+
+    /// <summary>
+    /// Sub-line label for the gross consumption row (e.g. 'bytes gotten').
+    /// </summary>
+    public string? ConsumptionDisplayName
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("consumption_display_name");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("consumption_display_name", value);
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.AllowanceGroupingValue;
+        _ = this.ConsumptionGroupingValue;
+        _ = this.GroupingKey;
+        _ = this.UnitAmount;
+        _ = this.AllowanceDisplayName;
+        _ = this.ConsumptionDisplayName;
+    }
+
+    public PriceMeteredAllowanceMeteredAllowanceConfig() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public PriceMeteredAllowanceMeteredAllowanceConfig(
+        PriceMeteredAllowanceMeteredAllowanceConfig priceMeteredAllowanceMeteredAllowanceConfig
+    )
+        : base(priceMeteredAllowanceMeteredAllowanceConfig) { }
+#pragma warning restore CS8618
+
+    public PriceMeteredAllowanceMeteredAllowanceConfig(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    PriceMeteredAllowanceMeteredAllowanceConfig(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="PriceMeteredAllowanceMeteredAllowanceConfigFromRaw.FromRawUnchecked"/>
+    public static PriceMeteredAllowanceMeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class PriceMeteredAllowanceMeteredAllowanceConfigFromRaw
+    : IFromRawJson<PriceMeteredAllowanceMeteredAllowanceConfig>
+{
+    /// <inheritdoc/>
+    public PriceMeteredAllowanceMeteredAllowanceConfig FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => PriceMeteredAllowanceMeteredAllowanceConfig.FromRawUnchecked(rawData);
+}
+
+[JsonConverter(typeof(PriceMeteredAllowanceConversionRateConfigConverter))]
+public record class PriceMeteredAllowanceConversionRateConfig : ModelBase
+{
+    public object? Value { get; } = null;
+
+    JsonElement? _element = null;
+
+    public JsonElement Json
+    {
+        get
+        {
+            return this._element ??= JsonSerializer.SerializeToElement(
+                this.Value,
+                ModelBase.SerializerOptions
+            );
+        }
+    }
+
+    public PriceMeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public PriceMeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value,
+        JsonElement? element = null
+    )
+    {
+        this.Value = value;
+        this._element = element;
+    }
+
+    public PriceMeteredAllowanceConversionRateConfig(JsonElement element)
+    {
+        this._element = element;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedUnitConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickUnit(out var value)) {
+    ///     // `value` is of type `SharedUnitConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickUnit([NotNullWhen(true)] out SharedUnitConversionRateConfig? value)
+    {
+        value = this.Value as SharedUnitConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
+    /// type <see cref="SharedTieredConversionRateConfig"/>.
+    ///
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
+    ///
+    /// <example>
+    /// <code>
+    /// if (instance.TryPickTiered(out var value)) {
+    ///     // `value` is of type `SharedTieredConversionRateConfig`
+    ///     Console.WriteLine(value);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
+    public bool TryPickTiered([NotNullWhen(true)] out SharedTieredConversionRateConfig? value)
+    {
+        value = this.Value as SharedTieredConversionRateConfig;
+        return value != null;
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
+    /// if you need your function parameters to return something.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// instance.Switch(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public void Switch(
+        System::Action<SharedUnitConversionRateConfig> unit,
+        System::Action<SharedTieredConversionRateConfig> tiered
+    )
+    {
+        switch (this.Value)
+        {
+            case SharedUnitConversionRateConfig value:
+                unit(value);
+                break;
+            case SharedTieredConversionRateConfig value:
+                tiered(value);
+                break;
+            default:
+                throw new OrbInvalidDataException(
+                    "Data did not match any variant of PriceMeteredAllowanceConversionRateConfig"
+                );
+        }
+    }
+
+    /// <summary>
+    /// Calls the function parameter corresponding to the variant the instance was constructed with and
+    /// returns its result.
+    ///
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
+    /// if you don't need your function parameters to return a value.</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance was constructed with an unknown variant (e.g. deserialized from raw data
+    /// that doesn't match any variant's expected shape).
+    /// </exception>
+    ///
+    /// <example>
+    /// <code>
+    /// var result = instance.Match(
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
+    /// );
+    /// </code>
+    /// </example>
+    /// </summary>
+    public T Match<T>(
+        System::Func<SharedUnitConversionRateConfig, T> unit,
+        System::Func<SharedTieredConversionRateConfig, T> tiered
+    )
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig value => unit(value),
+            SharedTieredConversionRateConfig value => tiered(value),
+            _ => throw new OrbInvalidDataException(
+                "Data did not match any variant of PriceMeteredAllowanceConversionRateConfig"
+            ),
+        };
+    }
+
+    public static implicit operator PriceMeteredAllowanceConversionRateConfig(
+        SharedUnitConversionRateConfig value
+    ) => new(value);
+
+    public static implicit operator PriceMeteredAllowanceConversionRateConfig(
+        SharedTieredConversionRateConfig value
+    ) => new(value);
+
+    /// <summary>
+    /// Validates that the instance was constructed with a known variant and that this variant is valid
+    /// (based on its own <c>Validate</c> method).
+    ///
+    /// <para>This is useful for instances constructed from raw JSON data (e.g. deserialized from an API response).</para>
+    ///
+    /// <exception cref="OrbInvalidDataException">
+    /// Thrown when the instance does not pass validation.
+    /// </exception>
+    /// </summary>
+    public override void Validate()
+    {
+        if (this.Value == null)
+        {
+            throw new OrbInvalidDataException(
+                "Data did not match any variant of PriceMeteredAllowanceConversionRateConfig"
+            );
+        }
+        this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
+    }
+
+    public virtual bool Equals(PriceMeteredAllowanceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
+
+    public override int GetHashCode()
+    {
+        return 0;
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
+}
+
+sealed class PriceMeteredAllowanceConversionRateConfigConverter
+    : JsonConverter<PriceMeteredAllowanceConversionRateConfig>
+{
+    public override PriceMeteredAllowanceConversionRateConfig? Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        var element = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
+        string? conversionRateType;
+        try
+        {
+            conversionRateType = element.GetProperty("conversion_rate_type").GetString();
+        }
+        catch
+        {
+            conversionRateType = null;
+        }
+
+        switch (conversionRateType)
+        {
+            case "unit":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedUnitConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            case "tiered":
+            {
+                try
+                {
+                    var deserialized = JsonSerializer.Deserialize<SharedTieredConversionRateConfig>(
+                        element,
+                        options
+                    );
+                    if (deserialized != null)
+                    {
+                        return new(deserialized, element);
+                    }
+                }
+                catch (JsonException)
+                {
+                    // ignore
+                }
+
+                return new(element);
+            }
+            default:
+            {
+                return new PriceMeteredAllowanceConversionRateConfig(element);
+            }
+        }
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        PriceMeteredAllowanceConversionRateConfig value,
         JsonSerializerOptions options
     )
     {
@@ -6521,6 +8910,19 @@ public sealed record class PricePercent : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -6563,6 +8965,7 @@ public sealed record class PricePercent : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
@@ -6571,8 +8974,11 @@ public sealed record class PricePercent : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("percent");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PricePercent(PricePercent pricePercent)
         : base(pricePercent) { }
+#pragma warning restore CS8618
 
     public PricePercent(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6671,7 +9077,7 @@ sealed class PricePercentCadenceConverter : JsonConverter<PricePercentCadence>
 public sealed record class PricePercentPercentConfig : JsonModel
 {
     /// <summary>
-    /// What percent of the component subtotals to charge
+    /// Fraction of the component subtotals to charge (0 &lt; percent &lt;= 1).
     /// </summary>
     public required double Percent
     {
@@ -6683,16 +9089,71 @@ public sealed record class PricePercentPercentConfig : JsonModel
         init { this._rawData.Set("percent", value); }
     }
 
+    /// <summary>
+    /// Maximum amount to charge. If unset, the fee has no upper bound.
+    /// </summary>
+    public string? MaximumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("maximum_amount");
+        }
+        init { this._rawData.Set("maximum_amount", value); }
+    }
+
+    /// <summary>
+    /// Minimum amount to charge. If unset, the fee is bounded below by 0.
+    /// </summary>
+    public string? MinimumAmount
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("minimum_amount");
+        }
+        init { this._rawData.Set("minimum_amount", value); }
+    }
+
+    /// <summary>
+    /// If true, the minimum_amount is prorated based on the service period. The
+    /// maximum_amount is an absolute cap (never prorated), and the percent applied
+    /// to upstream subtotals is never prorated either.
+    /// </summary>
+    public bool? Prorated
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableStruct<bool>("prorated");
+        }
+        init
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            this._rawData.Set("prorated", value);
+        }
+    }
+
     /// <inheritdoc/>
     public override void Validate()
     {
         _ = this.Percent;
+        _ = this.MaximumAmount;
+        _ = this.MinimumAmount;
+        _ = this.Prorated;
     }
 
     public PricePercentPercentConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PricePercentPercentConfig(PricePercentPercentConfig pricePercentPercentConfig)
         : base(pricePercentPercentConfig) { }
+#pragma warning restore CS8618
 
     public PricePercentPercentConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -6776,7 +9237,7 @@ public record class PricePercentConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6797,7 +9258,7 @@ public record class PricePercentConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -6817,7 +9278,7 @@ public record class PricePercentConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6828,8 +9289,8 @@ public record class PricePercentConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6858,7 +9319,7 @@ public record class PricePercentConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -6869,8 +9330,8 @@ public record class PricePercentConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -6919,10 +9380,10 @@ public record class PricePercentConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PricePercentConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PricePercentConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -6930,7 +9391,20 @@ public record class PricePercentConversionRateConfig : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PricePercentConversionRateConfigConverter
@@ -6965,12 +9439,10 @@ sealed class PricePercentConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -6987,12 +9459,10 @@ sealed class PricePercentConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -7243,6 +9713,19 @@ public sealed record class PriceEventOutput : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -7290,6 +9773,7 @@ public sealed record class PriceEventOutput : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
@@ -7298,8 +9782,11 @@ public sealed record class PriceEventOutput : JsonModel
         this.ModelType = JsonSerializer.SerializeToElement("event_output");
     }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEventOutput(PriceEventOutput priceEventOutput)
         : base(priceEventOutput) { }
+#pragma warning restore CS8618
 
     public PriceEventOutput(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7454,10 +9941,13 @@ public sealed record class PriceEventOutputEventOutputConfig : JsonModel
 
     public PriceEventOutputEventOutputConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEventOutputEventOutputConfig(
         PriceEventOutputEventOutputConfig priceEventOutputEventOutputConfig
     )
         : base(priceEventOutputEventOutputConfig) { }
+#pragma warning restore CS8618
 
     public PriceEventOutputEventOutputConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -7541,7 +10031,7 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -7562,7 +10052,7 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -7582,7 +10072,7 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -7593,8 +10083,8 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -7623,7 +10113,7 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -7634,8 +10124,8 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -7684,10 +10174,10 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(PriceEventOutputConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(PriceEventOutputConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -7695,7 +10185,20 @@ public record class PriceEventOutputConversionRateConfig : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class PriceEventOutputConversionRateConfigConverter
@@ -7730,12 +10233,10 @@ sealed class PriceEventOutputConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -7752,12 +10253,10 @@ sealed class PriceEventOutputConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

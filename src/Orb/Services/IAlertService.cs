@@ -7,9 +7,14 @@ using Orb.Models.Alerts;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// [Alerts within Orb](/product-catalog/configuring-alerts) monitor spending, usage,
+/// or credit balance and trigger webhooks when a threshold is exceeded.
+///
+/// <para>Alerts created through the API can be scoped to either customers or subscriptions.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IAlertService
 {
@@ -56,14 +61,15 @@ public interface IAlertService
     /// <summary>
     /// This endpoint returns a list of alerts within Orb.
     ///
-    /// <para>The request must specify one of `customer_id`, `external_customer_id`,
-    /// or `subscription_id`.</para>
+    /// <para>The request must specify one of `customer_id`, `external_customer_id`, or
+    /// `subscription_id`.</para>
     ///
     /// <para>If querying by subscription_id, the endpoint will return the subscription
     /// level alerts as well as the plan level alerts associated with the subscription.</para>
     ///
     /// <para>The list of alerts is ordered starting from the most recently created
-    /// alert. This endpoint follows Orb's [standardized pagination format](/api-reference/pagination).</para>
+    /// alert. This endpoint follows Orb's [standardized pagination
+    /// format](/api-reference/pagination).</para>
     /// </summary>
     Task<AlertListPage> List(
         AlertListParams? parameters = null,
@@ -71,13 +77,14 @@ public interface IAlertService
     );
 
     /// <summary>
-    ///  This endpoint creates a new alert to monitor a customer's credit balance.
-    /// There are three types of alerts that can be scoped to  customers: `credit_balance_depleted`,
-    /// `credit_balance_dropped`, and `credit_balance_recovered`. Customers can have
-    /// a maximum  of one of each type of alert per [credit balance currency](/product-catalog/prepurchase).
-    /// `credit_balance_dropped` alerts require a list of thresholds to be provided
-    /// while `credit_balance_depleted`  and `credit_balance_recovered` alerts do
-    /// not require thresholds.
+    ///  This endpoint creates a new alert to monitor a customer's credit balance. There
+    /// are three types of alerts that can be scoped to  customers:
+    /// `credit_balance_depleted`, `credit_balance_dropped`, and
+    /// `credit_balance_recovered`. Customers can have a maximum  of one of each type of
+    /// alert per [credit balance currency](/product-catalog/prepurchase). `credit_balance_dropped`
+    /// alerts require a list of thresholds to be provided while `credit_balance_depleted`
+    ///
+    /// and `credit_balance_recovered` alerts do not require thresholds.
     /// </summary>
     Task<Alert> CreateForCustomer(
         AlertCreateForCustomerParams parameters,
@@ -92,13 +99,14 @@ public interface IAlertService
     );
 
     /// <summary>
-    ///  This endpoint creates a new alert to monitor a customer's credit balance.
-    /// There are three types of alerts that can be scoped to  customers: `credit_balance_depleted`,
-    /// `credit_balance_dropped`, and `credit_balance_recovered`. Customers can have
-    /// a maximum  of one of each type of alert per [credit balance currency](/product-catalog/prepurchase).
-    /// `credit_balance_dropped` alerts require a list of thresholds to be provided
-    /// while `credit_balance_depleted`  and `credit_balance_recovered` alerts do
-    /// not require thresholds.
+    ///  This endpoint creates a new alert to monitor a customer's credit balance. There
+    /// are three types of alerts that can be scoped to  customers:
+    /// `credit_balance_depleted`, `credit_balance_dropped`, and
+    /// `credit_balance_recovered`. Customers can have a maximum  of one of each type of
+    /// alert per [credit balance currency](/product-catalog/prepurchase). `credit_balance_dropped`
+    /// alerts require a list of thresholds to be provided while `credit_balance_depleted`
+    ///
+    /// and `credit_balance_recovered` alerts do not require thresholds.
     /// </summary>
     Task<Alert> CreateForExternalCustomer(
         AlertCreateForExternalCustomerParams parameters,
@@ -115,15 +123,15 @@ public interface IAlertService
     /// <summary>
     /// This endpoint is used to create alerts at the subscription level.
     ///
-    /// <para>Subscription level alerts can be one of two types: `usage_exceeded`
-    /// or `cost_exceeded`. A `usage_exceeded` alert is scoped to a particular metric
-    /// and is triggered when the usage of that metric exceeds predefined thresholds
-    /// during the current billing cycle. A `cost_exceeded` alert is triggered when
-    /// the total amount due during the current billing cycle surpasses predefined
-    /// thresholds. `cost_exceeded` alerts do not include burndown of pre-purchase
-    /// credits. Each subscription can have one `cost_exceeded` alert and one `usage_exceeded`
-    /// alert per metric that is a part of the subscription. Alerts are triggered
-    /// based on usage or cost conditions met during the current billing cycle.</para>
+    /// <para>Subscription level alerts can be one of two types: `usage_exceeded` or
+    /// `cost_exceeded`. A `usage_exceeded` alert is scoped to a particular metric and
+    /// is triggered when the usage of that metric exceeds predefined thresholds during
+    /// the current billing cycle. A `cost_exceeded` alert is triggered when the total
+    /// amount due during the current billing cycle surpasses predefined thresholds.
+    /// `cost_exceeded` alerts do not include burndown of pre-purchase credits. Each
+    /// subscription can have one `cost_exceeded` alert and one `usage_exceeded` alert
+    /// per metric that is a part of the subscription. Alerts are triggered based on
+    /// usage or cost conditions met during the current billing cycle.</para>
     /// </summary>
     Task<Alert> CreateForSubscription(
         AlertCreateForSubscriptionParams parameters,
@@ -138,9 +146,9 @@ public interface IAlertService
     );
 
     /// <summary>
-    /// This endpoint allows you to disable an alert. To disable a plan-level alert
-    /// for a specific subscription, you must include the `subscription_id`. The `subscription_id`
-    /// is not required for customer or subscription level alerts.
+    /// This endpoint allows you to disable an alert. To disable a plan-level alert for
+    /// a specific subscription, you must include the `subscription_id`. The
+    /// `subscription_id` is not required for customer or subscription level alerts.
     /// </summary>
     Task<Alert> Disable(
         AlertDisableParams parameters,
@@ -155,9 +163,9 @@ public interface IAlertService
     );
 
     /// <summary>
-    /// This endpoint allows you to enable an alert. To enable a plan-level alert
-    /// for a specific subscription, you must include the `subscription_id`. The `subscription_id`
-    /// is not required for customer or subscription level alerts.
+    /// This endpoint allows you to enable an alert. To enable a plan-level alert for a
+    /// specific subscription, you must include the `subscription_id`. The
+    /// `subscription_id` is not required for customer or subscription level alerts.
     /// </summary>
     Task<Alert> Enable(AlertEnableParams parameters, CancellationToken cancellationToken = default);
 
@@ -183,7 +191,7 @@ public interface IAlertServiceWithRawResponse
     IAlertServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /alerts/{alert_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /alerts/{alert_id}</c>, but is otherwise the
     /// same as <see cref="IAlertService.Retrieve(AlertRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> Retrieve(
@@ -199,7 +207,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /alerts/{alert_configuration_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /alerts/{alert_configuration_id}</c>, but is otherwise the
     /// same as <see cref="IAlertService.Update(AlertUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> Update(
@@ -215,7 +223,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /alerts`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /alerts</c>, but is otherwise the
     /// same as <see cref="IAlertService.List(AlertListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<AlertListPage>> List(
@@ -224,7 +232,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /alerts/customer_id/{customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /alerts/customer_id/{customer_id}</c>, but is otherwise the
     /// same as <see cref="IAlertService.CreateForCustomer(AlertCreateForCustomerParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> CreateForCustomer(
@@ -240,7 +248,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /alerts/external_customer_id/{external_customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /alerts/external_customer_id/{external_customer_id}</c>, but is otherwise the
     /// same as <see cref="IAlertService.CreateForExternalCustomer(AlertCreateForExternalCustomerParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> CreateForExternalCustomer(
@@ -256,7 +264,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /alerts/subscription_id/{subscription_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /alerts/subscription_id/{subscription_id}</c>, but is otherwise the
     /// same as <see cref="IAlertService.CreateForSubscription(AlertCreateForSubscriptionParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> CreateForSubscription(
@@ -272,7 +280,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /alerts/{alert_configuration_id}/disable`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /alerts/{alert_configuration_id}/disable</c>, but is otherwise the
     /// same as <see cref="IAlertService.Disable(AlertDisableParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> Disable(
@@ -288,7 +296,7 @@ public interface IAlertServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /alerts/{alert_configuration_id}/enable`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /alerts/{alert_configuration_id}/enable</c>, but is otherwise the
     /// same as <see cref="IAlertService.Enable(AlertEnableParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Alert>> Enable(

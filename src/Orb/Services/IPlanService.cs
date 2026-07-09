@@ -8,9 +8,13 @@ using Orb.Services.Plans;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
+/// be subscribed to by a customer. Plans define the billing behavior of the subscription.
+/// You can see more about how to configure prices in the [Price resource](/reference/price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IPlanService
 {
@@ -37,8 +41,8 @@ public interface IPlanService
     Task<Plan> Create(PlanCreateParams parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// This endpoint can be used to update the `external_plan_id`, and `metadata`
-    /// of an existing plan.
+    /// This endpoint can be used to update the `external_plan_id`, `description`, and
+    /// `metadata` of an existing plan.
     ///
     /// <para>Other fields on a plan are currently immutable.</para>
     /// </summary>
@@ -52,10 +56,11 @@ public interface IPlanService
     );
 
     /// <summary>
-    /// This endpoint returns a list of all [plans](/core-concepts#plan-and-price)
-    /// for an account in a list format. The list of plans is ordered starting from
-    /// the most recently created plan. The response also includes [`pagination_metadata`](/api-reference/pagination),
-    /// which lets the caller retrieve the next page of results if they exist.
+    /// This endpoint returns a list of all [plans](/core-concepts#plan-and-price) for
+    /// an account in a list format. The list of plans is ordered starting from the most
+    /// recently created plan. The response also includes
+    /// [`pagination_metadata`](/api-reference/pagination) which lets the caller
+    /// retrieve the next page of results if they exist.
     /// </summary>
     Task<PlanListPage> List(
         PlanListParams? parameters = null,
@@ -64,15 +69,15 @@ public interface IPlanService
 
     /// <summary>
     /// This endpoint is used to fetch [plan](/core-concepts#plan-and-price) details
-    /// given a plan identifier. It returns information about the prices included
-    /// in the plan and their configuration, as well as the product that the plan
-    /// is attached to.
+    /// given a plan identifier. It returns information about the prices included in the
+    /// plan and their configuration, as well as the product that the plan is attached
+    /// to.
     ///
-    /// <para>## Serialized prices Orb supports a few different pricing models out
-    /// of the box. Each of these models is serialized differently in a given [Price](/core-concepts#plan-and-price)
-    /// object. The `model_type` field determines the key for the configuration object
-    /// that is present. A detailed explanation of price types can be found in the
-    /// [Price schema](/core-concepts#plan-and-price).</para>
+    /// <para>## Serialized prices Orb supports a few different pricing models out of
+    /// the box. Each of these models is serialized differently in a given
+    /// [Price](/core-concepts#plan-and-price) object. The `model_type` field determines
+    /// the key for the configuration object that is present. A detailed explanation of
+    /// price types can be found in the [Price schema](/core-concepts#plan-and-price).</para>
     ///
     /// <para>## Phases Orb supports plan phases, also known as contract ramps. For
     /// plans with phases, the serialized prices refer to all prices across all phases.</para>
@@ -105,7 +110,7 @@ public interface IPlanServiceWithRawResponse
     IMigrationServiceWithRawResponse Migrations { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans</c>, but is otherwise the
     /// same as <see cref="IPlanService.Create(PlanCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> Create(
@@ -114,7 +119,7 @@ public interface IPlanServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /plans/{plan_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /plans/{plan_id}</c>, but is otherwise the
     /// same as <see cref="IPlanService.Update(PlanUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> Update(
@@ -130,7 +135,7 @@ public interface IPlanServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans</c>, but is otherwise the
     /// same as <see cref="IPlanService.List(PlanListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<PlanListPage>> List(
@@ -139,7 +144,7 @@ public interface IPlanServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/{plan_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/{plan_id}</c>, but is otherwise the
     /// same as <see cref="IPlanService.Fetch(PlanFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Plan>> Fetch(

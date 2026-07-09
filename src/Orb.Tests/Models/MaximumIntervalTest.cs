@@ -174,6 +174,31 @@ public class MaximumIntervalTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaximumInterval
+        {
+            AppliesToPriceIntervalIds = ["string"],
+            EndDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = MaximumIntervalFilterField.PriceID,
+                    Operator = MaximumIntervalFilterOperator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            MaximumAmount = "maximum_amount",
+            StartDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        MaximumInterval copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class MaximumIntervalFilterTest : TestBase
@@ -265,6 +290,21 @@ public class MaximumIntervalFilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new MaximumIntervalFilter
+        {
+            Field = MaximumIntervalFilterField.PriceID,
+            Operator = MaximumIntervalFilterOperator.Includes,
+            Values = ["string"],
+        };
+
+        MaximumIntervalFilter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

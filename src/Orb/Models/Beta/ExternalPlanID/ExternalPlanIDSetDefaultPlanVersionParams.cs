@@ -11,8 +11,12 @@ namespace Orb.Models.Beta.ExternalPlanID;
 
 /// <summary>
 /// This endpoint allows setting the default version of a plan.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBase
+public record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -37,6 +41,8 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
 
     public ExternalPlanIDSetDefaultPlanVersionParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExternalPlanIDSetDefaultPlanVersionParams(
         ExternalPlanIDSetDefaultPlanVersionParams externalPlanIDSetDefaultPlanVersionParams
     )
@@ -46,6 +52,7 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
 
         this._rawBodyData = new(externalPlanIDSetDefaultPlanVersionParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public ExternalPlanIDSetDefaultPlanVersionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -63,27 +70,61 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
     ExternalPlanIDSetDefaultPlanVersionParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string externalPlanID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.ExternalPlanID = externalPlanID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static ExternalPlanIDSetDefaultPlanVersionParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string externalPlanID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            externalPlanID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ExternalPlanID"] = JsonSerializer.SerializeToElement(this.ExternalPlanID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ExternalPlanIDSetDefaultPlanVersionParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.ExternalPlanID?.Equals(other.ExternalPlanID) ?? other.ExternalPlanID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -116,5 +157,10 @@ public sealed record class ExternalPlanIDSetDefaultPlanVersionParams : ParamsBas
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

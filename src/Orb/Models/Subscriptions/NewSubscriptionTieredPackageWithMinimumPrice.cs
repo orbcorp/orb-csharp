@@ -77,12 +77,12 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPrice : JsonMo
     /// <summary>
     /// Configuration for tiered_package_with_minimum pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig TieredPackageWithMinimumConfig
+    public required TieredPackageWithMinimumConfig TieredPackageWithMinimumConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>(
+            return this._rawData.GetNotNullClass<TieredPackageWithMinimumConfig>(
                 "tiered_package_with_minimum_config"
             );
         }
@@ -245,6 +245,19 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPrice : JsonMo
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -298,16 +311,20 @@ public sealed record class NewSubscriptionTieredPackageWithMinimumPrice : JsonMo
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewSubscriptionTieredPackageWithMinimumPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionTieredPackageWithMinimumPrice(
         NewSubscriptionTieredPackageWithMinimumPrice newSubscriptionTieredPackageWithMinimumPrice
     )
         : base(newSubscriptionTieredPackageWithMinimumPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionTieredPackageWithMinimumPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -454,8 +471,8 @@ sealed class NewSubscriptionTieredPackageWithMinimumPriceModelTypeConverter
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig,
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigFromRaw
+        TieredPackageWithMinimumConfig,
+        TieredPackageWithMinimumConfigFromRaw
     >)
 )]
 public sealed record class TieredPackageWithMinimumConfig : JsonModel
@@ -474,20 +491,21 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     /// Apply tiered pricing after rounding up the quantity to the package size.
     /// Tiers are defined using exclusive lower bounds.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier> Tiers
+    public required IReadOnlyList<TieredPackageWithMinimumConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
             return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier>
+                ImmutableArray<TieredPackageWithMinimumConfigTier>
             >("tiers");
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<TieredPackageWithMinimumConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -503,10 +521,13 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
 
     public TieredPackageWithMinimumConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageWithMinimumConfig(
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig tieredPackageWithMinimumConfig
+        TieredPackageWithMinimumConfig tieredPackageWithMinimumConfig
     )
         : base(tieredPackageWithMinimumConfig) { }
+#pragma warning restore CS8618
 
     public TieredPackageWithMinimumConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -521,8 +542,8 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig FromRawUnchecked(
+    /// <inheritdoc cref="TieredPackageWithMinimumConfigFromRaw.FromRawUnchecked"/>
+    public static TieredPackageWithMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -530,13 +551,12 @@ public sealed record class TieredPackageWithMinimumConfig : JsonModel
     }
 }
 
-class TieredPackageWithMinimumConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig>
+class TieredPackageWithMinimumConfigFromRaw : IFromRawJson<TieredPackageWithMinimumConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig FromRawUnchecked(
+    public TieredPackageWithMinimumConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfig.FromRawUnchecked(rawData);
+    ) => TieredPackageWithMinimumConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -544,8 +564,8 @@ class TieredPackageWithMinimumConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier,
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTierFromRaw
+        TieredPackageWithMinimumConfigTier,
+        TieredPackageWithMinimumConfigTierFromRaw
     >)
 )]
 public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
@@ -590,10 +610,13 @@ public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
 
     public TieredPackageWithMinimumConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TieredPackageWithMinimumConfigTier(
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier tieredPackageWithMinimumConfigTier
+        TieredPackageWithMinimumConfigTier tieredPackageWithMinimumConfigTier
     )
         : base(tieredPackageWithMinimumConfigTier) { }
+#pragma warning restore CS8618
 
     public TieredPackageWithMinimumConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -608,8 +631,8 @@ public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="TieredPackageWithMinimumConfigTierFromRaw.FromRawUnchecked"/>
+    public static TieredPackageWithMinimumConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -617,16 +640,12 @@ public sealed record class TieredPackageWithMinimumConfigTier : JsonModel
     }
 }
 
-class TieredPackageWithMinimumConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier>
+class TieredPackageWithMinimumConfigTierFromRaw : IFromRawJson<TieredPackageWithMinimumConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier FromRawUnchecked(
+    public TieredPackageWithMinimumConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) =>
-        global::Orb.Models.Subscriptions.TieredPackageWithMinimumConfigTier.FromRawUnchecked(
-            rawData
-        );
+    ) => TieredPackageWithMinimumConfigTier.FromRawUnchecked(rawData);
 }
 
 [JsonConverter(typeof(NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigConverter))]
@@ -674,7 +693,7 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -695,7 +714,7 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -715,7 +734,7 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -726,8 +745,8 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -756,7 +775,7 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -767,8 +786,8 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -819,10 +838,10 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
 
     public virtual bool Equals(
         NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -830,7 +849,20 @@ public record class NewSubscriptionTieredPackageWithMinimumPriceConversionRateCo
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigConverter
@@ -865,12 +897,10 @@ sealed class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigCon
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -887,12 +917,10 @@ sealed class NewSubscriptionTieredPackageWithMinimumPriceConversionRateConfigCon
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

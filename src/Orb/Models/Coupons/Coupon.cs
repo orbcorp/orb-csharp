@@ -123,8 +123,11 @@ public sealed record class Coupon : JsonModel
 
     public Coupon() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Coupon(Coupon coupon)
         : base(coupon) { }
+#pragma warning restore CS8618
 
     public Coupon(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -197,7 +200,7 @@ public record class CouponDiscount : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="PercentageDiscount"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -218,7 +221,7 @@ public record class CouponDiscount : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="AmountDiscount"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -238,7 +241,7 @@ public record class CouponDiscount : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -249,8 +252,8 @@ public record class CouponDiscount : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (PercentageDiscount value) => {...},
-    ///     (AmountDiscount value) => {...}
+    ///     (PercentageDiscount value) =&gt; {...},
+    ///     (AmountDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -279,7 +282,7 @@ public record class CouponDiscount : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -290,8 +293,8 @@ public record class CouponDiscount : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (PercentageDiscount value) => {...},
-    ///     (AmountDiscount value) => {...}
+    ///     (PercentageDiscount value) =&gt; {...},
+    ///     (AmountDiscount value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -334,10 +337,10 @@ public record class CouponDiscount : ModelBase
         this.Switch((percentage) => percentage.Validate(), (amount) => amount.Validate());
     }
 
-    public virtual bool Equals(CouponDiscount? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(CouponDiscount? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -345,7 +348,20 @@ public record class CouponDiscount : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            PercentageDiscount _ => 0,
+            AmountDiscount _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
@@ -379,12 +395,10 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -398,12 +412,10 @@ sealed class CouponDiscountConverter : JsonConverter<CouponDiscount>
                     var deserialized = JsonSerializer.Deserialize<AmountDiscount>(element, options);
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

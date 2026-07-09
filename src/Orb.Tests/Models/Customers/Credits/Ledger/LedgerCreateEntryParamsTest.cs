@@ -37,6 +37,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                     CustomDueDate = "2019-12-27",
                     InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
+                    MarkAsPaid = true,
                     Memo = "memo",
                     NetTerms = 0,
                     RequireSuccessfulPayment = true,
@@ -69,6 +70,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -109,6 +111,7 @@ public class LedgerCreateEntryParamsTest : TestBase
                     CustomDueDate = "2019-12-27",
                     InvoiceDate = "2019-12-27",
                     ItemID = "item_id",
+                    MarkAsPaid = true,
                     Memo = "memo",
                     NetTerms = 0,
                     RequireSuccessfulPayment = true,
@@ -120,10 +123,55 @@ public class LedgerCreateEntryParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/customers/customer_id/credits/ledger_entry"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/customers/customer_id/credits/ledger_entry"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new Ledger::LedgerCreateEntryParams
+        {
+            CustomerID = "customer_id",
+            Body = new Ledger::Increment()
+            {
+                Amount = 0,
+                Currency = "currency",
+                Description = "description",
+                EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                Filters =
+                [
+                    new()
+                    {
+                        Field = Ledger::Field.ItemID,
+                        Operator = Ledger::Operator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                InvoiceSettings = new()
+                {
+                    AutoCollection = true,
+                    CustomDueDate = "2019-12-27",
+                    InvoiceDate = "2019-12-27",
+                    ItemID = "item_id",
+                    MarkAsPaid = true,
+                    Memo = "memo",
+                    NetTerms = 0,
+                    RequireSuccessfulPayment = true,
+                },
+                Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+                PerUnitCostBasis = "per_unit_cost_basis",
+            },
+        };
+
+        Ledger::LedgerCreateEntryParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -154,6 +202,7 @@ public class BodyTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -247,6 +296,7 @@ public class BodyTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -373,6 +423,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -402,6 +453,7 @@ public class IncrementTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -458,6 +510,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -500,6 +553,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -536,6 +590,7 @@ public class IncrementTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -592,6 +647,7 @@ public class IncrementTest : TestBase
                 CustomDueDate = "2019-12-27",
                 InvoiceDate = "2019-12-27",
                 ItemID = "item_id",
+                MarkAsPaid = true,
                 Memo = "memo",
                 NetTerms = 0,
                 RequireSuccessfulPayment = true,
@@ -688,6 +744,45 @@ public class IncrementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Increment
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            EffectiveDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Filters =
+            [
+                new()
+                {
+                    Field = Ledger::Field.ItemID,
+                    Operator = Ledger::Operator.Includes,
+                    Values = ["string"],
+                },
+            ],
+            InvoiceSettings = new()
+            {
+                AutoCollection = true,
+                CustomDueDate = "2019-12-27",
+                InvoiceDate = "2019-12-27",
+                ItemID = "item_id",
+                MarkAsPaid = true,
+                Memo = "memo",
+                NetTerms = 0,
+                RequireSuccessfulPayment = true,
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PerUnitCostBasis = "per_unit_cost_basis",
+        };
+
+        Ledger::Increment copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class FilterTest : TestBase
@@ -775,6 +870,21 @@ public class FilterTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Filter
+        {
+            Field = Ledger::Field.ItemID,
+            Operator = Ledger::Operator.Includes,
+            Values = ["string"],
+        };
+
+        Ledger::Filter copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -903,6 +1013,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -912,6 +1023,7 @@ public class InvoiceSettingsTest : TestBase
         Ledger::CustomDueDate expectedCustomDueDate = "2019-12-27";
         Ledger::InvoiceDate expectedInvoiceDate = "2019-12-27";
         string expectedItemID = "item_id";
+        bool expectedMarkAsPaid = true;
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
         bool expectedRequireSuccessfulPayment = true;
@@ -920,6 +1032,7 @@ public class InvoiceSettingsTest : TestBase
         Assert.Equal(expectedCustomDueDate, model.CustomDueDate);
         Assert.Equal(expectedInvoiceDate, model.InvoiceDate);
         Assert.Equal(expectedItemID, model.ItemID);
+        Assert.Equal(expectedMarkAsPaid, model.MarkAsPaid);
         Assert.Equal(expectedMemo, model.Memo);
         Assert.Equal(expectedNetTerms, model.NetTerms);
         Assert.Equal(expectedRequireSuccessfulPayment, model.RequireSuccessfulPayment);
@@ -934,6 +1047,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -957,6 +1071,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -973,6 +1088,7 @@ public class InvoiceSettingsTest : TestBase
         Ledger::CustomDueDate expectedCustomDueDate = "2019-12-27";
         Ledger::InvoiceDate expectedInvoiceDate = "2019-12-27";
         string expectedItemID = "item_id";
+        bool expectedMarkAsPaid = true;
         string expectedMemo = "memo";
         long expectedNetTerms = 0;
         bool expectedRequireSuccessfulPayment = true;
@@ -981,6 +1097,7 @@ public class InvoiceSettingsTest : TestBase
         Assert.Equal(expectedCustomDueDate, deserialized.CustomDueDate);
         Assert.Equal(expectedInvoiceDate, deserialized.InvoiceDate);
         Assert.Equal(expectedItemID, deserialized.ItemID);
+        Assert.Equal(expectedMarkAsPaid, deserialized.MarkAsPaid);
         Assert.Equal(expectedMemo, deserialized.Memo);
         Assert.Equal(expectedNetTerms, deserialized.NetTerms);
         Assert.Equal(expectedRequireSuccessfulPayment, deserialized.RequireSuccessfulPayment);
@@ -995,6 +1112,7 @@ public class InvoiceSettingsTest : TestBase
             CustomDueDate = "2019-12-27",
             InvoiceDate = "2019-12-27",
             ItemID = "item_id",
+            MarkAsPaid = true,
             Memo = "memo",
             NetTerms = 0,
             RequireSuccessfulPayment = true,
@@ -1016,6 +1134,8 @@ public class InvoiceSettingsTest : TestBase
             NetTerms = 0,
         };
 
+        Assert.Null(model.MarkAsPaid);
+        Assert.False(model.RawData.ContainsKey("mark_as_paid"));
         Assert.Null(model.RequireSuccessfulPayment);
         Assert.False(model.RawData.ContainsKey("require_successful_payment"));
     }
@@ -1049,9 +1169,12 @@ public class InvoiceSettingsTest : TestBase
             NetTerms = 0,
 
             // Null should be interpreted as omitted for these properties
+            MarkAsPaid = null,
             RequireSuccessfulPayment = null,
         };
 
+        Assert.Null(model.MarkAsPaid);
+        Assert.False(model.RawData.ContainsKey("mark_as_paid"));
         Assert.Null(model.RequireSuccessfulPayment);
         Assert.False(model.RawData.ContainsKey("require_successful_payment"));
     }
@@ -1069,6 +1192,7 @@ public class InvoiceSettingsTest : TestBase
             NetTerms = 0,
 
             // Null should be interpreted as omitted for these properties
+            MarkAsPaid = null,
             RequireSuccessfulPayment = null,
         };
 
@@ -1081,6 +1205,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
         };
 
@@ -1102,6 +1227,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
         };
 
@@ -1114,6 +1240,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
 
             CustomDueDate = null,
@@ -1141,6 +1268,7 @@ public class InvoiceSettingsTest : TestBase
         var model = new Ledger::InvoiceSettings
         {
             AutoCollection = true,
+            MarkAsPaid = true,
             RequireSuccessfulPayment = true,
 
             CustomDueDate = null,
@@ -1151,6 +1279,26 @@ public class InvoiceSettingsTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::InvoiceSettings
+        {
+            AutoCollection = true,
+            CustomDueDate = "2019-12-27",
+            InvoiceDate = "2019-12-27",
+            ItemID = "item_id",
+            MarkAsPaid = true,
+            Memo = "memo",
+            NetTerms = 0,
+            RequireSuccessfulPayment = true,
+        };
+
+        Ledger::InvoiceSettings copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1400,6 +1548,22 @@ public class DecrementTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Decrement
+        {
+            Amount = 0,
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        Ledger::Decrement copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ExpirationChangeTest : TestBase
@@ -1604,6 +1768,25 @@ public class ExpirationChangeTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::ExpirationChange
+        {
+            TargetExpiryDate = "2019-12-27",
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            ExpiryDate = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        Ledger::ExpirationChange copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class VoidTest : TestBase
@@ -1789,6 +1972,24 @@ public class VoidTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Void
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            VoidReason = Ledger::VoidReason.Refund,
+        };
+
+        Ledger::Void copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -2017,5 +2218,22 @@ public class AmendmentTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Ledger::Amendment
+        {
+            Amount = 0,
+            BlockID = "block_id",
+            Currency = "currency",
+            Description = "description",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        Ledger::Amendment copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

@@ -291,7 +291,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="IncrementLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -312,7 +312,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="DecrementLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -333,7 +333,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="ExpirationChangeLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -356,7 +356,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="CreditBlockExpiryLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -379,7 +379,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VoidLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -400,7 +400,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="VoidInitiatedLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -423,7 +423,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="AmendmentLedgerEntry"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -443,7 +443,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -454,13 +454,13 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (IncrementLedgerEntry value) => {...},
-    ///     (DecrementLedgerEntry value) => {...},
-    ///     (ExpirationChangeLedgerEntry value) => {...},
-    ///     (CreditBlockExpiryLedgerEntry value) => {...},
-    ///     (VoidLedgerEntry value) => {...},
-    ///     (VoidInitiatedLedgerEntry value) => {...},
-    ///     (AmendmentLedgerEntry value) => {...}
+    ///     (IncrementLedgerEntry value) =&gt; {...},
+    ///     (DecrementLedgerEntry value) =&gt; {...},
+    ///     (ExpirationChangeLedgerEntry value) =&gt; {...},
+    ///     (CreditBlockExpiryLedgerEntry value) =&gt; {...},
+    ///     (VoidLedgerEntry value) =&gt; {...},
+    ///     (VoidInitiatedLedgerEntry value) =&gt; {...},
+    ///     (AmendmentLedgerEntry value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -509,7 +509,7 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -520,13 +520,13 @@ public record class LedgerCreateEntryResponse : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (IncrementLedgerEntry value) => {...},
-    ///     (DecrementLedgerEntry value) => {...},
-    ///     (ExpirationChangeLedgerEntry value) => {...},
-    ///     (CreditBlockExpiryLedgerEntry value) => {...},
-    ///     (VoidLedgerEntry value) => {...},
-    ///     (VoidInitiatedLedgerEntry value) => {...},
-    ///     (AmendmentLedgerEntry value) => {...}
+    ///     (IncrementLedgerEntry value) =&gt; {...},
+    ///     (DecrementLedgerEntry value) =&gt; {...},
+    ///     (ExpirationChangeLedgerEntry value) =&gt; {...},
+    ///     (CreditBlockExpiryLedgerEntry value) =&gt; {...},
+    ///     (VoidLedgerEntry value) =&gt; {...},
+    ///     (VoidInitiatedLedgerEntry value) =&gt; {...},
+    ///     (AmendmentLedgerEntry value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -605,10 +605,10 @@ public record class LedgerCreateEntryResponse : ModelBase
         );
     }
 
-    public virtual bool Equals(LedgerCreateEntryResponse? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(LedgerCreateEntryResponse? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -616,7 +616,25 @@ public record class LedgerCreateEntryResponse : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            IncrementLedgerEntry _ => 0,
+            DecrementLedgerEntry _ => 1,
+            ExpirationChangeLedgerEntry _ => 2,
+            CreditBlockExpiryLedgerEntry _ => 3,
+            VoidLedgerEntry _ => 4,
+            VoidInitiatedLedgerEntry _ => 5,
+            AmendmentLedgerEntry _ => 6,
+            _ => -1,
+        };
+    }
 }
 
 sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntryResponse>
@@ -650,12 +668,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -672,12 +688,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -694,12 +708,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -716,12 +728,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -738,12 +748,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -760,12 +768,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -782,12 +788,10 @@ sealed class LedgerCreateEntryResponseConverter : JsonConverter<LedgerCreateEntr
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

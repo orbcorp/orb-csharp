@@ -76,11 +76,28 @@ public class DimensionalPriceGroupUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/dimensional_price_groups/dimensional_price_group_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/dimensional_price_groups/dimensional_price_group_id"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new DimensionalPriceGroupUpdateParams
+        {
+            DimensionalPriceGroupID = "dimensional_price_group_id",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        DimensionalPriceGroupUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

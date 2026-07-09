@@ -14,6 +14,9 @@ namespace Orb.Models.Plans.Migrations;
 )]
 public sealed record class MigrationRetrieveResponse : JsonModel
 {
+    /// <summary>
+    /// Unique identifier for this plan version change.
+    /// </summary>
     public required string ID
     {
         get
@@ -24,6 +27,10 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+    /// when scheduled to be at the end of the current billing period.
+    /// </summary>
     public required EffectiveTime? EffectiveTime
     {
         get
@@ -34,6 +41,9 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("effective_time", value); }
     }
 
+    /// <summary>
+    /// The ID of the plan being migrated.
+    /// </summary>
     public required string PlanID
     {
         get
@@ -44,14 +54,16 @@ public sealed record class MigrationRetrieveResponse : JsonModel
         init { this._rawData.Set("plan_id", value); }
     }
 
-    public required ApiEnum<string, global::Orb.Models.Plans.Migrations.Status> Status
+    /// <summary>
+    /// Current status of the migration: 'not_started', 'in_progress', 'completed',
+    /// 'action_needed', or 'canceled'.
+    /// </summary>
+    public required ApiEnum<string, Status> Status
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<
-                ApiEnum<string, global::Orb.Models.Plans.Migrations.Status>
-            >("status");
+            return this._rawData.GetNotNullClass<ApiEnum<string, Status>>("status");
         }
         init { this._rawData.Set("status", value); }
     }
@@ -67,8 +79,11 @@ public sealed record class MigrationRetrieveResponse : JsonModel
 
     public MigrationRetrieveResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationRetrieveResponse(MigrationRetrieveResponse migrationRetrieveResponse)
         : base(migrationRetrieveResponse) { }
+#pragma warning restore CS8618
 
     public MigrationRetrieveResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -100,6 +115,10 @@ class MigrationRetrieveResponseFromRaw : IFromRawJson<MigrationRetrieveResponse>
     ) => MigrationRetrieveResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+/// when scheduled to be at the end of the current billing period.
+/// </summary>
 [JsonConverter(typeof(EffectiveTimeConverter))]
 public record class EffectiveTime : ModelBase
 {
@@ -145,7 +164,7 @@ public record class EffectiveTime : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -166,7 +185,7 @@ public record class EffectiveTime : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -185,14 +204,14 @@ public record class EffectiveTime : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="ApiEnum<string, UnionMember2>"/>.
+    /// type <see cref="ApiEnum{TRaw, TEnum}"/> with a <c>TRaw</c> of <c>string</c> and a <c>TEnum</c> of UnionMember2>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickUnionMember2(out var value)) {
-    ///     // `value` is of type `ApiEnum<string, UnionMember2>`
+    ///     // `value` is of type `ApiEnum&lt;string, UnionMember2&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -207,7 +226,7 @@ public record class EffectiveTime : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -218,9 +237,9 @@ public record class EffectiveTime : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, UnionMember2> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, UnionMember2&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -253,7 +272,7 @@ public record class EffectiveTime : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -264,9 +283,9 @@ public record class EffectiveTime : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, UnionMember2> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, UnionMember2&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -316,10 +335,10 @@ public record class EffectiveTime : ModelBase
         this.Switch((_) => { }, (_) => { }, (unionMember2) => unionMember2.Validate());
     }
 
-    public virtual bool Equals(EffectiveTime? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(EffectiveTime? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -327,7 +346,21 @@ public record class EffectiveTime : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            ApiEnum<string, UnionMember2> _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class EffectiveTimeConverter : JsonConverter<EffectiveTime?>
@@ -371,7 +404,10 @@ sealed class EffectiveTimeConverter : JsonConverter<EffectiveTime?>
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -432,7 +468,11 @@ sealed class UnionMember2Converter : JsonConverter<UnionMember2>
     }
 }
 
-[JsonConverter(typeof(global::Orb.Models.Plans.Migrations.StatusConverter))]
+/// <summary>
+/// Current status of the migration: 'not_started', 'in_progress', 'completed', 'action_needed',
+/// or 'canceled'.
+/// </summary>
+[JsonConverter(typeof(StatusConverter))]
 public enum Status
 {
     NotStarted,
@@ -442,9 +482,9 @@ public enum Status
     Canceled,
 }
 
-sealed class StatusConverter : JsonConverter<global::Orb.Models.Plans.Migrations.Status>
+sealed class StatusConverter : JsonConverter<Status>
 {
-    public override global::Orb.Models.Plans.Migrations.Status Read(
+    public override Status Read(
         ref Utf8JsonReader reader,
         System::Type typeToConvert,
         JsonSerializerOptions options
@@ -452,30 +492,26 @@ sealed class StatusConverter : JsonConverter<global::Orb.Models.Plans.Migrations
     {
         return JsonSerializer.Deserialize<string>(ref reader, options) switch
         {
-            "not_started" => global::Orb.Models.Plans.Migrations.Status.NotStarted,
-            "in_progress" => global::Orb.Models.Plans.Migrations.Status.InProgress,
-            "completed" => global::Orb.Models.Plans.Migrations.Status.Completed,
-            "action_needed" => global::Orb.Models.Plans.Migrations.Status.ActionNeeded,
-            "canceled" => global::Orb.Models.Plans.Migrations.Status.Canceled,
-            _ => (global::Orb.Models.Plans.Migrations.Status)(-1),
+            "not_started" => Status.NotStarted,
+            "in_progress" => Status.InProgress,
+            "completed" => Status.Completed,
+            "action_needed" => Status.ActionNeeded,
+            "canceled" => Status.Canceled,
+            _ => (Status)(-1),
         };
     }
 
-    public override void Write(
-        Utf8JsonWriter writer,
-        global::Orb.Models.Plans.Migrations.Status value,
-        JsonSerializerOptions options
-    )
+    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
     {
         JsonSerializer.Serialize(
             writer,
             value switch
             {
-                global::Orb.Models.Plans.Migrations.Status.NotStarted => "not_started",
-                global::Orb.Models.Plans.Migrations.Status.InProgress => "in_progress",
-                global::Orb.Models.Plans.Migrations.Status.Completed => "completed",
-                global::Orb.Models.Plans.Migrations.Status.ActionNeeded => "action_needed",
-                global::Orb.Models.Plans.Migrations.Status.Canceled => "canceled",
+                Status.NotStarted => "not_started",
+                Status.InProgress => "in_progress",
+                Status.Completed => "completed",
+                Status.ActionNeeded => "action_needed",
+                Status.Canceled => "canceled",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

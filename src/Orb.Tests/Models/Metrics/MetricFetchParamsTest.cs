@@ -22,6 +22,18 @@ public class MetricFetchParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/metrics/metric_id"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/metrics/metric_id"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new MetricFetchParams { MetricID = "metric_id" };
+
+        MetricFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

@@ -21,12 +21,12 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : JsonModel
     /// <summary>
     /// Configuration for bulk_with_proration pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.BulkWithProrationConfig BulkWithProrationConfig
+    public required BulkWithProrationConfig BulkWithProrationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.BulkWithProrationConfig>(
+            return this._rawData.GetNotNullClass<BulkWithProrationConfig>(
                 "bulk_with_proration_config"
             );
         }
@@ -245,6 +245,19 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -298,16 +311,20 @@ public sealed record class NewSubscriptionBulkWithProrationPrice : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewSubscriptionBulkWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionBulkWithProrationPrice(
         NewSubscriptionBulkWithProrationPrice newSubscriptionBulkWithProrationPrice
     )
         : base(newSubscriptionBulkWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -343,12 +360,7 @@ class NewSubscriptionBulkWithProrationPriceFromRaw
 /// <summary>
 /// Configuration for bulk_with_proration pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.BulkWithProrationConfig,
-        global::Orb.Models.Subscriptions.BulkWithProrationConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<BulkWithProrationConfig, BulkWithProrationConfigFromRaw>))]
 public sealed record class BulkWithProrationConfig : JsonModel
 {
     /// <summary>
@@ -383,10 +395,11 @@ public sealed record class BulkWithProrationConfig : JsonModel
 
     public BulkWithProrationConfig() { }
 
-    public BulkWithProrationConfig(
-        global::Orb.Models.Subscriptions.BulkWithProrationConfig bulkWithProrationConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public BulkWithProrationConfig(BulkWithProrationConfig bulkWithProrationConfig)
         : base(bulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -401,8 +414,8 @@ public sealed record class BulkWithProrationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.BulkWithProrationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.BulkWithProrationConfig FromRawUnchecked(
+    /// <inheritdoc cref="BulkWithProrationConfigFromRaw.FromRawUnchecked"/>
+    public static BulkWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -417,13 +430,12 @@ public sealed record class BulkWithProrationConfig : JsonModel
     }
 }
 
-class BulkWithProrationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.BulkWithProrationConfig>
+class BulkWithProrationConfigFromRaw : IFromRawJson<BulkWithProrationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.BulkWithProrationConfig FromRawUnchecked(
+    public BulkWithProrationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.BulkWithProrationConfig.FromRawUnchecked(rawData);
+    ) => BulkWithProrationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -469,8 +481,11 @@ public sealed record class BulkWithProrationConfigTier : JsonModel
 
     public BulkWithProrationConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationConfigTier(BulkWithProrationConfigTier bulkWithProrationConfigTier)
         : base(bulkWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -661,7 +676,7 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -682,7 +697,7 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -702,7 +717,7 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -713,8 +728,8 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -743,7 +758,7 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -754,8 +769,8 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -804,10 +819,10 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionBulkWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewSubscriptionBulkWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -815,7 +830,20 @@ public record class NewSubscriptionBulkWithProrationPriceConversionRateConfig : 
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionBulkWithProrationPriceConversionRateConfigConverter
@@ -850,12 +878,10 @@ sealed class NewSubscriptionBulkWithProrationPriceConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -872,12 +898,10 @@ sealed class NewSubscriptionBulkWithProrationPriceConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

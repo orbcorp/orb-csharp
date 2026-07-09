@@ -92,6 +92,25 @@ public class DimensionalPriceGroupCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/dimensional_price_groups"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/dimensional_price_groups"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new DimensionalPriceGroupCreateParams
+        {
+            BillableMetricID = "billable_metric_id",
+            Dimensions = ["region", "instance_type"],
+            Name = "name",
+            ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        DimensionalPriceGroupCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

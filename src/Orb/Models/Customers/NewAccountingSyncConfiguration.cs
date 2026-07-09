@@ -56,10 +56,13 @@ public sealed record class NewAccountingSyncConfiguration : JsonModel
 
     public NewAccountingSyncConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewAccountingSyncConfiguration(
         NewAccountingSyncConfiguration newAccountingSyncConfiguration
     )
         : base(newAccountingSyncConfiguration) { }
+#pragma warning restore CS8618
 
     public NewAccountingSyncConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -28,9 +28,27 @@ public class TopUpDeleteParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/customers/customer_id/credits/top_ups/top_up_id"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/customer_id/credits/top_ups/top_up_id"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpDeleteParams
+        {
+            CustomerID = "customer_id",
+            TopUpID = "top_up_id",
+        };
+
+        TopUpDeleteParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

@@ -55,11 +55,27 @@ public class AlertEnableParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/alerts/alert_configuration_id/enable?subscription_id=subscription_id"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/alerts/alert_configuration_id/enable?subscription_id=subscription_id"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new AlertEnableParams
+        {
+            AlertConfigurationID = "alert_configuration_id",
+            SubscriptionID = "subscription_id",
+        };
+
+        AlertEnableParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

@@ -172,8 +172,11 @@ public sealed record class BackfillRevertResponse : JsonModel
 
     public BackfillRevertResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillRevertResponse(BackfillRevertResponse backfillRevertResponse)
         : base(backfillRevertResponse) { }
+#pragma warning restore CS8618
 
     public BackfillRevertResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

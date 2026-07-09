@@ -24,7 +24,7 @@ public class CustomerCreateParamsTest : TestBase
                     new()
                     {
                         ExternalProviderID = "external_provider_id",
-                        ProviderType = "provider_type",
+                        ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                     },
                 ],
                 Excluded = true,
@@ -57,6 +57,7 @@ public class CustomerCreateParamsTest : TestBase
                     new()
                     {
                         ProviderType = ProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
                         ExcludedPaymentMethodTypes = ["string"],
                     },
                 ],
@@ -98,7 +99,7 @@ public class CustomerCreateParamsTest : TestBase
                 new()
                 {
                     ExternalProviderID = "external_provider_id",
-                    ProviderType = "provider_type",
+                    ProviderType = AccountingProviderConfigProviderType.Quickbooks,
                 },
             ],
             Excluded = true,
@@ -131,6 +132,7 @@ public class CustomerCreateParamsTest : TestBase
                 new()
                 {
                     ProviderType = ProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -313,7 +315,92 @@ public class CustomerCreateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/customers"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/customers"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CustomerCreateParams
+        {
+            Email = "dev@stainless.com",
+            Name = "x",
+            AccountingSyncConfiguration = new()
+            {
+                AccountingProviders =
+                [
+                    new()
+                    {
+                        ExternalProviderID = "external_provider_id",
+                        ProviderType = AccountingProviderConfigProviderType.Quickbooks,
+                    },
+                ],
+                Excluded = true,
+            },
+            AdditionalEmails = ["dev@stainless.com"],
+            AutoCollection = true,
+            AutoIssuance = true,
+            BillingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            Currency = "currency",
+            EmailDelivery = true,
+            ExternalCustomerID = "external_customer_id",
+            Hierarchy = new()
+            {
+                ChildCustomerIds = ["string"],
+                ParentCustomerID = "parent_customer_id",
+            },
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            PaymentConfiguration = new()
+            {
+                PaymentProviders =
+                [
+                    new()
+                    {
+                        ProviderType = ProviderType.Stripe,
+                        DefaultSharedPaymentToken = "default_shared_payment_token",
+                        ExcludedPaymentMethodTypes = ["string"],
+                    },
+                ],
+            },
+            PaymentProvider = CustomerCreateParamsPaymentProvider.Quickbooks,
+            PaymentProviderID = "payment_provider_id",
+            ReportingConfiguration = new(true),
+            ShippingAddress = new()
+            {
+                City = "city",
+                Country = "country",
+                Line1 = "line1",
+                Line2 = "line2",
+                PostalCode = "postal_code",
+                State = "state",
+            },
+            TaxConfiguration = new NewAvalaraTaxConfiguration()
+            {
+                TaxExempt = true,
+                TaxProvider = TaxProvider.Avalara,
+                AutomaticTaxEnabled = true,
+                TaxExemptionCode = "tax_exemption_code",
+            },
+            TaxID = new()
+            {
+                Country = Models::Country.Ad,
+                Type = Models::CustomerTaxIDType.AdNrt,
+                Value = "value",
+            },
+            Timezone = "timezone",
+        };
+
+        CustomerCreateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -329,6 +416,7 @@ public class PaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = ProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -336,7 +424,12 @@ public class PaymentConfigurationTest : TestBase
 
         List<PaymentProvider> expectedPaymentProviders =
         [
-            new() { ProviderType = ProviderType.Stripe, ExcludedPaymentMethodTypes = ["string"] },
+            new()
+            {
+                ProviderType = ProviderType.Stripe,
+                DefaultSharedPaymentToken = "default_shared_payment_token",
+                ExcludedPaymentMethodTypes = ["string"],
+            },
         ];
 
         Assert.NotNull(model.PaymentProviders);
@@ -357,6 +450,7 @@ public class PaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = ProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -381,6 +475,7 @@ public class PaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = ProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -395,7 +490,12 @@ public class PaymentConfigurationTest : TestBase
 
         List<PaymentProvider> expectedPaymentProviders =
         [
-            new() { ProviderType = ProviderType.Stripe, ExcludedPaymentMethodTypes = ["string"] },
+            new()
+            {
+                ProviderType = ProviderType.Stripe,
+                DefaultSharedPaymentToken = "default_shared_payment_token",
+                ExcludedPaymentMethodTypes = ["string"],
+            },
         ];
 
         Assert.NotNull(deserialized.PaymentProviders);
@@ -416,6 +516,7 @@ public class PaymentConfigurationTest : TestBase
                 new()
                 {
                     ProviderType = ProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
                     ExcludedPaymentMethodTypes = ["string"],
                 },
             ],
@@ -465,6 +566,27 @@ public class PaymentConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PaymentConfiguration
+        {
+            PaymentProviders =
+            [
+                new()
+                {
+                    ProviderType = ProviderType.Stripe,
+                    DefaultSharedPaymentToken = "default_shared_payment_token",
+                    ExcludedPaymentMethodTypes = ["string"],
+                },
+            ],
+        };
+
+        PaymentConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class PaymentProviderTest : TestBase
@@ -475,13 +597,16 @@ public class PaymentProviderTest : TestBase
         var model = new PaymentProvider
         {
             ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
         ApiEnum<string, ProviderType> expectedProviderType = ProviderType.Stripe;
+        string expectedDefaultSharedPaymentToken = "default_shared_payment_token";
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, model.ProviderType);
+        Assert.Equal(expectedDefaultSharedPaymentToken, model.DefaultSharedPaymentToken);
         Assert.NotNull(model.ExcludedPaymentMethodTypes);
         Assert.Equal(
             expectedExcludedPaymentMethodTypes.Count,
@@ -502,6 +627,7 @@ public class PaymentProviderTest : TestBase
         var model = new PaymentProvider
         {
             ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -520,6 +646,7 @@ public class PaymentProviderTest : TestBase
         var model = new PaymentProvider
         {
             ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -531,9 +658,11 @@ public class PaymentProviderTest : TestBase
         Assert.NotNull(deserialized);
 
         ApiEnum<string, ProviderType> expectedProviderType = ProviderType.Stripe;
+        string expectedDefaultSharedPaymentToken = "default_shared_payment_token";
         List<string> expectedExcludedPaymentMethodTypes = ["string"];
 
         Assert.Equal(expectedProviderType, deserialized.ProviderType);
+        Assert.Equal(expectedDefaultSharedPaymentToken, deserialized.DefaultSharedPaymentToken);
         Assert.NotNull(deserialized.ExcludedPaymentMethodTypes);
         Assert.Equal(
             expectedExcludedPaymentMethodTypes.Count,
@@ -554,6 +683,7 @@ public class PaymentProviderTest : TestBase
         var model = new PaymentProvider
         {
             ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
             ExcludedPaymentMethodTypes = ["string"],
         };
 
@@ -563,7 +693,11 @@ public class PaymentProviderTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new PaymentProvider { ProviderType = ProviderType.Stripe };
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
+        };
 
         Assert.Null(model.ExcludedPaymentMethodTypes);
         Assert.False(model.RawData.ContainsKey("excluded_payment_method_types"));
@@ -572,7 +706,11 @@ public class PaymentProviderTest : TestBase
     [Fact]
     public void OptionalNonNullablePropertiesUnsetValidation_Works()
     {
-        var model = new PaymentProvider { ProviderType = ProviderType.Stripe };
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
+        };
 
         model.Validate();
     }
@@ -583,6 +721,7 @@ public class PaymentProviderTest : TestBase
         var model = new PaymentProvider
         {
             ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
@@ -598,12 +737,82 @@ public class PaymentProviderTest : TestBase
         var model = new PaymentProvider
         {
             ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
 
             // Null should be interpreted as omitted for these properties
             ExcludedPaymentMethodTypes = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetAreNotSet_Works()
+    {
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        Assert.Null(model.DefaultSharedPaymentToken);
+        Assert.False(model.RawData.ContainsKey("default_shared_payment_token"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesUnsetValidation_Works()
+    {
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
+    {
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+
+            DefaultSharedPaymentToken = null,
+        };
+
+        Assert.Null(model.DefaultSharedPaymentToken);
+        Assert.True(model.RawData.ContainsKey("default_shared_payment_token"));
+    }
+
+    [Fact]
+    public void OptionalNullablePropertiesSetToNullValidation_Works()
+    {
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            ExcludedPaymentMethodTypes = ["string"],
+
+            DefaultSharedPaymentToken = null,
+        };
+
+        model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PaymentProvider
+        {
+            ProviderType = ProviderType.Stripe,
+            DefaultSharedPaymentToken = "default_shared_payment_token",
+            ExcludedPaymentMethodTypes = ["string"],
+        };
+
+        PaymentProvider copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -671,6 +880,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
     [InlineData(CustomerCreateParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerCreateParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerCreateParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerCreateParamsPaymentProvider.Adyen)]
     public void Validation_Works(CustomerCreateParamsPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -695,6 +905,7 @@ public class CustomerCreateParamsPaymentProviderTest : TestBase
     [InlineData(CustomerCreateParamsPaymentProvider.StripeCharge)]
     [InlineData(CustomerCreateParamsPaymentProvider.StripeInvoice)]
     [InlineData(CustomerCreateParamsPaymentProvider.Netsuite)]
+    [InlineData(CustomerCreateParamsPaymentProvider.Adyen)]
     public void SerializationRoundtrip_Works(CustomerCreateParamsPaymentProvider rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -977,6 +1188,16 @@ public class NumeralTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Numeral { TaxExempt = true, AutomaticTaxEnabled = true };
+
+        Numeral copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class AnrokTest : TestBase
@@ -1075,6 +1296,16 @@ public class AnrokTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Anrok { TaxExempt = true, AutomaticTaxEnabled = true };
+
+        Anrok copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class StripeTest : TestBase
@@ -1172,5 +1403,15 @@ public class StripeTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Stripe { TaxExempt = true, AutomaticTaxEnabled = true };
+
+        Stripe copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

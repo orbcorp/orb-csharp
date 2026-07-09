@@ -59,9 +59,26 @@ public class SubscriptionTriggerPhaseParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/trigger_phase"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/trigger_phase"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionTriggerPhaseParams
+        {
+            SubscriptionID = "subscription_id",
+            AllowInvoiceCreditOrVoid = true,
+            EffectiveDate = "2019-12-27",
+        };
+
+        SubscriptionTriggerPhaseParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

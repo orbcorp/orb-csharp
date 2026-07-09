@@ -12,8 +12,12 @@ namespace Orb.Models.Subscriptions;
 /// <summary>
 /// This endpoint can be used to update the `metadata`, `net terms`, `auto_collection`,
 /// `invoicing_threshold`, and `default_invoice_memo` properties on a subscription.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionUpdateParams : ParamsBase
+public record class SubscriptionUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -36,6 +40,22 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
             return this._rawBodyData.GetNullableStruct<bool>("auto_collection");
         }
         init { this._rawBodyData.Set("auto_collection", value); }
+    }
+
+    /// <summary>
+    /// Used to determine if invoices for this subscription will be automatically
+    /// issued. If true, invoices will be automatically issued. If false, invoices
+    /// will require manual approval. If `null` is specified, this defaults to the
+    /// behavior configured for this customer.
+    /// </summary>
+    public bool? AutoIssuance
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<bool>("auto_issuance");
+        }
+        init { this._rawBodyData.Set("auto_issuance", value); }
     }
 
     /// <summary>
@@ -108,6 +128,8 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
 
     public SubscriptionUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionUpdateParams(SubscriptionUpdateParams subscriptionUpdateParams)
         : base(subscriptionUpdateParams)
     {
@@ -115,6 +137,7 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
 
         this._rawBodyData = new(subscriptionUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public SubscriptionUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -132,27 +155,61 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
     SubscriptionUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string subscriptionID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.SubscriptionID = subscriptionID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static SubscriptionUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string subscriptionID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            subscriptionID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["SubscriptionID"] = JsonSerializer.SerializeToElement(this.SubscriptionID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -182,5 +239,10 @@ public sealed record class SubscriptionUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

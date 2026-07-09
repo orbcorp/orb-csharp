@@ -7,9 +7,13 @@ using Orb.Models.Events.Volume;
 namespace Orb.Services.Events;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Event](/core-concepts#event) resource represents a usage event that has been
+/// created for a customer. Events are the core of Orb's usage-based billing model,
+/// and are used to calculate the usage charges for a given billing period.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IVolumeService
 {
@@ -27,17 +31,19 @@ public interface IVolumeService
     IVolumeService WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// This endpoint returns the event volume for an account in a [paginated list format](/api-reference/pagination).
+    /// This endpoint returns the event volume for an account in a [paginated list
+    /// format](/api-reference/pagination).
     ///
-    /// <para>The event volume is aggregated by the hour and the [timestamp](/api-reference/event/ingest-events)
-    /// field is used to determine which hour an event is associated with. Note,
-    /// this means that late-arriving events increment the volume count for the hour
-    /// window the timestamp is in, not the latest hour window.</para>
+    /// <para>The event volume is aggregated by the hour and the
+    /// [timestamp](/api-reference/event/ingest-events) field is used to determine which
+    /// hour an event is associated with. Note, this means that late-arriving events
+    /// increment the volume count for the hour window the timestamp is in, not the
+    /// latest hour window.</para>
     ///
-    /// <para>Each item in the response contains the count of events aggregated by
-    /// the hour where the start and end time are hour-aligned and in UTC. When a
-    /// specific timestamp is passed in for either start or end time, the response
-    /// includes the hours the timestamp falls in.</para>
+    /// <para>Each item in the response contains the count of events aggregated by the
+    /// hour where the start and end time are hour-aligned and in UTC. When a specific
+    /// timestamp is passed in for either start or end time, the response includes the
+    /// hours the timestamp falls in.</para>
     /// </summary>
     Task<EventVolumes> List(
         VolumeListParams parameters,
@@ -59,7 +65,7 @@ public interface IVolumeServiceWithRawResponse
     IVolumeServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /events/volume`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /events/volume</c>, but is otherwise the
     /// same as <see cref="IVolumeService.List(VolumeListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<EventVolumes>> List(

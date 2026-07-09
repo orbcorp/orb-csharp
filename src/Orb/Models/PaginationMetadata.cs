@@ -39,8 +39,11 @@ public sealed record class PaginationMetadata : JsonModel
 
     public PaginationMetadata() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PaginationMetadata(PaginationMetadata paginationMetadata)
         : base(paginationMetadata) { }
+#pragma warning restore CS8618
 
     public PaginationMetadata(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -46,6 +46,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -88,6 +89,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -107,6 +109,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -156,6 +159,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -207,6 +211,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -256,6 +261,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -278,6 +284,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -327,6 +334,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -368,6 +376,8 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -411,6 +421,7 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -437,6 +448,8 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -465,11 +478,60 @@ public class NewPlanUnitWithProrationPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanUnitWithProrationPrice
+        {
+            Cadence = NewPlanUnitWithProrationPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType = NewPlanUnitWithProrationPriceModelType.UnitWithProration,
+            Name = "Annual fee",
+            UnitWithProrationConfig = new("unit_amount"),
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        NewPlanUnitWithProrationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -650,6 +712,19 @@ public class NewPlanUnitWithProrationPriceUnitWithProrationConfigTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanUnitWithProrationPriceUnitWithProrationConfig
+        {
+            UnitAmount = "unit_amount",
+        };
+
+        NewPlanUnitWithProrationPriceUnitWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

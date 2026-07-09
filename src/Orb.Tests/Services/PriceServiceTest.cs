@@ -48,6 +48,7 @@ public class PriceServiceTest : TestBase
                         Duration = 0,
                         DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
                     },
+                    LicenseTypeID = "license_type_id",
                     Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
                 },
             },

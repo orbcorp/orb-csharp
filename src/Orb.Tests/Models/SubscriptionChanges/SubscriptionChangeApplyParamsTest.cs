@@ -97,9 +97,32 @@ public class SubscriptionChangeApplyParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/subscription_changes/subscription_change_id/apply"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscription_changes/subscription_change_id/apply"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionChangeApplyParams
+        {
+            SubscriptionChangeID = "subscription_change_id",
+            Description = "description",
+            MarkAsPaid = true,
+            PaymentExternalID = "payment_external_id",
+            PaymentNotes = "payment_notes",
+            PaymentReceivedDate = "2019-12-27",
+            PreviouslyCollectedAmount = "previously_collected_amount",
+        };
+
+        SubscriptionChangeApplyParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

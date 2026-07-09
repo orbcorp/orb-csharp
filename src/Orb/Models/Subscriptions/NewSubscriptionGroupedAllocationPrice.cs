@@ -35,12 +35,12 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
     /// <summary>
     /// Configuration for grouped_allocation pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.GroupedAllocationConfig GroupedAllocationConfig
+    public required GroupedAllocationConfig GroupedAllocationConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.GroupedAllocationConfig>(
+            return this._rawData.GetNotNullClass<GroupedAllocationConfig>(
                 "grouped_allocation_config"
             );
         }
@@ -244,6 +244,19 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -297,16 +310,20 @@ public sealed record class NewSubscriptionGroupedAllocationPrice : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewSubscriptionGroupedAllocationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionGroupedAllocationPrice(
         NewSubscriptionGroupedAllocationPrice newSubscriptionGroupedAllocationPrice
     )
         : base(newSubscriptionGroupedAllocationPrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionGroupedAllocationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -402,12 +419,7 @@ sealed class NewSubscriptionGroupedAllocationPriceCadenceConverter
 /// <summary>
 /// Configuration for grouped_allocation pricing
 /// </summary>
-[JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.GroupedAllocationConfig,
-        global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw
-    >)
-)]
+[JsonConverter(typeof(JsonModelConverter<GroupedAllocationConfig, GroupedAllocationConfigFromRaw>))]
 public sealed record class GroupedAllocationConfig : JsonModel
 {
     /// <summary>
@@ -459,10 +471,11 @@ public sealed record class GroupedAllocationConfig : JsonModel
 
     public GroupedAllocationConfig() { }
 
-    public GroupedAllocationConfig(
-        global::Orb.Models.Subscriptions.GroupedAllocationConfig groupedAllocationConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public GroupedAllocationConfig(GroupedAllocationConfig groupedAllocationConfig)
         : base(groupedAllocationConfig) { }
+#pragma warning restore CS8618
 
     public GroupedAllocationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -477,8 +490,8 @@ public sealed record class GroupedAllocationConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.GroupedAllocationConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+    /// <inheritdoc cref="GroupedAllocationConfigFromRaw.FromRawUnchecked"/>
+    public static GroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -486,13 +499,12 @@ public sealed record class GroupedAllocationConfig : JsonModel
     }
 }
 
-class GroupedAllocationConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.GroupedAllocationConfig>
+class GroupedAllocationConfigFromRaw : IFromRawJson<GroupedAllocationConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.GroupedAllocationConfig FromRawUnchecked(
+    public GroupedAllocationConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.GroupedAllocationConfig.FromRawUnchecked(rawData);
+    ) => GroupedAllocationConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -587,7 +599,7 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -608,7 +620,7 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -628,7 +640,7 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -639,8 +651,8 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -669,7 +681,7 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -680,8 +692,8 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -730,10 +742,10 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionGroupedAllocationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewSubscriptionGroupedAllocationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -741,7 +753,20 @@ public record class NewSubscriptionGroupedAllocationPriceConversionRateConfig : 
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionGroupedAllocationPriceConversionRateConfigConverter
@@ -776,12 +801,10 @@ sealed class NewSubscriptionGroupedAllocationPriceConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -798,12 +821,10 @@ sealed class NewSubscriptionGroupedAllocationPriceConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

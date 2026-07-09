@@ -51,8 +51,11 @@ public sealed record class NewBillingCycleConfiguration : JsonModel
 
     public NewBillingCycleConfiguration() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewBillingCycleConfiguration(NewBillingCycleConfiguration newBillingCycleConfiguration)
         : base(newBillingCycleConfiguration) { }
+#pragma warning restore CS8618
 
     public NewBillingCycleConfiguration(IReadOnlyDictionary<string, JsonElement> rawData)
     {

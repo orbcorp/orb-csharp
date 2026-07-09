@@ -12,6 +12,9 @@ namespace Orb.Models.Plans.Migrations;
 [JsonConverter(typeof(JsonModelConverter<MigrationCancelResponse, MigrationCancelResponseFromRaw>))]
 public sealed record class MigrationCancelResponse : JsonModel
 {
+    /// <summary>
+    /// Unique identifier for this plan version change.
+    /// </summary>
     public required string ID
     {
         get
@@ -22,6 +25,10 @@ public sealed record class MigrationCancelResponse : JsonModel
         init { this._rawData.Set("id", value); }
     }
 
+    /// <summary>
+    /// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+    /// when scheduled to be at the end of the current billing period.
+    /// </summary>
     public required MigrationCancelResponseEffectiveTime? EffectiveTime
     {
         get
@@ -34,6 +41,9 @@ public sealed record class MigrationCancelResponse : JsonModel
         init { this._rawData.Set("effective_time", value); }
     }
 
+    /// <summary>
+    /// The ID of the plan being migrated.
+    /// </summary>
     public required string PlanID
     {
         get
@@ -44,6 +54,10 @@ public sealed record class MigrationCancelResponse : JsonModel
         init { this._rawData.Set("plan_id", value); }
     }
 
+    /// <summary>
+    /// Current status of the migration: 'not_started', 'in_progress', 'completed',
+    /// 'action_needed', or 'canceled'.
+    /// </summary>
     public required ApiEnum<string, MigrationCancelResponseStatus> Status
     {
         get
@@ -67,8 +81,11 @@ public sealed record class MigrationCancelResponse : JsonModel
 
     public MigrationCancelResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationCancelResponse(MigrationCancelResponse migrationCancelResponse)
         : base(migrationCancelResponse) { }
+#pragma warning restore CS8618
 
     public MigrationCancelResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -100,6 +117,10 @@ class MigrationCancelResponseFromRaw : IFromRawJson<MigrationCancelResponse>
     ) => MigrationCancelResponse.FromRawUnchecked(rawData);
 }
 
+/// <summary>
+/// When the migration takes effect. Can be a specific date/time, or 'end_of_term'
+/// when scheduled to be at the end of the current billing period.
+/// </summary>
 [JsonConverter(typeof(MigrationCancelResponseEffectiveTimeConverter))]
 public record class MigrationCancelResponseEffectiveTime : ModelBase
 {
@@ -151,7 +172,7 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="string"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -172,7 +193,7 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="System::DateTimeOffset"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -191,14 +212,14 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
 
     /// <summary>
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
-    /// type <see cref="ApiEnum<string, MigrationCancelResponseEffectiveTimeUnionMember2>"/>.
+    /// type <see cref="ApiEnum{TRaw, TEnum}"/> with a <c>TRaw</c> of <c>string</c> and a <c>TEnum</c> of MigrationCancelResponseEffectiveTimeUnionMember2>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
     /// if (instance.TryPickMigrationCancelResponseEffectiveTimeUnionMember2(out var value)) {
-    ///     // `value` is of type `ApiEnum<string, MigrationCancelResponseEffectiveTimeUnionMember2>`
+    ///     // `value` is of type `ApiEnum&lt;string, MigrationCancelResponseEffectiveTimeUnionMember2&gt;`
     ///     Console.WriteLine(value);
     /// }
     /// </code>
@@ -216,7 +237,7 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -227,9 +248,9 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, MigrationCancelResponseEffectiveTimeUnionMember2> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, MigrationCancelResponseEffectiveTimeUnionMember2&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -264,7 +285,7 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -275,9 +296,9 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (string value) => {...},
-    ///     (System::DateTimeOffset value) => {...},
-    ///     (ApiEnum<string, MigrationCancelResponseEffectiveTimeUnionMember2> value) => {...}
+    ///     (string value) =&gt; {...},
+    ///     (System::DateTimeOffset value) =&gt; {...},
+    ///     (ApiEnum&lt;string, MigrationCancelResponseEffectiveTimeUnionMember2&gt; value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -344,10 +365,10 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
         );
     }
 
-    public virtual bool Equals(MigrationCancelResponseEffectiveTime? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(MigrationCancelResponseEffectiveTime? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -355,7 +376,21 @@ public record class MigrationCancelResponseEffectiveTime : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            string _ => 0,
+            System::DateTimeOffset _ => 1,
+            ApiEnum<string, MigrationCancelResponseEffectiveTimeUnionMember2> _ => 2,
+            _ => -1,
+        };
+    }
 }
 
 sealed class MigrationCancelResponseEffectiveTimeConverter
@@ -399,7 +434,10 @@ sealed class MigrationCancelResponseEffectiveTimeConverter
 
         try
         {
-            return new(JsonSerializer.Deserialize<System::DateTimeOffset>(element, options));
+            return new(
+                JsonSerializer.Deserialize<System::DateTimeOffset>(element, options),
+                element
+            );
         }
         catch (System::Exception e) when (e is JsonException || e is OrbInvalidDataException)
         {
@@ -461,6 +499,10 @@ sealed class MigrationCancelResponseEffectiveTimeUnionMember2Converter
     }
 }
 
+/// <summary>
+/// Current status of the migration: 'not_started', 'in_progress', 'completed', 'action_needed',
+/// or 'canceled'.
+/// </summary>
 [JsonConverter(typeof(MigrationCancelResponseStatusConverter))]
 public enum MigrationCancelResponseStatus
 {

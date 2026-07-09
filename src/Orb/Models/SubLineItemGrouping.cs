@@ -42,8 +42,11 @@ public sealed record class SubLineItemGrouping : JsonModel
 
     public SubLineItemGrouping() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubLineItemGrouping(SubLineItemGrouping subLineItemGrouping)
         : base(subLineItemGrouping) { }
+#pragma warning restore CS8618
 
     public SubLineItemGrouping(IReadOnlyDictionary<string, JsonElement> rawData)
     {

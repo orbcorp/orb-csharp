@@ -35,6 +35,21 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    GroupingKeys = ["string"],
+                    LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -61,6 +76,18 @@ public class AlertListPageResponseTest : TestBase
                 Thresholds = [new(0)],
                 Type = AlertType.CreditBalanceDepleted,
                 BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                GroupingKeys = ["string"],
+                LicenseType = new("id"),
+                PriceFilters =
+                [
+                    new()
+                    {
+                        Field = AlertPriceFilterField.PriceID,
+                        Operator = AlertPriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -103,6 +130,21 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    GroupingKeys = ["string"],
+                    LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -143,6 +185,21 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    GroupingKeys = ["string"],
+                    LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
@@ -176,6 +233,18 @@ public class AlertListPageResponseTest : TestBase
                 Thresholds = [new(0)],
                 Type = AlertType.CreditBalanceDepleted,
                 BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                GroupingKeys = ["string"],
+                LicenseType = new("id"),
+                PriceFilters =
+                [
+                    new()
+                    {
+                        Field = AlertPriceFilterField.PriceID,
+                        Operator = AlertPriceFilterOperator.Includes,
+                        Values = ["string"],
+                    },
+                ],
+                ThresholdOverrides = [new() { GroupValues = ["string"], Thresholds = [new(0)] }],
             },
         ];
         PaginationMetadata expectedPaginationMetadata = new()
@@ -218,11 +287,77 @@ public class AlertListPageResponseTest : TestBase
                     Thresholds = [new(0)],
                     Type = AlertType.CreditBalanceDepleted,
                     BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    GroupingKeys = ["string"],
+                    LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
                 },
             ],
             PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new AlertListPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "XuxCbt7x9L82yyeF",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Currency = "currency",
+                    Customer = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                    Enabled = true,
+                    Metric = new("id"),
+                    Plan = new()
+                    {
+                        ID = "m2t5akQeh2obwxeU",
+                        ExternalPlanID = "m2t5akQeh2obwxeU",
+                        Name = "Example plan",
+                        PlanVersion = "plan_version",
+                    },
+                    Subscription = new("VDGsT23osdLb84KD"),
+                    Thresholds = [new(0)],
+                    Type = AlertType.CreditBalanceDepleted,
+                    BalanceAlertStatus = [new() { InAlert = true, ThresholdValue = 0 }],
+                    GroupingKeys = ["string"],
+                    LicenseType = new("id"),
+                    PriceFilters =
+                    [
+                        new()
+                        {
+                            Field = AlertPriceFilterField.PriceID,
+                            Operator = AlertPriceFilterOperator.Includes,
+                            Values = ["string"],
+                        },
+                    ],
+                    ThresholdOverrides =
+                    [
+                        new() { GroupValues = ["string"], Thresholds = [new(0)] },
+                    ],
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        AlertListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

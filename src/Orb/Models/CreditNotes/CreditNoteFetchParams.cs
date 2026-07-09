@@ -11,18 +11,25 @@ namespace Orb.Models.CreditNotes;
 /// <summary>
 /// This endpoint is used to fetch a single [`Credit Note`](/invoicing/credit-notes)
 /// given an identifier.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CreditNoteFetchParams : ParamsBase
+public record class CreditNoteFetchParams : ParamsBase
 {
     public string? CreditNoteID { get; init; }
 
     public CreditNoteFetchParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNoteFetchParams(CreditNoteFetchParams creditNoteFetchParams)
         : base(creditNoteFetchParams)
     {
         this.CreditNoteID = creditNoteFetchParams.CreditNoteID;
     }
+#pragma warning restore CS8618
 
     public CreditNoteFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -37,24 +44,56 @@ public sealed record class CreditNoteFetchParams : ParamsBase
     [SetsRequiredMembers]
     CreditNoteFetchParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string creditNoteID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.CreditNoteID = creditNoteID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CreditNoteFetchParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string creditNoteID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            creditNoteID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CreditNoteID"] = JsonSerializer.SerializeToElement(this.CreditNoteID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CreditNoteFetchParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CreditNoteID?.Equals(other.CreditNoteID) ?? other.CreditNoteID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -75,5 +114,10 @@ public sealed record class CreditNoteFetchParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

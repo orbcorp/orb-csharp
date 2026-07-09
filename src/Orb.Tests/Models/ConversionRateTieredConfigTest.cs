@@ -123,4 +123,25 @@ public class ConversionRateTieredConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ConversionRateTieredConfig
+        {
+            Tiers =
+            [
+                new()
+                {
+                    FirstUnit = 0,
+                    UnitAmount = "unit_amount",
+                    LastUnit = 0,
+                },
+            ],
+        };
+
+        ConversionRateTieredConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

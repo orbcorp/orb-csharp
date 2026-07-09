@@ -28,11 +28,26 @@ public class SubscriptionUnscheduleCancellationParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/subscriptions/subscription_id/unschedule_cancellation"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscriptions/subscription_id/unschedule_cancellation"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUnscheduleCancellationParams
+        {
+            SubscriptionID = "subscription_id",
+        };
+
+        SubscriptionUnscheduleCancellationParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

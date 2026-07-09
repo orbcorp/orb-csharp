@@ -67,10 +67,27 @@ public class SubscriptionUpdateTrialParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/update_trial"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/subscriptions/subscription_id/update_trial"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUpdateTrialParams
+        {
+            SubscriptionID = "subscription_id",
+            TrialEndDate = DateTimeOffset.Parse("2017-07-21T17:32:28Z"),
+            Shift = true,
+        };
+
+        SubscriptionUpdateTrialParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

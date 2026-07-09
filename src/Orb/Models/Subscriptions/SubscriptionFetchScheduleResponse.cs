@@ -67,10 +67,13 @@ public sealed record class SubscriptionFetchScheduleResponse : JsonModel
 
     public SubscriptionFetchScheduleResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionFetchScheduleResponse(
         SubscriptionFetchScheduleResponse subscriptionFetchScheduleResponse
     )
         : base(subscriptionFetchScheduleResponse) { }
+#pragma warning restore CS8618
 
     public SubscriptionFetchScheduleResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -150,8 +153,11 @@ public sealed record class Plan : JsonModel
 
     public Plan() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Plan(Plan plan)
         : base(plan) { }
+#pragma warning restore CS8618
 
     public Plan(IReadOnlyDictionary<string, JsonElement> rawData)
     {

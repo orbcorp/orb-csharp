@@ -83,6 +83,21 @@ public class CustomerTaxIDTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerTaxID
+        {
+            Country = Country.Ad,
+            Type = CustomerTaxIDType.AdNrt,
+            Value = "value",
+        };
+
+        CustomerTaxID copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class CountryTest : TestBase
@@ -119,9 +134,9 @@ public class CountryTest : TestBase
     [InlineData(Country.Co)]
     [InlineData(Country.Cr)]
     [InlineData(Country.Cv)]
-    [InlineData(Country.De)]
     [InlineData(Country.Cy)]
     [InlineData(Country.Cz)]
+    [InlineData(Country.De)]
     [InlineData(Country.Dk)]
     [InlineData(Country.Do)]
     [InlineData(Country.Ec)]
@@ -131,9 +146,11 @@ public class CountryTest : TestBase
     [InlineData(Country.Et)]
     [InlineData(Country.Eu)]
     [InlineData(Country.Fi)]
+    [InlineData(Country.Fo)]
     [InlineData(Country.Fr)]
     [InlineData(Country.GB)]
     [InlineData(Country.Ge)]
+    [InlineData(Country.Gi)]
     [InlineData(Country.Gn)]
     [InlineData(Country.Gr)]
     [InlineData(Country.Hk)]
@@ -153,6 +170,7 @@ public class CountryTest : TestBase
     [InlineData(Country.Kz)]
     [InlineData(Country.La)]
     [InlineData(Country.Li)]
+    [InlineData(Country.Lk)]
     [InlineData(Country.Lt)]
     [InlineData(Country.Lu)]
     [InlineData(Country.Lv)]
@@ -174,6 +192,7 @@ public class CountryTest : TestBase
     [InlineData(Country.Ph)]
     [InlineData(Country.Pl)]
     [InlineData(Country.Pt)]
+    [InlineData(Country.Py)]
     [InlineData(Country.Ro)]
     [InlineData(Country.Rs)]
     [InlineData(Country.Ru)]
@@ -251,9 +270,9 @@ public class CountryTest : TestBase
     [InlineData(Country.Co)]
     [InlineData(Country.Cr)]
     [InlineData(Country.Cv)]
-    [InlineData(Country.De)]
     [InlineData(Country.Cy)]
     [InlineData(Country.Cz)]
+    [InlineData(Country.De)]
     [InlineData(Country.Dk)]
     [InlineData(Country.Do)]
     [InlineData(Country.Ec)]
@@ -263,9 +282,11 @@ public class CountryTest : TestBase
     [InlineData(Country.Et)]
     [InlineData(Country.Eu)]
     [InlineData(Country.Fi)]
+    [InlineData(Country.Fo)]
     [InlineData(Country.Fr)]
     [InlineData(Country.GB)]
     [InlineData(Country.Ge)]
+    [InlineData(Country.Gi)]
     [InlineData(Country.Gn)]
     [InlineData(Country.Gr)]
     [InlineData(Country.Hk)]
@@ -285,6 +306,7 @@ public class CountryTest : TestBase
     [InlineData(Country.Kz)]
     [InlineData(Country.La)]
     [InlineData(Country.Li)]
+    [InlineData(Country.Lk)]
     [InlineData(Country.Lt)]
     [InlineData(Country.Lu)]
     [InlineData(Country.Lv)]
@@ -306,6 +328,7 @@ public class CountryTest : TestBase
     [InlineData(Country.Ph)]
     [InlineData(Country.Pl)]
     [InlineData(Country.Pt)]
+    [InlineData(Country.Py)]
     [InlineData(Country.Ro)]
     [InlineData(Country.Rs)]
     [InlineData(Country.Ru)]
@@ -411,8 +434,10 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.EsCif)]
     [InlineData(CustomerTaxIDType.EtTin)]
     [InlineData(CustomerTaxIDType.EuOssVat)]
+    [InlineData(CustomerTaxIDType.FoVat)]
     [InlineData(CustomerTaxIDType.GBVat)]
     [InlineData(CustomerTaxIDType.GeVat)]
+    [InlineData(CustomerTaxIDType.GiTin)]
     [InlineData(CustomerTaxIDType.GnNif)]
     [InlineData(CustomerTaxIDType.HkBr)]
     [InlineData(CustomerTaxIDType.HrOib)]
@@ -421,6 +446,7 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.IlVat)]
     [InlineData(CustomerTaxIDType.InGst)]
     [InlineData(CustomerTaxIDType.IsVat)]
+    [InlineData(CustomerTaxIDType.ItCf)]
     [InlineData(CustomerTaxIDType.JpCn)]
     [InlineData(CustomerTaxIDType.JpRn)]
     [InlineData(CustomerTaxIDType.JpTrn)]
@@ -432,6 +458,7 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.LaTin)]
     [InlineData(CustomerTaxIDType.LiUid)]
     [InlineData(CustomerTaxIDType.LiVat)]
+    [InlineData(CustomerTaxIDType.LkVat)]
     [InlineData(CustomerTaxIDType.MaVat)]
     [InlineData(CustomerTaxIDType.MdVat)]
     [InlineData(CustomerTaxIDType.MePib)]
@@ -449,6 +476,8 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.OmVat)]
     [InlineData(CustomerTaxIDType.PeRuc)]
     [InlineData(CustomerTaxIDType.PhTin)]
+    [InlineData(CustomerTaxIDType.PlNip)]
+    [InlineData(CustomerTaxIDType.PyRuc)]
     [InlineData(CustomerTaxIDType.RoTin)]
     [InlineData(CustomerTaxIDType.RsPib)]
     [InlineData(CustomerTaxIDType.RuInn)]
@@ -541,8 +570,10 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.EsCif)]
     [InlineData(CustomerTaxIDType.EtTin)]
     [InlineData(CustomerTaxIDType.EuOssVat)]
+    [InlineData(CustomerTaxIDType.FoVat)]
     [InlineData(CustomerTaxIDType.GBVat)]
     [InlineData(CustomerTaxIDType.GeVat)]
+    [InlineData(CustomerTaxIDType.GiTin)]
     [InlineData(CustomerTaxIDType.GnNif)]
     [InlineData(CustomerTaxIDType.HkBr)]
     [InlineData(CustomerTaxIDType.HrOib)]
@@ -551,6 +582,7 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.IlVat)]
     [InlineData(CustomerTaxIDType.InGst)]
     [InlineData(CustomerTaxIDType.IsVat)]
+    [InlineData(CustomerTaxIDType.ItCf)]
     [InlineData(CustomerTaxIDType.JpCn)]
     [InlineData(CustomerTaxIDType.JpRn)]
     [InlineData(CustomerTaxIDType.JpTrn)]
@@ -562,6 +594,7 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.LaTin)]
     [InlineData(CustomerTaxIDType.LiUid)]
     [InlineData(CustomerTaxIDType.LiVat)]
+    [InlineData(CustomerTaxIDType.LkVat)]
     [InlineData(CustomerTaxIDType.MaVat)]
     [InlineData(CustomerTaxIDType.MdVat)]
     [InlineData(CustomerTaxIDType.MePib)]
@@ -579,6 +612,8 @@ public class CustomerTaxIDTypeTest : TestBase
     [InlineData(CustomerTaxIDType.OmVat)]
     [InlineData(CustomerTaxIDType.PeRuc)]
     [InlineData(CustomerTaxIDType.PhTin)]
+    [InlineData(CustomerTaxIDType.PlNip)]
+    [InlineData(CustomerTaxIDType.PyRuc)]
     [InlineData(CustomerTaxIDType.RoTin)]
     [InlineData(CustomerTaxIDType.RsPib)]
     [InlineData(CustomerTaxIDType.RuInn)]

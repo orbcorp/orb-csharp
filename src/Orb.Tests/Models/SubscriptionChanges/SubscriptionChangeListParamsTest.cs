@@ -118,12 +118,31 @@ public class SubscriptionChangeListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/subscription_changes?cursor=cursor&customer_id=customer_id&external_customer_id=external_customer_id&limit=1&status=pending"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscription_changes?cursor=cursor&customer_id=customer_id&external_customer_id=external_customer_id&limit=1&status=pending"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionChangeListParams
+        {
+            Cursor = "cursor",
+            CustomerID = "customer_id",
+            ExternalCustomerID = "external_customer_id",
+            Limit = 1,
+            Status = Status.Pending,
+        };
+
+        SubscriptionChangeListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

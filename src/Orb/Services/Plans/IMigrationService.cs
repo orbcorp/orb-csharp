@@ -7,9 +7,13 @@ using Orb.Models.Plans.Migrations;
 namespace Orb.Services.Plans;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Plan](/core-concepts#plan-and-price) resource represents a plan that can
+/// be subscribed to by a customer. Plans define the billing behavior of the subscription.
+/// You can see more about how to configure prices in the [Price resource](/reference/price).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface IMigrationService
 {
@@ -42,10 +46,10 @@ public interface IMigrationService
     );
 
     /// <summary>
-    /// This endpoint returns a list of all migrations for a plan. The list of migrations
-    /// is ordered starting from the most recently created migration. The response
-    /// also includes pagination_metadata, which lets the caller retrieve the next
-    /// page of results if they exist.
+    /// This endpoint returns a list of all migrations for a plan. The list of
+    /// migrations is ordered starting from the most recently created migration. The
+    /// response also includes pagination_metadata, which lets the caller retrieve the
+    /// next page of results if they exist.
     /// </summary>
     Task<MigrationListPage> List(
         MigrationListParams parameters,
@@ -89,7 +93,7 @@ public interface IMigrationServiceWithRawResponse
     IMigrationServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/{plan_id}/migrations/{migration_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/{plan_id}/migrations/{migration_id}</c>, but is otherwise the
     /// same as <see cref="IMigrationService.Retrieve(MigrationRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<MigrationRetrieveResponse>> Retrieve(
@@ -105,7 +109,7 @@ public interface IMigrationServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /plans/{plan_id}/migrations`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /plans/{plan_id}/migrations</c>, but is otherwise the
     /// same as <see cref="IMigrationService.List(MigrationListParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<MigrationListPage>> List(
@@ -121,7 +125,7 @@ public interface IMigrationServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /plans/{plan_id}/migrations/{migration_id}/cancel`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /plans/{plan_id}/migrations/{migration_id}/cancel</c>, but is otherwise the
     /// same as <see cref="IMigrationService.Cancel(MigrationCancelParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<MigrationCancelResponse>> Cancel(

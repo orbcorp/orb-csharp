@@ -49,8 +49,11 @@ public sealed record class TopUpListPageResponse : JsonModel
 
     public TopUpListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpListPageResponse(TopUpListPageResponse topUpListPageResponse)
         : base(topUpListPageResponse) { }
+#pragma warning restore CS8618
 
     public TopUpListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -108,8 +108,11 @@ public sealed record class MaximumInterval : JsonModel
 
     public MaximumInterval() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaximumInterval(MaximumInterval maximumInterval)
         : base(maximumInterval) { }
+#pragma warning restore CS8618
 
     public MaximumInterval(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -200,8 +203,11 @@ public sealed record class MaximumIntervalFilter : JsonModel
 
     public MaximumIntervalFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaximumIntervalFilter(MaximumIntervalFilter maximumIntervalFilter)
         : base(maximumIntervalFilter) { }
+#pragma warning restore CS8618
 
     public MaximumIntervalFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

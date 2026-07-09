@@ -8,9 +8,25 @@ using Orb.Services.Customers;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// A customer is a buyer of your products, and the other party to the billing relationship.
+///
+/// <para>In Orb, customers are assigned system generated identifiers automatically,
+/// but it's often desirable to have these match existing identifiers in your system.
+/// To avoid having to denormalize Orb ID information, you can pass in an `external_customer_id`
+/// with your own identifier. See [Customer ID Aliases](/events-and-metrics/customer-aliases)
+/// for further information about how these aliases work in Orb.</para>
+///
+/// <para>In addition to having an identifier in your system, a customer may exist
+/// in a payment provider solution like Stripe. Use the `payment_provider_id` and
+/// the `payment_provider` enum field to express this mapping.</para>
+///
+/// <para>A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)),
+/// which defaults to your account's timezone. See [Timezone localization](/essentials/timezones)
+/// for information on what this timezone parameter influences within Orb.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface ICustomerService
 {
@@ -39,10 +55,11 @@ public interface ICustomerService
     /// of the customer resource.
     ///
     /// <para>This endpoint is critical in the following Orb functionality: * Automated
-    /// charges can be configured by setting `payment_provider` and `payment_provider_id`
-    /// to automatically   issue invoices * [Customer ID Aliases](/events-and-metrics/customer-aliases)
-    /// can be configured by setting   `external_customer_id` * [Timezone localization](/essentials/timezones)
-    /// can be configured on a per-customer basis by   setting the `timezone` parameter</para>
+    /// charges can be configured by setting `payment_provider` and
+    /// `payment_provider_id` to automatically   issue invoices * [Customer ID
+    /// Aliases](/events-and-metrics/customer-aliases) can be configured by setting
+    /// `external_customer_id` * [Timezone localization](/essentials/timezones) can be
+    /// configured on a per-customer basis by   setting the `timezone` parameter</para>
     /// </summary>
     Task<Customer> Create(
         CustomerCreateParams parameters,
@@ -50,10 +67,12 @@ public interface ICustomerService
     );
 
     /// <summary>
-    /// This endpoint can be used to update the `payment_provider`, `payment_provider_id`,
-    /// `name`, `email`, `email_delivery`, `tax_id`, `auto_collection`, `metadata`,
-    /// `shipping_address`, `billing_address`, and `additional_emails` of an existing
-    /// customer. Other fields on a customer are currently immutable.
+    /// This endpoint can be used to update the `payment_provider`,
+    /// `payment_provider_id`, `name`, `email`, `email_delivery`, `tax_id`,
+    /// `auto_collection`, `metadata`, `shipping_address`, `billing_address`,
+    /// `additional_emails`, and `currency` of an existing customer. `currency` can only
+    /// be set if it has not already been set on the customer. Other fields on a
+    /// customer are currently immutable.
     /// </summary>
     Task<Customer> Update(
         CustomerUpdateParams parameters,
@@ -70,9 +89,11 @@ public interface ICustomerService
     /// <summary>
     /// This endpoint returns a list of all customers for an account. The list of
     /// customers is ordered starting from the most recently created customer. This
-    /// endpoint follows Orb's [standardized pagination format](/api-reference/pagination).
+    /// endpoint follows Orb's [standardized pagination
+    /// format](/api-reference/pagination).
     ///
-    /// <para>See [Customer](/core-concepts##customer) for an overview of the customer model.</para>
+    /// <para>See [Customer](/core-concepts##customer) for an overview of the customer
+    /// model.</para>
     /// </summary>
     Task<CustomerListPage> List(
         CustomerListParams? parameters = null,
@@ -82,16 +103,16 @@ public interface ICustomerService
     /// <summary>
     /// This performs a deletion of this customer, its subscriptions, and its invoices,
     /// provided the customer does not have any issued invoices. Customers with issued
-    /// invoices cannot be deleted. This operation is irreversible. Note that this
-    /// is a _soft_ deletion, but the data will be inaccessible through the API and
-    /// Orb dashboard.
+    /// invoices cannot be deleted. This operation is irreversible. Note that this is a
+    /// _soft_ deletion, but the data will be inaccessible through the API and Orb
+    /// dashboard.
     ///
     /// <para>For a hard-deletion, please reach out to the Orb team directly.</para>
     ///
-    /// <para>**Note**: This operation happens asynchronously and can be expected
-    /// to take a few minutes to propagate to related resources. However, querying
-    /// for the customer on subsequent GET requests while deletion is in process will
-    /// reflect its deletion.</para>
+    /// <para>**Note**: This operation happens asynchronously and can be expected to
+    /// take a few minutes to propagate to related resources. However, querying for the
+    /// customer on subsequent GET requests while deletion is in process will reflect
+    /// its deletion.</para>
     /// </summary>
     Task Delete(CustomerDeleteParams parameters, CancellationToken cancellationToken = default);
 
@@ -126,8 +147,8 @@ public interface ICustomerService
     /// This endpoint is used to fetch customer details given an `external_customer_id`
     /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)).
     ///
-    /// <para>Note that the resource and semantics of this endpoint exactly mirror
-    /// [Get Customer](fetch-customer).</para>
+    /// <para>Note that the resource and semantics of this endpoint exactly mirror [Get
+    /// Customer](fetch-customer).</para>
     /// </summary>
     Task<Customer> FetchByExternalID(
         CustomerFetchByExternalIDParams parameters,
@@ -145,8 +166,8 @@ public interface ICustomerService
     /// Sync Orb's payment methods for the customer with their gateway.
     ///
     /// <para>This method can be called before taking an action that may cause the
-    /// customer to be charged, ensuring that the most up-to-date payment method
-    /// is charged.</para>
+    /// customer to be charged, ensuring that the most up-to-date payment method is
+    /// charged.</para>
     ///
     /// <para>**Note**: This functionality is currently only available for Stripe.</para>
     /// </summary>
@@ -166,8 +187,8 @@ public interface ICustomerService
     /// Sync Orb's payment methods for the customer with their gateway.
     ///
     /// <para>This method can be called before taking an action that may cause the
-    /// customer to be charged, ensuring that the most up-to-date payment method
-    /// is charged.</para>
+    /// customer to be charged, ensuring that the most up-to-date payment method is
+    /// charged.</para>
     ///
     /// <para>**Note**: This functionality is currently only available for Stripe.</para>
     /// </summary>
@@ -185,8 +206,9 @@ public interface ICustomerService
 
     /// <summary>
     /// This endpoint is used to update customer details given an `external_customer_id`
-    /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that
-    /// the resource and semantics of this endpoint exactly mirror [Update Customer](update-customer).
+    /// (see [Customer ID Aliases](/events-and-metrics/customer-aliases)). Note that the
+    /// resource and semantics of this endpoint exactly mirror [Update
+    /// Customer](update-customer).
     /// </summary>
     Task<Customer> UpdateByExternalID(
         CustomerUpdateByExternalIDParams parameters,
@@ -221,7 +243,7 @@ public interface ICustomerServiceWithRawResponse
     IBalanceTransactionServiceWithRawResponse BalanceTransactions { get; }
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /customers`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /customers</c>, but is otherwise the
     /// same as <see cref="ICustomerService.Create(CustomerCreateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Customer>> Create(
@@ -230,7 +252,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /customers/{customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /customers/{customer_id}</c>, but is otherwise the
     /// same as <see cref="ICustomerService.Update(CustomerUpdateParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Customer>> Update(
@@ -246,7 +268,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers</c>, but is otherwise the
     /// same as <see cref="ICustomerService.List(CustomerListParams?, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CustomerListPage>> List(
@@ -255,7 +277,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /customers/{customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /customers/{customer_id}</c>, but is otherwise the
     /// same as <see cref="ICustomerService.Delete(CustomerDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -271,7 +293,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/{customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/{customer_id}</c>, but is otherwise the
     /// same as <see cref="ICustomerService.Fetch(CustomerFetchParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Customer>> Fetch(
@@ -287,7 +309,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /customers/external_customer_id/{external_customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /customers/external_customer_id/{external_customer_id}</c>, but is otherwise the
     /// same as <see cref="ICustomerService.FetchByExternalID(CustomerFetchByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Customer>> FetchByExternalID(
@@ -303,7 +325,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /customers/{customer_id}/sync_payment_methods_from_gateway`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /customers/{customer_id}/sync_payment_methods_from_gateway</c>, but is otherwise the
     /// same as <see cref="ICustomerService.SyncPaymentMethodsFromGateway(CustomerSyncPaymentMethodsFromGatewayParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> SyncPaymentMethodsFromGateway(
@@ -319,7 +341,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `post /customers/external_customer_id/{external_customer_id}/sync_payment_methods_from_gateway`, but is otherwise the
+    /// Returns a raw HTTP response for <c>post /customers/external_customer_id/{external_customer_id}/sync_payment_methods_from_gateway</c>, but is otherwise the
     /// same as <see cref="ICustomerService.SyncPaymentMethodsFromGatewayByExternalCustomerID(CustomerSyncPaymentMethodsFromGatewayByExternalCustomerIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> SyncPaymentMethodsFromGatewayByExternalCustomerID(
@@ -335,7 +357,7 @@ public interface ICustomerServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `put /customers/external_customer_id/{external_customer_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>put /customers/external_customer_id/{external_customer_id}</c>, but is otherwise the
     /// same as <see cref="ICustomerService.UpdateByExternalID(CustomerUpdateByExternalIDParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<Customer>> UpdateByExternalID(

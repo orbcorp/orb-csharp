@@ -62,7 +62,7 @@ namespace Orb.Models.Events;
 /// collide). - The `timestamp` field in the event body will be used to determine
 /// which billable period a given event falls into. For example, with a monthly billing
 /// cycle starting from the first of December, Orb will calculate metrics based on
-/// events that fall into the range `12-01 00:00:00 <= timestamp < 01-01 00:00:00`.</para>
+/// events that fall into the range `12-01 00:00:00 &lt;= timestamp &lt; 01-01 00:00:00`.</para>
 ///
 /// <para>## Logging metadata</para>
 ///
@@ -97,14 +97,14 @@ namespace Orb.Models.Events;
 ///
 /// <para>In cases where usage is reported in aggregate for a historical timeframe,
 /// the timestamp must be within the grace period set for your account. Events with
-/// `timestamp < current_time - grace_period` will not be accepted as a valid event,
-/// and will throw validation errors. Enforcing the grace period enables Orb to accurately
-/// map usage to the correct billing cycle and ensure that all usage is billed for
-/// in the corresponding billing period.</para>
+/// `timestamp &lt; current_time - grace_period` will not be accepted as a valid
+/// event, and will throw validation errors. Enforcing the grace period enables Orb
+/// to accurately map usage to the correct billing cycle and ensure that all usage
+/// is billed for in the corresponding billing period.</para>
 ///
 /// <para>In general, Orb does not expect events with future dated timestamps. In
-/// cases where the timestamp is at least 24 hours ahead of the current time, the
-/// event will not be accepted as a valid event, and will throw validation errors.</para>
+/// cases where the timestamp is 5 minutes ahead of the current time, the event will
+/// not be accepted as a valid event, and will throw validation errors.</para>
 ///
 /// <para>## Event validation</para>
 ///
@@ -118,8 +118,8 @@ namespace Orb.Models.Events;
 /// `external_customer_id` is specified, the customer in Orb does not need to exist.
 /// Events will be attributed to any future customers with the `external_customer_id`
 /// on subscription creation. - `timestamp` must conform to ISO 8601 and represent
-/// a timestamp at most 1 hour in the future. This timestamp should be sent in UTC
-/// timezone (no timezone offset).</para>
+/// a timestamp at most 5 minutes in the future. This timestamp should be sent in
+/// UTC timezone (no timezone offset).</para>
 ///
 /// <para>## Idempotency and retry semantics</para>
 ///
@@ -153,30 +153,15 @@ namespace Orb.Models.Events;
 /// request payload size, but please give us a heads up if you’re changing either
 /// of these factors by an order of magnitude from initial setup.</para>
 ///
-/// <para>## Testing in debug mode The ingestion API supports a debug mode, which
-/// returns additional verbose output to indicate which event idempotency keys were
-/// newly ingested or duplicates from previous requests. To enable this mode, mark
-/// `debug=true` as a query parameter.</para>
-///
-/// <para>If `debug=true` is not specified, the response will only contain `validation_failed`.
-/// Orb will still honor the idempotency guarantees set [here](/events-and-metrics/event-ingestion#event-volume-and-concurrency)
-/// in all cases.</para>
-///
-/// <para>We strongly recommend that you only use debug mode as part of testing your
-/// initial Orb integration. Once you're ready to switch to production, disable debug
-/// mode to take advantage of improved performance and maximal throughput.</para>
-///
-/// <para>#### Example: ingestion response with `debug=true`</para>
-///
-/// <para>```json {   "debug": {     "duplicate": [],     "ingested": [       "B7E83HDMfJPAunXW",
-///       "SJs5DQJ3TnwSqEZE",       "8SivfDsNKwCeAXim"     ]   },   "validation_failed":
-/// [] } ```</para>
-///
-/// <para>#### Example: ingestion response with `debug=false`</para>
+/// <para>#### Example: ingestion response</para>
 ///
 /// <para>```json {   "validation_failed": [] } ```</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class EventIngestParams : ParamsBase
+public record class EventIngestParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -215,8 +200,9 @@ public sealed record class EventIngestParams : ParamsBase
     }
 
     /// <summary>
-    /// Flag to enable additional debug information in the endpoint response
+    /// Pending Deprecation: Flag to enable additional debug information in the endpoint response
     /// </summary>
+    [Obsolete("deprecated")]
     public bool? Debug
     {
         get
@@ -237,11 +223,14 @@ public sealed record class EventIngestParams : ParamsBase
 
     public EventIngestParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public EventIngestParams(EventIngestParams eventIngestParams)
         : base(eventIngestParams)
     {
         this._rawBodyData = new(eventIngestParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public EventIngestParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -268,7 +257,7 @@ public sealed record class EventIngestParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static EventIngestParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
@@ -280,6 +269,34 @@ public sealed record class EventIngestParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
             FrozenDictionary.ToFrozenDictionary(rawBodyData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(EventIngestParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -306,6 +323,11 @@ public sealed record class EventIngestParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -416,8 +438,11 @@ public sealed record class Event : JsonModel
 
     public Event() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Event(Event event_)
         : base(event_) { }
+#pragma warning restore CS8618
 
     public Event(IReadOnlyDictionary<string, JsonElement> rawData)
     {

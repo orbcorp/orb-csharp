@@ -71,6 +71,21 @@ public class PriceListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/prices?cursor=cursor&limit=1"), url);
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/prices?cursor=cursor&limit=1"),
+                url
+            )
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new PriceListParams { Cursor = "cursor", Limit = 1 };
+
+        PriceListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

@@ -132,4 +132,19 @@ public class BillingCycleAnchorConfigurationTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BillingCycleAnchorConfiguration
+        {
+            Day = 1,
+            Month = 1,
+            Year = 0,
+        };
+
+        BillingCycleAnchorConfiguration copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

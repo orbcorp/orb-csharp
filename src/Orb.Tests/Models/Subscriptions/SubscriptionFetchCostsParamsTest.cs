@@ -78,19 +78,38 @@ public class SubscriptionFetchCostsParamsTest : TestBase
         {
             SubscriptionID = "subscription_id",
             Currency = "currency",
-            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
-            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00.000+00:00"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00.000+00:00"),
             ViewMode = ViewMode.Periodic,
         };
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/subscriptions/subscription_id/costs?currency=currency&timeframe_end=2022-03-01T05%3a00%3a00%2b00%3a00&timeframe_start=2022-02-01T05%3a00%3a00%2b00%3a00&view_mode=periodic"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscriptions/subscription_id/costs?currency=currency&timeframe_end=2022-03-01T05%3a00%3a00.000%2b00%3a00&timeframe_start=2022-02-01T05%3a00%3a00.000%2b00%3a00&view_mode=periodic"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionFetchCostsParams
+        {
+            SubscriptionID = "subscription_id",
+            Currency = "currency",
+            TimeframeEnd = DateTimeOffset.Parse("2022-03-01T05:00:00Z"),
+            TimeframeStart = DateTimeOffset.Parse("2022-02-01T05:00:00Z"),
+            ViewMode = ViewMode.Periodic,
+        };
+
+        SubscriptionFetchCostsParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 

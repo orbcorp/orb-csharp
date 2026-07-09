@@ -22,9 +22,21 @@ public class BackfillRevertParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/events/backfills/backfill_id/revert"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/events/backfills/backfill_id/revert"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new BackfillRevertParams { BackfillID = "backfill_id" };
+
+        BackfillRevertParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

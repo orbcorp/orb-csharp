@@ -202,8 +202,11 @@ public sealed record class IncrementLedgerEntry : JsonModel
 
     public IncrementLedgerEntry() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public IncrementLedgerEntry(IncrementLedgerEntry incrementLedgerEntry)
         : base(incrementLedgerEntry) { }
+#pragma warning restore CS8618
 
     public IncrementLedgerEntry(IReadOnlyDictionary<string, JsonElement> rawData)
     {

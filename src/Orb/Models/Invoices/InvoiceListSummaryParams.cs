@@ -1,6 +1,5 @@
 using System.Collections.Frozen;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -27,8 +26,12 @@ namespace Orb.Models.Invoices;
 /// <para>When fetching any `draft` invoices, this returns the last-computed invoice
 /// values for each draft invoice, which may not always be up-to-date since Orb regularly
 /// refreshes invoices asynchronously.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class InvoiceListSummaryParams : ParamsBase
+public record class InvoiceListSummaryParams : ParamsBase
 {
     public string? Amount
     {
@@ -239,24 +242,6 @@ public sealed record class InvoiceListSummaryParams : ParamsBase
         init { this._rawQueryData.Set("status", value); }
     }
 
-    public IReadOnlyList<ApiEnum<string, StatusModel>>? StatusValue
-    {
-        get
-        {
-            this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<
-                ImmutableArray<ApiEnum<string, StatusModel>>
-            >("status");
-        }
-        init
-        {
-            this._rawQueryData.Set<ImmutableArray<ApiEnum<string, StatusModel>>?>(
-                "status",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
-        }
-    }
-
     public string? SubscriptionID
     {
         get
@@ -269,8 +254,11 @@ public sealed record class InvoiceListSummaryParams : ParamsBase
 
     public InvoiceListSummaryParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public InvoiceListSummaryParams(InvoiceListSummaryParams invoiceListSummaryParams)
         : base(invoiceListSummaryParams) { }
+#pragma warning restore CS8618
 
     public InvoiceListSummaryParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -293,7 +281,7 @@ public sealed record class InvoiceListSummaryParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static InvoiceListSummaryParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -303,6 +291,32 @@ public sealed record class InvoiceListSummaryParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(InvoiceListSummaryParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -320,6 +334,11 @@ public sealed record class InvoiceListSummaryParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -412,59 +431,6 @@ sealed class InvoiceListSummaryParamsStatusConverter : JsonConverter<InvoiceList
                 InvoiceListSummaryParamsStatus.Paid => "paid",
                 InvoiceListSummaryParamsStatus.Synced => "synced",
                 InvoiceListSummaryParamsStatus.Void => "void",
-                _ => throw new OrbInvalidDataException(
-                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
-                ),
-            },
-            options
-        );
-    }
-}
-
-[JsonConverter(typeof(StatusModelConverter))]
-public enum StatusModel
-{
-    Draft,
-    Issued,
-    Paid,
-    Synced,
-    Void,
-}
-
-sealed class StatusModelConverter : JsonConverter<StatusModel>
-{
-    public override StatusModel Read(
-        ref Utf8JsonReader reader,
-        System::Type typeToConvert,
-        JsonSerializerOptions options
-    )
-    {
-        return JsonSerializer.Deserialize<string>(ref reader, options) switch
-        {
-            "draft" => StatusModel.Draft,
-            "issued" => StatusModel.Issued,
-            "paid" => StatusModel.Paid,
-            "synced" => StatusModel.Synced,
-            "void" => StatusModel.Void,
-            _ => (StatusModel)(-1),
-        };
-    }
-
-    public override void Write(
-        Utf8JsonWriter writer,
-        StatusModel value,
-        JsonSerializerOptions options
-    )
-    {
-        JsonSerializer.Serialize(
-            writer,
-            value switch
-            {
-                StatusModel.Draft => "draft",
-                StatusModel.Issued => "issued",
-                StatusModel.Paid => "paid",
-                StatusModel.Synced => "synced",
-                StatusModel.Void => "void",
                 _ => throw new OrbInvalidDataException(
                     string.Format("Invalid value '{0}' in {1}", value, nameof(value))
                 ),

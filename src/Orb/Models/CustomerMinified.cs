@@ -39,8 +39,11 @@ public sealed record class CustomerMinified : JsonModel
 
     public CustomerMinified() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CustomerMinified(CustomerMinified customerMinified)
         : base(customerMinified) { }
+#pragma warning restore CS8618
 
     public CustomerMinified(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -83,8 +83,11 @@ public sealed record class AddressInput : JsonModel
 
     public AddressInput() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AddressInput(AddressInput addressInput)
         : base(addressInput) { }
+#pragma warning restore CS8618
 
     public AddressInput(IReadOnlyDictionary<string, JsonElement> rawData)
     {

@@ -10,8 +10,12 @@ namespace Orb.Models.Items;
 
 /// <summary>
 /// This endpoint returns a list of all Items, ordered in descending order by creation time.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ItemListParams : ParamsBase
+public record class ItemListParams : ParamsBase
 {
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -50,8 +54,11 @@ public sealed record class ItemListParams : ParamsBase
 
     public ItemListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ItemListParams(ItemListParams itemListParams)
         : base(itemListParams) { }
+#pragma warning restore CS8618
 
     public ItemListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -74,7 +81,7 @@ public sealed record class ItemListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static ItemListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -84,6 +91,32 @@ public sealed record class ItemListParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ItemListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -101,5 +134,10 @@ public sealed record class ItemListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

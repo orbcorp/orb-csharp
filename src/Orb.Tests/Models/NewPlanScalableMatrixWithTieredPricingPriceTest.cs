@@ -65,6 +65,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -124,6 +125,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -146,6 +148,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -214,6 +217,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -284,6 +288,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -350,6 +355,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -375,6 +381,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -443,6 +450,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -503,6 +511,8 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -584,6 +594,7 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -610,6 +621,8 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -657,11 +670,79 @@ public class NewPlanScalableMatrixWithTieredPricingPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewPlanScalableMatrixWithTieredPricingPrice
+        {
+            Cadence = NewPlanScalableMatrixWithTieredPricingPriceCadence.Annual,
+            ItemID = "item_id",
+            ModelType =
+                NewPlanScalableMatrixWithTieredPricingPriceModelType.ScalableMatrixWithTieredPricing,
+            Name = "Annual fee",
+            ScalableMatrixWithTieredPricingConfig = new()
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+                SecondDimension = "second_dimension",
+            },
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        NewPlanScalableMatrixWithTieredPricingPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -1078,6 +1159,36 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig
+            {
+                FirstDimension = "first_dimension",
+                MatrixScalingFactors =
+                [
+                    new()
+                    {
+                        FirstDimensionValue = "first_dimension_value",
+                        ScalingFactor = "scaling_factor",
+                        SecondDimensionValue = "second_dimension_value",
+                    },
+                ],
+                Tiers =
+                [
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                    new() { TierLowerBound = "tier_lower_bound", UnitAmount = "unit_amount" },
+                ],
+                SecondDimension = "second_dimension",
+            };
+
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfig copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactorTest
@@ -1223,6 +1334,23 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor
+            {
+                FirstDimensionValue = "first_dimension_value",
+                ScalingFactor = "scaling_factor",
+                SecondDimensionValue = "second_dimension_value",
+            };
+
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigMatrixScalingFactor copied =
+            new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTierTest
@@ -1301,6 +1429,22 @@ public class NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTiered
             };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model =
+            new NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier
+            {
+                TierLowerBound = "tier_lower_bound",
+                UnitAmount = "unit_amount",
+            };
+
+        NewPlanScalableMatrixWithTieredPricingPriceScalableMatrixWithTieredPricingConfigTier copied =
+            new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

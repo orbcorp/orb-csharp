@@ -51,6 +51,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -95,6 +96,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedBulkWithProrationConfig, model.BulkWithProrationConfig);
@@ -113,6 +115,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -166,6 +169,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -221,6 +225,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -272,6 +277,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
 
         Assert.Equal(expectedBulkWithProrationConfig, deserialized.BulkWithProrationConfig);
@@ -293,6 +299,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -346,6 +353,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
         };
 
@@ -390,6 +398,8 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
     }
@@ -442,6 +452,7 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
@@ -465,6 +476,8 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
     }
@@ -496,10 +509,63 @@ public class NewFloatingBulkWithProrationPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new NewFloatingBulkWithProrationPrice
+        {
+            BulkWithProrationConfig = new(
+                [
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                    new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                ]
+            ),
+            Cadence = NewFloatingBulkWithProrationPriceCadence.Annual,
+            Currency = "currency",
+            ItemID = "item_id",
+            ModelType = NewFloatingBulkWithProrationPriceModelType.BulkWithProration,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+        };
+
+        NewFloatingBulkWithProrationPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -517,7 +583,7 @@ public class BulkWithProrationConfigTest : TestBase
             ],
         };
 
-        List<Tier> expectedTiers =
+        List<BulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -570,7 +636,7 @@ public class BulkWithProrationConfigTest : TestBase
         );
         Assert.NotNull(deserialized);
 
-        List<Tier> expectedTiers =
+        List<BulkWithProrationConfigTier> expectedTiers =
         [
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
             new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
@@ -597,14 +663,35 @@ public class BulkWithProrationConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationConfig
+        {
+            Tiers =
+            [
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+                new() { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" },
+            ],
+        };
+
+        BulkWithProrationConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
-public class TierTest : TestBase
+public class BulkWithProrationConfigTierTest : TestBase
 {
     [Fact]
     public void FieldRoundtrip_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string expectedUnitAmount = "unit_amount";
         string expectedTierLowerBound = "tier_lower_bound";
@@ -616,10 +703,17 @@ public class TierTest : TestBase
     [Fact]
     public void SerializationRoundtrip_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string json = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tier>(json, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfigTier>(
+            json,
+            ModelBase.SerializerOptions
+        );
 
         Assert.Equal(model, deserialized);
     }
@@ -627,10 +721,17 @@ public class TierTest : TestBase
     [Fact]
     public void FieldRoundtripThroughSerialization_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         string element = JsonSerializer.Serialize(model, ModelBase.SerializerOptions);
-        var deserialized = JsonSerializer.Deserialize<Tier>(element, ModelBase.SerializerOptions);
+        var deserialized = JsonSerializer.Deserialize<BulkWithProrationConfigTier>(
+            element,
+            ModelBase.SerializerOptions
+        );
         Assert.NotNull(deserialized);
 
         string expectedUnitAmount = "unit_amount";
@@ -643,7 +744,11 @@ public class TierTest : TestBase
     [Fact]
     public void Validation_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount", TierLowerBound = "tier_lower_bound" };
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
 
         model.Validate();
     }
@@ -651,7 +756,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetAreNotSet_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount" };
+        var model = new BulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         Assert.Null(model.TierLowerBound);
         Assert.False(model.RawData.ContainsKey("tier_lower_bound"));
@@ -660,7 +765,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesUnsetValidation_Works()
     {
-        var model = new Tier { UnitAmount = "unit_amount" };
+        var model = new BulkWithProrationConfigTier { UnitAmount = "unit_amount" };
 
         model.Validate();
     }
@@ -668,7 +773,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullAreSetToNull_Works()
     {
-        var model = new Tier
+        var model = new BulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -682,7 +787,7 @@ public class TierTest : TestBase
     [Fact]
     public void OptionalNullablePropertiesSetToNullValidation_Works()
     {
-        var model = new Tier
+        var model = new BulkWithProrationConfigTier
         {
             UnitAmount = "unit_amount",
 
@@ -690,6 +795,20 @@ public class TierTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BulkWithProrationConfigTier
+        {
+            UnitAmount = "unit_amount",
+            TierLowerBound = "tier_lower_bound",
+        };
+
+        BulkWithProrationConfigTier copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

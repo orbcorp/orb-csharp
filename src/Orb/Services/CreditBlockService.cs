@@ -79,6 +79,30 @@ public sealed class CreditBlockService : ICreditBlockService
         await this.Delete(parameters with { BlockID = blockID }, cancellationToken)
             .ConfigureAwait(false);
     }
+
+    /// <inheritdoc/>
+    public async Task<CreditBlockListInvoicesResponse> ListInvoices(
+        CreditBlockListInvoicesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        using var response = await this
+            .WithRawResponse.ListInvoices(parameters, cancellationToken)
+            .ConfigureAwait(false);
+        return await response.Deserialize(cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc/>
+    public Task<CreditBlockListInvoicesResponse> ListInvoices(
+        string blockID,
+        CreditBlockListInvoicesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.ListInvoices(parameters with { BlockID = blockID }, cancellationToken);
+    }
 }
 
 /// <inheritdoc/>
@@ -173,5 +197,50 @@ public sealed class CreditBlockServiceWithRawResponse : ICreditBlockServiceWithR
         parameters ??= new();
 
         return this.Delete(parameters with { BlockID = blockID }, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(
+        CreditBlockListInvoicesParams parameters,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (parameters.BlockID == null)
+        {
+            throw new OrbInvalidDataException("'parameters.BlockID' cannot be null");
+        }
+
+        HttpRequest<CreditBlockListInvoicesParams> request = new()
+        {
+            Method = HttpMethod.Get,
+            Params = parameters,
+        };
+        var response = await this._client.Execute(request, cancellationToken).ConfigureAwait(false);
+        return new(
+            response,
+            async (token) =>
+            {
+                var deserializedResponse = await response
+                    .Deserialize<CreditBlockListInvoicesResponse>(token)
+                    .ConfigureAwait(false);
+                if (this._client.ResponseValidation)
+                {
+                    deserializedResponse.Validate();
+                }
+                return deserializedResponse;
+            }
+        );
+    }
+
+    /// <inheritdoc/>
+    public Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(
+        string blockID,
+        CreditBlockListInvoicesParams? parameters = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        parameters ??= new();
+
+        return this.ListInvoices(parameters with { BlockID = blockID }, cancellationToken);
     }
 }

@@ -259,6 +259,31 @@ public class ItemTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Item
+        {
+            ID = "id",
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            ExternalConnections =
+            [
+                new()
+                {
+                    ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
+                    ExternalEntityID = "external_entity_id",
+                },
+            ],
+            Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+            Name = "name",
+            ArchivedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        Item copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ItemExternalConnectionTest : TestBase
@@ -337,6 +362,20 @@ public class ItemExternalConnectionTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ItemExternalConnection
+        {
+            ExternalConnectionName = ItemExternalConnectionExternalConnectionName.Stripe,
+            ExternalEntityID = "external_entity_id",
+        };
+
+        ItemExternalConnection copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ItemExternalConnectionExternalConnectionNameTest : TestBase
@@ -350,6 +389,7 @@ public class ItemExternalConnectionExternalConnectionNameTest : TestBase
     [InlineData(ItemExternalConnectionExternalConnectionName.Avalara)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Anrok)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Numeral)]
+    [InlineData(ItemExternalConnectionExternalConnectionName.StripeTax)]
     public void Validation_Works(ItemExternalConnectionExternalConnectionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -377,6 +417,7 @@ public class ItemExternalConnectionExternalConnectionNameTest : TestBase
     [InlineData(ItemExternalConnectionExternalConnectionName.Avalara)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Anrok)]
     [InlineData(ItemExternalConnectionExternalConnectionName.Numeral)]
+    [InlineData(ItemExternalConnectionExternalConnectionName.StripeTax)]
     public void SerializationRoundtrip_Works(ItemExternalConnectionExternalConnectionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us

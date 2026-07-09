@@ -11,8 +11,12 @@ namespace Orb.Models.Customers.Credits.TopUps;
 /// <summary>
 /// This deactivates the top-up and voids any invoices associated with pending credit
 /// blocks purchased through the top-up.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class TopUpDeleteParams : ParamsBase
+public record class TopUpDeleteParams : ParamsBase
 {
     public required string CustomerID { get; init; }
 
@@ -20,12 +24,15 @@ public sealed record class TopUpDeleteParams : ParamsBase
 
     public TopUpDeleteParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TopUpDeleteParams(TopUpDeleteParams topUpDeleteParams)
         : base(topUpDeleteParams)
     {
         this.CustomerID = topUpDeleteParams.CustomerID;
         this.TopUpID = topUpDeleteParams.TopUpID;
     }
+#pragma warning restore CS8618
 
     public TopUpDeleteParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -40,24 +47,62 @@ public sealed record class TopUpDeleteParams : ParamsBase
     [SetsRequiredMembers]
     TopUpDeleteParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string customerID,
+        string topUpID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.CustomerID = customerID;
+        this.TopUpID = topUpID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static TopUpDeleteParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string customerID,
+        string topUpID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            customerID,
+            topUpID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CustomerID"] = JsonSerializer.SerializeToElement(this.CustomerID),
+                    ["TopUpID"] = JsonSerializer.SerializeToElement(this.TopUpID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(TopUpDeleteParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this.CustomerID.Equals(other.CustomerID)
+            && (this.TopUpID?.Equals(other.TopUpID) ?? other.TopUpID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -78,5 +123,10 @@ public sealed record class TopUpDeleteParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

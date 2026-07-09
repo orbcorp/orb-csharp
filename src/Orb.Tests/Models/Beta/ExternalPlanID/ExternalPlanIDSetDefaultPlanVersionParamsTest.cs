@@ -32,11 +32,27 @@ public class ExternalPlanIDSetDefaultPlanVersionParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/plans/external_plan_id/external_plan_id/set_default_version"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/plans/external_plan_id/external_plan_id/set_default_version"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalPlanIDSetDefaultPlanVersionParams
+        {
+            ExternalPlanID = "external_plan_id",
+            Version = 0,
+        };
+
+        ExternalPlanIDSetDefaultPlanVersionParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

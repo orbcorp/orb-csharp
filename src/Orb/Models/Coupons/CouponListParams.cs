@@ -13,10 +13,13 @@ namespace Orb.Models.Coupons;
 ///
 /// <para>The list of coupons is ordered starting from the most recently created
 /// coupon. The response also includes `pagination_metadata`, which lets the caller
-/// retrieve the next page of results if they exist. More information about pagination
-/// can be found in the Pagination-metadata schema.</para>
+/// retrieve the next page of results if they exist.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CouponListParams : ParamsBase
+public record class CouponListParams : ParamsBase
 {
     /// <summary>
     /// Cursor for pagination. This can be populated by the `next_cursor` value returned
@@ -81,8 +84,11 @@ public sealed record class CouponListParams : ParamsBase
 
     public CouponListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CouponListParams(CouponListParams couponListParams)
         : base(couponListParams) { }
+#pragma warning restore CS8618
 
     public CouponListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -105,7 +111,7 @@ public sealed record class CouponListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CouponListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -115,6 +121,32 @@ public sealed record class CouponListParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CouponListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -132,5 +164,10 @@ public sealed record class CouponListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

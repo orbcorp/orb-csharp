@@ -22,6 +22,18 @@ public class InvoiceVoidParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/invoices/invoice_id/void"), url);
+        Assert.True(
+            TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/invoices/invoice_id/void"), url)
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new InvoiceVoidParams { InvoiceID = "invoice_id" };
+
+        InvoiceVoidParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

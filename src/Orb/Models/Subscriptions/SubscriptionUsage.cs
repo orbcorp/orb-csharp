@@ -49,7 +49,7 @@ public record class SubscriptionUsage : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="UngroupedSubscriptionUsage"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -70,7 +70,7 @@ public record class SubscriptionUsage : ModelBase
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="GroupedSubscriptionUsage"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -90,7 +90,7 @@ public record class SubscriptionUsage : ModelBase
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -101,8 +101,8 @@ public record class SubscriptionUsage : ModelBase
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (UngroupedSubscriptionUsage value) => {...},
-    ///     (GroupedSubscriptionUsage value) => {...}
+    ///     (UngroupedSubscriptionUsage value) =&gt; {...},
+    ///     (GroupedSubscriptionUsage value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -131,7 +131,7 @@ public record class SubscriptionUsage : ModelBase
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -142,8 +142,8 @@ public record class SubscriptionUsage : ModelBase
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (UngroupedSubscriptionUsage value) => {...},
-    ///     (GroupedSubscriptionUsage value) => {...}
+    ///     (UngroupedSubscriptionUsage value) =&gt; {...},
+    ///     (GroupedSubscriptionUsage value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -189,10 +189,10 @@ public record class SubscriptionUsage : ModelBase
         this.Switch((ungrouped) => ungrouped.Validate(), (grouped) => grouped.Validate());
     }
 
-    public virtual bool Equals(SubscriptionUsage? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(SubscriptionUsage? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -200,7 +200,20 @@ public record class SubscriptionUsage : ModelBase
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            UngroupedSubscriptionUsage _ => 0,
+            GroupedSubscriptionUsage _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class SubscriptionUsageConverter : JsonConverter<SubscriptionUsage>
@@ -288,8 +301,11 @@ public sealed record class UngroupedSubscriptionUsage : JsonModel
 
     public UngroupedSubscriptionUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public UngroupedSubscriptionUsage(UngroupedSubscriptionUsage ungroupedSubscriptionUsage)
         : base(ungroupedSubscriptionUsage) { }
+#pragma warning restore CS8618
 
     public UngroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -380,8 +396,11 @@ public sealed record class Data : JsonModel
 
     public Data() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public Data(Data data)
         : base(data) { }
+#pragma warning restore CS8618
 
     public Data(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -442,8 +461,11 @@ public sealed record class BillableMetric : JsonModel
 
     public BillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BillableMetric(BillableMetric billableMetric)
         : base(billableMetric) { }
+#pragma warning restore CS8618
 
     public BillableMetric(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -515,8 +537,11 @@ public sealed record class DataUsage : JsonModel
 
     public DataUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DataUsage(DataUsage dataUsage)
         : base(dataUsage) { }
+#pragma warning restore CS8618
 
     public DataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -634,8 +659,11 @@ public sealed record class GroupedSubscriptionUsage : JsonModel
 
     public GroupedSubscriptionUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsage(GroupedSubscriptionUsage groupedSubscriptionUsage)
         : base(groupedSubscriptionUsage) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -745,8 +773,11 @@ public sealed record class GroupedSubscriptionUsageData : JsonModel
 
     public GroupedSubscriptionUsageData() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageData(GroupedSubscriptionUsageData groupedSubscriptionUsageData)
         : base(groupedSubscriptionUsageData) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageData(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -815,10 +846,13 @@ public sealed record class GroupedSubscriptionUsageDataBillableMetric : JsonMode
 
     public GroupedSubscriptionUsageDataBillableMetric() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageDataBillableMetric(
         GroupedSubscriptionUsageDataBillableMetric groupedSubscriptionUsageDataBillableMetric
     )
         : base(groupedSubscriptionUsageDataBillableMetric) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageDataBillableMetric(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -885,8 +919,11 @@ public sealed record class MetricGroup : JsonModel
 
     public MetricGroup() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MetricGroup(MetricGroup metricGroup)
         : base(metricGroup) { }
+#pragma warning restore CS8618
 
     public MetricGroup(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -963,10 +1000,13 @@ public sealed record class GroupedSubscriptionUsageDataUsage : JsonModel
 
     public GroupedSubscriptionUsageDataUsage() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public GroupedSubscriptionUsageDataUsage(
         GroupedSubscriptionUsageDataUsage groupedSubscriptionUsageDataUsage
     )
         : base(groupedSubscriptionUsageDataUsage) { }
+#pragma warning restore CS8618
 
     public GroupedSubscriptionUsageDataUsage(IReadOnlyDictionary<string, JsonElement> rawData)
     {

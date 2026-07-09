@@ -54,10 +54,13 @@ public sealed record class DimensionalPriceGroupDimensionalPriceGroups : JsonMod
 
     public DimensionalPriceGroupDimensionalPriceGroups() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceGroupDimensionalPriceGroups(
         DimensionalPriceGroupDimensionalPriceGroups dimensionalPriceGroupDimensionalPriceGroups
     )
         : base(dimensionalPriceGroupDimensionalPriceGroups) { }
+#pragma warning restore CS8618
 
     public DimensionalPriceGroupDimensionalPriceGroups(
         IReadOnlyDictionary<string, JsonElement> rawData

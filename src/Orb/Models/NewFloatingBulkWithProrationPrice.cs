@@ -244,6 +244,19 @@ public sealed record class NewFloatingBulkWithProrationPrice : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -283,15 +296,19 @@ public sealed record class NewFloatingBulkWithProrationPrice : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
     public NewFloatingBulkWithProrationPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingBulkWithProrationPrice(
         NewFloatingBulkWithProrationPrice newFloatingBulkWithProrationPrice
     )
         : base(newFloatingBulkWithProrationPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingBulkWithProrationPrice(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -332,16 +349,18 @@ public sealed record class BulkWithProrationConfig : JsonModel
     /// <summary>
     /// Bulk tiers for rating based on total usage volume
     /// </summary>
-    public required IReadOnlyList<Tier> Tiers
+    public required IReadOnlyList<BulkWithProrationConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<ImmutableArray<Tier>>("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<BulkWithProrationConfigTier>>(
+                "tiers"
+            );
         }
         init
         {
-            this._rawData.Set<ImmutableArray<Tier>>(
+            this._rawData.Set<ImmutableArray<BulkWithProrationConfigTier>>(
                 "tiers",
                 ImmutableArray.ToImmutableArray(value)
             );
@@ -359,8 +378,11 @@ public sealed record class BulkWithProrationConfig : JsonModel
 
     public BulkWithProrationConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BulkWithProrationConfig(BulkWithProrationConfig bulkWithProrationConfig)
         : base(bulkWithProrationConfig) { }
+#pragma warning restore CS8618
 
     public BulkWithProrationConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -384,7 +406,7 @@ public sealed record class BulkWithProrationConfig : JsonModel
     }
 
     [SetsRequiredMembers]
-    public BulkWithProrationConfig(IReadOnlyList<Tier> tiers)
+    public BulkWithProrationConfig(IReadOnlyList<BulkWithProrationConfigTier> tiers)
         : this()
     {
         this.Tiers = tiers;
@@ -402,8 +424,10 @@ class BulkWithProrationConfigFromRaw : IFromRawJson<BulkWithProrationConfig>
 /// <summary>
 /// Configuration for a single bulk pricing tier with proration
 /// </summary>
-[JsonConverter(typeof(JsonModelConverter<Tier, TierFromRaw>))]
-public sealed record class Tier : JsonModel
+[JsonConverter(
+    typeof(JsonModelConverter<BulkWithProrationConfigTier, BulkWithProrationConfigTierFromRaw>)
+)]
+public sealed record class BulkWithProrationConfigTier : JsonModel
 {
     /// <summary>
     /// Cost per unit
@@ -438,43 +462,49 @@ public sealed record class Tier : JsonModel
         _ = this.TierLowerBound;
     }
 
-    public Tier() { }
+    public BulkWithProrationConfigTier() { }
 
-    public Tier(Tier tier)
-        : base(tier) { }
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public BulkWithProrationConfigTier(BulkWithProrationConfigTier bulkWithProrationConfigTier)
+        : base(bulkWithProrationConfigTier) { }
+#pragma warning restore CS8618
 
-    public Tier(IReadOnlyDictionary<string, JsonElement> rawData)
+    public BulkWithProrationConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 
 #pragma warning disable CS8618
     [SetsRequiredMembers]
-    Tier(FrozenDictionary<string, JsonElement> rawData)
+    BulkWithProrationConfigTier(FrozenDictionary<string, JsonElement> rawData)
     {
         this._rawData = new(rawData);
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="TierFromRaw.FromRawUnchecked"/>
-    public static Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData)
+    /// <inheritdoc cref="BulkWithProrationConfigTierFromRaw.FromRawUnchecked"/>
+    public static BulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
     {
         return new(FrozenDictionary.ToFrozenDictionary(rawData));
     }
 
     [SetsRequiredMembers]
-    public Tier(string unitAmount)
+    public BulkWithProrationConfigTier(string unitAmount)
         : this()
     {
         this.UnitAmount = unitAmount;
     }
 }
 
-class TierFromRaw : IFromRawJson<Tier>
+class BulkWithProrationConfigTierFromRaw : IFromRawJson<BulkWithProrationConfigTier>
 {
     /// <inheritdoc/>
-    public Tier FromRawUnchecked(IReadOnlyDictionary<string, JsonElement> rawData) =>
-        Tier.FromRawUnchecked(rawData);
+    public BulkWithProrationConfigTier FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => BulkWithProrationConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -628,7 +658,7 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -649,7 +679,7 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -669,7 +699,7 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -680,8 +710,8 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -710,7 +740,7 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -721,8 +751,8 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -771,10 +801,10 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewFloatingBulkWithProrationPriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(NewFloatingBulkWithProrationPriceConversionRateConfig? other) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -782,7 +812,20 @@ public record class NewFloatingBulkWithProrationPriceConversionRateConfig : Mode
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingBulkWithProrationPriceConversionRateConfigConverter
@@ -817,12 +860,10 @@ sealed class NewFloatingBulkWithProrationPriceConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -839,12 +880,10 @@ sealed class NewFloatingBulkWithProrationPriceConversionRateConfigConverter
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

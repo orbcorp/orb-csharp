@@ -12,8 +12,12 @@ namespace Orb.Models.Prices.ExternalPriceID;
 /// <summary>
 /// This endpoint allows you to update the `metadata` property on a price. If you
 /// pass null for the metadata value, it will clear any existing metadata for that price.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ExternalPriceIDUpdateParams : ParamsBase
+public record class ExternalPriceIDUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -48,6 +52,8 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
 
     public ExternalPriceIDUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExternalPriceIDUpdateParams(ExternalPriceIDUpdateParams externalPriceIDUpdateParams)
         : base(externalPriceIDUpdateParams)
     {
@@ -55,6 +61,7 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
 
         this._rawBodyData = new(externalPriceIDUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public ExternalPriceIDUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -72,27 +79,63 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
     ExternalPriceIDUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string externalPriceID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.ExternalPriceID = externalPriceID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static ExternalPriceIDUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string externalPriceID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            externalPriceID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ExternalPriceID"] = JsonSerializer.SerializeToElement(this.ExternalPriceID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ExternalPriceIDUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalPriceID?.Equals(other.ExternalPriceID) ?? other.ExternalPriceID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -122,5 +165,10 @@ public sealed record class ExternalPriceIDUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

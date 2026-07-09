@@ -77,8 +77,11 @@ public sealed record class OtherSubLineItem : JsonModel
 
     public OtherSubLineItem() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public OtherSubLineItem(OtherSubLineItem otherSubLineItem)
         : base(otherSubLineItem) { }
+#pragma warning restore CS8618
 
     public OtherSubLineItem(IReadOnlyDictionary<string, JsonElement> rawData)
     {

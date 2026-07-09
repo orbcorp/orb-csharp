@@ -96,19 +96,37 @@ public class VolumeListParamsTest : TestBase
     {
         VolumeListParams parameters = new()
         {
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117+00:00"),
+            Cursor = "cursor",
+            Limit = 1,
+            TimeframeEnd = DateTimeOffset.Parse("2024-10-11T06:00:00.000+00:00"),
+        };
+
+        var url = parameters.Url(new() { ApiKey = "My API Key" });
+
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/events/volume?timeframe_start=2019-12-27T18%3a11%3a19.117%2b00%3a00&cursor=cursor&limit=1&timeframe_end=2024-10-11T06%3a00%3a00.000%2b00%3a00"
+                ),
+                url
+            )
+        );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new VolumeListParams
+        {
             TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
             Cursor = "cursor",
             Limit = 1,
             TimeframeEnd = DateTimeOffset.Parse("2024-10-11T06:00:00Z"),
         };
 
-        var url = parameters.Url(new() { ApiKey = "My API Key" });
+        VolumeListParams copied = new(parameters);
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/events/volume?timeframe_start=2019-12-27T18%3a11%3a19.117%2b00%3a00&cursor=cursor&limit=1&timeframe_end=2024-10-11T06%3a00%3a00%2b00%3a00"
-            ),
-            url
-        );
+        Assert.Equal(parameters, copied);
     }
 }

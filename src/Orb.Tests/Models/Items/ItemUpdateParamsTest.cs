@@ -97,7 +97,30 @@ public class ItemUpdateParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(new Uri("https://api.withorb.com/v1/items/item_id"), url);
+        Assert.True(TestBase.UrisEqual(new Uri("https://api.withorb.com/v1/items/item_id"), url));
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ItemUpdateParams
+        {
+            ItemID = "item_id",
+            ExternalConnections =
+            [
+                new()
+                {
+                    ExternalConnectionName = ExternalConnectionName.Stripe,
+                    ExternalEntityID = "external_entity_id",
+                },
+            ],
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            Name = "name",
+        };
+
+        ItemUpdateParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }
 
@@ -173,6 +196,20 @@ public class ExternalConnectionTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ExternalConnection
+        {
+            ExternalConnectionName = ExternalConnectionName.Stripe,
+            ExternalEntityID = "external_entity_id",
+        };
+
+        ExternalConnection copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ExternalConnectionNameTest : TestBase
@@ -186,6 +223,7 @@ public class ExternalConnectionNameTest : TestBase
     [InlineData(ExternalConnectionName.Avalara)]
     [InlineData(ExternalConnectionName.Anrok)]
     [InlineData(ExternalConnectionName.Numeral)]
+    [InlineData(ExternalConnectionName.StripeTax)]
     public void Validation_Works(ExternalConnectionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us
@@ -214,6 +252,7 @@ public class ExternalConnectionNameTest : TestBase
     [InlineData(ExternalConnectionName.Avalara)]
     [InlineData(ExternalConnectionName.Anrok)]
     [InlineData(ExternalConnectionName.Numeral)]
+    [InlineData(ExternalConnectionName.StripeTax)]
     public void SerializationRoundtrip_Works(ExternalConnectionName rawValue)
     {
         // force implicit conversion because Theory can't do that for us

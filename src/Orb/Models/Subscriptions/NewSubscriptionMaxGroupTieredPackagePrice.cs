@@ -49,12 +49,12 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : JsonModel
     /// <summary>
     /// Configuration for max_group_tiered_package pricing
     /// </summary>
-    public required global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig MaxGroupTieredPackageConfig
+    public required MaxGroupTieredPackageConfig MaxGroupTieredPackageConfig
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullClass<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>(
+            return this._rawData.GetNotNullClass<MaxGroupTieredPackageConfig>(
                 "max_group_tiered_package_config"
             );
         }
@@ -245,6 +245,19 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : JsonModel
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -298,16 +311,20 @@ public sealed record class NewSubscriptionMaxGroupTieredPackagePrice : JsonModel
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
         _ = this.ReferenceID;
     }
 
     public NewSubscriptionMaxGroupTieredPackagePrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewSubscriptionMaxGroupTieredPackagePrice(
         NewSubscriptionMaxGroupTieredPackagePrice newSubscriptionMaxGroupTieredPackagePrice
     )
         : base(newSubscriptionMaxGroupTieredPackagePrice) { }
+#pragma warning restore CS8618
 
     public NewSubscriptionMaxGroupTieredPackagePrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -406,10 +423,7 @@ sealed class NewSubscriptionMaxGroupTieredPackagePriceCadenceConverter
 /// Configuration for max_group_tiered_package pricing
 /// </summary>
 [JsonConverter(
-    typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig,
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigFromRaw
-    >)
+    typeof(JsonModelConverter<MaxGroupTieredPackageConfig, MaxGroupTieredPackageConfigFromRaw>)
 )]
 public sealed record class MaxGroupTieredPackageConfig : JsonModel
 {
@@ -439,20 +453,21 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
     /// <summary>
     /// Apply tiered pricing to the largest group after grouping with the provided key.
     /// </summary>
-    public required IReadOnlyList<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier> Tiers
+    public required IReadOnlyList<MaxGroupTieredPackageConfigTier> Tiers
     {
         get
         {
             this._rawData.Freeze();
-            return this._rawData.GetNotNullStruct<
-                ImmutableArray<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
-            >("tiers");
+            return this._rawData.GetNotNullStruct<ImmutableArray<MaxGroupTieredPackageConfigTier>>(
+                "tiers"
+            );
         }
         init
         {
-            this._rawData.Set<
-                ImmutableArray<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
-            >("tiers", ImmutableArray.ToImmutableArray(value));
+            this._rawData.Set<ImmutableArray<MaxGroupTieredPackageConfigTier>>(
+                "tiers",
+                ImmutableArray.ToImmutableArray(value)
+            );
         }
     }
 
@@ -469,10 +484,11 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
 
     public MaxGroupTieredPackageConfig() { }
 
-    public MaxGroupTieredPackageConfig(
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig maxGroupTieredPackageConfig
-    )
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public MaxGroupTieredPackageConfig(MaxGroupTieredPackageConfig maxGroupTieredPackageConfig)
         : base(maxGroupTieredPackageConfig) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -487,8 +503,8 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig FromRawUnchecked(
+    /// <inheritdoc cref="MaxGroupTieredPackageConfigFromRaw.FromRawUnchecked"/>
+    public static MaxGroupTieredPackageConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -496,13 +512,12 @@ public sealed record class MaxGroupTieredPackageConfig : JsonModel
     }
 }
 
-class MaxGroupTieredPackageConfigFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig>
+class MaxGroupTieredPackageConfigFromRaw : IFromRawJson<MaxGroupTieredPackageConfig>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig FromRawUnchecked(
+    public MaxGroupTieredPackageConfig FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
+    ) => MaxGroupTieredPackageConfig.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -510,8 +525,8 @@ class MaxGroupTieredPackageConfigFromRaw
 /// </summary>
 [JsonConverter(
     typeof(JsonModelConverter<
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier,
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTierFromRaw
+        MaxGroupTieredPackageConfigTier,
+        MaxGroupTieredPackageConfigTierFromRaw
     >)
 )]
 public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
@@ -548,10 +563,13 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
 
     public MaxGroupTieredPackageConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MaxGroupTieredPackageConfigTier(
-        global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
+        MaxGroupTieredPackageConfigTier maxGroupTieredPackageConfigTier
     )
         : base(maxGroupTieredPackageConfigTier) { }
+#pragma warning restore CS8618
 
     public MaxGroupTieredPackageConfigTier(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -566,8 +584,8 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTierFromRaw.FromRawUnchecked"/>
-    public static global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier FromRawUnchecked(
+    /// <inheritdoc cref="MaxGroupTieredPackageConfigTierFromRaw.FromRawUnchecked"/>
+    public static MaxGroupTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
     )
     {
@@ -575,13 +593,12 @@ public sealed record class MaxGroupTieredPackageConfigTier : JsonModel
     }
 }
 
-class MaxGroupTieredPackageConfigTierFromRaw
-    : IFromRawJson<global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier>
+class MaxGroupTieredPackageConfigTierFromRaw : IFromRawJson<MaxGroupTieredPackageConfigTier>
 {
     /// <inheritdoc/>
-    public global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier FromRawUnchecked(
+    public MaxGroupTieredPackageConfigTier FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawData
-    ) => global::Orb.Models.Subscriptions.MaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
+    ) => MaxGroupTieredPackageConfigTier.FromRawUnchecked(rawData);
 }
 
 /// <summary>
@@ -676,7 +693,7 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -697,7 +714,7 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -717,7 +734,7 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -728,8 +745,8 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -758,7 +775,7 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -769,8 +786,8 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -819,10 +836,12 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
         this.Switch((unit) => unit.Validate(), (tiered) => tiered.Validate());
     }
 
-    public virtual bool Equals(NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig? other)
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    public virtual bool Equals(
+        NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfig? other
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -830,7 +849,20 @@ public record class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfi
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigConverter
@@ -865,12 +897,10 @@ sealed class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigConver
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -887,12 +917,10 @@ sealed class NewSubscriptionMaxGroupTieredPackagePriceConversionRateConfigConver
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

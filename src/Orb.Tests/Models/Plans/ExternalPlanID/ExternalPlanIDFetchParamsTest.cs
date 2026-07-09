@@ -22,9 +22,21 @@ public class ExternalPlanIDFetchParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id"),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri("https://api.withorb.com/v1/plans/external_plan_id/external_plan_id"),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new ExternalPlanIDFetchParams { ExternalPlanID = "external_plan_id" };
+
+        ExternalPlanIDFetchParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

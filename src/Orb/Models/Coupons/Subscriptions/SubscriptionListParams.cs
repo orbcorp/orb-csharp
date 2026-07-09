@@ -13,8 +13,12 @@ namespace Orb.Models.Coupons.Subscriptions;
 /// as a [paginated](/api-reference/pagination) list, ordered starting from the most
 /// recently created subscription. For a full discussion of the subscription resource,
 /// see [Subscription](/core-concepts#subscription).
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class SubscriptionListParams : ParamsBase
+public record class SubscriptionListParams : ParamsBase
 {
     public string? CouponID { get; init; }
 
@@ -55,11 +59,14 @@ public sealed record class SubscriptionListParams : ParamsBase
 
     public SubscriptionListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public SubscriptionListParams(SubscriptionListParams subscriptionListParams)
         : base(subscriptionListParams)
     {
         this.CouponID = subscriptionListParams.CouponID;
     }
+#pragma warning restore CS8618
 
     public SubscriptionListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -74,24 +81,56 @@ public sealed record class SubscriptionListParams : ParamsBase
     [SetsRequiredMembers]
     SubscriptionListParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string couponID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.CouponID = couponID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static SubscriptionListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string couponID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            couponID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CouponID"] = JsonSerializer.SerializeToElement(this.CouponID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(SubscriptionListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CouponID?.Equals(other.CouponID) ?? other.CouponID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -112,5 +151,10 @@ public sealed record class SubscriptionListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

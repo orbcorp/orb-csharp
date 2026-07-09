@@ -93,11 +93,28 @@ public class TopUpListByExternalIDParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/top_ups?cursor=cursor&limit=1"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/customers/external_customer_id/external_customer_id/credits/top_ups?cursor=cursor&limit=1"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new TopUpListByExternalIDParams
+        {
+            ExternalCustomerID = "external_customer_id",
+            Cursor = "cursor",
+            Limit = 1,
+        };
+
+        TopUpListByExternalIDParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

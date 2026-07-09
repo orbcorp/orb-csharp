@@ -107,6 +107,24 @@ public class PlanVersionPhaseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new PlanVersionPhase
+        {
+            ID = "id",
+            Description = "description",
+            Duration = 0,
+            DurationUnit = DurationUnit.Daily,
+            Name = "name",
+            Order = 0,
+        };
+
+        PlanVersionPhase copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DurationUnitTest : TestBase

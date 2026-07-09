@@ -28,11 +28,26 @@ public class SubscriptionUnschedulePendingPlanChangesParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/subscriptions/subscription_id/unschedule_pending_plan_changes"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/subscriptions/subscription_id/unschedule_pending_plan_changes"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new SubscriptionUnschedulePendingPlanChangesParams
+        {
+            SubscriptionID = "subscription_id",
+        };
+
+        SubscriptionUnschedulePendingPlanChangesParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

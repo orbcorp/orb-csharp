@@ -63,4 +63,14 @@ public class SubLineItemMatrixConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubLineItemMatrixConfig { DimensionValues = ["string"] };
+
+        SubLineItemMatrixConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

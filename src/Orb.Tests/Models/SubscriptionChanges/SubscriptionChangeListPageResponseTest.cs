@@ -159,4 +159,29 @@ public class SubscriptionChangeListPageResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new SubscriptionChangeListPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    ExpirationTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Status = SubscriptionChangeListResponseStatus.Pending,
+                    SubscriptionID = "subscription_id",
+                    AppliedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CancelledAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        SubscriptionChangeListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

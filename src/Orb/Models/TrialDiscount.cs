@@ -116,8 +116,11 @@ public sealed record class TrialDiscount : JsonModel
 
     public TrialDiscount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TrialDiscount(TrialDiscount trialDiscount)
         : base(trialDiscount) { }
+#pragma warning restore CS8618
 
     public TrialDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -256,8 +259,11 @@ public sealed record class TrialDiscountFilter : JsonModel
 
     public TrialDiscountFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public TrialDiscountFilter(TrialDiscountFilter trialDiscountFilter)
         : base(trialDiscountFilter) { }
+#pragma warning restore CS8618
 
     public TrialDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

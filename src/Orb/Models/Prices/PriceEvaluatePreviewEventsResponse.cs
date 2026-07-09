@@ -45,10 +45,13 @@ public sealed record class PriceEvaluatePreviewEventsResponse : JsonModel
 
     public PriceEvaluatePreviewEventsResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsResponse(
         PriceEvaluatePreviewEventsResponse priceEvaluatePreviewEventsResponse
     )
         : base(priceEvaluatePreviewEventsResponse) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -185,10 +188,13 @@ public sealed record class PriceEvaluatePreviewEventsResponseData : JsonModel
 
     public PriceEvaluatePreviewEventsResponseData() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public PriceEvaluatePreviewEventsResponseData(
         PriceEvaluatePreviewEventsResponseData priceEvaluatePreviewEventsResponseData
     )
         : base(priceEvaluatePreviewEventsResponseData) { }
+#pragma warning restore CS8618
 
     public PriceEvaluatePreviewEventsResponseData(IReadOnlyDictionary<string, JsonElement> rawData)
     {

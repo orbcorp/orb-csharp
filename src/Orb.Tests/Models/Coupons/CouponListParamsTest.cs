@@ -104,11 +104,29 @@ public class CouponListParamsTest : TestBase
 
         var url = parameters.Url(new() { ApiKey = "My API Key" });
 
-        Assert.Equal(
-            new Uri(
-                "https://api.withorb.com/v1/coupons?cursor=cursor&limit=1&redemption_code=redemption_code&show_archived=true"
-            ),
-            url
+        Assert.True(
+            TestBase.UrisEqual(
+                new Uri(
+                    "https://api.withorb.com/v1/coupons?cursor=cursor&limit=1&redemption_code=redemption_code&show_archived=true"
+                ),
+                url
+            )
         );
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var parameters = new CouponListParams
+        {
+            Cursor = "cursor",
+            Limit = 1,
+            RedemptionCode = "redemption_code",
+            ShowArchived = true,
+        };
+
+        CouponListParams copied = new(parameters);
+
+        Assert.Equal(parameters, copied);
     }
 }

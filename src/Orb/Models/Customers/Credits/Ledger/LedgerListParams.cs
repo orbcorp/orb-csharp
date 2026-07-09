@@ -31,11 +31,8 @@ namespace Orb.Models.Customers.Credits.Ledger;
 ///
 /// <para>As usage for a customer is reported into Orb, credits may be deducted according
 /// to the customer's plan configuration. An automated deduction of this type will
-/// result in a ledger entry, also with a starting and ending balance. In order to
-/// provide better tracing capabilities for automatic deductions, Orb always associates
-/// each automatic deduction with the `event_id` at the time of ingestion, used to
-/// pinpoint _why_ credit deduction took place and to ensure that credits are never
-/// deducted without an associated usage event.</para>
+/// result in a ledger entry, also with a starting and ending balance. Each day's
+/// usage for a particular price, invoice, and block will be grouped into a single entry.</para>
 ///
 /// <para>By default, Orb uses an algorithm that automatically deducts from the *soonest
 /// expiring credit block* first in order to ensure that all credits are utilized
@@ -77,8 +74,12 @@ namespace Orb.Models.Customers.Credits.Ledger;
 /// <para>## Amendment When credits are added to a customer's balance as a result
 /// of a correction, this entry will be added to the ledger to indicate the adjustment
 /// of credits.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class LedgerListParams : ParamsBase
+public record class LedgerListParams : ParamsBase
 {
     public string? CustomerID { get; init; }
 
@@ -204,11 +205,14 @@ public sealed record class LedgerListParams : ParamsBase
 
     public LedgerListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public LedgerListParams(LedgerListParams ledgerListParams)
         : base(ledgerListParams)
     {
         this.CustomerID = ledgerListParams.CustomerID;
     }
+#pragma warning restore CS8618
 
     public LedgerListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -223,24 +227,56 @@ public sealed record class LedgerListParams : ParamsBase
     [SetsRequiredMembers]
     LedgerListParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string customerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.CustomerID = customerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static LedgerListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string customerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            customerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["CustomerID"] = JsonSerializer.SerializeToElement(this.CustomerID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(LedgerListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.CustomerID?.Equals(other.CustomerID) ?? other.CustomerID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -261,6 +297,11 @@ public sealed record class LedgerListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 

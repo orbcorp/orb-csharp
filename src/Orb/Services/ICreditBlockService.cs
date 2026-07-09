@@ -7,9 +7,12 @@ using Orb.Models.CreditBlocks;
 namespace Orb.Services;
 
 /// <summary>
-/// NOTE: Do not inherit from this type outside the SDK unless you're okay with breaking
-/// changes in non-major versions. We may add new methods in the future that cause
-/// existing derived classes to break.
+/// The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
+/// credits within Orb.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
 public interface ICreditBlockService
 {
@@ -45,14 +48,14 @@ public interface ICreditBlockService
     /// This endpoint deletes a credit block by its ID.
     ///
     /// <para>When a credit block is deleted: - The block is removed from the customer's
-    /// credit ledger. - Any usage of the credit block is reversed, and the ledger
-    /// is replayed as if the block never existed. - If invoices were generated from
-    /// the purchase of the credit block, they will be deleted if in draft status,
-    ///   voided if issued, or a credit note will be issued if the invoice is paid.</para>
+    /// credit ledger. - Any usage of the credit block is reversed, and the ledger is
+    /// replayed as if the block never existed. - If invoices were generated from the
+    /// purchase of the credit block, they will be deleted if in draft status,   voided
+    /// if issued, or a credit note will be issued if the invoice is paid.</para>
     ///
-    /// <para><Note> Issued invoices that had credits applied from this block will
-    /// not be regenerated, but the ledger will reflect the state as if credits from
-    /// the deleted block were never applied. </Note></para>
+    /// <para><Note> Issued invoices that had credits applied from this block will not
+    /// be regenerated, but the ledger will reflect the state as if credits from the
+    /// deleted block were never applied. </Note></para>
     /// </summary>
     Task Delete(CreditBlockDeleteParams parameters, CancellationToken cancellationToken = default);
 
@@ -60,6 +63,37 @@ public interface ICreditBlockService
     Task Delete(
         string blockID,
         CreditBlockDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// This endpoint returns the credit block and its associated purchasing invoices.
+    ///
+    /// <para>If a credit block was purchased (as opposed to being manually added), this
+    /// endpoint returns the invoices that were created to charge the customer for the
+    /// credit block. For credit blocks with payment schedules spanning multiple periods
+    /// (e.g., monthly payments over 12 months), multiple invoices will be returned.</para>
+    ///
+    /// <para>For credit blocks created by subscription allocation prices, this endpoint
+    /// returns the subscription invoice containing the allocation line item that
+    /// created the block.</para>
+    ///
+    /// <para>If the credit block was not purchased (e.g., manual increment), an empty
+    /// invoices list is returned.</para>
+    ///
+    /// <para>**Note: This endpoint is currently experimental and its interface may
+    /// change in future releases. Please contact support before building production
+    /// integrations against this endpoint.**</para>
+    /// </summary>
+    Task<CreditBlockListInvoicesResponse> ListInvoices(
+        CreditBlockListInvoicesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>
+    Task<CreditBlockListInvoicesResponse> ListInvoices(
+        string blockID,
+        CreditBlockListInvoicesParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }
@@ -78,7 +112,7 @@ public interface ICreditBlockServiceWithRawResponse
     ICreditBlockServiceWithRawResponse WithOptions(Func<ClientOptions, ClientOptions> modifier);
 
     /// <summary>
-    /// Returns a raw HTTP response for `get /credit_blocks/{block_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>get /credit_blocks/{block_id}</c>, but is otherwise the
     /// same as <see cref="ICreditBlockService.Retrieve(CreditBlockRetrieveParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse<CreditBlockRetrieveResponse>> Retrieve(
@@ -94,7 +128,7 @@ public interface ICreditBlockServiceWithRawResponse
     );
 
     /// <summary>
-    /// Returns a raw HTTP response for `delete /credit_blocks/{block_id}`, but is otherwise the
+    /// Returns a raw HTTP response for <c>delete /credit_blocks/{block_id}</c>, but is otherwise the
     /// same as <see cref="ICreditBlockService.Delete(CreditBlockDeleteParams, CancellationToken)"/>.
     /// </summary>
     Task<HttpResponse> Delete(
@@ -106,6 +140,22 @@ public interface ICreditBlockServiceWithRawResponse
     Task<HttpResponse> Delete(
         string blockID,
         CreditBlockDeleteParams? parameters = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a raw HTTP response for <c>get /credit_blocks/{block_id}/invoices</c>, but is otherwise the
+    /// same as <see cref="ICreditBlockService.ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>.
+    /// </summary>
+    Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(
+        CreditBlockListInvoicesParams parameters,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <inheritdoc cref="ListInvoices(CreditBlockListInvoicesParams, CancellationToken)"/>
+    Task<HttpResponse<CreditBlockListInvoicesResponse>> ListInvoices(
+        string blockID,
+        CreditBlockListInvoicesParams? parameters = null,
         CancellationToken cancellationToken = default
     );
 }

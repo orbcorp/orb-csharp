@@ -55,4 +55,14 @@ public class ItemSlimTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new ItemSlim { ID = "id", Name = "name" };
+
+        ItemSlim copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }

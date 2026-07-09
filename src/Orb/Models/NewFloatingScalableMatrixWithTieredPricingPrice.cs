@@ -247,6 +247,19 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice : Jso
     }
 
     /// <summary>
+    /// The ID of the license type to associate with this price.
+    /// </summary>
+    public string? LicenseTypeID
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNullableClass<string>("license_type_id");
+        }
+        init { this._rawData.Set("license_type_id", value); }
+    }
+
+    /// <summary>
     /// User-specified key/value pairs for the resource. Individual keys can be removed
     /// by setting the value to `null`, and the entire metadata mapping can be cleared
     /// by setting `metadata` to `null`.
@@ -286,15 +299,19 @@ public sealed record class NewFloatingScalableMatrixWithTieredPricingPrice : Jso
         _ = this.FixedPriceQuantity;
         _ = this.InvoiceGroupingKey;
         this.InvoicingCycleConfiguration?.Validate();
+        _ = this.LicenseTypeID;
         _ = this.Metadata;
     }
 
     public NewFloatingScalableMatrixWithTieredPricingPrice() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewFloatingScalableMatrixWithTieredPricingPrice(
         NewFloatingScalableMatrixWithTieredPricingPrice newFloatingScalableMatrixWithTieredPricingPrice
     )
         : base(newFloatingScalableMatrixWithTieredPricingPrice) { }
+#pragma warning restore CS8618
 
     public NewFloatingScalableMatrixWithTieredPricingPrice(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -529,10 +546,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfig : JsonModel
 
     public ScalableMatrixWithTieredPricingConfig() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingConfig(
         ScalableMatrixWithTieredPricingConfig scalableMatrixWithTieredPricingConfig
     )
         : base(scalableMatrixWithTieredPricingConfig) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingConfig(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -611,8 +631,11 @@ public sealed record class MatrixScalingFactor : JsonModel
 
     public MatrixScalingFactor() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MatrixScalingFactor(MatrixScalingFactor matrixScalingFactor)
         : base(matrixScalingFactor) { }
+#pragma warning restore CS8618
 
     public MatrixScalingFactor(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -683,10 +706,13 @@ public sealed record class ScalableMatrixWithTieredPricingConfigTier : JsonModel
 
     public ScalableMatrixWithTieredPricingConfigTier() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ScalableMatrixWithTieredPricingConfigTier(
         ScalableMatrixWithTieredPricingConfigTier scalableMatrixWithTieredPricingConfigTier
     )
         : base(scalableMatrixWithTieredPricingConfigTier) { }
+#pragma warning restore CS8618
 
     public ScalableMatrixWithTieredPricingConfigTier(
         IReadOnlyDictionary<string, JsonElement> rawData
@@ -768,7 +794,7 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedUnitConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -789,7 +815,7 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// Returns true and sets the <c>out</c> parameter if the instance was constructed with a variant of
     /// type <see cref="SharedTieredConversionRateConfig"/>.
     ///
-    /// <para>Consider using <see cref="Switch"> or <see cref="Match"> if you need to handle every variant.</para>
+    /// <para>Consider using <see cref="Switch"/> or <see cref="Match"/> if you need to handle every variant.</para>
     ///
     /// <example>
     /// <code>
@@ -809,7 +835,7 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// <summary>
     /// Calls the function parameter corresponding to the variant the instance was constructed with.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Match"/>
     /// if you need your function parameters to return something.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -820,8 +846,8 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// <example>
     /// <code>
     /// instance.Switch(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -850,7 +876,7 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// Calls the function parameter corresponding to the variant the instance was constructed with and
     /// returns its result.
     ///
-    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch">
+    /// <para>Use the <c>TryPick</c> method(s) if you don't need to handle every variant, or <see cref="Switch"/>
     /// if you don't need your function parameters to return a value.</para>
     ///
     /// <exception cref="OrbInvalidDataException">
@@ -861,8 +887,8 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     /// <example>
     /// <code>
     /// var result = instance.Match(
-    ///     (SharedUnitConversionRateConfig value) => {...},
-    ///     (SharedTieredConversionRateConfig value) => {...}
+    ///     (SharedUnitConversionRateConfig value) =&gt; {...},
+    ///     (SharedTieredConversionRateConfig value) =&gt; {...}
     /// );
     /// </code>
     /// </example>
@@ -913,10 +939,10 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
 
     public virtual bool Equals(
         NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig? other
-    )
-    {
-        return other != null && JsonElement.DeepEquals(this.Json, other.Json);
-    }
+    ) =>
+        other != null
+        && this.VariantIndex() == other.VariantIndex()
+        && JsonElement.DeepEquals(this.Json, other.Json);
 
     public override int GetHashCode()
     {
@@ -924,7 +950,20 @@ public record class NewFloatingScalableMatrixWithTieredPricingPriceConversionRat
     }
 
     public override string ToString() =>
-        JsonSerializer.Serialize(this._element, ModelBase.ToStringSerializerOptions);
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(this.Json),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    int VariantIndex()
+    {
+        return this.Value switch
+        {
+            SharedUnitConversionRateConfig _ => 0,
+            SharedTieredConversionRateConfig _ => 1,
+            _ => -1,
+        };
+    }
 }
 
 sealed class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfigConverter
@@ -959,12 +998,10 @@ sealed class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }
@@ -981,12 +1018,10 @@ sealed class NewFloatingScalableMatrixWithTieredPricingPriceConversionRateConfig
                     );
                     if (deserialized != null)
                     {
-                        deserialized.Validate();
                         return new(deserialized, element);
                     }
                 }
-                catch (System::Exception e)
-                    when (e is JsonException || e is OrbInvalidDataException)
+                catch (JsonException)
                 {
                     // ignore
                 }

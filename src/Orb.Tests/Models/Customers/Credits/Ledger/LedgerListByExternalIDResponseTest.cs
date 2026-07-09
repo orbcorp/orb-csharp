@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Orb.Core;
+using Orb.Models;
 using Orb.Models.Customers.Credits.Ledger;
-using Models = Orb.Models;
 
 namespace Orb.Tests.Models.Customers.Credits.Ledger;
 
@@ -84,8 +84,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         new()
                         {
                             ID = "cgZa3SXcsPTVyC4Y",
-                            Action =
-                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
+                            Action = InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                             Amount = "11.00",
                             CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                             CreditNote = new("id"),
@@ -93,29 +92,29 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             EndingBalance = "22.00",
                             Invoice = new("gXcsPTVyC4YZa3Sc"),
                             StartingBalance = "33.00",
-                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
+                            Type = InvoiceCustomerBalanceTransactionType.Increment,
                         },
                     ],
                     CustomerTaxID = new()
                     {
-                        Country = Models::Country.Ad,
-                        Type = Models::CustomerTaxIDType.AdNrt,
+                        Country = Country.Ad,
+                        Type = CustomerTaxIDType.AdNrt,
                         Value = "value",
                     },
                     Discount = JsonSerializer.Deserialize<JsonElement>("{}"),
                     Discounts =
                     [
-                        new Models::PercentageDiscount()
+                        new PercentageDiscount()
                         {
-                            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                            DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
                             AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::PercentageDiscountFilterField.PriceID,
-                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -129,7 +128,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                     InvoiceNumber = "JYEFHK-00001",
                     InvoicePdf =
                         "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
-                    InvoiceSource = Models::InvoiceInvoiceSource.Subscription,
+                    InvoiceSource = InvoiceInvoiceSource.Subscription,
                     IssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     IssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     LineItems =
@@ -140,11 +139,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             AdjustedSubtotal = "5.00",
                             Adjustments =
                             [
-                                new Models::MonetaryUsageDiscountAdjustment()
+                                new MonetaryUsageDiscountAdjustment()
                                 {
                                     ID = "id",
                                     AdjustmentType =
-                                        Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                                        MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                     Amount = "amount",
                                     AppliesToPriceIds = ["string"],
                                     Filters =
@@ -152,9 +151,9 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         new()
                                         {
                                             Field =
-                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                MonetaryUsageDiscountAdjustmentFilterField.PriceID,
                                             Operator =
-                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                                                MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -171,31 +170,31 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             Grouping = "grouping",
                             Name = "Fixed Fee",
                             PartiallyInvoicedAmount = "4.00",
-                            Price = new Models::Unit()
+                            Price = new Unit()
                             {
                                 ID = "id",
                                 BillableMetric = new("id"),
                                 BillingCycleConfiguration = new()
                                 {
                                     Duration = 0,
-                                    DurationUnit = Models::DurationUnit.Day,
+                                    DurationUnit = DurationUnit.Day,
                                 },
-                                BillingMode = Models::BillingMode.InAdvance,
-                                Cadence = Models::UnitCadence.OneTime,
+                                BillingMode = BillingMode.InAdvance,
+                                Cadence = UnitCadence.OneTime,
                                 CompositePriceFilters =
                                 [
                                     new()
                                     {
-                                        Field = Models::CompositePriceFilterField.PriceID,
-                                        Operator = Models::CompositePriceFilterOperator.Includes,
+                                        Field = CompositePriceFilterField.PriceID,
+                                        Operator = CompositePriceFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
                                 ConversionRate = 0,
-                                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                                ConversionRateConfig = new SharedUnitConversionRateConfig()
                                 {
                                     ConversionRateType =
-                                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                                        SharedUnitConversionRateConfigConversionRateType.Unit,
                                     UnitConfig = new("unit_amount"),
                                 },
                                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -206,32 +205,31 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     CustomExpiration = new()
                                     {
                                         Duration = 0,
-                                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                                        DurationUnit = CustomExpirationDurationUnit.Day,
                                     },
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
-                                Discount = new Models::PercentageDiscount()
+                                Discount = new PercentageDiscount()
                                 {
-                                    DiscountType =
-                                        Models::PercentageDiscountDiscountType.Percentage,
+                                    DiscountType = PercentageDiscountDiscountType.Percentage,
                                     PercentageDiscountValue = 0.15,
                                     AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::PercentageDiscountFilterField.PriceID,
-                                            Operator =
-                                                Models::PercentageDiscountFilterOperator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -239,10 +237,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
-                                    DurationUnit = Models::DurationUnit.Day,
+                                    DurationUnit = DurationUnit.Day,
                                 },
                                 Item = new() { ID = "id", Name = "name" },
                                 Maximum = new()
@@ -252,8 +251,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::MaximumFilterField.PriceID,
-                                            Operator = Models::MaximumFilterOperator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -268,8 +267,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::MinimumFilterField.PriceID,
-                                            Operator = Models::MinimumFilterOperator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -278,7 +277,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                 MinimumAmount = "minimum_amount",
                                 Name = "name",
                                 PlanPhaseOrder = 0,
-                                PriceType = Models::UnitPriceType.UsagePrice,
+                                PriceType = UnitPriceType.UsagePrice,
                                 ReplacesPriceID = "replaces_price_id",
                                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                                 DimensionalPriceConfiguration = new()
@@ -286,19 +285,25 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
                                 },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
                             },
                             Quantity = 1,
                             StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
                             SubLineItems =
                             [
-                                new Models::MatrixSubLineItem()
+                                new MatrixSubLineItem()
                                 {
                                     Amount = "9.00",
                                     Grouping = new() { Key = "region", Value = "west" },
                                     MatrixConfig = new(["string"]),
                                     Name = "Tier One",
                                     Quantity = 5,
-                                    Type = Models::MatrixSubLineItemType.Matrix,
+                                    Type = MatrixSubLineItemType.Matrix,
                                     ScaledQuantity = 0,
                                 },
                             ],
@@ -322,8 +327,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::MaximumFilterField.PriceID,
-                                Operator = Models::MaximumFilterOperator.Includes,
+                                Field = MaximumFilterField.PriceID,
+                                Operator = MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -339,8 +344,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::MinimumFilterField.PriceID,
-                                Operator = Models::MinimumFilterOperator.Includes,
+                                Field = MinimumFilterField.PriceID,
+                                Operator = MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -355,7 +360,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             ID = "id",
                             Amount = "amount",
                             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
+                            PaymentProvider = InvoicePaymentAttemptPaymentProvider.Stripe,
                             PaymentProviderID = "payment_provider_id",
                             ReceiptPdf =
                                 "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -374,7 +379,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         PostalCode = "postal_code",
                         State = "state",
                     },
-                    Status = Models::InvoiceStatus.Issued,
+                    Status = InvoiceStatus.Issued,
                     Subscription = new("VDGsT23osdLb84KD"),
                     Subtotal = "8.00",
                     SyncFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -687,8 +692,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         new()
                         {
                             ID = "cgZa3SXcsPTVyC4Y",
-                            Action =
-                                Models::InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
+                            Action = InvoiceCustomerBalanceTransactionAction.AppliedToInvoice,
                             Amount = "11.00",
                             CreatedAt = DateTimeOffset.Parse("2022-05-01T07:01:31+00:00"),
                             CreditNote = new("id"),
@@ -696,29 +700,29 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             EndingBalance = "22.00",
                             Invoice = new("gXcsPTVyC4YZa3Sc"),
                             StartingBalance = "33.00",
-                            Type = Models::InvoiceCustomerBalanceTransactionType.Increment,
+                            Type = InvoiceCustomerBalanceTransactionType.Increment,
                         },
                     ],
                     CustomerTaxID = new()
                     {
-                        Country = Models::Country.Ad,
-                        Type = Models::CustomerTaxIDType.AdNrt,
+                        Country = Country.Ad,
+                        Type = CustomerTaxIDType.AdNrt,
                         Value = "value",
                     },
                     Discount = JsonSerializer.Deserialize<JsonElement>("{}"),
                     Discounts =
                     [
-                        new Models::PercentageDiscount()
+                        new PercentageDiscount()
                         {
-                            DiscountType = Models::PercentageDiscountDiscountType.Percentage,
+                            DiscountType = PercentageDiscountDiscountType.Percentage,
                             PercentageDiscountValue = 0.15,
                             AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                             Filters =
                             [
                                 new()
                                 {
-                                    Field = Models::PercentageDiscountFilterField.PriceID,
-                                    Operator = Models::PercentageDiscountFilterOperator.Includes,
+                                    Field = PercentageDiscountFilterField.PriceID,
+                                    Operator = PercentageDiscountFilterOperator.Includes,
                                     Values = ["string"],
                                 },
                             ],
@@ -732,7 +736,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                     InvoiceNumber = "JYEFHK-00001",
                     InvoicePdf =
                         "https://assets.withorb.com/invoice/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
-                    InvoiceSource = Models::InvoiceInvoiceSource.Subscription,
+                    InvoiceSource = InvoiceInvoiceSource.Subscription,
                     IssueFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     IssuedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
                     LineItems =
@@ -743,11 +747,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             AdjustedSubtotal = "5.00",
                             Adjustments =
                             [
-                                new Models::MonetaryUsageDiscountAdjustment()
+                                new MonetaryUsageDiscountAdjustment()
                                 {
                                     ID = "id",
                                     AdjustmentType =
-                                        Models::MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
+                                        MonetaryUsageDiscountAdjustmentAdjustmentType.UsageDiscount,
                                     Amount = "amount",
                                     AppliesToPriceIds = ["string"],
                                     Filters =
@@ -755,9 +759,9 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                         new()
                                         {
                                             Field =
-                                                Models::MonetaryUsageDiscountAdjustmentFilterField.PriceID,
+                                                MonetaryUsageDiscountAdjustmentFilterField.PriceID,
                                             Operator =
-                                                Models::MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
+                                                MonetaryUsageDiscountAdjustmentFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -774,31 +778,31 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             Grouping = "grouping",
                             Name = "Fixed Fee",
                             PartiallyInvoicedAmount = "4.00",
-                            Price = new Models::Unit()
+                            Price = new Unit()
                             {
                                 ID = "id",
                                 BillableMetric = new("id"),
                                 BillingCycleConfiguration = new()
                                 {
                                     Duration = 0,
-                                    DurationUnit = Models::DurationUnit.Day,
+                                    DurationUnit = DurationUnit.Day,
                                 },
-                                BillingMode = Models::BillingMode.InAdvance,
-                                Cadence = Models::UnitCadence.OneTime,
+                                BillingMode = BillingMode.InAdvance,
+                                Cadence = UnitCadence.OneTime,
                                 CompositePriceFilters =
                                 [
                                     new()
                                     {
-                                        Field = Models::CompositePriceFilterField.PriceID,
-                                        Operator = Models::CompositePriceFilterOperator.Includes,
+                                        Field = CompositePriceFilterField.PriceID,
+                                        Operator = CompositePriceFilterOperator.Includes,
                                         Values = ["string"],
                                     },
                                 ],
                                 ConversionRate = 0,
-                                ConversionRateConfig = new Models::SharedUnitConversionRateConfig()
+                                ConversionRateConfig = new SharedUnitConversionRateConfig()
                                 {
                                     ConversionRateType =
-                                        Models::SharedUnitConversionRateConfigConversionRateType.Unit,
+                                        SharedUnitConversionRateConfigConversionRateType.Unit,
                                     UnitConfig = new("unit_amount"),
                                 },
                                 CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
@@ -809,32 +813,31 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     CustomExpiration = new()
                                     {
                                         Duration = 0,
-                                        DurationUnit = Models::CustomExpirationDurationUnit.Day,
+                                        DurationUnit = CustomExpirationDurationUnit.Day,
                                     },
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::Field.PriceID,
-                                            Operator = Models::Operator.Includes,
+                                            Field = AllocationFilterField.PriceID,
+                                            Operator = AllocationFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
+                                    LicenseTypeID = "license_type_id",
                                 },
                                 Currency = "currency",
-                                Discount = new Models::PercentageDiscount()
+                                Discount = new PercentageDiscount()
                                 {
-                                    DiscountType =
-                                        Models::PercentageDiscountDiscountType.Percentage,
+                                    DiscountType = PercentageDiscountDiscountType.Percentage,
                                     PercentageDiscountValue = 0.15,
                                     AppliesToPriceIds = ["h74gfhdjvn7ujokd", "7hfgtgjnbvc3ujkl"],
                                     Filters =
                                     [
                                         new()
                                         {
-                                            Field = Models::PercentageDiscountFilterField.PriceID,
-                                            Operator =
-                                                Models::PercentageDiscountFilterOperator.Includes,
+                                            Field = PercentageDiscountFilterField.PriceID,
+                                            Operator = PercentageDiscountFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -842,10 +845,11 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                 },
                                 ExternalPriceID = "external_price_id",
                                 FixedPriceQuantity = 0,
+                                InvoiceGroupingKey = "invoice_grouping_key",
                                 InvoicingCycleConfiguration = new()
                                 {
                                     Duration = 0,
-                                    DurationUnit = Models::DurationUnit.Day,
+                                    DurationUnit = DurationUnit.Day,
                                 },
                                 Item = new() { ID = "id", Name = "name" },
                                 Maximum = new()
@@ -855,8 +859,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::MaximumFilterField.PriceID,
-                                            Operator = Models::MaximumFilterOperator.Includes,
+                                            Field = MaximumFilterField.PriceID,
+                                            Operator = MaximumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -871,8 +875,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     [
                                         new()
                                         {
-                                            Field = Models::MinimumFilterField.PriceID,
-                                            Operator = Models::MinimumFilterOperator.Includes,
+                                            Field = MinimumFilterField.PriceID,
+                                            Operator = MinimumFilterOperator.Includes,
                                             Values = ["string"],
                                         },
                                     ],
@@ -881,7 +885,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                 MinimumAmount = "minimum_amount",
                                 Name = "name",
                                 PlanPhaseOrder = 0,
-                                PriceType = Models::UnitPriceType.UsagePrice,
+                                PriceType = UnitPriceType.UsagePrice,
                                 ReplacesPriceID = "replaces_price_id",
                                 UnitConfig = new() { UnitAmount = "unit_amount", Prorated = true },
                                 DimensionalPriceConfiguration = new()
@@ -889,19 +893,25 @@ public class LedgerListByExternalIDResponseTest : TestBase
                                     DimensionValues = ["string"],
                                     DimensionalPriceGroupID = "dimensional_price_group_id",
                                 },
+                                LicenseType = new()
+                                {
+                                    ID = "id",
+                                    GroupingKey = "grouping_key",
+                                    Name = "name",
+                                },
                             },
                             Quantity = 1,
                             StartDate = DateTimeOffset.Parse("2022-02-01T08:00:00+00:00"),
                             SubLineItems =
                             [
-                                new Models::MatrixSubLineItem()
+                                new MatrixSubLineItem()
                                 {
                                     Amount = "9.00",
                                     Grouping = new() { Key = "region", Value = "west" },
                                     MatrixConfig = new(["string"]),
                                     Name = "Tier One",
                                     Quantity = 5,
-                                    Type = Models::MatrixSubLineItemType.Matrix,
+                                    Type = MatrixSubLineItemType.Matrix,
                                     ScaledQuantity = 0,
                                 },
                             ],
@@ -925,8 +935,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::MaximumFilterField.PriceID,
-                                Operator = Models::MaximumFilterOperator.Includes,
+                                Field = MaximumFilterField.PriceID,
+                                Operator = MaximumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -942,8 +952,8 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         [
                             new()
                             {
-                                Field = Models::MinimumFilterField.PriceID,
-                                Operator = Models::MinimumFilterOperator.Includes,
+                                Field = MinimumFilterField.PriceID,
+                                Operator = MinimumFilterOperator.Includes,
                                 Values = ["string"],
                             },
                         ],
@@ -958,7 +968,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                             ID = "id",
                             Amount = "amount",
                             CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
-                            PaymentProvider = Models::InvoicePaymentAttemptPaymentProvider.Stripe,
+                            PaymentProvider = InvoicePaymentAttemptPaymentProvider.Stripe,
                             PaymentProviderID = "payment_provider_id",
                             ReceiptPdf =
                                 "https://assets.withorb.com/receipt/rUHdhmg45vY45DX/qEAeuYePaphGMdFb",
@@ -977,7 +987,7 @@ public class LedgerListByExternalIDResponseTest : TestBase
                         PostalCode = "postal_code",
                         State = "state",
                     },
-                    Status = Models::InvoiceStatus.Issued,
+                    Status = InvoiceStatus.Issued,
                     Subscription = new("VDGsT23osdLb84KD"),
                     Subtotal = "8.00",
                     SyncFailedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),

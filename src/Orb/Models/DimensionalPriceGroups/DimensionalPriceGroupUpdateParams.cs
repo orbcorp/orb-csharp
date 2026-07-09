@@ -13,8 +13,12 @@ namespace Orb.Models.DimensionalPriceGroups;
 /// This endpoint can be used to update the `external_dimensional_price_group_id`
 /// and `metadata` of an existing dimensional price group. Other fields on a dimensional
 /// price group are currently immutable.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
+public record class DimensionalPriceGroupUpdateParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -67,6 +71,8 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
 
     public DimensionalPriceGroupUpdateParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public DimensionalPriceGroupUpdateParams(
         DimensionalPriceGroupUpdateParams dimensionalPriceGroupUpdateParams
     )
@@ -76,6 +82,7 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
 
         this._rawBodyData = new(dimensionalPriceGroupUpdateParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public DimensionalPriceGroupUpdateParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -93,27 +100,66 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
     DimensionalPriceGroupUpdateParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string dimensionalPriceGroupID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.DimensionalPriceGroupID = dimensionalPriceGroupID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static DimensionalPriceGroupUpdateParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string dimensionalPriceGroupID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            dimensionalPriceGroupID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["DimensionalPriceGroupID"] = JsonSerializer.SerializeToElement(
+                        this.DimensionalPriceGroupID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(DimensionalPriceGroupUpdateParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.DimensionalPriceGroupID?.Equals(other.DimensionalPriceGroupID)
+                ?? other.DimensionalPriceGroupID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -143,5 +189,10 @@ public sealed record class DimensionalPriceGroupUpdateParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

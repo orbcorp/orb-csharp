@@ -16,8 +16,17 @@ namespace Orb.Models.Customers.Credits;
 ///
 /// <para>Note that `currency` defaults to credits if not specified. To use a real
 /// world currency, set `currency` to an ISO 4217 string.</para>
+///
+/// <para>Results can be filtered by the block's `effective_date` using the `effective_date[gte]`,
+/// `effective_date[gt]`, `effective_date[lt]`, and `effective_date[lte]` query parameters.
+/// This filters on when the credit block becomes effective, which may differ from
+/// creation time for backdated credits.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CreditListByExternalIDParams : ParamsBase
+public record class CreditListByExternalIDParams : ParamsBase
 {
     public string? ExternalCustomerID { get; init; }
 
@@ -46,6 +55,46 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
             return this._rawQueryData.GetNullableClass<string>("cursor");
         }
         init { this._rawQueryData.Set("cursor", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateGt
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[gt]");
+        }
+        init { this._rawQueryData.Set("effective_date[gt]", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateGte
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[gte]");
+        }
+        init { this._rawQueryData.Set("effective_date[gte]", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateLt
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[lt]");
+        }
+        init { this._rawQueryData.Set("effective_date[lt]", value); }
+    }
+
+    public DateTimeOffset? EffectiveDateLte
+    {
+        get
+        {
+            this._rawQueryData.Freeze();
+            return this._rawQueryData.GetNullableStruct<DateTimeOffset>("effective_date[lte]");
+        }
+        init { this._rawQueryData.Set("effective_date[lte]", value); }
     }
 
     /// <summary>
@@ -93,11 +142,14 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
 
     public CreditListByExternalIDParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditListByExternalIDParams(CreditListByExternalIDParams creditListByExternalIDParams)
         : base(creditListByExternalIDParams)
     {
         this.ExternalCustomerID = creditListByExternalIDParams.ExternalCustomerID;
     }
+#pragma warning restore CS8618
 
     public CreditListByExternalIDParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -112,24 +164,61 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
     [SetsRequiredMembers]
     CreditListByExternalIDParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string externalCustomerID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.ExternalCustomerID = externalCustomerID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CreditListByExternalIDParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string externalCustomerID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            externalCustomerID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ExternalCustomerID"] = JsonSerializer.SerializeToElement(
+                        this.ExternalCustomerID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CreditListByExternalIDParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.ExternalCustomerID?.Equals(other.ExternalCustomerID)
+                ?? other.ExternalCustomerID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -153,5 +242,10 @@ public sealed record class CreditListByExternalIDParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

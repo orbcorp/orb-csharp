@@ -51,8 +51,11 @@ public sealed record class MigrationListPageResponse : JsonModel
 
     public MigrationListPageResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public MigrationListPageResponse(MigrationListPageResponse migrationListPageResponse)
         : base(migrationListPageResponse) { }
+#pragma warning restore CS8618
 
     public MigrationListPageResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

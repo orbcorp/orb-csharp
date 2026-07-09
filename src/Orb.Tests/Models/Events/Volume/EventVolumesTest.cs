@@ -124,6 +124,27 @@ public class EventVolumesTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new EventVolumes
+        {
+            Data =
+            [
+                new()
+                {
+                    Count = 0,
+                    TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                },
+            ],
+        };
+
+        EventVolumes copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class DataTest : TestBase
@@ -197,5 +218,20 @@ public class DataTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Data
+        {
+            Count = 0,
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+        };
+
+        Data copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

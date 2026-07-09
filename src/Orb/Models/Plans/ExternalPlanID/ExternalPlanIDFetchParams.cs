@@ -23,18 +23,25 @@ namespace Orb.Models.Plans.ExternalPlanID;
 /// object. The `model_type` field determines the key for the configuration object
 /// that is present. A detailed explanation of price types can be found in the [Price
 /// schema](/core-concepts#plan-and-price). "</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class ExternalPlanIDFetchParams : ParamsBase
+public record class ExternalPlanIDFetchParams : ParamsBase
 {
     public string? ExternalPlanID { get; init; }
 
     public ExternalPlanIDFetchParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public ExternalPlanIDFetchParams(ExternalPlanIDFetchParams externalPlanIDFetchParams)
         : base(externalPlanIDFetchParams)
     {
         this.ExternalPlanID = externalPlanIDFetchParams.ExternalPlanID;
     }
+#pragma warning restore CS8618
 
     public ExternalPlanIDFetchParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -49,24 +56,56 @@ public sealed record class ExternalPlanIDFetchParams : ParamsBase
     [SetsRequiredMembers]
     ExternalPlanIDFetchParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string externalPlanID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.ExternalPlanID = externalPlanID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static ExternalPlanIDFetchParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string externalPlanID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            externalPlanID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["ExternalPlanID"] = JsonSerializer.SerializeToElement(this.ExternalPlanID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(ExternalPlanIDFetchParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.ExternalPlanID?.Equals(other.ExternalPlanID) ?? other.ExternalPlanID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -87,5 +126,10 @@ public sealed record class ExternalPlanIDFetchParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

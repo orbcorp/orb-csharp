@@ -62,6 +62,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -123,6 +124,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -145,6 +147,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, model.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, model.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, model.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, model.LicenseTypeID);
         Assert.NotNull(model.Metadata);
         Assert.Equal(expectedMetadata.Count, model.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -209,6 +212,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -276,6 +280,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -345,6 +350,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             Duration = 0,
             DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
         };
+        string expectedLicenseTypeID = "license_type_id";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
         string expectedReferenceID = "reference_id";
 
@@ -370,6 +376,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
         Assert.Equal(expectedFixedPriceQuantity, deserialized.FixedPriceQuantity);
         Assert.Equal(expectedInvoiceGroupingKey, deserialized.InvoiceGroupingKey);
         Assert.Equal(expectedInvoicingCycleConfiguration, deserialized.InvoicingCycleConfiguration);
+        Assert.Equal(expectedLicenseTypeID, deserialized.LicenseTypeID);
         Assert.NotNull(deserialized.Metadata);
         Assert.Equal(expectedMetadata.Count, deserialized.Metadata.Count);
         foreach (var item in expectedMetadata)
@@ -434,6 +441,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
                 Duration = 0,
                 DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
             },
+            LicenseTypeID = "license_type_id",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
             ReferenceID = "reference_id",
         };
@@ -490,6 +498,8 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
         Assert.False(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.False(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.False(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.False(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -563,6 +573,7 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
@@ -589,6 +600,8 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
         Assert.True(model.RawData.ContainsKey("invoice_grouping_key"));
         Assert.Null(model.InvoicingCycleConfiguration);
         Assert.True(model.RawData.ContainsKey("invoicing_cycle_configuration"));
+        Assert.Null(model.LicenseTypeID);
+        Assert.True(model.RawData.ContainsKey("license_type_id"));
         Assert.Null(model.Metadata);
         Assert.True(model.RawData.ContainsKey("metadata"));
         Assert.Null(model.ReferenceID);
@@ -632,11 +645,75 @@ public class NewSubscriptionGroupedWithMeteredMinimumPriceTest : TestBase
             FixedPriceQuantity = null,
             InvoiceGroupingKey = null,
             InvoicingCycleConfiguration = null,
+            LicenseTypeID = null,
             Metadata = null,
             ReferenceID = null,
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice
+        {
+            Cadence = Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceCadence.Annual,
+            GroupedWithMeteredMinimumConfig = new()
+            {
+                GroupingKey = "x",
+                MinimumUnitAmount = "minimum_unit_amount",
+                PricingKey = "pricing_key",
+                ScalingFactors =
+                [
+                    new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
+                ],
+                ScalingKey = "scaling_key",
+                UnitAmounts =
+                [
+                    new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+                ],
+            },
+            ItemID = "item_id",
+            ModelType =
+                Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPriceModelType.GroupedWithMeteredMinimum,
+            Name = "Annual fee",
+            BillableMetricID = "billable_metric_id",
+            BilledInAdvance = true,
+            BillingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            ConversionRate = 0,
+            ConversionRateConfig = new SharedUnitConversionRateConfig()
+            {
+                ConversionRateType = SharedUnitConversionRateConfigConversionRateType.Unit,
+                UnitConfig = new("unit_amount"),
+            },
+            Currency = "currency",
+            DimensionalPriceConfiguration = new()
+            {
+                DimensionValues = ["string"],
+                DimensionalPriceGroupID = "dimensional_price_group_id",
+                ExternalDimensionalPriceGroupID = "external_dimensional_price_group_id",
+            },
+            ExternalPriceID = "external_price_id",
+            FixedPriceQuantity = 0,
+            InvoiceGroupingKey = "x",
+            InvoicingCycleConfiguration = new()
+            {
+                Duration = 0,
+                DurationUnit = NewBillingCycleConfigurationDurationUnit.Day,
+            },
+            LicenseTypeID = "license_type_id",
+            Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
+            ReferenceID = "reference_id",
+        };
+
+        Subscriptions::NewSubscriptionGroupedWithMeteredMinimumPrice copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 
@@ -864,6 +941,30 @@ public class GroupedWithMeteredMinimumConfigTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::GroupedWithMeteredMinimumConfig
+        {
+            GroupingKey = "x",
+            MinimumUnitAmount = "minimum_unit_amount",
+            PricingKey = "pricing_key",
+            ScalingFactors =
+            [
+                new() { ScalingFactorValue = "scaling_factor", ScalingValue = "scaling_value" },
+            ],
+            ScalingKey = "scaling_key",
+            UnitAmounts =
+            [
+                new() { PricingValue = "pricing_value", UnitAmountValue = "unit_amount" },
+            ],
+        };
+
+        Subscriptions::GroupedWithMeteredMinimumConfig copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class ScalingFactorTest : TestBase
@@ -936,6 +1037,20 @@ public class ScalingFactorTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::ScalingFactor
+        {
+            ScalingFactorValue = "scaling_factor",
+            ScalingValue = "scaling_value",
+        };
+
+        Subscriptions::ScalingFactor copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class UnitAmountTest : TestBase
@@ -1007,6 +1122,20 @@ public class UnitAmountTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new Subscriptions::UnitAmount
+        {
+            PricingValue = "pricing_value",
+            UnitAmountValue = "unit_amount",
+        };
+
+        Subscriptions::UnitAmount copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }
 

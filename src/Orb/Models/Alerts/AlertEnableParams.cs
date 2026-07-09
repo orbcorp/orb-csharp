@@ -12,8 +12,12 @@ namespace Orb.Models.Alerts;
 /// This endpoint allows you to enable an alert. To enable a plan-level alert for
 /// a specific subscription, you must include the `subscription_id`. The `subscription_id`
 /// is not required for customer or subscription level alerts.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class AlertEnableParams : ParamsBase
+public record class AlertEnableParams : ParamsBase
 {
     public string? AlertConfigurationID { get; init; }
 
@@ -32,11 +36,14 @@ public sealed record class AlertEnableParams : ParamsBase
 
     public AlertEnableParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AlertEnableParams(AlertEnableParams alertEnableParams)
         : base(alertEnableParams)
     {
         this.AlertConfigurationID = alertEnableParams.AlertConfigurationID;
     }
+#pragma warning restore CS8618
 
     public AlertEnableParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -51,24 +58,61 @@ public sealed record class AlertEnableParams : ParamsBase
     [SetsRequiredMembers]
     AlertEnableParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
-        FrozenDictionary<string, JsonElement> rawQueryData
+        FrozenDictionary<string, JsonElement> rawQueryData,
+        string alertConfigurationID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
+        this.AlertConfigurationID = alertConfigurationID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static AlertEnableParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
-        IReadOnlyDictionary<string, JsonElement> rawQueryData
+        IReadOnlyDictionary<string, JsonElement> rawQueryData,
+        string alertConfigurationID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
-            FrozenDictionary.ToFrozenDictionary(rawQueryData)
+            FrozenDictionary.ToFrozenDictionary(rawQueryData),
+            alertConfigurationID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["AlertConfigurationID"] = JsonSerializer.SerializeToElement(
+                        this.AlertConfigurationID
+                    ),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(AlertEnableParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (
+                this.AlertConfigurationID?.Equals(other.AlertConfigurationID)
+                ?? other.AlertConfigurationID == null
+            )
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -89,5 +133,10 @@ public sealed record class AlertEnableParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

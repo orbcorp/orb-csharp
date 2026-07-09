@@ -174,8 +174,11 @@ public sealed record class NewAmountDiscount : JsonModel
 
     public NewAmountDiscount() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewAmountDiscount(NewAmountDiscount newAmountDiscount)
         : base(newAmountDiscount) { }
+#pragma warning restore CS8618
 
     public NewAmountDiscount(IReadOnlyDictionary<string, JsonElement> rawData)
     {
@@ -354,8 +357,11 @@ public sealed record class NewAmountDiscountFilter : JsonModel
 
     public NewAmountDiscountFilter() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public NewAmountDiscountFilter(NewAmountDiscountFilter newAmountDiscountFilter)
         : base(newAmountDiscountFilter) { }
+#pragma warning restore CS8618
 
     public NewAmountDiscountFilter(IReadOnlyDictionary<string, JsonElement> rawData)
     {

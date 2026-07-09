@@ -172,8 +172,11 @@ public sealed record class BackfillCloseResponse : JsonModel
 
     public BackfillCloseResponse() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public BackfillCloseResponse(BackfillCloseResponse backfillCloseResponse)
         : base(backfillCloseResponse) { }
+#pragma warning restore CS8618
 
     public BackfillCloseResponse(IReadOnlyDictionary<string, JsonElement> rawData)
     {

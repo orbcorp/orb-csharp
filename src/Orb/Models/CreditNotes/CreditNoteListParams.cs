@@ -12,8 +12,12 @@ namespace Orb.Models.CreditNotes;
 /// Get a paginated list of CreditNotes. Users can also filter by customer_id, subscription_id,
 /// or external_customer_id. The credit notes will be returned in reverse chronological
 /// order by `creation_time`.
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class CreditNoteListParams : ParamsBase
+public record class CreditNoteListParams : ParamsBase
 {
     public DateTimeOffset? CreatedAtGt
     {
@@ -92,8 +96,11 @@ public sealed record class CreditNoteListParams : ParamsBase
 
     public CreditNoteListParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNoteListParams(CreditNoteListParams creditNoteListParams)
         : base(creditNoteListParams) { }
+#pragma warning restore CS8618
 
     public CreditNoteListParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -116,7 +123,7 @@ public sealed record class CreditNoteListParams : ParamsBase
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static CreditNoteListParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData
@@ -126,6 +133,32 @@ public sealed record class CreditNoteListParams : ParamsBase
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData)
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(CreditNoteListParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData);
     }
 
     public override Uri Url(ClientOptions options)
@@ -143,5 +176,10 @@ public sealed record class CreditNoteListParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }

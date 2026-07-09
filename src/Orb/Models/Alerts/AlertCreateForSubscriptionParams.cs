@@ -24,8 +24,12 @@ namespace Orb.Models.Alerts;
 /// `cost_exceeded` alert and one `usage_exceeded` alert per metric that is a part
 /// of the subscription. Alerts are triggered based on usage or cost conditions met
 /// during the current billing cycle.</para>
+///
+/// <para>NOTE: Do not inherit from this type outside the SDK unless you're okay with
+/// breaking changes in non-major versions. We may add new methods in the future that
+/// cause existing derived classes to break.</para>
 /// </summary>
-public sealed record class AlertCreateForSubscriptionParams : ParamsBase
+public record class AlertCreateForSubscriptionParams : ParamsBase
 {
     readonly JsonDictionary _rawBodyData = new();
     public IReadOnlyDictionary<string, JsonElement> RawBodyData
@@ -70,6 +74,39 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     }
 
     /// <summary>
+    /// The case sensitive currency or custom pricing unit to use for grouped cost
+    /// alerts. Required when grouping_keys is set.
+    /// </summary>
+    public string? Currency
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableClass<string>("currency");
+        }
+        init { this._rawBodyData.Set("currency", value); }
+    }
+
+    /// <summary>
+    /// The property keys to group cost alerts by. Only applicable for cost_exceeded alerts.
+    /// </summary>
+    public IReadOnlyList<string>? GroupingKeys
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<ImmutableArray<string>>("grouping_keys");
+        }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<string>?>(
+                "grouping_keys",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
     /// The metric to track usage for.
     /// </summary>
     public string? MetricID
@@ -82,8 +119,58 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         init { this._rawBodyData.Set("metric_id", value); }
     }
 
+    /// <summary>
+    /// Filters to scope which prices are included in grouped cost alert evaluation.
+    /// Supports filtering by price_id, item_id, or price_type with includes/excludes
+    /// operators. Only applicable when grouping_keys is set.
+    /// </summary>
+    public IReadOnlyList<AlertCreateForSubscriptionParamsPriceFilter>? PriceFilters
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<
+                ImmutableArray<AlertCreateForSubscriptionParamsPriceFilter>
+            >("price_filters");
+        }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<AlertCreateForSubscriptionParamsPriceFilter>?>(
+                "price_filters",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// Per-group threshold overrides. Each override maps a specific combination of
+    /// grouping_keys values to a list of thresholds that fully replaces the default
+    /// thresholds for that group. An empty thresholds list silences the group. Groups
+    /// without an override use the default thresholds. Only applicable when grouping_keys
+    /// is set.
+    /// </summary>
+    public IReadOnlyList<AlertCreateForSubscriptionParamsThresholdOverride>? ThresholdOverrides
+    {
+        get
+        {
+            this._rawBodyData.Freeze();
+            return this._rawBodyData.GetNullableStruct<
+                ImmutableArray<AlertCreateForSubscriptionParamsThresholdOverride>
+            >("threshold_overrides");
+        }
+        init
+        {
+            this._rawBodyData.Set<ImmutableArray<AlertCreateForSubscriptionParamsThresholdOverride>?>(
+                "threshold_overrides",
+                value == null ? null : ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
     public AlertCreateForSubscriptionParams() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public AlertCreateForSubscriptionParams(
         AlertCreateForSubscriptionParams alertCreateForSubscriptionParams
     )
@@ -93,6 +180,7 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
 
         this._rawBodyData = new(alertCreateForSubscriptionParams._rawBodyData);
     }
+#pragma warning restore CS8618
 
     public AlertCreateForSubscriptionParams(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
@@ -110,27 +198,61 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
     AlertCreateForSubscriptionParams(
         FrozenDictionary<string, JsonElement> rawHeaderData,
         FrozenDictionary<string, JsonElement> rawQueryData,
-        FrozenDictionary<string, JsonElement> rawBodyData
+        FrozenDictionary<string, JsonElement> rawBodyData,
+        string subscriptionID
     )
     {
         this._rawHeaderData = new(rawHeaderData);
         this._rawQueryData = new(rawQueryData);
         this._rawBodyData = new(rawBodyData);
+        this.SubscriptionID = subscriptionID;
     }
 #pragma warning restore CS8618
 
-    /// <inheritdoc cref="IFromRawJson.FromRawUnchecked"/>
+    /// <inheritdoc cref="IFromRawJson{T}.FromRawUnchecked"/>
     public static AlertCreateForSubscriptionParams FromRawUnchecked(
         IReadOnlyDictionary<string, JsonElement> rawHeaderData,
         IReadOnlyDictionary<string, JsonElement> rawQueryData,
-        IReadOnlyDictionary<string, JsonElement> rawBodyData
+        IReadOnlyDictionary<string, JsonElement> rawBodyData,
+        string subscriptionID
     )
     {
         return new(
             FrozenDictionary.ToFrozenDictionary(rawHeaderData),
             FrozenDictionary.ToFrozenDictionary(rawQueryData),
-            FrozenDictionary.ToFrozenDictionary(rawBodyData)
+            FrozenDictionary.ToFrozenDictionary(rawBodyData),
+            subscriptionID
         );
+    }
+
+    public override string ToString() =>
+        JsonSerializer.Serialize(
+            FriendlyJsonPrinter.PrintValue(
+                new Dictionary<string, JsonElement>()
+                {
+                    ["SubscriptionID"] = JsonSerializer.SerializeToElement(this.SubscriptionID),
+                    ["HeaderData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawHeaderData.Freeze())
+                    ),
+                    ["QueryData"] = FriendlyJsonPrinter.PrintValue(
+                        JsonSerializer.SerializeToElement(this._rawQueryData.Freeze())
+                    ),
+                    ["BodyData"] = FriendlyJsonPrinter.PrintValue(this._rawBodyData.Freeze()),
+                }
+            ),
+            ModelBase.ToStringSerializerOptions
+        );
+
+    public virtual bool Equals(AlertCreateForSubscriptionParams? other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        return (this.SubscriptionID?.Equals(other.SubscriptionID) ?? other.SubscriptionID == null)
+            && this._rawHeaderData.Equals(other._rawHeaderData)
+            && this._rawQueryData.Equals(other._rawQueryData)
+            && this._rawBodyData.Equals(other._rawBodyData);
     }
 
     public override System::Uri Url(ClientOptions options)
@@ -160,6 +282,11 @@ public sealed record class AlertCreateForSubscriptionParams : ParamsBase
         {
             ParamsBase.AddHeaderElementToRequest(request, item.Key, item.Value);
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return 0;
     }
 }
 
@@ -209,4 +336,325 @@ sealed class AlertCreateForSubscriptionParamsTypeConverter
             options
         );
     }
+}
+
+[JsonConverter(
+    typeof(JsonModelConverter<
+        AlertCreateForSubscriptionParamsPriceFilter,
+        AlertCreateForSubscriptionParamsPriceFilterFromRaw
+    >)
+)]
+public sealed record class AlertCreateForSubscriptionParamsPriceFilter : JsonModel
+{
+    /// <summary>
+    /// The property of the price to filter on.
+    /// </summary>
+    public required ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField> Field
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterField>
+            >("field");
+        }
+        init { this._rawData.Set("field", value); }
+    }
+
+    /// <summary>
+    /// Should prices that match the filter be included or excluded.
+    /// </summary>
+    public required ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator> Operator
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullClass<
+                ApiEnum<string, AlertCreateForSubscriptionParamsPriceFilterOperator>
+            >("operator");
+        }
+        init { this._rawData.Set("operator", value); }
+    }
+
+    /// <summary>
+    /// The IDs or values that match this filter.
+    /// </summary>
+    public required IReadOnlyList<string> Values
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        this.Field.Validate();
+        this.Operator.Validate();
+        _ = this.Values;
+    }
+
+    public AlertCreateForSubscriptionParamsPriceFilter() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AlertCreateForSubscriptionParamsPriceFilter(
+        AlertCreateForSubscriptionParamsPriceFilter alertCreateForSubscriptionParamsPriceFilter
+    )
+        : base(alertCreateForSubscriptionParamsPriceFilter) { }
+#pragma warning restore CS8618
+
+    public AlertCreateForSubscriptionParamsPriceFilter(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AlertCreateForSubscriptionParamsPriceFilter(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AlertCreateForSubscriptionParamsPriceFilterFromRaw.FromRawUnchecked"/>
+    public static AlertCreateForSubscriptionParamsPriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AlertCreateForSubscriptionParamsPriceFilterFromRaw
+    : IFromRawJson<AlertCreateForSubscriptionParamsPriceFilter>
+{
+    /// <inheritdoc/>
+    public AlertCreateForSubscriptionParamsPriceFilter FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AlertCreateForSubscriptionParamsPriceFilter.FromRawUnchecked(rawData);
+}
+
+/// <summary>
+/// The property of the price to filter on.
+/// </summary>
+[JsonConverter(typeof(AlertCreateForSubscriptionParamsPriceFilterFieldConverter))]
+public enum AlertCreateForSubscriptionParamsPriceFilterField
+{
+    PriceID,
+    ItemID,
+    PriceType,
+    Currency,
+    PricingUnitID,
+}
+
+sealed class AlertCreateForSubscriptionParamsPriceFilterFieldConverter
+    : JsonConverter<AlertCreateForSubscriptionParamsPriceFilterField>
+{
+    public override AlertCreateForSubscriptionParamsPriceFilterField Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "price_id" => AlertCreateForSubscriptionParamsPriceFilterField.PriceID,
+            "item_id" => AlertCreateForSubscriptionParamsPriceFilterField.ItemID,
+            "price_type" => AlertCreateForSubscriptionParamsPriceFilterField.PriceType,
+            "currency" => AlertCreateForSubscriptionParamsPriceFilterField.Currency,
+            "pricing_unit_id" => AlertCreateForSubscriptionParamsPriceFilterField.PricingUnitID,
+            _ => (AlertCreateForSubscriptionParamsPriceFilterField)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AlertCreateForSubscriptionParamsPriceFilterField value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AlertCreateForSubscriptionParamsPriceFilterField.PriceID => "price_id",
+                AlertCreateForSubscriptionParamsPriceFilterField.ItemID => "item_id",
+                AlertCreateForSubscriptionParamsPriceFilterField.PriceType => "price_type",
+                AlertCreateForSubscriptionParamsPriceFilterField.Currency => "currency",
+                AlertCreateForSubscriptionParamsPriceFilterField.PricingUnitID => "pricing_unit_id",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Should prices that match the filter be included or excluded.
+/// </summary>
+[JsonConverter(typeof(AlertCreateForSubscriptionParamsPriceFilterOperatorConverter))]
+public enum AlertCreateForSubscriptionParamsPriceFilterOperator
+{
+    Includes,
+    Excludes,
+}
+
+sealed class AlertCreateForSubscriptionParamsPriceFilterOperatorConverter
+    : JsonConverter<AlertCreateForSubscriptionParamsPriceFilterOperator>
+{
+    public override AlertCreateForSubscriptionParamsPriceFilterOperator Read(
+        ref Utf8JsonReader reader,
+        System::Type typeToConvert,
+        JsonSerializerOptions options
+    )
+    {
+        return JsonSerializer.Deserialize<string>(ref reader, options) switch
+        {
+            "includes" => AlertCreateForSubscriptionParamsPriceFilterOperator.Includes,
+            "excludes" => AlertCreateForSubscriptionParamsPriceFilterOperator.Excludes,
+            _ => (AlertCreateForSubscriptionParamsPriceFilterOperator)(-1),
+        };
+    }
+
+    public override void Write(
+        Utf8JsonWriter writer,
+        AlertCreateForSubscriptionParamsPriceFilterOperator value,
+        JsonSerializerOptions options
+    )
+    {
+        JsonSerializer.Serialize(
+            writer,
+            value switch
+            {
+                AlertCreateForSubscriptionParamsPriceFilterOperator.Includes => "includes",
+                AlertCreateForSubscriptionParamsPriceFilterOperator.Excludes => "excludes",
+                _ => throw new OrbInvalidDataException(
+                    string.Format("Invalid value '{0}' in {1}", value, nameof(value))
+                ),
+            },
+            options
+        );
+    }
+}
+
+/// <summary>
+/// Per-group threshold override on a grouped cost alert.
+///
+/// <para>- An empty `thresholds` list silences alerts for this group (never fires).
+/// - A non-empty list fully replaces the default thresholds for this group.</para>
+/// </summary>
+[JsonConverter(
+    typeof(JsonModelConverter<
+        AlertCreateForSubscriptionParamsThresholdOverride,
+        AlertCreateForSubscriptionParamsThresholdOverrideFromRaw
+    >)
+)]
+public sealed record class AlertCreateForSubscriptionParamsThresholdOverride : JsonModel
+{
+    /// <summary>
+    /// The values of the grouping keys that identify this group. The list length
+    /// must match the alert's grouping_keys, and values appear in the same order
+    /// as grouping_keys.
+    /// </summary>
+    public required IReadOnlyList<string> GroupValues
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<string>>("group_values");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<string>>(
+                "group_values",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <summary>
+    /// The thresholds to apply to this group. An empty list silences alerts for this
+    /// group. A non-empty list fully replaces the default thresholds for this group.
+    /// </summary>
+    public required IReadOnlyList<Threshold> Thresholds
+    {
+        get
+        {
+            this._rawData.Freeze();
+            return this._rawData.GetNotNullStruct<ImmutableArray<Threshold>>("thresholds");
+        }
+        init
+        {
+            this._rawData.Set<ImmutableArray<Threshold>>(
+                "thresholds",
+                ImmutableArray.ToImmutableArray(value)
+            );
+        }
+    }
+
+    /// <inheritdoc/>
+    public override void Validate()
+    {
+        _ = this.GroupValues;
+        foreach (var item in this.Thresholds)
+        {
+            item.Validate();
+        }
+    }
+
+    public AlertCreateForSubscriptionParamsThresholdOverride() { }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    public AlertCreateForSubscriptionParamsThresholdOverride(
+        AlertCreateForSubscriptionParamsThresholdOverride alertCreateForSubscriptionParamsThresholdOverride
+    )
+        : base(alertCreateForSubscriptionParamsThresholdOverride) { }
+#pragma warning restore CS8618
+
+    public AlertCreateForSubscriptionParamsThresholdOverride(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        this._rawData = new(rawData);
+    }
+
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
+    AlertCreateForSubscriptionParamsThresholdOverride(FrozenDictionary<string, JsonElement> rawData)
+    {
+        this._rawData = new(rawData);
+    }
+#pragma warning restore CS8618
+
+    /// <inheritdoc cref="AlertCreateForSubscriptionParamsThresholdOverrideFromRaw.FromRawUnchecked"/>
+    public static AlertCreateForSubscriptionParamsThresholdOverride FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    )
+    {
+        return new(FrozenDictionary.ToFrozenDictionary(rawData));
+    }
+}
+
+class AlertCreateForSubscriptionParamsThresholdOverrideFromRaw
+    : IFromRawJson<AlertCreateForSubscriptionParamsThresholdOverride>
+{
+    /// <inheritdoc/>
+    public AlertCreateForSubscriptionParamsThresholdOverride FromRawUnchecked(
+        IReadOnlyDictionary<string, JsonElement> rawData
+    ) => AlertCreateForSubscriptionParamsThresholdOverride.FromRawUnchecked(rawData);
 }

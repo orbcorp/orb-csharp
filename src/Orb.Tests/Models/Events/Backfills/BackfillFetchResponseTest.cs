@@ -238,6 +238,29 @@ public class BackfillFetchResponseTest : TestBase
 
         model.Validate();
     }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new BackfillFetchResponse
+        {
+            ID = "id",
+            CloseTime = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            CustomerID = "customer_id",
+            EventsIngested = 0,
+            ReplaceExistingEvents = true,
+            RevertedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            Status = BackfillFetchResponseStatus.Pending,
+            TimeframeEnd = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            TimeframeStart = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+            DeprecationFilter = "my_numeric_property > 100 AND my_other_property = 'bar'",
+        };
+
+        BackfillFetchResponse copied = new(model);
+
+        Assert.Equal(model, copied);
+    }
 }
 
 public class BackfillFetchResponseStatusTest : TestBase

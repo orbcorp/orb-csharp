@@ -80,6 +80,16 @@ public class CustomerListPageResponseTest : TestBase
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
                     PaymentConfiguration = new()
                     {
                         PaymentProviders =
@@ -88,6 +98,7 @@ public class CustomerListPageResponseTest : TestBase
                             {
                                 ProviderType =
                                     CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -161,6 +172,16 @@ public class CustomerListPageResponseTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -169,6 +190,7 @@ public class CustomerListPageResponseTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -261,6 +283,16 @@ public class CustomerListPageResponseTest : TestBase
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
                     PaymentConfiguration = new()
                     {
                         PaymentProviders =
@@ -269,6 +301,7 @@ public class CustomerListPageResponseTest : TestBase
                             {
                                 ProviderType =
                                     CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -359,6 +392,16 @@ public class CustomerListPageResponseTest : TestBase
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
                     PaymentConfiguration = new()
                     {
                         PaymentProviders =
@@ -367,6 +410,7 @@ public class CustomerListPageResponseTest : TestBase
                             {
                                 ProviderType =
                                     CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -447,6 +491,16 @@ public class CustomerListPageResponseTest : TestBase
                     Excluded = true,
                 },
                 AutomaticTaxEnabled = true,
+                DefaultPaymentMethod = new()
+                {
+                    ID = "id",
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    CustomerID = "customer_id",
+                    Default = true,
+                    ExternalPaymentMethodID = "external_payment_method_id",
+                    PaymentMethodType = PaymentMethodType.Card,
+                    ProviderType = "provider_type",
+                },
                 PaymentConfiguration = new()
                 {
                     PaymentProviders =
@@ -455,6 +509,7 @@ public class CustomerListPageResponseTest : TestBase
                         {
                             ProviderType =
                                 CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                            DefaultSharedPaymentToken = "default_shared_payment_token",
                             ExcludedPaymentMethodTypes = ["string"],
                         },
                     ],
@@ -547,6 +602,16 @@ public class CustomerListPageResponseTest : TestBase
                         Excluded = true,
                     },
                     AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
                     PaymentConfiguration = new()
                     {
                         PaymentProviders =
@@ -555,6 +620,7 @@ public class CustomerListPageResponseTest : TestBase
                             {
                                 ProviderType =
                                     CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
                                 ExcludedPaymentMethodTypes = ["string"],
                             },
                         ],
@@ -566,5 +632,110 @@ public class CustomerListPageResponseTest : TestBase
         };
 
         model.Validate();
+    }
+
+    [Fact]
+    public void CopyConstructor_Works()
+    {
+        var model = new CustomerListPageResponse
+        {
+            Data =
+            [
+                new()
+                {
+                    ID = "id",
+                    AdditionalEmails = ["string"],
+                    AutoCollection = true,
+                    AutoIssuance = true,
+                    Balance = "balance",
+                    BillingAddress = new()
+                    {
+                        City = "city",
+                        Country = "country",
+                        Line1 = "line1",
+                        Line2 = "line2",
+                        PostalCode = "postal_code",
+                        State = "state",
+                    },
+                    CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                    Currency = "currency",
+                    Email = "email",
+                    EmailDelivery = true,
+                    ExemptFromAutomatedTax = true,
+                    ExternalCustomerID = "external_customer_id",
+                    Hierarchy = new()
+                    {
+                        Children =
+                        [
+                            new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                        ],
+                        Parent = new() { ID = "id", ExternalCustomerID = "external_customer_id" },
+                    },
+                    Metadata = new Dictionary<string, string>() { { "foo", "string" } },
+                    Name = "name",
+                    PaymentProvider = CustomerPaymentProvider.Quickbooks,
+                    PaymentProviderID = "payment_provider_id",
+                    PortalUrl = "portal_url",
+                    ShippingAddress = new()
+                    {
+                        City = "city",
+                        Country = "country",
+                        Line1 = "line1",
+                        Line2 = "line2",
+                        PostalCode = "postal_code",
+                        State = "state",
+                    },
+                    TaxID = new()
+                    {
+                        Country = Country.Ad,
+                        Type = CustomerTaxIDType.AdNrt,
+                        Value = "value",
+                    },
+                    Timezone = "timezone",
+                    AccountingSyncConfiguration = new()
+                    {
+                        AccountingProviders =
+                        [
+                            new()
+                            {
+                                ExternalProviderID = "external_provider_id",
+                                ProviderType = AccountingProviderProviderType.Quickbooks,
+                            },
+                        ],
+                        Excluded = true,
+                    },
+                    AutomaticTaxEnabled = true,
+                    DefaultPaymentMethod = new()
+                    {
+                        ID = "id",
+                        CreatedAt = DateTimeOffset.Parse("2019-12-27T18:11:19.117Z"),
+                        CustomerID = "customer_id",
+                        Default = true,
+                        ExternalPaymentMethodID = "external_payment_method_id",
+                        PaymentMethodType = PaymentMethodType.Card,
+                        ProviderType = "provider_type",
+                    },
+                    PaymentConfiguration = new()
+                    {
+                        PaymentProviders =
+                        [
+                            new()
+                            {
+                                ProviderType =
+                                    CustomerPaymentConfigurationPaymentProviderProviderType.Stripe,
+                                DefaultSharedPaymentToken = "default_shared_payment_token",
+                                ExcludedPaymentMethodTypes = ["string"],
+                            },
+                        ],
+                    },
+                    ReportingConfiguration = new(true),
+                },
+            ],
+            PaginationMetadata = new() { HasMore = true, NextCursor = "next_cursor" },
+        };
+
+        CustomerListPageResponse copied = new(model);
+
+        Assert.Equal(model, copied);
     }
 }

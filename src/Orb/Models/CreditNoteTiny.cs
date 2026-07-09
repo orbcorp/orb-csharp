@@ -31,8 +31,11 @@ public sealed record class CreditNoteTiny : JsonModel
 
     public CreditNoteTiny() { }
 
+#pragma warning disable CS8618
+    [SetsRequiredMembers]
     public CreditNoteTiny(CreditNoteTiny creditNoteTiny)
         : base(creditNoteTiny) { }
+#pragma warning restore CS8618
 
     public CreditNoteTiny(IReadOnlyDictionary<string, JsonElement> rawData)
     {
