@@ -48,7 +48,7 @@ public class InvoiceCreateParamsTest : TestBase
                 ],
                 Reason = "reason",
             },
-            DueDate = "2023-09-22",
+            DueDate = "2025-09-22",
             ExternalCustomerID = "external-customer-id",
             Memo = "An optional memo for my invoice.",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -89,7 +89,7 @@ public class InvoiceCreateParamsTest : TestBase
             ],
             Reason = "reason",
         };
-        DueDate expectedDueDate = "2023-09-22";
+        DueDate expectedDueDate = "2025-09-22";
         string expectedExternalCustomerID = "external-customer-id";
         string expectedMemo = "An optional memo for my invoice.";
         Dictionary<string, string?> expectedMetadata = new() { { "foo", "string" } };
@@ -159,7 +159,7 @@ public class InvoiceCreateParamsTest : TestBase
                 ],
                 Reason = "reason",
             },
-            DueDate = "2023-09-22",
+            DueDate = "2025-09-22",
             ExternalCustomerID = "external-customer-id",
             Memo = "An optional memo for my invoice.",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -208,7 +208,7 @@ public class InvoiceCreateParamsTest : TestBase
                 ],
                 Reason = "reason",
             },
-            DueDate = "2023-09-22",
+            DueDate = "2025-09-22",
             ExternalCustomerID = "external-customer-id",
             Memo = "An optional memo for my invoice.",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },
@@ -378,7 +378,7 @@ public class InvoiceCreateParamsTest : TestBase
                 ],
                 Reason = "reason",
             },
-            DueDate = "2023-09-22",
+            DueDate = "2025-09-22",
             ExternalCustomerID = "external-customer-id",
             Memo = "An optional memo for my invoice.",
             Metadata = new Dictionary<string, string?>() { { "foo", "string" } },

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Orb.Models.Licenses.ExternalLicenses;
 
 namespace Orb.Tests.Models.Licenses.ExternalLicenses;
@@ -16,7 +15,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Cursor = "cursor",
             EndDate = "2019-12-27",
-            GroupBy = ["string"],
+            GroupBy = "group_by",
             Limit = 1,
             StartDate = "2019-12-27",
         };
@@ -26,7 +25,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
         string expectedSubscriptionID = "subscription_id";
         string expectedCursor = "cursor";
         string expectedEndDate = "2019-12-27";
-        List<string> expectedGroupBy = ["string"];
+        string expectedGroupBy = "group_by";
         long expectedLimit = 1;
         string expectedStartDate = "2019-12-27";
 
@@ -35,12 +34,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
         Assert.Equal(expectedSubscriptionID, parameters.SubscriptionID);
         Assert.Equal(expectedCursor, parameters.Cursor);
         Assert.Equal(expectedEndDate, parameters.EndDate);
-        Assert.NotNull(parameters.GroupBy);
-        Assert.Equal(expectedGroupBy.Count, parameters.GroupBy.Count);
-        for (int i = 0; i < expectedGroupBy.Count; i++)
-        {
-            Assert.Equal(expectedGroupBy[i], parameters.GroupBy[i]);
-        }
+        Assert.Equal(expectedGroupBy, parameters.GroupBy);
         Assert.Equal(expectedLimit, parameters.Limit);
         Assert.Equal(expectedStartDate, parameters.StartDate);
     }
@@ -55,7 +49,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Cursor = "cursor",
             EndDate = "2019-12-27",
-            GroupBy = ["string"],
+            GroupBy = "group_by",
             StartDate = "2019-12-27",
         };
 
@@ -73,7 +67,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Cursor = "cursor",
             EndDate = "2019-12-27",
-            GroupBy = ["string"],
+            GroupBy = "group_by",
             StartDate = "2019-12-27",
 
             // Null should be interpreted as omitted for these properties
@@ -141,7 +135,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Cursor = "cursor",
             EndDate = "2019-12-27",
-            GroupBy = ["string"],
+            GroupBy = "group_by",
             Limit = 1,
             StartDate = "2019-12-27",
         };
@@ -151,7 +145,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
         Assert.True(
             TestBase.UrisEqual(
                 new Uri(
-                    "https://api.withorb.com/v1/licenses/external_licenses/external_license_id/usage?license_type_id=license_type_id&subscription_id=subscription_id&cursor=cursor&end_date=2019-12-27&group_by%5b%5d=string&limit=1&start_date=2019-12-27"
+                    "https://api.withorb.com/v1/licenses/external_licenses/external_license_id/usage?license_type_id=license_type_id&subscription_id=subscription_id&cursor=cursor&end_date=2019-12-27&group_by=group_by&limit=1&start_date=2019-12-27"
                 ),
                 url
             )
@@ -168,7 +162,7 @@ public class ExternalLicenseGetUsageParamsTest : TestBase
             SubscriptionID = "subscription_id",
             Cursor = "cursor",
             EndDate = "2019-12-27",
-            GroupBy = ["string"],
+            GroupBy = "group_by",
             Limit = 1,
             StartDate = "2019-12-27",
         };
