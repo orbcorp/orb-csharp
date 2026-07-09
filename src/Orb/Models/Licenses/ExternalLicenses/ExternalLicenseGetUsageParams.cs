@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text.Json;
@@ -79,20 +78,14 @@ public record class ExternalLicenseGetUsageParams : ParamsBase
     /// How to group the results. Valid values: 'license', 'day'. Can be combined
     /// (e.g., 'license,day').
     /// </summary>
-    public IReadOnlyList<string>? GroupBy
+    public string? GroupBy
     {
         get
         {
             this._rawQueryData.Freeze();
-            return this._rawQueryData.GetNullableStruct<ImmutableArray<string>>("group_by");
+            return this._rawQueryData.GetNullableClass<string>("group_by");
         }
-        init
-        {
-            this._rawQueryData.Set<ImmutableArray<string>?>(
-                "group_by",
-                value == null ? null : ImmutableArray.ToImmutableArray(value)
-            );
-        }
+        init { this._rawQueryData.Set("group_by", value); }
     }
 
     /// <summary>
